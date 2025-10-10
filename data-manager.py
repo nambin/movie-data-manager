@@ -3,6 +3,23 @@ import yaml
 import requests
 import time
 import os
+import sys
+
+# Log levels
+DEBUG = 10
+INFO = 20
+WARNING = 30
+ERROR = 40
+
+LEVEL_NAMES = {
+    DEBUG: "DEBUG",
+    INFO: "INFO",
+    WARNING: "WARNING",
+    ERROR: "ERROR",
+}
+
+# Global variable to control the amount of logging output.
+LOG_LEVEL = DEBUG
 
 TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "f6d7fb04f4d4d6b07d2d750811e73a4c")
 csv_file_path = "input-movies.csv"
@@ -10,48 +27,66 @@ yml_file_path = "output-movies.yml"
 
 movies_data = []
 
+def log(level, message):
+    if level >= LOG_LEVEL:
+        if level == ERROR:
+            print(f"[{LEVEL_NAMES.get(level, 'UNKNOWN')}] {message}", file=sys.stderr)
+        else:
+            print(f"[{LEVEL_NAMES.get(level, 'UNKNOWN')}] {message}")
+
+# https://developer.themoviedb.org/docs/search-and-query-for-details
+# Example - https://api.themoviedb.org/3/search/movie?query=Oppenheimer&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c
+#
+# Returns a list of search results from TMDB. Can be empty.
+# Returns [] if API request fails.
+def call_tmdb_search_api(title, year=None):
+    search_url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={title}"
+    if year:
+        search_url += f"&year={year}"
+        
+    log(DEBUG, f"call_tmdb_search_api => {search_url}")
+    try:
+        response = requests.get(search_url)
+        response.raise_for_status()  # Raise for errors
+        return response.json().get("results", [])
+    except requests.exceptions.RequestException as e:
+        log(WARNING, f"  -> API request failure: {e}")
+        return []
+
+def get_tmdb_search_results(title, year):
+    search_results = call_tmdb_search_api(title, year)
+    for year_offset in [-1, 1]:
+        time.sleep(0.1) 
+        tmp = call_tmdb_search_api(title, year + year_offset)
+        if tmp:
+            search_results.extend(tmp)
+    return search_results
+
+def get_tmdb_search_entry(title, year):
+    search_results = get_tmdb_search_results(title, year)
+    if len(search_results) == 0:
+        log(ERROR, f"  -> Not found in TMDB: {title} ({year})")
+        return None
+
+    if len(search_results) == 1:
+        return search_results[0]
+
+    log(DEBUG,
+        f"  -> {len(search_results)} candidates found in TMDB: '{title}' ({year})"
+    )
+    sorted_candidates = sorted(
+        search_results,
+        key=lambda movie: movie.get("popularity", 0),
+        reverse=True,
+    )
+    return sorted_candidates[0]
+
 # Returns IMDB ID and poster path from TMDB.
 def get_movie_details(title, year, director):
-    # https://api.themoviedb.org/3/search/movie?query=Oppenheimer&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c
-    search_url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={title}"
     try:
-        search_response = requests.get(search_url)
-        search_response.raise_for_status()  # Raise for errors
-        search_results = search_response.json().get("results", [])
-
-        if not search_results:
-            print(f"  -> Not found in TMDB: {title} ({year})")
+        chosen_movie = get_tmdb_search_entry(title, year)
+        if not chosen_movie:
             return None, None
-
-        chosen_movie = None
-        if len(search_results) == 1:
-            chosen_movie = search_results[0]
-        else:
-            # If multiple candidates, filter by year.
-            candidates = [
-                movie
-                for movie in search_results
-                if movie.get("release_date", "").startswith(str(year))
-                or movie.get("release_date", "").startswith(str(year - 1))
-                or movie.get("release_date", "").startswith(str(year + 1))
-                or movie.get("release_date", "").startswith(str(year - 2))
-                or movie.get("release_date", "").startswith(str(year + 2))
-            ]
-
-            if len(candidates) == 1:
-                chosen_movie = candidates[0]
-            else:
-                sorted_candidates = sorted(
-                    candidates,
-                    key=lambda movie: movie.get("popularity", 0),
-                    reverse=True,
-                )
-                chosen_movie = sorted_candidates[0]
-                # print(
-                #     f"  -> {len(candidates)} candidates found in TMDB: '{title}' ({year})"
-                # )
-                # tmdb_id = chosen_movie.get("id")
-                # print (f"  -> https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={TMDB_API_KEY}")
 
         # Getting more detailed information including IMDB ID.
         tmdb_id = chosen_movie.get("id")
@@ -104,17 +139,19 @@ with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
             "director": director,
             "country": country,
             "imdb_id": imdb_id,
+            "imdb_url": f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None,
             "tmdb_poster_path": tmdb_poster_path,
+            "tmdb_poster_url": f"https://image.tmdb.org/t/p/w300{tmdb_poster_path}" if tmdb_poster_path else None,
         }
         movies_data.append(movie_entry)
         if num_movies % 10 == 0:
-            print(
+            log(INFO, 
                 f"Processed {num_movies} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths."
             )
 
 with open(yml_file_path, mode="w", encoding="utf-8") as yml_file:
     yaml.dump(movies_data, yml_file, allow_unicode=True, sort_keys=False)
 
-print(
+log(INFO, 
     f"'{yml_file_path}' is successfully generated for {num_movies} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths."
 )
