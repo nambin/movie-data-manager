@@ -106,6 +106,24 @@
   tmdb_url: https://www.themoviedb.org/movie/575264
   tmdb_poster_path: /NNxYkU70HPurnNCSiCjYAmacwm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/NNxYkU70HPurnNCSiCjYAmacwm.jpg
+- title: 기생충 (Parasite)
+  year: 2019
+  director: 봉준호
+  country: Korea
+  imdb_id: tt6751668
+  imdb_url: https://www.imdb.com/title/tt6751668/
+  tmdb_url: https://www.themoviedb.org/movie/496243
+  tmdb_poster_path: /7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
+- title: 마더 (Mother)
+  year: 2009
+  director: 봉준호
+  country: Korea
+  imdb_id: tt1216496
+  imdb_url: https://www.imdb.com/title/tt1216496/
+  tmdb_url: https://www.themoviedb.org/movie/30018
+  tmdb_poster_path: /8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
 - title: The Secret in Their Eyes (El secreto de sus ojos)
   year: 2009
   director: Juan José Campanella
@@ -115,6 +133,15 @@
   tmdb_url: https://www.themoviedb.org/movie/25376
   tmdb_poster_path: /dkeAwfZzwL3WvToydE3CXiY80E0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkeAwfZzwL3WvToydE3CXiY80E0.jpg
+- title: The Dark Knight
+  year: 2008
+  director: Christopher Nolan
+  country: US
+  imdb_id: tt0468569
+  imdb_url: https://www.imdb.com/title/tt0468569/
+  tmdb_url: https://www.themoviedb.org/movie/155
+  tmdb_poster_path: /qJ2tW6WMUDux911r6m7haRef0WH.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg
 - title: Magnolia
   year: 1999
   director: Paul Thomas Anderson
@@ -142,3 +169,12 @@
   tmdb_url: https://www.themoviedb.org/movie/8741
   tmdb_poster_path: /seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
+- title: Pulp Fiction
+  year: 1994
+  director: Quentin Tarantino
+  country: US
+  imdb_id: tt0110912
+  imdb_url: https://www.imdb.com/title/tt0110912/
+  tmdb_url: https://www.themoviedb.org/movie/680
+  tmdb_poster_path: /vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg

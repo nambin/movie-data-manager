@@ -137,6 +137,8 @@ num_movies_outputs = 0
 num_imdb_id = 0
 num_tmdb_poster = 0
 with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
+
+    log(INFO, f"'{csv_file_path}' is successfully opened.")
     csv_reader = csv.reader(csv_file)
 
     for row in csv_reader:
