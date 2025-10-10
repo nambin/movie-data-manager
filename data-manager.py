@@ -94,6 +94,7 @@ def get_tmdb_search_entry(title, year):
         DEBUG,
         f"  -> {len(search_results)} candidates found in TMDB: '{title}' ({year})",
     )
+    # TODO: Better matching logic may be needed such as director name filtering.
     sorted_candidates = sorted(
         search_results,
         key=lambda movie: movie.get("popularity", 0),
@@ -103,7 +104,7 @@ def get_tmdb_search_entry(title, year):
 
 
 # Returns (IMDB ID, TMDB poster path) or (None, None) if not found.
-def get_tmdb_movie_entry(title, year, director):
+def get_tmdb_movie_entry(title, year):
     tmdb_search_entry = get_tmdb_search_entry(title, year)
     if not tmdb_search_entry:
         log(ERROR, f"  -> Not found in TMDB: {title} ({year})")
@@ -140,7 +141,7 @@ with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
         imdb_id = None
         tmdb_poster_path = None
 
-        tmdb_movie_entry = get_tmdb_movie_entry(title, year, director)
+        tmdb_movie_entry = get_tmdb_movie_entry(title, year)
         if not tmdb_movie_entry:
             continue
 
