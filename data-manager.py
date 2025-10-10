@@ -1,6 +1,7 @@
 import csv
 import yaml
 import requests
+from datetime import datetime
 import time
 import os
 import sys
@@ -19,21 +20,26 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-csv_file_path = "input-movies.csv"
-yml_file_path = "output-movies.yml"
-# csv_file_path = "golden-input-movies.csv"
-# yml_file_path = "golden-output-movies.yml"
+# csv_file_path = "input-movies.csv"
+# yml_file_path = "output-movies.yml"
+csv_file_path = "golden-input-movies.csv"
+yml_file_path = "golden-output-movies.yml"
 
 LOG_LEVEL = INFO
 SLEEP_TIME = 0.1  # seconds
 TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "f6d7fb04f4d4d6b07d2d750811e73a4c")
 
+
 def log(level, message):
-    if level >= LOG_LEVEL:
-        if level == ERROR:
-            print(f"[{LEVEL_NAMES.get(level, 'UNKNOWN')}] {message}", file=sys.stderr)
-        else:
-            print(f"[{LEVEL_NAMES.get(level, 'UNKNOWN')}] {message}")
+    if level < LOG_LEVEL:
+        return
+
+    timestamp = datetime.now().strftime("%H:%M:%S")
+    log_message = f"[{timestamp}] [{LEVEL_NAMES.get(level, 'UNKNOWN')}] {message}"
+    if level == ERROR:
+        print(log_message, file=sys.stderr)
+    else:
+        print(log_message)
 
 
 # https://developer.themoviedb.org/reference/search-movie
@@ -177,8 +183,13 @@ with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
                 f"Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
             )
 
+sorted_movies_output = sorted(
+    movies_output,
+    key=lambda movie: (movie.get("year", 0), movie.get("director", "")),
+    reverse=True,
+)
 with open(yml_file_path, mode="w", encoding="utf-8") as yml_file:
-    yaml.dump(movies_output, yml_file, allow_unicode=True, sort_keys=False)
+    yaml.dump(sorted_movies_output, yml_file, allow_unicode=True, sort_keys=False)
 
 log(INFO, f"'{yml_file_path}' is successfully generated.")
 log(
