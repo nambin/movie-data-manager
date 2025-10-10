@@ -26,7 +26,7 @@ csv_file_path = "golden-input-movies.csv"
 yml_file_path = "golden-output-movies.yml"
 
 LOG_LEVEL = INFO
-SLEEP_TIME = 0.1  # seconds
+SLEEP_TIME = 0.1  # seconds. https://www.themoviedb.org/settings/api/stats
 TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "f6d7fb04f4d4d6b07d2d750811e73a4c")
 
 

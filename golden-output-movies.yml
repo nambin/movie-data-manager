@@ -43,6 +43,15 @@
   tmdb_url: https://www.themoviedb.org/movie/919207
   tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
+- title: Poor Things
+  year: 2023
+  director: Yorgos Lanthimos
+  country: US
+  imdb_id: tt14230458
+  imdb_url: https://www.imdb.com/title/tt14230458/
+  tmdb_url: https://www.themoviedb.org/movie/792307
+  tmdb_poster_path: /kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
 - title: The Taste of Things (프렌치 수프)
   year: 2023
   director: Tran Anh Hung
@@ -61,6 +70,15 @@
   tmdb_url: https://www.themoviedb.org/movie/660360
   tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
+- title: Anatomy of a Fall
+  year: 2023
+  director: Justine Triet
+  country: France
+  imdb_id: tt17009710
+  imdb_url: https://www.imdb.com/title/tt17009710/
+  tmdb_url: https://www.themoviedb.org/movie/915935
+  tmdb_poster_path: /kQs6keheMwCxJxrzV83VUwFtHkB.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kQs6keheMwCxJxrzV83VUwFtHkB.jpg
 - title: Monster
   year: 2023
   director: Hirokazu Koreeda
@@ -88,3 +106,39 @@
   tmdb_url: https://www.themoviedb.org/movie/575264
   tmdb_poster_path: /NNxYkU70HPurnNCSiCjYAmacwm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/NNxYkU70HPurnNCSiCjYAmacwm.jpg
+- title: The Secret in Their Eyes (El secreto de sus ojos)
+  year: 2009
+  director: Juan José Campanella
+  country: Argentina
+  imdb_id: tt1305806
+  imdb_url: https://www.imdb.com/title/tt1305806/
+  tmdb_url: https://www.themoviedb.org/movie/25376
+  tmdb_poster_path: /dkeAwfZzwL3WvToydE3CXiY80E0.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkeAwfZzwL3WvToydE3CXiY80E0.jpg
+- title: Magnolia
+  year: 1999
+  director: Paul Thomas Anderson
+  country: US
+  imdb_id: tt0175880
+  imdb_url: https://www.imdb.com/title/tt0175880/
+  tmdb_url: https://www.themoviedb.org/movie/334
+  tmdb_poster_path: /tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
+- title: 8월의 크리스마스
+  year: 1998
+  director: 허진호
+  country: Korea
+  imdb_id: tt0140825
+  imdb_url: https://www.imdb.com/title/tt0140825/
+  tmdb_url: https://www.themoviedb.org/movie/26935
+  tmdb_poster_path: /vCRcrz5zuQ9d8lgM3oEmgIqEe6b.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vCRcrz5zuQ9d8lgM3oEmgIqEe6b.jpg
+- title: The Thin Red Line
+  year: 1998
+  director: Terrence Malick
+  country: US
+  imdb_id: tt0120863
+  imdb_url: https://www.imdb.com/title/tt0120863/
+  tmdb_url: https://www.themoviedb.org/movie/8741
+  tmdb_poster_path: /seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
