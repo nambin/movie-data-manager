@@ -19,12 +19,14 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-LOG_LEVEL = DEBUG
-SLEEP_TIME = 0.1  # seconds
-
-TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "f6d7fb04f4d4d6b07d2d750811e73a4c")
 csv_file_path = "input-movies.csv"
 yml_file_path = "output-movies.yml"
+# csv_file_path = "golden-input-movies.csv"
+# yml_file_path = "golden-output-movies.yml"
+
+LOG_LEVEL = INFO
+SLEEP_TIME = 0.1  # seconds
+TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "f6d7fb04f4d4d6b07d2d750811e73a4c")
 
 def log(level, message):
     if level >= LOG_LEVEL:
@@ -163,7 +165,7 @@ with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
             "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
             "tmdb_poster_path": tmdb_poster_path,
             "tmdb_poster_url": (
-                f"https://image.tmdb.org/t/p/w300{tmdb_poster_path}"
+                f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
                 if tmdb_poster_path
                 else None
             ),
