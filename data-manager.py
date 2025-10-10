@@ -19,7 +19,7 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-LOG_LEVEL = INFO
+LOG_LEVEL = DEBUG
 SLEEP_TIME = 0.1  # seconds
 
 TMDB_API_KEY = os.environ.get("TMDB_API_KEY", "f6d7fb04f4d4d6b07d2d750811e73a4c")
@@ -34,6 +34,7 @@ def log(level, message):
             print(f"[{LEVEL_NAMES.get(level, 'UNKNOWN')}] {message}")
 
 
+# https://developer.themoviedb.org/reference/search-movie
 # https://developer.themoviedb.org/docs/search-and-query-for-details
 # Example - https://api.themoviedb.org/3/search/movie?query=Oppenheimer&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c
 #
@@ -42,7 +43,7 @@ def log(level, message):
 def call_tmdb_search_api(title, year=None):
     search_url = f"https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={title}"
     if year:
-        search_url += f"&year={year}"
+        search_url += f"&primary_release_year={year}"
 
     log(DEBUG, f"call_tmdb_search_api => {search_url}")
     try:
@@ -116,7 +117,7 @@ def get_tmdb_movie_entry(title, year, director):
     time.sleep(SLEEP_TIME)
     tmdb_movie_entry = call_tmdb_movie_api(tmdb_id)
     if not tmdb_movie_entry:
-        log(ERROR, f"  -> No TMDB entry for {tmdb_id}: '{title}' ({year})")
+        log(ERROR, f"  -> No TMDB movie entry for {tmdb_id}: '{title}' ({year})")
         return None
     return tmdb_movie_entry
 
@@ -158,6 +159,7 @@ with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
             "country": country,
             "imdb_id": imdb_id,
             "imdb_url": f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None,
+            "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
             "tmdb_poster_path": tmdb_poster_path,
             "tmdb_poster_url": (
                 f"https://image.tmdb.org/t/p/w300{tmdb_poster_path}"

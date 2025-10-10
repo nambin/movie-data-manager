@@ -4,6 +4,7 @@
   country: Australia
   imdb_id: tt12037194
   imdb_url: https://www.imdb.com/title/tt12037194/
+  tmdb_url: https://www.themoviedb.org/movie/786892
   tmdb_poster_path: /iADOJ8Zymht2JPMoy3R7xceZprc.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/iADOJ8Zymht2JPMoy3R7xceZprc.jpg
 - title: Wicked
@@ -12,6 +13,7 @@
   country: US
   imdb_id: tt1262426
   imdb_url: https://www.imdb.com/title/tt1262426/
+  tmdb_url: https://www.themoviedb.org/movie/402431
   tmdb_poster_path: /xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
 - title: Inside Out 2
@@ -20,6 +22,7 @@
   country: Pixar
   imdb_id: tt22022452
   imdb_url: https://www.imdb.com/title/tt22022452/
+  tmdb_url: https://www.themoviedb.org/movie/1022789
   tmdb_poster_path: /vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
 - title: 'Mission: Impossible – Dead Reckoning Part I'
@@ -28,6 +31,7 @@
   country: US
   imdb_id: tt9603212
   imdb_url: https://www.imdb.com/title/tt9603212/
+  tmdb_url: https://www.themoviedb.org/movie/575264
   tmdb_poster_path: /NNxYkU70HPurnNCSiCjYAmacwm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/NNxYkU70HPurnNCSiCjYAmacwm.jpg
 - title: Oppenheimer
@@ -36,22 +40,25 @@
   country: US
   imdb_id: tt15398776
   imdb_url: https://www.imdb.com/title/tt15398776/
+  tmdb_url: https://www.themoviedb.org/movie/872585
   tmdb_poster_path: /8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
 - title: Monster
   year: 2023
   director: Hirokazu Koreeda
   country: Japan
-  imdb_id: tt3741700
-  imdb_url: https://www.imdb.com/title/tt3741700/
-  tmdb_poster_path: /mzOHg7Q5q9yUmY0b9Esu8Qe6Nnm.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w300/mzOHg7Q5q9yUmY0b9Esu8Qe6Nnm.jpg
+  imdb_id: tt23736044
+  imdb_url: https://www.imdb.com/title/tt23736044/
+  tmdb_url: https://www.themoviedb.org/movie/1050035
+  tmdb_poster_path: /cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w300/cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
 - title: '노량: 죽음의 바다 '
   year: 2023
   director: Kim Han-min
   country: Korea
   imdb_id: tt22813112
   imdb_url: https://www.imdb.com/title/tt22813112/
+  tmdb_url: https://www.themoviedb.org/movie/660360
   tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
 - title: The Taste of Things (프렌치 수프)
@@ -60,6 +67,7 @@
   country: France
   imdb_id: tt19760052
   imdb_url: https://www.imdb.com/title/tt19760052/
+  tmdb_url: https://www.themoviedb.org/movie/964960
   tmdb_poster_path: /gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
 - title: '서울의 봄 (12.12: The Day)'
@@ -68,6 +76,7 @@
   country: Korea
   imdb_id: tt22507524
   imdb_url: https://www.imdb.com/title/tt22507524/
+  tmdb_url: https://www.themoviedb.org/movie/919207
   tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
 - title: 밀수
@@ -76,5 +85,6 @@
   country: Korea
   imdb_id: tt28106766
   imdb_url: https://www.imdb.com/title/tt28106766/
+  tmdb_url: https://www.themoviedb.org/movie/783110
   tmdb_poster_path: /j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w300/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
