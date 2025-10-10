@@ -20,10 +20,10 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-# csv_file_path = "input-movies.csv"
-# yml_file_path = "output-movies.yml"
-csv_file_path = "golden-input-movies.csv"
-yml_file_path = "golden-output-movies.yml"
+csv_file_path = "input-movies.csv"
+yml_file_path = "output-movies.yml"
+# csv_file_path = "golden-input-movies.csv"
+# yml_file_path = "golden-output-movies.yml"
 
 LOG_LEVEL = INFO
 # See stats in https://www.themoviedb.org/settings/api/stats
@@ -160,12 +160,18 @@ with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
             continue
 
         num_movies_outputs += 1
+
         imdb_id = tmdb_movie_entry.get("imdb_id")
         if imdb_id:
             num_imdb_id += 1
+        else:
+            log(WARNING, f"  -> No IMDB ID in TMDB: '{title}' ({year})")
+
         tmdb_poster_path = tmdb_movie_entry.get("poster_path")
         if tmdb_poster_path:
             num_tmdb_poster += 1
+        else:
+            log(WARNING, f"  -> No TMDB poster path: '{title}' ({year})")
 
         movie_entry = {
             "title": title,
