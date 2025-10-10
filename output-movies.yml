@@ -2,99 +2,179 @@
   year: 2024
   director: George Miller
   country: Australia
-  imdb_id: tt0468569
+  imdb_id: tt12037194
+  tmdb_poster_path: /iADOJ8Zymht2JPMoy3R7xceZprc.jpg
 - title: Wicked
   year: 2024
   director: Jon M. Chu
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt1262426
+  tmdb_poster_path: /xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
 - title: Inside Out 2
   year: 2024
   director: Kelsey Mann
   country: Pixar
-  imdb_id: tt0468569
+  imdb_id: tt22022452
+  tmdb_poster_path: /vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
 - title: Anora
   year: 2024
   director: Sean Baker
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt28607951
+  tmdb_poster_path: /davwb31ZFhBUrZuRlxk8meRfATI.jpg
 - title: 'Joker: Folie à Deux'
   year: 2024
   director: Todd Phillips
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt11315808
+  tmdb_poster_path: /if8QiqCI7WAGImKcJCfzp6VTyKA.jpg
 - title: 여행자의 필요 (A Traveler’s Needs)
   year: 2024
   director: 홍상수
   country: Korea
-  imdb_id: tt0468569
+  imdb_id: tt31015344
+  tmdb_poster_path: /eDimH4UKv1qsXdnFePXuDZb3cA4.jpg
 - title: The Super Mario Bros. Movie
   year: 2023
   director: Aaron Horvath
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt6718170
+  tmdb_poster_path: /qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg
 - title: Fallen Leaves (사랑은 낙엽을 타고)
   year: 2023
   director: Aki Kaurismäki
   country: Finland
-  imdb_id: tt0468569
+  imdb_id: tt21027780
+  tmdb_poster_path: /9ayYOpeqHhxfHHUoyt3kXzznECO.jpg
 - title: The Holdovers (바튼 아카데미)
   year: 2023
   director: Alexander Payne
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt14849194
+  tmdb_poster_path: /VHSzNBTwxV8vh7wylo7O9CLdac.jpg
 - title: Afire
   year: 2023
   director: Christian Petzold
   country: Germany
-  imdb_id: tt0468569
+  imdb_id: tt26440619
+  tmdb_poster_path: /k8NYzD01zAUsdqocjhLXbO9BSS8.jpg
 - title: 'Mission: Impossible – Dead Reckoning Part I'
   year: 2023
   director: Christopher McQuarrie
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt9603208
+  tmdb_poster_path: /z53D72EAOxGRqdr7KXXWp9dJiDe.jpg
 - title: Oppenheimer
   year: 2023
   director: Christopher Nolan
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt15398776
+  tmdb_poster_path: /8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
 - title: Barbie
   year: 2023
   director: Greta Gerwig
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt1517268
+  tmdb_poster_path: /iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg
 - title: Monster
   year: 2023
   director: Hirokazu Koreeda
   country: Japan
-  imdb_id: tt0468569
+  imdb_id: tt29941084
+  tmdb_poster_path: /OsWKxswXx2TOx87ZRxdOciu0uB.jpg
 - title: 'Spider-Man: Across the Spider-Verse'
   year: 2023
   director: Joaquim Dos Santos, Kemp Powers, Justin K. Thompson
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt9362722
+  tmdb_poster_path: /8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg
 - title: The Zone of Interest
   year: 2023
   director: Jonathan Glazer
   country: US
-  imdb_id: tt0468569
+  imdb_id: tt7160372
+  tmdb_poster_path: /hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg
 - title: Anatomy of a Fall
   year: 2023
   director: Justine Triet
   country: France
-  imdb_id: tt0468569
+  imdb_id: tt17009710
+  tmdb_poster_path: /kQs6keheMwCxJxrzV83VUwFtHkB.jpg
 - title: The Old Oak
   year: 2023
   director: Ken Loach
   country: UK
-  imdb_id: tt0468569
+  imdb_id: tt19883634
+  tmdb_poster_path: /xN293BKB0MDqpILmLCtGGYxQXKW.jpg
 - title: '노량: 죽음의 바다 '
   year: 2023
   director: Kim Han-min
   country: Korea
-  imdb_id: tt0468569
+  imdb_id: tt22813112
+  tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
 - title: Elemental
   year: 2023
   director: Peter Sohn
   country: Pixar
-  imdb_id: tt0468569
+  imdb_id: tt15789038
+  tmdb_poster_path: /4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg
+- title: Evil Does Not Exist
+  year: 2023
+  director: Ryusuke Hamaguchi
+  country: Japan
+  imdb_id: tt28490044
+  tmdb_poster_path: /nC7MgPceKAEPWYq6aswrNzG8WAM.jpg
+- title: The Taste of Things (프렌치 수프)
+  year: 2023
+  director: Tran Anh Hung
+  country: France
+  imdb_id: tt19760052
+  tmdb_poster_path: /gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
+- title: Asteroid City
+  year: 2023
+  director: Wes Anderson
+  country: US
+  imdb_id: tt14230388
+  tmdb_poster_path: /rAkz95CREc3A1qTnwlSQ0jh8Zw8.jpg
+- title: Poor Things
+  year: 2023
+  director: Yorgos Lanthimos
+  country: US
+  imdb_id: tt14230458
+  tmdb_poster_path: /kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
+- title: '서울의 봄 (12.12: The Day)'
+  year: 2023
+  director: 김성수
+  country: Korea
+  imdb_id: tt22507524
+  tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
+- title: 거미집 (Cobweb)
+  year: 2023
+  director: 김지운
+  country: Korea
+  imdb_id: tt21254598
+  tmdb_poster_path: /aslkoEQ8idTeeAHe89IxbsxWdEF.jpg
+- title: 밀수
+  year: 2023
+  director: 류승완
+  country: Korea
+  imdb_id: tt28106766
+  tmdb_poster_path: /j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
+- title: 콘크리트 유토피아 (Concrete Utopia)
+  year: 2023
+  director: 엄태화
+  country: Korea
+  imdb_id: tt13086266
+  tmdb_poster_path: /4l68KHxnPSow8MvnGUpjqLzJtLJ.jpg
+- title: Alcarràs (알카라스의 여름)
+  year: 2022
+  director: Carla Simón
+  country: Spain
+  imdb_id: tt11930126
+  tmdb_poster_path: /sbFVJZAvd7a7n2aHEUtOyrQtAKo.jpg
+- title: Aftersun
+  year: 2022
+  director: Charlotte Wells
+  country: UK
+  imdb_id: tt19770238
+  tmdb_poster_path: /evKz85EKouVbIr51zy5fOtpNRPg.jpg
