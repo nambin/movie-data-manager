@@ -177,6 +177,9 @@ def generate_yaml(csv_file_path, yml_file_path):
             else:
                 log(WARNING, f"  -> No TMDB poster path: '{title}' ({year})")
 
+            tmdb_original_title = tmdb_movie_entry.get("original_title")
+            tmdb_title = tmdb_movie_entry.get("title")
+            
             movie_entry = {
                 "title": title,
                 "year": year,
@@ -187,6 +190,8 @@ def generate_yaml(csv_file_path, yml_file_path):
                     f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None
                 ),
                 "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
+                "tmdb_title": tmdb_title if tmdb_title != tmdb_original_title else None,
+                "tmdb_original_title": tmdb_original_title,
                 "tmdb_poster_path": tmdb_poster_path,
                 "tmdb_poster_url": (
                     f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
@@ -217,4 +222,4 @@ def generate_yaml(csv_file_path, yml_file_path):
 
 # generate_yaml("input-movies.csv", "output-movies.yml")
 generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
