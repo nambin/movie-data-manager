@@ -20,13 +20,6 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-# csv_file_path = "input-movies.csv"
-# yml_file_path = "output-movies.yml"
-# csv_file_path = "golden-input-movies.csv"
-# yml_file_path = "golden-output-movies.yml"
-csv_file_path = "golden-251011-input-movies.csv"
-yml_file_path = "golden-251011-output-movies.yml"
-
 LOG_LEVEL = INFO
 # See stats in https://www.themoviedb.org/settings/api/stats
 # 0.01s => 1.9s / movie
@@ -50,7 +43,7 @@ def log(level, message):
 
 # https://developer.themoviedb.org/reference/search-movie
 # https://developer.themoviedb.org/docs/search-and-query-for-details
-# Example - https://api.themoviedb.org/3/search/movie?query=Oppenheimer&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c
+# Example - https://api.themoviedb.org/3/search/movie?query=Oppenheimer&primary_release_year=2023&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c
 #
 # Returns a list of search results from TMDB. Can be empty.
 # Returns [] if API request fails.
@@ -97,6 +90,9 @@ def get_tmdb_search_results(title, year):
 
 
 def get_tmdb_search_entry(title, year):
+    # TODO: Parse title to extract English & non-English titles & use them for search.
+
+        
     search_results = get_tmdb_search_results(title, year)
     if len(search_results) == 0:
         return None
@@ -108,12 +104,11 @@ def get_tmdb_search_entry(title, year):
         DEBUG,
         f"  -> {len(search_results)} candidates found in TMDB: '{title}' ({year})",
     )
-    # TODO: Better matching logic may be needed such as director name filtering.
-    sorted_candidates = sorted(
-        search_results,
-        key=lambda movie: movie.get("popularity", 0),
-        reverse=True,
-    )
+    # TODO: Better matching logic may be needed (title, year, director).
+    def movie_matching_score(movie):
+        return movie.get("popularity", 0)
+
+    sorted_candidates = sorted(search_results, key=movie_matching_score, reverse=True)
     return sorted_candidates[0]
 
 
@@ -137,76 +132,83 @@ def get_tmdb_movie_entry(title, year):
     return tmdb_movie_entry
 
 
-movies_output = []
-num_movies_inputs = 0
-num_movies_outputs = 0
-num_imdb_id = 0
-num_tmdb_poster = 0
-with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
+def generate_yaml(csv_file_path, yml_file_path):
+    movies_output = []
+    num_movies_inputs = 0
+    num_movies_outputs = 0
+    num_imdb_id = 0
+    num_tmdb_poster = 0
+    with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
 
-    log(INFO, f"'{csv_file_path}' is successfully opened.")
-    csv_reader = csv.reader(csv_file)
+        log(INFO, f"'{csv_file_path}' is successfully opened.")
+        csv_reader = csv.reader(csv_file)
 
-    for row in csv_reader:
-        num_movies_inputs += 1
+        for row in csv_reader:
+            num_movies_inputs += 1
 
-        director = row[0]
-        year = int(row[1])
-        title = row[2]
-        country = row[3]
-        imdb_id = None
-        tmdb_poster_path = None
+            director = row[0]
+            year = int(row[1])
+            title = row[2]
+            country = row[3]
+            imdb_id = None
+            tmdb_poster_path = None
 
-        tmdb_movie_entry = get_tmdb_movie_entry(title, year)
-        if not tmdb_movie_entry:
-            continue
+            tmdb_movie_entry = get_tmdb_movie_entry(title, year)
+            if not tmdb_movie_entry:
+                continue
 
-        num_movies_outputs += 1
+            num_movies_outputs += 1
 
-        imdb_id = tmdb_movie_entry.get("imdb_id")
-        if imdb_id:
-            num_imdb_id += 1
-        else:
-            log(WARNING, f"  -> No IMDB ID in TMDB: '{title}' ({year})")
+            imdb_id = tmdb_movie_entry.get("imdb_id")
+            if imdb_id:
+                num_imdb_id += 1
+            else:
+                log(WARNING, f"  -> No IMDB ID in TMDB: '{title}' ({year})")
 
-        tmdb_poster_path = tmdb_movie_entry.get("poster_path")
-        if tmdb_poster_path:
-            num_tmdb_poster += 1
-        else:
-            log(WARNING, f"  -> No TMDB poster path: '{title}' ({year})")
+            tmdb_poster_path = tmdb_movie_entry.get("poster_path")
+            if tmdb_poster_path:
+                num_tmdb_poster += 1
+            else:
+                log(WARNING, f"  -> No TMDB poster path: '{title}' ({year})")
 
-        movie_entry = {
-            "title": title,
-            "year": year,
-            "director": director,
-            "country": country,
-            "imdb_id": imdb_id,
-            "imdb_url": f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None,
-            "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
-            "tmdb_poster_path": tmdb_poster_path,
-            "tmdb_poster_url": (
-                f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
-                if tmdb_poster_path
-                else None
-            ),
-        }
-        movies_output.append(movie_entry)
-        if num_movies_inputs % 10 == 0:
-            log(
-                INFO,
-                f"Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
-            )
+            movie_entry = {
+                "title": title,
+                "year": year,
+                "director": director,
+                "country": country,
+                "imdb_id": imdb_id,
+                "imdb_url": (
+                    f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None
+                ),
+                "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
+                "tmdb_poster_path": tmdb_poster_path,
+                "tmdb_poster_url": (
+                    f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
+                    if tmdb_poster_path
+                    else None
+                ),
+            }
+            movies_output.append(movie_entry)
+            if num_movies_inputs % 10 == 0:
+                log(
+                    INFO,
+                    f"Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+                )
 
-sorted_movies_output = sorted(
-    movies_output,
-    key=lambda movie: (movie.get("year", 0), movie.get("director", "")),
-    reverse=True,
-)
-with open(yml_file_path, mode="w", encoding="utf-8") as yml_file:
-    yaml.dump(sorted_movies_output, yml_file, allow_unicode=True, sort_keys=False)
+    sorted_movies_output = sorted(
+        movies_output,
+        key=lambda movie: (movie.get("year", 0), movie.get("director", "")),
+        reverse=True,
+    )
+    with open(yml_file_path, mode="w", encoding="utf-8") as yml_file:
+        yaml.dump(sorted_movies_output, yml_file, allow_unicode=True, sort_keys=False)
 
-log(INFO, f"'{yml_file_path}' is successfully generated.")
-log(
-    INFO,
-    f"Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
-)
+    log(
+        INFO,
+        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+    )
+
+
+# generate_yaml("input-movies.csv", "output-movies.yml")
+generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
