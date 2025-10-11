@@ -1,0 +1,288 @@
+- title: The Menu
+  year: 2022
+  director: Mark Mylod
+  country: US
+  imdb_id: tt5537002
+  imdb_url: https://www.imdb.com/title/tt5537002/
+  tmdb_url: https://www.themoviedb.org/movie/466420
+  tmdb_poster_path: /dB6Krk806zeqd0YNp2ngQ9zXteH.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg
+- title: No Bears
+  year: 2022
+  director: Jafar Panahi
+  country: Iran
+  imdb_id: tt21924062
+  imdb_url: https://www.imdb.com/title/tt21924062/
+  tmdb_url: https://www.themoviedb.org/movie/1005804
+  tmdb_poster_path: /vGkjjQlX0yF7uTj3D3UPG3xtT0A.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vGkjjQlX0yF7uTj3D3UPG3xtT0A.jpg
+- title: The Dropout
+  year: 2022
+  director: Elizabeth Meriwether
+  country: US
+  imdb_id: null
+  imdb_url: null
+  tmdb_url: https://www.themoviedb.org/movie/1124086
+  tmdb_poster_path: /soJA6gnILMoUkgup0vmUsGdRgu4.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/soJA6gnILMoUkgup0vmUsGdRgu4.jpg
+- title: Undine
+  year: 2022
+  director: Christian Petzold
+  country: Germany
+  imdb_id: tt5971474
+  imdb_url: https://www.imdb.com/title/tt5971474/
+  tmdb_url: https://www.themoviedb.org/movie/447277
+  tmdb_poster_path: /ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg
+- title: The Witches
+  year: 2021
+  director: Robert Zemeckis
+  country: US
+  imdb_id: tt13721828
+  imdb_url: https://www.imdb.com/title/tt13721828/
+  tmdb_url: https://www.themoviedb.org/movie/615173
+  tmdb_poster_path: /9YTuscJXmr9Iua62amCgGSU8PDW.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/9YTuscJXmr9Iua62amCgGSU8PDW.jpg
+- title: Annette
+  year: 2021
+  director: Leos Carax
+  country: US
+  imdb_id: tt23633496
+  imdb_url: https://www.imdb.com/title/tt23633496/
+  tmdb_url: https://www.themoviedb.org/movie/1006474
+  tmdb_poster_path: /oqpWVWeihMl3q9pZjVBlVlrpvv3.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/oqpWVWeihMl3q9pZjVBlVlrpvv3.jpg
+- title: Titane
+  year: 2021
+  director: Julia Ducournau
+  country: France
+  imdb_id: tt12851396
+  imdb_url: https://www.imdb.com/title/tt12851396/
+  tmdb_url: https://www.themoviedb.org/movie/730840
+  tmdb_poster_path: /zvUNFeTz0Sssb210wSiIiHRjA4W.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/zvUNFeTz0Sssb210wSiIiHRjA4W.jpg
+- title: Mank
+  year: 2020
+  director: David Fincher
+  country: US
+  imdb_id: null
+  imdb_url: null
+  tmdb_url: https://www.themoviedb.org/movie/666987
+  tmdb_poster_path: /tCU605Y8LhvqZYrZh07FO78yngz.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/tCU605Y8LhvqZYrZh07FO78yngz.jpg
+- title: 우리집
+  year: 2019
+  director: 윤가은
+  country: Korea
+  imdb_id: tt10143498
+  imdb_url: https://www.imdb.com/title/tt10143498/
+  tmdb_url: https://www.themoviedb.org/movie/536506
+  tmdb_poster_path: /bObDrMrpJz6rVbM1vk21QkEvOPe.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/bObDrMrpJz6rVbM1vk21QkEvOPe.jpg
+- title: Us
+  year: 2019
+  director: Jordan Peele
+  country: US
+  imdb_id: tt6116856
+  imdb_url: https://www.imdb.com/title/tt6116856/
+  tmdb_url: https://www.themoviedb.org/movie/449992
+  tmdb_poster_path: /8lI1p5cPqgXN2qrKZrmI3mhKBfs.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/8lI1p5cPqgXN2qrKZrmI3mhKBfs.jpg
+- title: '1987'
+  year: 2018
+  director: 장준환
+  country: Korea
+  imdb_id: tt7981120
+  imdb_url: https://www.imdb.com/title/tt7981120/
+  tmdb_url: https://www.themoviedb.org/movie/506869
+  tmdb_poster_path: /6jHZRh35kOaRGpbZzVzwJ5nzLtI.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6jHZRh35kOaRGpbZzVzwJ5nzLtI.jpg
+- title: 벌새
+  year: 2018
+  director: 김보라
+  country: Korea
+  imdb_id: tt6866224
+  imdb_url: https://www.imdb.com/title/tt6866224/
+  tmdb_url: https://www.themoviedb.org/movie/489243
+  tmdb_poster_path: /cx7CuTtcJvjZAP6ZFWoxylCXKFP.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cx7CuTtcJvjZAP6ZFWoxylCXKFP.jpg
+- title: Cold War
+  year: 2018
+  director: Pawel Pawlikowski
+  country: Poland
+  imdb_id: tt5537300
+  imdb_url: https://www.imdb.com/title/tt5537300/
+  tmdb_url: https://www.themoviedb.org/movie/517104
+  tmdb_poster_path: /fNtvmW8vkxmsmQbYUdRrPZHxeRM.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/fNtvmW8vkxmsmQbYUdRrPZHxeRM.jpg
+- title: First man
+  year: 2018
+  director: Damien Chazelle
+  country: US
+  imdb_id: tt7027210
+  imdb_url: https://www.imdb.com/title/tt7027210/
+  tmdb_url: https://www.themoviedb.org/movie/432320
+  tmdb_poster_path: /pssF3UjE7vVgR6z35XFmQz9L44q.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/pssF3UjE7vVgR6z35XFmQz9L44q.jpg
+- title: Roma
+  year: 2018
+  director: Alfonso Cuarón
+  country: Mexico
+  imdb_id: tt9747392
+  imdb_url: https://www.imdb.com/title/tt9747392/
+  tmdb_url: https://www.themoviedb.org/movie/581310
+  tmdb_poster_path: /g82ETVLuFCE8JwitEuQmP0jrMUx.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/g82ETVLuFCE8JwitEuQmP0jrMUx.jpg
+- title: Wonder
+  year: 2017
+  director: Stephen Chbosky
+  country: US
+  imdb_id: tt0451279
+  imdb_url: https://www.imdb.com/title/tt0451279/
+  tmdb_url: https://www.themoviedb.org/movie/297762
+  tmdb_poster_path: /v4ncgZjG2Zu8ZW5al1vIZTsSjqX.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/v4ncgZjG2Zu8ZW5al1vIZTsSjqX.jpg
+- title: Happy End
+  year: 2017
+  director: Michael Haneke
+  country: France
+  imdb_id: tt7205316
+  imdb_url: https://www.imdb.com/title/tt7205316/
+  tmdb_url: https://www.themoviedb.org/movie/499726
+  tmdb_poster_path: /qBU82NPKF1LOAD9D3jLUqypyEdL.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qBU82NPKF1LOAD9D3jLUqypyEdL.jpg
+- title: Elle
+  year: 2016
+  director: Paul Verhoeven
+  country: France
+  imdb_id: tt2975590
+  imdb_url: https://www.imdb.com/title/tt2975590/
+  tmdb_url: https://www.themoviedb.org/movie/209112
+  tmdb_poster_path: /5UsK3grJvtQrtzEgqNlDljJW96w.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/5UsK3grJvtQrtzEgqNlDljJW96w.jpg
+- title: Moonlight
+  year: 2016
+  director: Barry Jenkins
+  country: US
+  imdb_id: tt6587078
+  imdb_url: https://www.imdb.com/title/tt6587078/
+  tmdb_url: https://www.themoviedb.org/movie/446493
+  tmdb_poster_path: /wITyFvOffnDi09fqBmORUhE6zS6.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/wITyFvOffnDi09fqBmORUhE6zS6.jpg
+- title: Spotlight
+  year: 2015
+  director: Tom McCarthy
+  country: US
+  imdb_id: tt3064620
+  imdb_url: https://www.imdb.com/title/tt3064620/
+  tmdb_url: https://www.themoviedb.org/movie/281506
+  tmdb_poster_path: /wMie9YLc8q8XkJjECbZViDPkkGU.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/wMie9YLc8q8XkJjECbZViDPkkGU.jpg
+- title: Macbeth
+  year: 2015
+  director: Justin Kurzel
+  country: US
+  imdb_id: tt4291600
+  imdb_url: https://www.imdb.com/title/tt4291600/
+  tmdb_url: https://www.themoviedb.org/movie/410117
+  tmdb_poster_path: /xWTJbhTwSTJmhLlX5xAOxPhdnXc.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/xWTJbhTwSTJmhLlX5xAOxPhdnXc.jpg
+- title: Brooklyn
+  year: 2015
+  director: John Crowley
+  country: US
+  imdb_id: tt4065212
+  imdb_url: https://www.imdb.com/title/tt4065212/
+  tmdb_url: https://www.themoviedb.org/movie/398891
+  tmdb_poster_path: /JMQhYg65RQkpZhjeL4tPJVhIQ.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/JMQhYg65RQkpZhjeL4tPJVhIQ.jpg
+- title: Highway
+  year: 2014
+  director: Imtiaz Ali
+  country: India
+  imdb_id: tt3983642
+  imdb_url: https://www.imdb.com/title/tt3983642/
+  tmdb_url: https://www.themoviedb.org/movie/321539
+  tmdb_poster_path: /goEhxvJSqUBdqswQ5nOIS9CsE6m.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/goEhxvJSqUBdqswQ5nOIS9CsE6m.jpg
+- title: Phoenix
+  year: 2014
+  director: Christian Petzold
+  country: Germany
+  imdb_id: tt4341532
+  imdb_url: https://www.imdb.com/title/tt4341532/
+  tmdb_url: https://www.themoviedb.org/movie/321039
+  tmdb_poster_path: /2EWUeUO4IyiKwlX14XLUiCRMUNa.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/2EWUeUO4IyiKwlX14XLUiCRMUNa.jpg
+- title: Still Life
+  year: 2013
+  director: Uberto Pasolini
+  country: UK
+  imdb_id: tt2850834
+  imdb_url: https://www.imdb.com/title/tt2850834/
+  tmdb_url: https://www.themoviedb.org/movie/323666
+  tmdb_poster_path: /4eFKqwuZUcjfTbTWszz2xpwIsRL.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4eFKqwuZUcjfTbTWszz2xpwIsRL.jpg
+- title: Her
+  year: 2013
+  director: Spike Jonze
+  country: US
+  imdb_id: tt2245084
+  imdb_url: https://www.imdb.com/title/tt2245084/
+  tmdb_url: https://www.themoviedb.org/movie/177572
+  tmdb_poster_path: /2mxS4wUimwlLmI1xp6QW6NSU361.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/2mxS4wUimwlLmI1xp6QW6NSU361.jpg
+- title: Ida
+  year: 2013
+  director: Pawel Pawlikowski
+  country: Poland
+  imdb_id: tt1667889
+  imdb_url: https://www.imdb.com/title/tt1667889/
+  tmdb_url: https://www.themoviedb.org/movie/57800
+  tmdb_poster_path: /dfp1BZF7FxbBUyzHvMOI9t8NWDD.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dfp1BZF7FxbBUyzHvMOI9t8NWDD.jpg
+- title: The Past
+  year: 2013
+  director: Asghar Farhadi
+  country: France
+  imdb_id: tt1877832
+  imdb_url: https://www.imdb.com/title/tt1877832/
+  tmdb_url: https://www.themoviedb.org/movie/127585
+  tmdb_poster_path: /tYfijzolzgoMOtegh1Y7j2Enorg.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/tYfijzolzgoMOtegh1Y7j2Enorg.jpg
+- title: Amour
+  year: 2012
+  director: Michael Haneke
+  country: France
+  imdb_id: tt1570728
+  imdb_url: https://www.imdb.com/title/tt1570728/
+  tmdb_url: https://www.themoviedb.org/movie/50646
+  tmdb_poster_path: /p4RafgAPk558muOjnBMHhMArjS2.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/p4RafgAPk558muOjnBMHhMArjS2.jpg
+- title: 고지전
+  year: 2011
+  director: 장훈
+  country: Korea
+  imdb_id: tt2007387
+  imdb_url: https://www.imdb.com/title/tt2007387/
+  tmdb_url: https://www.themoviedb.org/movie/79553
+  tmdb_poster_path: /cRw9czK3hOnNenW1iVVpGM3kbn7.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cRw9czK3hOnNenW1iVVpGM3kbn7.jpg
+- title: The Artist
+  year: 2011
+  director: Michel Hazanavicius
+  country: France
+  imdb_id: tt2073029
+  imdb_url: https://www.imdb.com/title/tt2073029/
+  tmdb_url: https://www.themoviedb.org/movie/84309
+  tmdb_poster_path: /6CbjWJpB4TowXNXykRoUzqvyfVH.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6CbjWJpB4TowXNXykRoUzqvyfVH.jpg
+- title: 시
+  year: 2010
+  director: 이창동
+  country: Korea
+  imdb_id: tt1104001
+  imdb_url: https://www.imdb.com/title/tt1104001/
+  tmdb_url: https://www.themoviedb.org/movie/20526
+  tmdb_poster_path: /vuifSABRpSnxCAOxEnWpNbZSXpp.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vuifSABRpSnxCAOxEnWpNbZSXpp.jpg

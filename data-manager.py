@@ -20,10 +20,12 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-csv_file_path = "input-movies.csv"
-yml_file_path = "output-movies.yml"
+# csv_file_path = "input-movies.csv"
+# yml_file_path = "output-movies.yml"
 # csv_file_path = "golden-input-movies.csv"
 # yml_file_path = "golden-output-movies.yml"
+csv_file_path = "golden-251011-input-movies.csv"
+yml_file_path = "golden-251011-output-movies.yml"
 
 LOG_LEVEL = INFO
 # See stats in https://www.themoviedb.org/settings/api/stats
