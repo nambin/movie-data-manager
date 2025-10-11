@@ -1,6 +1,6 @@
 ## Movie Data Manager
 
-This project manages movie data to empower data in https://nambin.github.io/movies.html.
+This project manages movie data to empower https://nambin.github.io/movies.html.
 
 ### How to Run
 
