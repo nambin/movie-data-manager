@@ -1,6 +1,15 @@
 ## Movie Data Manager
 
-This project manages movie data to empower https://nambin.github.io/movies.html.
+This project manages movie data to empower https://nambin.github.io/movies.html. This uses two TMDB APIs, [Search API](https://developer.themoviedb.org/reference/search-movie) and [Movie Details API](https://developer.themoviedb.org/reference/movie-details).
+
+Search API examples
+- [Oppenheimer 2023](https://api.themoviedb.org/3/search/movie?query=Oppenheimer&primary_release_year=2023&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
+
+
+Movie API examples
+- [Parasite](https://api.themoviedb.org/3/movie/496243?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&append_to_response=credits)
+- [Oppenheimer](https://api.themoviedb.org/3/movie/872585?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&append_to_response=credits)
+- [Shoplifters](https://api.themoviedb.org/3/movie/505192?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&append_to_response=credits)
 
 ### How to Run
 

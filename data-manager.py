@@ -43,7 +43,6 @@ def log(level, message):
 
 # https://developer.themoviedb.org/reference/search-movie
 # https://developer.themoviedb.org/docs/search-and-query-for-details
-# Example - https://api.themoviedb.org/3/search/movie?query=Oppenheimer&primary_release_year=2023&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c
 #
 # Returns a list of search results from TMDB. Can be empty.
 # Returns [] if API request fails.
@@ -63,7 +62,6 @@ def call_tmdb_search_api(title, year=None):
 
 
 # https://developer.themoviedb.org/reference/movie-details
-# Example - https://api.themoviedb.org/3/movie/872585?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&append_to_response=credits
 #
 # Returns detailed movie information in JSON from TMDB.
 # Returns None if API request fails.
@@ -92,7 +90,6 @@ def get_tmdb_search_results(title, year):
 def get_tmdb_search_entry(title, year):
     # TODO: Parse title to extract English & non-English titles & use them for search.
 
-        
     search_results = get_tmdb_search_results(title, year)
     if len(search_results) == 0:
         return None
@@ -114,15 +111,24 @@ def get_tmdb_search_entry(title, year):
 
 # Returns (IMDB ID, TMDB poster path) or (None, None) if not found.
 def get_tmdb_movie_entry(title, year):
-    tmdb_search_entry = get_tmdb_search_entry(title, year)
-    if not tmdb_search_entry:
-        log(ERROR, f"  -> Not found in TMDB: {title} ({year})")
-        return None
+    tmdb_id = None
+    hardcoded_tmdb_ids = {
+        ("님은 먼 곳에", 2008): 41538,
+    }
 
-    tmdb_id = tmdb_search_entry.get("id")
-    if not tmdb_id:
-        log(ERROR, f"  -> No TMDB ID: '{title}' ({year})")
-        return None
+    if (title, year) in hardcoded_tmdb_ids:
+        tmdb_id = hardcoded_tmdb_ids[(title, year)]
+        log(DEBUG, f"  -> Using hardcoded TMDB ID {tmdb_id}: {title} ({year})")
+    else:
+        tmdb_search_entry = get_tmdb_search_entry(title, year)
+        if not tmdb_search_entry:
+            log(ERROR, f"  -> Not found in TMDB: {title} ({year})")
+            return None
+
+        tmdb_id = tmdb_search_entry.get("id")
+        if not tmdb_id:
+            log(ERROR, f"  -> No TMDB ID: '{title}' ({year})")
+            return None
 
     time.sleep(SLEEP_TIME)
     tmdb_movie_entry = call_tmdb_movie_api(tmdb_id)

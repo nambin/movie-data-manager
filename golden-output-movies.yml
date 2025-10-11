@@ -115,6 +115,15 @@
   tmdb_url: https://www.themoviedb.org/movie/496243
   tmdb_poster_path: /7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
+- title: Shoplifters (어느 가족)
+  year: 2018
+  director: Hirokazu Koreeda
+  country: Japan
+  imdb_id: tt8075192
+  imdb_url: https://www.imdb.com/title/tt8075192/
+  tmdb_url: https://www.themoviedb.org/movie/505192
+  tmdb_poster_path: /4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
 - title: 마더 (Mother)
   year: 2009
   director: 봉준호
@@ -151,15 +160,6 @@
   tmdb_url: https://www.themoviedb.org/movie/334
   tmdb_poster_path: /tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
-- title: 8월의 크리스마스
-  year: 1998
-  director: 허진호
-  country: Korea
-  imdb_id: tt0140825
-  imdb_url: https://www.imdb.com/title/tt0140825/
-  tmdb_url: https://www.themoviedb.org/movie/26935
-  tmdb_poster_path: /vCRcrz5zuQ9d8lgM3oEmgIqEe6b.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vCRcrz5zuQ9d8lgM3oEmgIqEe6b.jpg
 - title: The Thin Red Line
   year: 1998
   director: Terrence Malick
