@@ -379,6 +379,6 @@ def generate_yaml(csv_file_path, yml_file_path):
     )
 
 
-# generate_yaml("input-movies.csv", "output-movies.yml")
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+generate_yaml("input-movies.csv", "output-movies.yml")
+# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
