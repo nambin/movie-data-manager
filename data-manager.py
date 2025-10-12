@@ -269,7 +269,9 @@ def generate_yaml(csv_file_path, yml_file_path):
 
             tmdb_crew_list = tmdb_movie_entry.get("credits", {}).get("crew", [])
             if tmdb_crew_list:
-                tmdb_directors = [crew for crew in tmdb_crew_list if crew.get("job") == "Director"]
+                tmdb_directors = [
+                    crew for crew in tmdb_crew_list if crew.get("job") == "Director"
+                ]
                 if tmdb_directors:
                     director_name_score = max(
                         fuzz.ratio(
@@ -290,6 +292,7 @@ def generate_yaml(csv_file_path, yml_file_path):
             tmdb_original_title = tmdb_movie_entry.get("original_title")
             tmdb_title = tmdb_movie_entry.get("title")
 
+            # Prepare movie entry in YAML.
             num_movies_outputs += 1
             movie_entry = {
                 "title": title,
@@ -297,9 +300,7 @@ def generate_yaml(csv_file_path, yml_file_path):
                 "director": director,
                 "country": country,
                 "imdb_id": imdb_id,
-                "imdb_url": (
-                    f"https://www.imdb.com/title/{imdb_id}/" if imdb_id else None
-                ),
+                "imdb_url": f"https://www.imdb.com/title/{imdb_id}",
                 "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
                 "tmdb_title": tmdb_title if tmdb_title != tmdb_original_title else None,
                 "tmdb_original_title": tmdb_original_title,
@@ -311,12 +312,36 @@ def generate_yaml(csv_file_path, yml_file_path):
                     else None
                 ),
             }
+
+            # Populate Korean title if the original language is not Korean.
             if tmdb_original_lang != "ko":
                 custom_korean_title = movie_title_set.get_title_by_locale("Korean")
                 if imdb_id == "tt0442268":
                     custom_korean_title = "지금, 만나러 갑니다"
                 if custom_korean_title:
                     movie_entry["custom_korean_title"] = custom_korean_title
+
+            # Populate my favorite flag.
+            if row[4] == "Masterpiece" or row[4] == "Special":
+                movie_entry["my_best"] = True
+
+            # Populate award information.
+            _HARDCODED_FILM_AWARDS = {
+                "청룡영화제 최우수 작품상": "blue_dragon",
+                "Oscar Best Picture": "oscar",
+                "Oscar Best International Film": "oscar",
+                "Venice Leone d’oro": "venice",
+                "Cannes Palme d'Or": "cannes",
+                "Berlin Goldener Bär": "berlin",
+            }
+            if row[5] in _HARDCODED_FILM_AWARDS or row[6] in _HARDCODED_FILM_AWARDS:
+                awards = []
+                if row[5] in _HARDCODED_FILM_AWARDS:
+                    awards.append(_HARDCODED_FILM_AWARDS[row[5]])
+                if row[6] in _HARDCODED_FILM_AWARDS:
+                    awards.append(_HARDCODED_FILM_AWARDS[row[6]])
+                if awards:
+                    movie_entry["awards"] = awards
 
             movies_output.append(movie_entry)
             if num_movies_inputs % 50 == 0:
@@ -340,5 +365,5 @@ def generate_yaml(csv_file_path, yml_file_path):
 
 
 # generate_yaml("input-movies.csv", "output-movies.yml")
-# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
 generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")

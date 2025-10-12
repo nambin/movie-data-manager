@@ -3,7 +3,7 @@
   director: Mark Mylod
   country: US
   imdb_id: tt9764362
-  imdb_url: https://www.imdb.com/title/tt9764362/
+  imdb_url: https://www.imdb.com/title/tt9764362
   tmdb_url: https://www.themoviedb.org/movie/593643
   tmdb_title: null
   tmdb_original_title: The Menu
@@ -15,7 +15,7 @@
   director: Jafar Panahi
   country: Iran
   imdb_id: tt20205236
-  imdb_url: https://www.imdb.com/title/tt20205236/
+  imdb_url: https://www.imdb.com/title/tt20205236
   tmdb_url: https://www.themoviedb.org/movie/974521
   tmdb_title: No Bears
   tmdb_original_title: Khers nist
@@ -27,7 +27,7 @@
   director: Leos Carax
   country: US
   imdb_id: tt6217926
-  imdb_url: https://www.imdb.com/title/tt6217926/
+  imdb_url: https://www.imdb.com/title/tt6217926
   tmdb_url: https://www.themoviedb.org/movie/424277
   tmdb_title: null
   tmdb_original_title: Annette
@@ -39,19 +39,22 @@
   director: Julia Ducournau
   country: France
   imdb_id: tt10944760
-  imdb_url: https://www.imdb.com/title/tt10944760/
+  imdb_url: https://www.imdb.com/title/tt10944760
   tmdb_url: https://www.themoviedb.org/movie/630240
   tmdb_title: null
   tmdb_original_title: Titane
   tmdb_original_language: French
   tmdb_poster_path: /AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
+  my_best: true
+  awards:
+  - cannes
 - title: The Witches
   year: 2020
   director: Robert Zemeckis
   country: US
   imdb_id: tt0805647
-  imdb_url: https://www.imdb.com/title/tt0805647/
+  imdb_url: https://www.imdb.com/title/tt0805647
   tmdb_url: https://www.themoviedb.org/movie/531219
   tmdb_title: null
   tmdb_original_title: Roald Dahl's The Witches
@@ -63,7 +66,7 @@
   director: David Fincher
   country: US
   imdb_id: tt10618286
-  imdb_url: https://www.imdb.com/title/tt10618286/
+  imdb_url: https://www.imdb.com/title/tt10618286
   tmdb_url: https://www.themoviedb.org/movie/614560
   tmdb_title: null
   tmdb_original_title: Mank
@@ -75,31 +78,33 @@
   director: Christian Petzold
   country: Germany
   imdb_id: tt11617052
-  imdb_url: https://www.imdb.com/title/tt11617052/
+  imdb_url: https://www.imdb.com/title/tt11617052
   tmdb_url: https://www.themoviedb.org/movie/615761
   tmdb_title: null
   tmdb_original_title: Undine
   tmdb_original_language: German
   tmdb_poster_path: /7PeaXj2EKef84zEZazxiGL8bXRH.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7PeaXj2EKef84zEZazxiGL8bXRH.jpg
+  my_best: true
 - title: 우리집
   year: 2019
   director: 윤가은
   country: Korea
   imdb_id: tt10713818
-  imdb_url: https://www.imdb.com/title/tt10713818/
+  imdb_url: https://www.imdb.com/title/tt10713818
   tmdb_url: https://www.themoviedb.org/movie/575720
   tmdb_title: The House of Us
   tmdb_original_title: 우리집
   tmdb_original_language: Korean
   tmdb_poster_path: /losNmoCPywJs6I0f7wQJ9pBlNJJ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/losNmoCPywJs6I0f7wQJ9pBlNJJ.jpg
+  my_best: true
 - title: Us
   year: 2019
   director: Jordan Peele
   country: US
   imdb_id: tt6857112
-  imdb_url: https://www.imdb.com/title/tt6857112/
+  imdb_url: https://www.imdb.com/title/tt6857112
   tmdb_url: https://www.themoviedb.org/movie/458723
   tmdb_title: null
   tmdb_original_title: Us
@@ -111,19 +116,21 @@
   director: 장준환
   country: Korea
   imdb_id: tt6493286
-  imdb_url: https://www.imdb.com/title/tt6493286/
+  imdb_url: https://www.imdb.com/title/tt6493286
   tmdb_url: https://www.themoviedb.org/movie/437103
   tmdb_title: '1987: When the Day Comes'
   tmdb_original_title: '1987'
   tmdb_original_language: Korean
   tmdb_poster_path: /3KgL5KiGk8ABfMFHzGP2GnoH8sL.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3KgL5KiGk8ABfMFHzGP2GnoH8sL.jpg
+  awards:
+  - blue_dragon
 - title: 벌새
   year: 2018
   director: 김보라
   country: Korea
   imdb_id: tt8951086
-  imdb_url: https://www.imdb.com/title/tt8951086/
+  imdb_url: https://www.imdb.com/title/tt8951086
   tmdb_url: https://www.themoviedb.org/movie/547404
   tmdb_title: House of Hummingbird
   tmdb_original_title: 벌새
@@ -135,7 +142,7 @@
   director: Pawel Pawlikowski
   country: Poland
   imdb_id: tt6543652
-  imdb_url: https://www.imdb.com/title/tt6543652/
+  imdb_url: https://www.imdb.com/title/tt6543652
   tmdb_url: https://www.themoviedb.org/movie/440298
   tmdb_title: Cold War
   tmdb_original_title: Zimna wojna
@@ -147,7 +154,7 @@
   director: Damien Chazelle
   country: US
   imdb_id: tt1213641
-  imdb_url: https://www.imdb.com/title/tt1213641/
+  imdb_url: https://www.imdb.com/title/tt1213641
   tmdb_url: https://www.themoviedb.org/movie/369972
   tmdb_title: null
   tmdb_original_title: First Man
@@ -159,19 +166,22 @@
   director: Alfonso Cuarón
   country: Mexico
   imdb_id: tt6155172
-  imdb_url: https://www.imdb.com/title/tt6155172/
+  imdb_url: https://www.imdb.com/title/tt6155172
   tmdb_url: https://www.themoviedb.org/movie/426426
   tmdb_title: null
   tmdb_original_title: Roma
   tmdb_original_language: Spanish
   tmdb_poster_path: /dtIIyQyALk57ko5bjac7hi01YQ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dtIIyQyALk57ko5bjac7hi01YQ.jpg
+  awards:
+  - venice
+  - oscar
 - title: Wonder
   year: 2017
   director: Stephen Chbosky
   country: US
   imdb_id: tt2543472
-  imdb_url: https://www.imdb.com/title/tt2543472/
+  imdb_url: https://www.imdb.com/title/tt2543472
   tmdb_url: https://www.themoviedb.org/movie/406997
   tmdb_title: null
   tmdb_original_title: Wonder
@@ -183,7 +193,7 @@
   director: Michael Haneke
   country: France
   imdb_id: tt5304464
-  imdb_url: https://www.imdb.com/title/tt5304464/
+  imdb_url: https://www.imdb.com/title/tt5304464
   tmdb_url: https://www.themoviedb.org/movie/399031
   tmdb_title: null
   tmdb_original_title: Happy End
@@ -195,7 +205,7 @@
   director: Paul Verhoeven
   country: France
   imdb_id: tt3716530
-  imdb_url: https://www.imdb.com/title/tt3716530/
+  imdb_url: https://www.imdb.com/title/tt3716530
   tmdb_url: https://www.themoviedb.org/movie/337674
   tmdb_title: null
   tmdb_original_title: Elle
@@ -207,31 +217,36 @@
   director: Barry Jenkins
   country: US
   imdb_id: tt4975722
-  imdb_url: https://www.imdb.com/title/tt4975722/
+  imdb_url: https://www.imdb.com/title/tt4975722
   tmdb_url: https://www.themoviedb.org/movie/376867
   tmdb_title: null
   tmdb_original_title: Moonlight
   tmdb_original_language: English
   tmdb_poster_path: /rcICfiL9fvwRjoWHxW8QeroLYrJ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rcICfiL9fvwRjoWHxW8QeroLYrJ.jpg
+  awards:
+  - oscar
 - title: Spotlight
   year: 2015
   director: Tom McCarthy
   country: US
   imdb_id: tt1895587
-  imdb_url: https://www.imdb.com/title/tt1895587/
+  imdb_url: https://www.imdb.com/title/tt1895587
   tmdb_url: https://www.themoviedb.org/movie/314365
   tmdb_title: null
   tmdb_original_title: Spotlight
   tmdb_original_language: English
   tmdb_poster_path: /8DPGG400FgaFWaqcv11n8mRd2NG.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8DPGG400FgaFWaqcv11n8mRd2NG.jpg
+  my_best: true
+  awards:
+  - oscar
 - title: Martian
   year: 2015
   director: Ridley Scott
   country: US
   imdb_id: tt6221620
-  imdb_url: https://www.imdb.com/title/tt6221620/
+  imdb_url: https://www.imdb.com/title/tt6221620
   tmdb_url: https://www.themoviedb.org/movie/422786
   tmdb_title: Martian
   tmdb_original_title: Marsietis
@@ -243,7 +258,7 @@
   director: Justin Kurzel
   country: US
   imdb_id: tt2884018
-  imdb_url: https://www.imdb.com/title/tt2884018/
+  imdb_url: https://www.imdb.com/title/tt2884018
   tmdb_url: https://www.themoviedb.org/movie/225728
   tmdb_title: null
   tmdb_original_title: Macbeth
@@ -255,7 +270,7 @@
   director: John Crowley
   country: US
   imdb_id: tt2381111
-  imdb_url: https://www.imdb.com/title/tt2381111/
+  imdb_url: https://www.imdb.com/title/tt2381111
   tmdb_url: https://www.themoviedb.org/movie/167073
   tmdb_title: null
   tmdb_original_title: Brooklyn
@@ -267,7 +282,7 @@
   director: Imtiaz Ali
   country: India
   imdb_id: tt2980794
-  imdb_url: https://www.imdb.com/title/tt2980794/
+  imdb_url: https://www.imdb.com/title/tt2980794
   tmdb_url: https://www.themoviedb.org/movie/252841
   tmdb_title: Highway
   tmdb_original_title: हाईवे
@@ -279,31 +294,34 @@
   director: Christian Petzold
   country: Germany
   imdb_id: tt2764784
-  imdb_url: https://www.imdb.com/title/tt2764784/
+  imdb_url: https://www.imdb.com/title/tt2764784
   tmdb_url: https://www.themoviedb.org/movie/254578
   tmdb_title: null
   tmdb_original_title: Phoenix
   tmdb_original_language: German
   tmdb_poster_path: /rJuKu5Rpg92AkzyC5rbYbqsNPI9.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rJuKu5Rpg92AkzyC5rbYbqsNPI9.jpg
+  my_best: true
 - title: Birdman
   year: 2014
   director: Alejandro González Iñárritu
   country: US
   imdb_id: tt5130912
-  imdb_url: https://www.imdb.com/title/tt5130912/
+  imdb_url: https://www.imdb.com/title/tt5130912
   tmdb_url: https://www.themoviedb.org/movie/435092
   tmdb_title: null
   tmdb_original_title: Birdman
   tmdb_original_language: English
   tmdb_poster_path: /9n0u3Ee7OUjgeyF5kIwahxkf4xm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/9n0u3Ee7OUjgeyF5kIwahxkf4xm.jpg
+  awards:
+  - oscar
 - title: Still Life
   year: 2013
   director: Uberto Pasolini
   country: UK
   imdb_id: tt2395417
-  imdb_url: https://www.imdb.com/title/tt2395417/
+  imdb_url: https://www.imdb.com/title/tt2395417
   tmdb_url: https://www.themoviedb.org/movie/216156
   tmdb_title: null
   tmdb_original_title: Still Life
@@ -315,7 +333,7 @@
   director: Spike Jonze
   country: US
   imdb_id: tt1798709
-  imdb_url: https://www.imdb.com/title/tt1798709/
+  imdb_url: https://www.imdb.com/title/tt1798709
   tmdb_url: https://www.themoviedb.org/movie/152601
   tmdb_title: null
   tmdb_original_title: Her
@@ -327,19 +345,22 @@
   director: Pawel Pawlikowski
   country: Poland
   imdb_id: tt2718492
-  imdb_url: https://www.imdb.com/title/tt2718492/
+  imdb_url: https://www.imdb.com/title/tt2718492
   tmdb_url: https://www.themoviedb.org/movie/209274
   tmdb_title: null
   tmdb_original_title: Ida
   tmdb_original_language: Polish
   tmdb_poster_path: /3uoCttE46RGHybiA26cXTvmFqbW.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3uoCttE46RGHybiA26cXTvmFqbW.jpg
+  my_best: true
+  awards:
+  - oscar
 - title: The Past
   year: 2013
   director: Asghar Farhadi
   country: France
   imdb_id: tt2404461
-  imdb_url: https://www.imdb.com/title/tt2404461/
+  imdb_url: https://www.imdb.com/title/tt2404461
   tmdb_url: https://www.themoviedb.org/movie/152780
   tmdb_title: The Past
   tmdb_original_title: Le passé
@@ -351,7 +372,7 @@
   director: 홍상수
   country: Korea
   imdb_id: tt1989712
-  imdb_url: https://www.imdb.com/title/tt1989712/
+  imdb_url: https://www.imdb.com/title/tt1989712
   tmdb_url: https://www.themoviedb.org/movie/103753
   tmdb_title: In Another Country
   tmdb_original_title: 다른 나라에서
@@ -363,19 +384,22 @@
   director: Michael Haneke
   country: France
   imdb_id: tt1602620
-  imdb_url: https://www.imdb.com/title/tt1602620/
+  imdb_url: https://www.imdb.com/title/tt1602620
   tmdb_url: https://www.themoviedb.org/movie/86837
   tmdb_title: null
   tmdb_original_title: Amour
   tmdb_original_language: French
   tmdb_poster_path: /19hyCudualHxCD0GrEngqsi0wBF.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/19hyCudualHxCD0GrEngqsi0wBF.jpg
+  awards:
+  - cannes
+  - oscar
 - title: 고지전
   year: 2011
   director: 장훈
   country: Korea
   imdb_id: tt2007387
-  imdb_url: https://www.imdb.com/title/tt2007387/
+  imdb_url: https://www.imdb.com/title/tt2007387
   tmdb_url: https://www.themoviedb.org/movie/79553
   tmdb_title: The Front Line
   tmdb_original_title: 고지전
@@ -387,19 +411,21 @@
   director: Michel Hazanavicius
   country: France
   imdb_id: tt1655442
-  imdb_url: https://www.imdb.com/title/tt1655442/
+  imdb_url: https://www.imdb.com/title/tt1655442
   tmdb_url: https://www.themoviedb.org/movie/74643
   tmdb_title: null
   tmdb_original_title: The Artist
   tmdb_original_language: French
   tmdb_poster_path: /z68py0ZqPgeacGPG54AGVRbNBS7.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/z68py0ZqPgeacGPG54AGVRbNBS7.jpg
+  awards:
+  - oscar
 - title: 시
   year: 2010
   director: 이창동
   country: Korea
   imdb_id: tt1287878
-  imdb_url: https://www.imdb.com/title/tt1287878/
+  imdb_url: https://www.imdb.com/title/tt1287878
   tmdb_url: https://www.themoviedb.org/movie/47909
   tmdb_title: Poetry
   tmdb_original_title: 시
@@ -411,7 +437,7 @@
   director: 이준익
   country: Korea
   imdb_id: tt1275830
-  imdb_url: https://www.imdb.com/title/tt1275830/
+  imdb_url: https://www.imdb.com/title/tt1275830
   tmdb_url: https://www.themoviedb.org/movie/41538
   tmdb_title: Sunny
   tmdb_original_title: 님은 먼곳에
@@ -423,7 +449,7 @@
   director: 임상수
   country: Korea
   imdb_id: tt0445396
-  imdb_url: https://www.imdb.com/title/tt0445396/
+  imdb_url: https://www.imdb.com/title/tt0445396
   tmdb_url: https://www.themoviedb.org/movie/41338
   tmdb_title: The President's Last Bang
   tmdb_original_title: 그때 그사람들
@@ -435,7 +461,7 @@
   director: Nobuhiro Doi
   country: Japan
   imdb_id: tt0442268
-  imdb_url: https://www.imdb.com/title/tt0442268/
+  imdb_url: https://www.imdb.com/title/tt0442268
   tmdb_url: https://www.themoviedb.org/movie/36092
   tmdb_title: Be with You
   tmdb_original_title: いま、会いにゆきます
@@ -443,27 +469,30 @@
   tmdb_poster_path: /osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
   custom_korean_title: 지금, 만나러 갑니다
+  my_best: true
 - title: The Matrix
   year: 1999
   director: The Wachowskis
   country: US
   imdb_id: tt0133093
-  imdb_url: https://www.imdb.com/title/tt0133093/
+  imdb_url: https://www.imdb.com/title/tt0133093
   tmdb_url: https://www.themoviedb.org/movie/603
   tmdb_title: null
   tmdb_original_title: The Matrix
   tmdb_original_language: English
   tmdb_poster_path: /p96dm7sCMn4VYAStA6siNz30G1r.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/p96dm7sCMn4VYAStA6siNz30G1r.jpg
+  my_best: true
 - title: Seven
   year: 1995
   director: David Fincher
   country: US
   imdb_id: tt0286071
-  imdb_url: https://www.imdb.com/title/tt0286071/
+  imdb_url: https://www.imdb.com/title/tt0286071
   tmdb_url: https://www.themoviedb.org/movie/475009
   tmdb_title: null
   tmdb_original_title: Seven
   tmdb_original_language: English
   tmdb_poster_path: null
   tmdb_poster_url: null
+  my_best: true
