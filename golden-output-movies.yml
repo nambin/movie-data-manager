@@ -7,6 +7,7 @@
   tmdb_url: https://www.themoviedb.org/movie/1022789
   tmdb_title: null
   tmdb_original_title: Inside Out 2
+  tmdb_original_language: English
   tmdb_poster_path: /vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
 - title: Wicked
@@ -18,6 +19,7 @@
   tmdb_url: https://www.themoviedb.org/movie/402431
   tmdb_title: null
   tmdb_original_title: Wicked
+  tmdb_original_language: English
   tmdb_poster_path: /xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
 - title: 'Furiosa: A Mad Max Saga'
@@ -29,6 +31,7 @@
   tmdb_url: https://www.themoviedb.org/movie/786892
   tmdb_title: null
   tmdb_original_title: 'Furiosa: A Mad Max Saga'
+  tmdb_original_language: English
   tmdb_poster_path: /iADOJ8Zymht2JPMoy3R7xceZprc.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/iADOJ8Zymht2JPMoy3R7xceZprc.jpg
 - title: 밀수
@@ -40,6 +43,7 @@
   tmdb_url: https://www.themoviedb.org/movie/783110
   tmdb_title: Smugglers
   tmdb_original_title: 밀수
+  tmdb_original_language: Korean
   tmdb_poster_path: /j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
 - title: '서울의 봄 (12.12: The Day)'
@@ -51,6 +55,7 @@
   tmdb_url: https://www.themoviedb.org/movie/919207
   tmdb_title: '12.12: The Day'
   tmdb_original_title: 서울의 봄
+  tmdb_original_language: Korean
   tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
 - title: Poor Things
@@ -62,6 +67,7 @@
   tmdb_url: https://www.themoviedb.org/movie/792307
   tmdb_title: null
   tmdb_original_title: Poor Things
+  tmdb_original_language: English
   tmdb_poster_path: /kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
 - title: The Taste of Things (프렌치 수프)
@@ -73,8 +79,10 @@
   tmdb_url: https://www.themoviedb.org/movie/964960
   tmdb_title: The Taste of Things
   tmdb_original_title: La Passion de Dodin Bouffant
+  tmdb_original_language: French
   tmdb_poster_path: /gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
+  custom_korean_title: 프렌치 수프
 - title: '노량: 죽음의 바다 '
   year: 2023
   director: Kim Han-min
@@ -84,6 +92,7 @@
   tmdb_url: https://www.themoviedb.org/movie/660360
   tmdb_title: 'Noryang: Deadly Sea'
   tmdb_original_title: '노량: 죽음의 바다'
+  tmdb_original_language: Korean
   tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
 - title: Anatomy of a Fall
@@ -95,6 +104,7 @@
   tmdb_url: https://www.themoviedb.org/movie/915935
   tmdb_title: Anatomy of a Fall
   tmdb_original_title: Anatomie d'une chute
+  tmdb_original_language: French
   tmdb_poster_path: /kQs6keheMwCxJxrzV83VUwFtHkB.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kQs6keheMwCxJxrzV83VUwFtHkB.jpg
 - title: Monster
@@ -106,6 +116,7 @@
   tmdb_url: https://www.themoviedb.org/movie/1050035
   tmdb_title: Monster
   tmdb_original_title: 怪物
+  tmdb_original_language: Japanese
   tmdb_poster_path: /cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
 - title: Oppenheimer
@@ -117,6 +128,7 @@
   tmdb_url: https://www.themoviedb.org/movie/872585
   tmdb_title: null
   tmdb_original_title: Oppenheimer
+  tmdb_original_language: English
   tmdb_poster_path: /8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
 - title: 'Mission: Impossible – Dead Reckoning Part I'
@@ -128,6 +140,7 @@
   tmdb_url: https://www.themoviedb.org/movie/575264
   tmdb_title: null
   tmdb_original_title: 'Mission: Impossible - Dead Reckoning Part One'
+  tmdb_original_language: English
   tmdb_poster_path: /NNxYkU70HPurnNCSiCjYAmacwm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/NNxYkU70HPurnNCSiCjYAmacwm.jpg
 - title: 기생충 (Parasite)
@@ -139,6 +152,7 @@
   tmdb_url: https://www.themoviedb.org/movie/496243
   tmdb_title: Parasite
   tmdb_original_title: 기생충
+  tmdb_original_language: Korean
   tmdb_poster_path: /7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
 - title: Shoplifters (어느 가족)
@@ -150,8 +164,10 @@
   tmdb_url: https://www.themoviedb.org/movie/505192
   tmdb_title: Shoplifters
   tmdb_original_title: 万引き家族
+  tmdb_original_language: Japanese
   tmdb_poster_path: /4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
+  custom_korean_title: 어느 가족
 - title: 마더 (Mother)
   year: 2009
   director: 봉준호
@@ -161,6 +177,7 @@
   tmdb_url: https://www.themoviedb.org/movie/30018
   tmdb_title: Mother
   tmdb_original_title: 마더
+  tmdb_original_language: Korean
   tmdb_poster_path: /8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
 - title: The Secret in Their Eyes (El secreto de sus ojos)
@@ -172,6 +189,7 @@
   tmdb_url: https://www.themoviedb.org/movie/25376
   tmdb_title: The Secret in Their Eyes
   tmdb_original_title: El secreto de sus ojos
+  tmdb_original_language: Spanish
   tmdb_poster_path: /dkeAwfZzwL3WvToydE3CXiY80E0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkeAwfZzwL3WvToydE3CXiY80E0.jpg
 - title: The Dark Knight
@@ -183,6 +201,7 @@
   tmdb_url: https://www.themoviedb.org/movie/155
   tmdb_title: null
   tmdb_original_title: The Dark Knight
+  tmdb_original_language: English
   tmdb_poster_path: /qJ2tW6WMUDux911r6m7haRef0WH.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg
 - title: Magnolia
@@ -194,6 +213,7 @@
   tmdb_url: https://www.themoviedb.org/movie/334
   tmdb_title: null
   tmdb_original_title: Magnolia
+  tmdb_original_language: English
   tmdb_poster_path: /tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
 - title: The Thin Red Line
@@ -205,6 +225,7 @@
   tmdb_url: https://www.themoviedb.org/movie/8741
   tmdb_title: null
   tmdb_original_title: The Thin Red Line
+  tmdb_original_language: English
   tmdb_poster_path: /seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
 - title: Pulp Fiction
@@ -216,5 +237,6 @@
   tmdb_url: https://www.themoviedb.org/movie/680
   tmdb_title: null
   tmdb_original_title: Pulp Fiction
+  tmdb_original_language: English
   tmdb_poster_path: /vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg

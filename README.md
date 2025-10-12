@@ -3,9 +3,9 @@
 This project manages movie data to empower https://nambin.github.io/movies.html. This uses two TMDB APIs, [Search API](https://developer.themoviedb.org/reference/search-movie) and [Movie Details API](https://developer.themoviedb.org/reference/movie-details).
 
 Search API examples
-- [Oppenheimer 2023](https://api.themoviedb.org/3/search/movie?query=Oppenheimer&primary_release_year=2023&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
-- [Parasite 2019](https://api.themoviedb.org/3/search/movie?query=Parasite&primary_release_year=2019&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
-- [기생충 2019](https://api.themoviedb.org/3/search/movie?query=기생충&primary_release_year=2019&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
+- [Oppenheimer 2023](https://api.themoviedb.org/3/search/movie?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&query=Oppenheimer&primary_release_year=2023)
+- [Parasite 2019](https://api.themoviedb.org/3/search/movie?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&query=Parasite&primary_release_year=2019)
+- [기생충 2019](https://api.themoviedb.org/3/search/movie?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&query=기생충&primary_release_year=2019)
 
 
 Movie API examples
@@ -23,6 +23,7 @@ Parasite
 To execute the script, run the following command in your terminal:
 
 ```bash
+pip install pycountry
 pip install pyyaml
 pip install thefuzz python-Levenshtein
 python data-manager.py

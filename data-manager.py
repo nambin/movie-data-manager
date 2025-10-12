@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 import os
 import sys
+import pycountry
 import title_parser
 from thefuzz import fuzz
 
@@ -46,6 +47,17 @@ def log(level, message):
         print(log_message)
 
 
+def get_language_name(code):
+    """
+    Convert ISO 639-1 language code to full language name.
+    """
+    try:
+        language = pycountry.languages.get(alpha_2=code)
+        return language.name if language else code
+    except Exception:
+        assert False, f"Invalid language code: {code}"
+
+
 # https://developer.themoviedb.org/reference/search-movie
 # https://developer.themoviedb.org/docs/search-and-query-for-details
 #
@@ -62,7 +74,7 @@ def call_tmdb_search_api(title, year=None):
         response.raise_for_status()  # Raise for errors
         return response.json().get("results", [])
     except requests.exceptions.RequestException as e:
-        log(WARNING, f"  -> API request failure: {e}")
+        log(WARNING, f"API request failure: {e}")
         return []
 
 
@@ -70,15 +82,15 @@ def call_tmdb_search_api(title, year=None):
 #
 # Returns detailed movie information in JSON from TMDB.
 # Returns None if API request fails.
-def call_tmdb_movie_api(tmdb_id):
-    movie_url = f"https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={TMDB_API_KEY}"
-    log(DEBUG, f"call_tmdb_movie_api => {movie_url}")
+def call_tmdb_movie_details_api(tmdb_id):
+    movie_url = f"https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={TMDB_API_KEY}&append_to_response=credits"
+    log(DEBUG, f"call_tmdb_movie_details_api => {movie_url}")
     try:
         response = requests.get(movie_url)
         response.raise_for_status()  # Raise for errors
         return response.json()
     except requests.exceptions.RequestException as e:
-        log(WARNING, f"  -> API request failure: {e}")
+        log(WARNING, f"API request failure: {e}")
         return None
 
 
@@ -125,7 +137,6 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
 
     # Title & Year matching score calculation with popularity.
     def _movie_matching_score(tmdb_search_entry):
-        tmdb_original_lang = tmdb_search_entry.get("original_language", "").lower()
         tmdb_original_title = tmdb_search_entry.get("original_title", "").lower()
         tmdb_title = tmdb_search_entry.get("title", "").lower()
         main_title = movie_title_set.main_title.text.lower()
@@ -196,22 +207,22 @@ def get_tmdb_movie_entry(
     tmdb_id = None
     if (director, raw_title) in _HARDEDCODED_TMDB_IDS:
         tmdb_id = _HARDEDCODED_TMDB_IDS[(director, raw_title)]
-        log(INFO, f"  -> Using hardcoded TMDB ID {tmdb_id}: {debug_msg}")
+        log(INFO, f"Using hardcoded TMDB ID {tmdb_id}: {debug_msg}")
     else:
         tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
         if not tmdb_search_entry:
-            log(ERROR, f"  -> Skip: Not found in TMDB: {debug_msg})")
+            log(ERROR, f"Skip: Not found in TMDB: {debug_msg})")
             return None
 
         tmdb_id = tmdb_search_entry.get("id")
         if not tmdb_id:
-            log(ERROR, f"  -> Skip: No TMDB ID: {debug_msg}")
+            log(ERROR, f"Skip: No TMDB ID: {debug_msg}")
             return None
 
     time.sleep(SLEEP_TIME)
-    tmdb_movie_entry = call_tmdb_movie_api(tmdb_id)
+    tmdb_movie_entry = call_tmdb_movie_details_api(tmdb_id)
     if not tmdb_movie_entry:
-        log(ERROR, f"  -> Skip: No TMDB movie entry for {tmdb_id}: {debug_msg}")
+        log(ERROR, f"Skip: No TMDB movie entry for {tmdb_id}: {debug_msg}")
         return None
     return tmdb_movie_entry
 
@@ -237,6 +248,7 @@ def generate_yaml(csv_file_path, yml_file_path):
             imdb_id = None
             tmdb_poster_path = None
 
+            debug_msg = f"{title} ({year})"
             movie_title_set = title_parser.MovieTitleSet(title)
             tmdb_movie_entry = get_tmdb_movie_entry(movie_title_set, year, director)
             if not tmdb_movie_entry:
@@ -246,15 +258,35 @@ def generate_yaml(csv_file_path, yml_file_path):
             if imdb_id:
                 num_imdb_id += 1
             else:
-                log(WARNING, f"  -> Skip: No IMDB ID in TMDB: '{title}' ({year})")
+                log(WARNING, f"Skip: No IMDB ID in TMDB: {debug_msg}")
                 continue
 
             tmdb_poster_path = tmdb_movie_entry.get("poster_path")
             if tmdb_poster_path:
                 num_tmdb_poster += 1
             else:
-                log(WARNING, f"  -> No TMDB poster path: '{title}' ({year})")
+                log(WARNING, f"No TMDB poster path: {debug_msg}")
 
+            tmdb_crew_list = tmdb_movie_entry.get("credits", {}).get("crew", [])
+            if tmdb_crew_list:
+                tmdb_directors = [crew for crew in tmdb_crew_list if crew.get("job") == "Director"]
+                if tmdb_directors:
+                    director_name_score = max(
+                        fuzz.ratio(
+                            tmdb_directors[0].get("name", "").lower(), director.lower()
+                        ),
+                        fuzz.ratio(
+                            tmdb_directors[0].get("original_name", "").lower(),
+                            director.lower(),
+                        ),
+                    )
+                    if director_name_score < 85:
+                        log(
+                            WARNING,
+                            f"Director name mismatch: {debug_msg} {director_name_score}, '{director}' vs '{tmdb_directors[0].get('name')}' '{tmdb_directors[0].get('original_name')}'",
+                        )
+
+            tmdb_original_lang = tmdb_movie_entry.get("original_language")
             tmdb_original_title = tmdb_movie_entry.get("original_title")
             tmdb_title = tmdb_movie_entry.get("title")
 
@@ -271,6 +303,7 @@ def generate_yaml(csv_file_path, yml_file_path):
                 "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
                 "tmdb_title": tmdb_title if tmdb_title != tmdb_original_title else None,
                 "tmdb_original_title": tmdb_original_title,
+                "tmdb_original_language": get_language_name(tmdb_original_lang),
                 "tmdb_poster_path": tmdb_poster_path,
                 "tmdb_poster_url": (
                     f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
@@ -278,8 +311,15 @@ def generate_yaml(csv_file_path, yml_file_path):
                     else None
                 ),
             }
+            if tmdb_original_lang != "ko":
+                custom_korean_title = movie_title_set.get_title_by_locale("Korean")
+                if imdb_id == "tt0442268":
+                    custom_korean_title = "지금, 만나러 갑니다"
+                if custom_korean_title:
+                    movie_entry["custom_korean_title"] = custom_korean_title
+
             movies_output.append(movie_entry)
-            if num_movies_inputs % 10 == 0:
+            if num_movies_inputs % 50 == 0:
                 log(
                     INFO,
                     f"Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
@@ -299,6 +339,6 @@ def generate_yaml(csv_file_path, yml_file_path):
     )
 
 
-generate_yaml("input-movies.csv", "output-movies.yml")
-# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+# generate_yaml("input-movies.csv", "output-movies.yml")
 # generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
