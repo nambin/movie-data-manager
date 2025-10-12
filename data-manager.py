@@ -195,18 +195,21 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
 def get_tmdb_movie_entry(
     movie_title_set: title_parser.MovieTitleSet, year, director
 ) -> (str, str):
-    _HARDEDCODED_TMDB_IDS = {
+    _HARDCODED_TMDB_IDS = {
         ("이준익", "님은 먼 곳에"): 41538,
         ("Robert Zemeckis", "The Witches"): 531219,
         ("Justin Kurzel", "Macbeth"): 225728,
         ("John Crowley", "Brooklyn"): 167073,
+        ("Alejandro González Iñárritu", "Birdman"): 194662,
+        ("John Crowley", "Brooklyn"): 167073,
+        ("David Fincher", "Seven"): 807,
     }
     raw_title = movie_title_set.raw_title
     debug_msg = f"{raw_title} ({year})"
 
     tmdb_id = None
-    if (director, raw_title) in _HARDEDCODED_TMDB_IDS:
-        tmdb_id = _HARDEDCODED_TMDB_IDS[(director, raw_title)]
+    if (director, raw_title) in _HARDCODED_TMDB_IDS:
+        tmdb_id = _HARDCODED_TMDB_IDS[(director, raw_title)]
         log(INFO, f"Using hardcoded TMDB ID {tmdb_id}: {debug_msg}")
     else:
         tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
@@ -227,10 +230,59 @@ def get_tmdb_movie_entry(
     return tmdb_movie_entry
 
 
-def generate_yaml(csv_file_path, yml_file_path):
+# Returns a pair of set and list.
+# The set consists of (director, year, title) tuples from the given CSV file. These keys are used to process the CSV file incrementally.
+# The list element is a movie entry dictionary parsed from the given YAML file. These entries are supposed to be merged into the output YAML file.
+def generate_diff(csv_file_path, yml_file_path):
+    key_set_csv = set()
+    with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for row in csv_reader:
+            director = row[0]
+            year = int(row[1])
+            title = row[2]
+            key_set_csv.add((director, year, title))
+
+    key_set_yml = set()
+    value_survive_list_yml = list()
+    with open(yml_file_path, "r", encoding="utf-8") as yml_file:
+        movies = yaml.safe_load(yml_file)
+
+        for movie in movies:
+            director = movie.get("director")
+            year = movie.get("year")
+            title = movie.get("title")
+
+            key_set_yml.add((director, year, title))
+            if (director, year, title) in key_set_csv:
+                value_survive_list_yml.append(movie)
+
+    key_diff_set_csv = key_set_csv - key_set_yml
+
+    log(
+        INFO,
+        f"Parsed {len(key_set_csv)} movies from '{csv_file_path}' and {len(key_set_yml)} movies from '{yml_file_path}'.",
+    )
+    return key_diff_set_csv, value_survive_list_yml
+
+
+def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
+    assert os.path.exists(csv_file_path), f"File not found: {csv_file_path}"
+
+    key_diff_set_csv = None
+    value_survive_list_yml = None
+    if is_incremental:
+        assert os.path.exists(yml_file_path), f"File not found: {yml_file_path}"
+        key_diff_set_csv, value_survive_list_yml = generate_diff(
+            csv_file_path, yml_file_path
+        )
+        log(
+            INFO,
+            f"Incremental mode: {len(key_diff_set_csv)} movies to be processed, {len(value_survive_list_yml)} movies to be survived from '{yml_file_path}'",
+        )
+
     movies_output = []
     num_movies_inputs = 0
-    num_movies_outputs = 0
     num_imdb_id = 0
     num_tmdb_poster = 0
 
@@ -239,16 +291,18 @@ def generate_yaml(csv_file_path, yml_file_path):
         csv_reader = csv.reader(csv_file)
 
         for row in csv_reader:
-            num_movies_inputs += 1
-
             director = row[0]
             year = int(row[1])
             title = row[2]
             country = row[3]
-            imdb_id = None
-            tmdb_poster_path = None
-
             debug_msg = f"{title} ({year})"
+
+            if is_incremental and (director, year, title) not in key_diff_set_csv:
+                log(DEBUG, f"Skip: Already exists in '{yml_file_path}': {debug_msg}")
+                continue
+
+            num_movies_inputs += 1
+
             movie_title_set = title_parser.MovieTitleSet(title)
             tmdb_movie_entry = get_tmdb_movie_entry(movie_title_set, year, director)
             if not tmdb_movie_entry:
@@ -298,7 +352,6 @@ def generate_yaml(csv_file_path, yml_file_path):
             tmdb_title = tmdb_movie_entry.get("title")
 
             # Prepare movie entry in YAML.
-            num_movies_outputs += 1
             movie_entry = {
                 "title": title,
                 "year": year,
@@ -362,8 +415,11 @@ def generate_yaml(csv_file_path, yml_file_path):
             if num_movies_inputs % 50 == 0:
                 log(
                     INFO,
-                    f"Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+                    f"Processed {num_movies_inputs} movies. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
                 )
+
+    if is_incremental and value_survive_list_yml is not None:
+        movies_output.extend(value_survive_list_yml)
 
     sorted_movies_output = sorted(
         movies_output,
@@ -375,10 +431,10 @@ def generate_yaml(csv_file_path, yml_file_path):
 
     log(
         INFO,
-        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Outputs {num_movies_outputs} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
     )
 
 
-generate_yaml("input-movies.csv", "output-movies.yml")
-# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
+generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
