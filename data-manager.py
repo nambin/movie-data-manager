@@ -5,6 +5,7 @@ from datetime import datetime
 import time
 import os
 import sys
+import title_parser
 
 # Log levels
 DEBUG = 10
@@ -78,19 +79,34 @@ def call_tmdb_movie_api(tmdb_id):
 
 
 def get_tmdb_search_results(title, year):
+    time.sleep(SLEEP_TIME)
     search_results = call_tmdb_search_api(title, year)
-    for year_offset in [-1, 1]:
+
+    for year_offset in [1]:
         time.sleep(SLEEP_TIME)
         tmp = call_tmdb_search_api(title, year + year_offset)
         if tmp:
             search_results.extend(tmp)
+
     return search_results
 
 
-def get_tmdb_search_entry(title, year):
-    # TODO: Parse title to extract English & non-English titles & use them for search.
+def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
+    def _try_tmdb_search_api(movie_title_set, year):
+        search_results = get_tmdb_search_results(movie_title_set.main_title.text, year)
+        if len(search_results) > 0:
+            return search_results  
 
-    search_results = get_tmdb_search_results(title, year)
+        if not movie_title_set.supplemental_titles:
+            return []
+
+        search_results = get_tmdb_search_results(movie_title_set.supplemental_titles[0].text, year)
+        return search_results
+        
+        
+    debug_msg = f"{movie_title_set.raw_title} ({year})"
+    search_results = _try_tmdb_search_api(movie_title_set, year)
+
     if len(search_results) == 0:
         return None
 
@@ -99,8 +115,9 @@ def get_tmdb_search_entry(title, year):
 
     log(
         DEBUG,
-        f"  -> {len(search_results)} candidates found in TMDB: '{title}' ({year})",
+        f"  -> {len(search_results)} candidates found in TMDB: {debug_msg})",
     )
+
     # TODO: Better matching logic may be needed (title, year, director).
     def movie_matching_score(movie):
         return movie.get("popularity", 0)
@@ -110,30 +127,34 @@ def get_tmdb_search_entry(title, year):
 
 
 # Returns (IMDB ID, TMDB poster path) or (None, None) if not found.
-def get_tmdb_movie_entry(title, year):
-    tmdb_id = None
-    hardcoded_tmdb_ids = {
+def get_tmdb_movie_entry(
+    movie_title_set: title_parser.MovieTitleSet, year
+) -> (str, str):
+    _HARDEDCODED_TMDB_IDS = {
         ("님은 먼 곳에", 2008): 41538,
     }
+    raw_title = movie_title_set.raw_title
+    debug_msg = f"{raw_title} ({year})"
 
-    if (title, year) in hardcoded_tmdb_ids:
-        tmdb_id = hardcoded_tmdb_ids[(title, year)]
-        log(DEBUG, f"  -> Using hardcoded TMDB ID {tmdb_id}: {title} ({year})")
+    tmdb_id = None
+    if (raw_title, year) in _HARDEDCODED_TMDB_IDS:
+        tmdb_id = _HARDEDCODED_TMDB_IDS[(raw_title, year)]
+        log(DEBUG, f"  -> Using hardcoded TMDB ID {tmdb_id}: {debug_msg}")
     else:
-        tmdb_search_entry = get_tmdb_search_entry(title, year)
+        tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
         if not tmdb_search_entry:
-            log(ERROR, f"  -> Not found in TMDB: {title} ({year})")
+            log(ERROR, f"  -> Not found in TMDB: {debug_msg})")
             return None
 
         tmdb_id = tmdb_search_entry.get("id")
         if not tmdb_id:
-            log(ERROR, f"  -> No TMDB ID: '{title}' ({year})")
+            log(ERROR, f"  -> No TMDB ID: {debug_msg}")
             return None
 
     time.sleep(SLEEP_TIME)
     tmdb_movie_entry = call_tmdb_movie_api(tmdb_id)
     if not tmdb_movie_entry:
-        log(ERROR, f"  -> No TMDB movie entry for {tmdb_id}: '{title}' ({year})")
+        log(ERROR, f"  -> No TMDB movie entry for {tmdb_id}: {debug_msg}")
         return None
     return tmdb_movie_entry
 
@@ -144,8 +165,8 @@ def generate_yaml(csv_file_path, yml_file_path):
     num_movies_outputs = 0
     num_imdb_id = 0
     num_tmdb_poster = 0
-    with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
 
+    with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
         log(INFO, f"'{csv_file_path}' is successfully opened.")
         csv_reader = csv.reader(csv_file)
 
@@ -159,7 +180,8 @@ def generate_yaml(csv_file_path, yml_file_path):
             imdb_id = None
             tmdb_poster_path = None
 
-            tmdb_movie_entry = get_tmdb_movie_entry(title, year)
+            movie_title_set = title_parser.MovieTitleSet(title)
+            tmdb_movie_entry = get_tmdb_movie_entry(movie_title_set, year)
             if not tmdb_movie_entry:
                 continue
 
@@ -179,7 +201,7 @@ def generate_yaml(csv_file_path, yml_file_path):
 
             tmdb_original_title = tmdb_movie_entry.get("original_title")
             tmdb_title = tmdb_movie_entry.get("title")
-            
+
             movie_entry = {
                 "title": title,
                 "year": year,
@@ -221,5 +243,5 @@ def generate_yaml(csv_file_path, yml_file_path):
 
 
 # generate_yaml("input-movies.csv", "output-movies.yml")
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")

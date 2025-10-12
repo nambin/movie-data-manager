@@ -4,6 +4,8 @@ This project manages movie data to empower https://nambin.github.io/movies.html.
 
 Search API examples
 - [Oppenheimer 2023](https://api.themoviedb.org/3/search/movie?query=Oppenheimer&primary_release_year=2023&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
+- [Parasite 2019](https://api.themoviedb.org/3/search/movie?query=Parasite&primary_release_year=2019&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
+- [기생충 2019](https://api.themoviedb.org/3/search/movie?query=기생충&primary_release_year=2019&api_key=f6d7fb04f4d4d6b07d2d750811e73a4c)
 
 
 Movie API examples
