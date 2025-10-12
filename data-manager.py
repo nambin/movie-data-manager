@@ -345,16 +345,16 @@ def generate_yaml(csv_file_path, yml_file_path):
                 "청룡영화제 최우수 작품상": "blue_dragon",
                 "Oscar Best Picture": "oscar",
                 "Oscar Best International Film": "oscar",
-                "Venice Leone d’oro": "venice",
                 "Cannes Palme d'Or": "cannes",
+                "Venice Leone d’oro": "venice",
                 "Berlin Goldener Bär": "berlin",
             }
             if row[5] in _HARDCODED_FILM_AWARDS or row[6] in _HARDCODED_FILM_AWARDS:
                 awards = []
-                if row[5] in _HARDCODED_FILM_AWARDS:
-                    awards.append(_HARDCODED_FILM_AWARDS[row[5]])
-                if row[6] in _HARDCODED_FILM_AWARDS:
-                    awards.append(_HARDCODED_FILM_AWARDS[row[6]])
+                for award in _HARDCODED_FILM_AWARDS.keys():
+                    if award == row[5] or award == row[6]:
+                        if award not in awards:
+                            awards.append(_HARDCODED_FILM_AWARDS[award])
                 if awards:
                     movie_entry["awards"] = awards
 

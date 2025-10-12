@@ -202,8 +202,8 @@
   tmdb_poster_path: /dtIIyQyALk57ko5bjac7hi01YQ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dtIIyQyALk57ko5bjac7hi01YQ.jpg
   awards:
-  - venice
   - oscar
+  - venice
 - title: Wonder
   year: 2017
   director: Stephen Chbosky
@@ -454,8 +454,8 @@
   tmdb_poster_path: /19hyCudualHxCD0GrEngqsi0wBF.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/19hyCudualHxCD0GrEngqsi0wBF.jpg
   awards:
-  - cannes
   - oscar
+  - cannes
 - title: 고지전
   year: 2011
   director: 장훈

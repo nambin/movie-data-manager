@@ -193,8 +193,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   my_best: true
   awards:
-  - cannes
   - oscar
+  - cannes
 - title: Shoplifters (어느 가족)
   year: 2018
   director: Hirokazu Koreeda

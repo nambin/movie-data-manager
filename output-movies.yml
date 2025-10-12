@@ -42,8 +42,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/davwb31ZFhBUrZuRlxk8meRfATI.jpg
   my_best: true
   awards:
-  - cannes
   - oscar
+  - cannes
 - title: Inside Out 2
   year: 2024
   director: Kelsey Mann
@@ -406,7 +406,7 @@
   tmdb_title: null
   tmdb_original_title: The Super Mario Bros. Movie
   tmdb_original_language: English
-  tmdb_director_original_name: Michael Jelenic
+  tmdb_director_original_name: Aaron Horvath
   tmdb_director_name: null
   tmdb_poster_path: /qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg
@@ -1363,8 +1363,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dKT8rGDR55cM1vGn7QZLA9Tg9YC.jpg
   my_best: true
   awards:
-  - venice
   - oscar
+  - venice
 - title: I'm Thinking of Ending Things
   year: 2020
   director: Charlie Kaufman
@@ -1454,8 +1454,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   my_best: true
   awards:
-  - cannes
   - oscar
+  - cannes
 - title: 찬실이는 복도 많지
   year: 2019
   director: 김초희
@@ -2335,8 +2335,8 @@
   tmdb_poster_path: /dtIIyQyALk57ko5bjac7hi01YQ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dtIIyQyALk57ko5bjac7hi01YQ.jpg
   awards:
-  - venice
   - oscar
+  - venice
 - title: 클레어의 카메라 (Claire's Camera)
   year: 2017
   director: 홍상수
@@ -2805,8 +2805,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/9zfwPffUXpBrEP26yp0q1ckXDcj.jpg
   my_best: true
   awards:
-  - venice
   - oscar
+  - venice
 - title: Lady Bird
   year: 2017
   director: Greta Gerwig
@@ -4582,7 +4582,7 @@
   tmdb_title: Caesar Must Die
   tmdb_original_title: Cesare deve morire
   tmdb_original_language: Italian
-  tmdb_director_original_name: Vittorio Taviani
+  tmdb_director_original_name: Paolo Taviani
   tmdb_director_name: null
   tmdb_poster_path: /jrtCezCf08Kuk1I9D14vy3ZmfA4.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/jrtCezCf08Kuk1I9D14vy3ZmfA4.jpg
@@ -4617,8 +4617,8 @@
   tmdb_poster_path: /19hyCudualHxCD0GrEngqsi0wBF.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/19hyCudualHxCD0GrEngqsi0wBF.jpg
   awards:
-  - cannes
   - oscar
+  - cannes
 - title: The Amazing Spider-Man
   year: 2012
   director: Marc Webb
@@ -4986,8 +4986,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/wQVvASmpm8jGhJBQU20OkoMcNzi.jpg
   my_best: true
   awards:
-  - berlin
   - oscar
+  - berlin
 - title: 옥희의 영화
   year: 2010
   director: 홍상수
@@ -8937,8 +8937,8 @@
   tmdb_poster_path: /iTNHwO896WKkaoPtpMMS74d8VNi.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/iTNHwO896WKkaoPtpMMS74d8VNi.jpg
   awards:
-  - berlin
   - oscar
+  - berlin
 - title: Cocktail
   year: 1988
   director: Roger Donaldson
@@ -10049,8 +10049,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8tnGO5VoAQII4DbE3hozWKhV4BY.jpg
   my_best: true
   awards:
-  - cannes
   - oscar
+  - cannes
 - title: Rear Window (이창)
   year: 1954
   director: Alfred Hitchcock
@@ -10111,8 +10111,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/nby91GNVXQAv1NmKvqlpEEdhcMQ.jpg
   custom_korean_title: 금지된 장난
   awards:
-  - venice
   - oscar
+  - venice
 - title: Singin' in the Rain
   year: 1952
   director: Gene Kelly and Stanley Donen
@@ -10142,8 +10142,8 @@
   tmdb_poster_path: /vL7Xw04nFMHwnvXRFCmYYAzMUvY.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vL7Xw04nFMHwnvXRFCmYYAzMUvY.jpg
   awards:
-  - venice
   - oscar
+  - venice
 - title: 晩春 (만춘)
   year: 1949
   director: Yasujirō Ozu
@@ -10269,7 +10269,7 @@
   - oscar
 - title: Pinocchio
   year: 1940
-  director: Ben Sharpsteen and Hamilton Luske
+  director: Walt Disney
   country: US
   imdb_id: tt0032910
   imdb_url: https://www.imdb.com/title/tt0032910
