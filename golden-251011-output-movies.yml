@@ -20,17 +20,6 @@
   tmdb_original_title: Khers nist
   tmdb_poster_path: /AqxE1Pm7EmnhKDe6pXBJF4sHLMU.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AqxE1Pm7EmnhKDe6pXBJF4sHLMU.jpg
-- title: The Dropout
-  year: 2022
-  director: Elizabeth Meriwether
-  country: US
-  imdb_id: null
-  imdb_url: null
-  tmdb_url: https://www.themoviedb.org/movie/1124086
-  tmdb_title: null
-  tmdb_original_title: The Dropout
-  tmdb_poster_path: /soJA6gnILMoUkgup0vmUsGdRgu4.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/soJA6gnILMoUkgup0vmUsGdRgu4.jpg
 - title: Annette
   year: 2021
   director: Leos Carax
@@ -53,17 +42,6 @@
   tmdb_original_title: Titane
   tmdb_poster_path: /AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
-- title: The Witches
-  year: 2020
-  director: Robert Zemeckis
-  country: US
-  imdb_id: null
-  imdb_url: null
-  tmdb_url: https://www.themoviedb.org/movie/880260
-  tmdb_title: The Witches
-  tmdb_original_title: Las Brujas
-  tmdb_poster_path: /v4nDfeNUexHcuFT6zezJDOH1TcX.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/v4nDfeNUexHcuFT6zezJDOH1TcX.jpg
 - title: Mank
   year: 2020
   director: David Fincher
@@ -112,13 +90,13 @@
   year: 2018
   director: 장준환
   country: Korea
-  imdb_id: tt9060288
-  imdb_url: https://www.imdb.com/title/tt9060288/
-  tmdb_url: https://www.themoviedb.org/movie/561945
-  tmdb_title: The Year 1987
-  tmdb_original_title: 那年1987
-  tmdb_poster_path: /DxjSbYoiRSpaAO1UyrksaG9ctB.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/DxjSbYoiRSpaAO1UyrksaG9ctB.jpg
+  imdb_id: tt6493286
+  imdb_url: https://www.imdb.com/title/tt6493286/
+  tmdb_url: https://www.themoviedb.org/movie/437103
+  tmdb_title: '1987: When the Day Comes'
+  tmdb_original_title: '1987'
+  tmdb_poster_path: /3KgL5KiGk8ABfMFHzGP2GnoH8sL.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3KgL5KiGk8ABfMFHzGP2GnoH8sL.jpg
 - title: 벌새
   year: 2018
   director: 김보라

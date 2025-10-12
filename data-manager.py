@@ -11,19 +11,21 @@ from thefuzz import fuzz
 
 # Log levels
 DEBUG = 10
+DEBUG_2 = 15
 INFO = 20
 WARNING = 30
 ERROR = 40
 
 LEVEL_NAMES = {
     DEBUG: "DEBUG",
+    DEBUG_2: "DEBUG_2",
     INFO: "INFO",
     WARNING: "WARNING",
     ERROR: "ERROR",
 }
 
 # Global variable to control the amount of logging output.
-LOG_LEVEL = INFO
+LOG_LEVEL = DEBUG_2
 # See stats in https://www.themoviedb.org/settings/api/stats
 # 0.01s => 1.9s / movie
 # 0.10s => 2.1s / movie
@@ -84,7 +86,7 @@ def get_tmdb_search_results(title, year):
     time.sleep(SLEEP_TIME)
     search_results = call_tmdb_search_api(title, year)
 
-    for year_offset in [1]:
+    for year_offset in [1, -1]:
         time.sleep(SLEEP_TIME)
         tmp = call_tmdb_search_api(title, year + year_offset)
         if tmp:
@@ -142,6 +144,8 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
                 )
                 if title_score > 99.9:
                     break
+        if title_score < 85:
+            title_score = 0
 
         year_score = 0
         release_date = tmdb_search_entry.get("release_date", "")
@@ -149,7 +153,7 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
             try:
                 movie_year = int(release_date.split("-")[0])
                 year_difference = abs(movie_year - year)
-                year_score = max(0, 100 - (year_difference * 25))
+                year_score = max(0, 100 - (year_difference * 35))
             except (ValueError, IndexError):
                 year_score = 0
 
@@ -159,12 +163,19 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
         # This scaling brings most popularity scores into a reasonable 0-100 range.
         normalized_popularity_score = min(100, (math.log(popularity + 1) / 8.5) * 100)
 
+        if title_score > 0:
+            log(
+                DEBUG_2,
+                f"  title_score={title_score}, year_score={year_score}, popularity={popularity} => normalized_popularity_score={normalized_popularity_score}",
+            )
+
         return (
-            (title_score * 0.7)
+            (title_score * 0.70)
             + (year_score * 0.25)
             + (normalized_popularity_score * 0.05)
         )
 
+    log(DEBUG_2, f"Scoring started: {debug_msg}")
     sorted_candidates = sorted(search_results, key=_movie_matching_score, reverse=True)
     return sorted_candidates[0]
 
@@ -228,13 +239,12 @@ def generate_yaml(csv_file_path, yml_file_path):
             if not tmdb_movie_entry:
                 continue
 
-            num_movies_outputs += 1
-
             imdb_id = tmdb_movie_entry.get("imdb_id")
             if imdb_id:
                 num_imdb_id += 1
             else:
-                log(WARNING, f"  -> No IMDB ID in TMDB: '{title}' ({year})")
+                log(WARNING, f"  -> Skip: No IMDB ID in TMDB: '{title}' ({year})")
+                continue
 
             tmdb_poster_path = tmdb_movie_entry.get("poster_path")
             if tmdb_poster_path:
@@ -245,6 +255,7 @@ def generate_yaml(csv_file_path, yml_file_path):
             tmdb_original_title = tmdb_movie_entry.get("original_title")
             tmdb_title = tmdb_movie_entry.get("title")
 
+            num_movies_outputs += 1
             movie_entry = {
                 "title": title,
                 "year": year,
@@ -286,5 +297,5 @@ def generate_yaml(csv_file_path, yml_file_path):
 
 
 # generate_yaml("input-movies.csv", "output-movies.yml")
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
 generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
