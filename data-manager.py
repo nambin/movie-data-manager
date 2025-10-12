@@ -168,7 +168,7 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
                 DEBUG_2,
                 f"  ({tmdb_original_title}, {tmdb_title}) : title_score={title_score}, year_score={year_score}, popularity={popularity} => normalized_popularity_score={normalized_popularity_score}",
             )
-
+        # TODO: For popular titles such as "The Witches" "Macbeth" and "Brooklyn", we may need more sophisticated scoring with other metadata such as director name.
         return (
             (title_score * 0.70)
             + (year_score * 0.25)
@@ -186,7 +186,7 @@ def get_tmdb_movie_entry(
 ) -> (str, str):
     _HARDEDCODED_TMDB_IDS = {
         ("이준익", "님은 먼 곳에"): 41538,
-        ("Robert Zemeckis", "The Witches"): 531219, 
+        ("Robert Zemeckis", "The Witches"): 531219,
         ("Justin Kurzel", "Macbeth"): 225728,
         ("John Crowley", "Brooklyn"): 167073,
     }
@@ -200,18 +200,18 @@ def get_tmdb_movie_entry(
     else:
         tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
         if not tmdb_search_entry:
-            log(ERROR, f"  -> Not found in TMDB: {debug_msg})")
+            log(ERROR, f"  -> Skip: Not found in TMDB: {debug_msg})")
             return None
 
         tmdb_id = tmdb_search_entry.get("id")
         if not tmdb_id:
-            log(ERROR, f"  -> No TMDB ID: {debug_msg}")
+            log(ERROR, f"  -> Skip: No TMDB ID: {debug_msg}")
             return None
 
     time.sleep(SLEEP_TIME)
     tmdb_movie_entry = call_tmdb_movie_api(tmdb_id)
     if not tmdb_movie_entry:
-        log(ERROR, f"  -> No TMDB movie entry for {tmdb_id}: {debug_msg}")
+        log(ERROR, f"  -> Skip: No TMDB movie entry for {tmdb_id}: {debug_msg}")
         return None
     return tmdb_movie_entry
 
@@ -299,6 +299,6 @@ def generate_yaml(csv_file_path, yml_file_path):
     )
 
 
-# generate_yaml("input-movies.csv", "output-movies.yml")
-generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("input-movies.csv", "output-movies.yml")
+# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
