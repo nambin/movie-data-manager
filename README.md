@@ -14,6 +14,10 @@ Movie API examples
 - [Shoplifters](https://api.themoviedb.org/3/movie/505192?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&append_to_response=credits)
 - [The Witches](https://api.themoviedb.org/3/movie/531219?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&append_to_response=credits)
 
+Parasite
+- https://www.themoviedb.org/movie/496243
+- https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
+
 ### How to Run
 
 To execute the script, run the following command in your terminal:
