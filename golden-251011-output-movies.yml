@@ -42,6 +42,17 @@
   tmdb_original_title: Titane
   tmdb_poster_path: /AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
+- title: The Witches
+  year: 2020
+  director: Robert Zemeckis
+  country: US
+  imdb_id: tt0805647
+  imdb_url: https://www.imdb.com/title/tt0805647/
+  tmdb_url: https://www.themoviedb.org/movie/531219
+  tmdb_title: null
+  tmdb_original_title: Roald Dahl's The Witches
+  tmdb_poster_path: /ht6EfsM5hrsUPSR4ReJQFDVU71F.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ht6EfsM5hrsUPSR4ReJQFDVU71F.jpg
 - title: Mank
   year: 2020
   director: David Fincher
@@ -200,24 +211,24 @@
   year: 2015
   director: Justin Kurzel
   country: US
-  imdb_id: tt4791836
-  imdb_url: https://www.imdb.com/title/tt4791836/
-  tmdb_url: https://www.themoviedb.org/movie/340564
+  imdb_id: tt2884018
+  imdb_url: https://www.imdb.com/title/tt2884018/
+  tmdb_url: https://www.themoviedb.org/movie/225728
   tmdb_title: null
   tmdb_original_title: Macbeth
-  tmdb_poster_path: /6XsaiY8jP2SENyQSzZkOSfeArbk.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6XsaiY8jP2SENyQSzZkOSfeArbk.jpg
+  tmdb_poster_path: /a5NEpil29Uns1wEYF8k99qVgj1T.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/a5NEpil29Uns1wEYF8k99qVgj1T.jpg
 - title: Brooklyn
   year: 2015
   director: John Crowley
   country: US
-  imdb_id: tt3184798
-  imdb_url: https://www.imdb.com/title/tt3184798/
-  tmdb_url: https://www.themoviedb.org/movie/291678
+  imdb_id: tt2381111
+  imdb_url: https://www.imdb.com/title/tt2381111/
+  tmdb_url: https://www.themoviedb.org/movie/167073
   tmdb_title: null
   tmdb_original_title: Brooklyn
-  tmdb_poster_path: /eqVRQcGhl1CRRjjct78tRR2SPrk.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eqVRQcGhl1CRRjjct78tRR2SPrk.jpg
+  tmdb_poster_path: /cs7W8j5lI7qzRW6tKSj9p1Q0Ze7.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cs7W8j5lI7qzRW6tKSj9p1Q0Ze7.jpg
 - title: Highway
   year: 2014
   director: Imtiaz Ali

@@ -25,7 +25,7 @@ LEVEL_NAMES = {
 }
 
 # Global variable to control the amount of logging output.
-LOG_LEVEL = DEBUG_2
+LOG_LEVEL = INFO
 # See stats in https://www.themoviedb.org/settings/api/stats
 # 0.01s => 1.9s / movie
 # 0.10s => 2.1s / movie
@@ -166,7 +166,7 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
         if title_score > 0:
             log(
                 DEBUG_2,
-                f"  title_score={title_score}, year_score={year_score}, popularity={popularity} => normalized_popularity_score={normalized_popularity_score}",
+                f"  ({tmdb_original_title}, {tmdb_title}) : title_score={title_score}, year_score={year_score}, popularity={popularity} => normalized_popularity_score={normalized_popularity_score}",
             )
 
         return (
@@ -182,18 +182,21 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
 
 # Returns (IMDB ID, TMDB poster path) or (None, None) if not found.
 def get_tmdb_movie_entry(
-    movie_title_set: title_parser.MovieTitleSet, year
+    movie_title_set: title_parser.MovieTitleSet, year, director
 ) -> (str, str):
     _HARDEDCODED_TMDB_IDS = {
-        ("님은 먼 곳에", 2008): 41538,
+        ("이준익", "님은 먼 곳에"): 41538,
+        ("Robert Zemeckis", "The Witches"): 531219, 
+        ("Justin Kurzel", "Macbeth"): 225728,
+        ("John Crowley", "Brooklyn"): 167073,
     }
     raw_title = movie_title_set.raw_title
     debug_msg = f"{raw_title} ({year})"
 
     tmdb_id = None
-    if (raw_title, year) in _HARDEDCODED_TMDB_IDS:
-        tmdb_id = _HARDEDCODED_TMDB_IDS[(raw_title, year)]
-        log(DEBUG, f"  -> Using hardcoded TMDB ID {tmdb_id}: {debug_msg}")
+    if (director, raw_title) in _HARDEDCODED_TMDB_IDS:
+        tmdb_id = _HARDEDCODED_TMDB_IDS[(director, raw_title)]
+        log(INFO, f"  -> Using hardcoded TMDB ID {tmdb_id}: {debug_msg}")
     else:
         tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
         if not tmdb_search_entry:
@@ -235,7 +238,7 @@ def generate_yaml(csv_file_path, yml_file_path):
             tmdb_poster_path = None
 
             movie_title_set = title_parser.MovieTitleSet(title)
-            tmdb_movie_entry = get_tmdb_movie_entry(movie_title_set, year)
+            tmdb_movie_entry = get_tmdb_movie_entry(movie_title_set, year, director)
             if not tmdb_movie_entry:
                 continue
 
