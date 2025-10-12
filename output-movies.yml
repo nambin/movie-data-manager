@@ -1,3 +1,103 @@
+- title: Mickey 17
+  year: 2025
+  director: 봉준호
+  country: US
+  imdb_id: tt12299608
+  imdb_url: https://www.imdb.com/title/tt12299608
+  tmdb_url: https://www.themoviedb.org/movie/696506
+  tmdb_title: null
+  tmdb_original_title: Mickey 17
+  tmdb_original_language: English
+  tmdb_director_original_name: 봉준호
+  tmdb_director_name: Bong Joon Ho
+  tmdb_poster_path: /edKpE9B5qN3e559OuMCLZdW1iBZ.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg
+- title: 승부
+  year: 2025
+  director: 김형주
+  country: Korea
+  imdb_id: tt13498824
+  imdb_url: https://www.imdb.com/title/tt13498824
+  tmdb_url: https://www.themoviedb.org/movie/760497
+  tmdb_title: The Match
+  tmdb_original_title: 승부
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 김형주
+  tmdb_director_name: Kim Hyung-joo
+  tmdb_poster_path: /epI43M0kT1FNr2qPXOoke4ux8U1.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/epI43M0kT1FNr2qPXOoke4ux8U1.jpg
+- title: The Wizard of Oz at Sphere
+  year: 2025
+  director: Victor Fleming
+  country: US
+  imdb_id: tt38084416
+  imdb_url: https://www.imdb.com/title/tt38084416
+  tmdb_url: null
+  tmdb_title: null
+  tmdb_original_title: null
+  tmdb_original_language: null
+  tmdb_director_original_name: null
+  tmdb_director_name: null
+  tmdb_poster_path: null
+  tmdb_poster_url: null
+  my_best: true
+- title: Adolescence (소년의 시간)
+  year: 2025
+  director: Philip Barantini
+  country: UK
+  imdb_id: tt36861174
+  imdb_url: https://www.imdb.com/title/tt36861174
+  tmdb_url: https://www.themoviedb.org/movie/1478143
+  tmdb_title: null
+  tmdb_original_title: 'The Real Adolescence: Our Killer Kids'
+  tmdb_original_language: English
+  tmdb_director_original_name: null
+  tmdb_director_name: null
+  tmdb_poster_path: /gyasYg4xhmmVfbsS96x4CCm6a30.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gyasYg4xhmmVfbsS96x4CCm6a30.jpg
+  custom_korean_title: 소년의 시간
+- title: Snow White
+  year: 2025
+  director: Marc Webb
+  country: US
+  imdb_id: tt6208148
+  imdb_url: https://www.imdb.com/title/tt6208148
+  tmdb_url: https://www.themoviedb.org/movie/447273
+  tmdb_title: null
+  tmdb_original_title: Snow White
+  tmdb_original_language: English
+  tmdb_director_original_name: Marc Webb
+  tmdb_director_name: null
+  tmdb_poster_path: /xWWg47tTfparvjK0WJNX4xL8lW2.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/xWWg47tTfparvjK0WJNX4xL8lW2.jpg
+- title: K-Pop Demon Hunters
+  year: 2025
+  director: Maggie Kang
+  country: US
+  imdb_id: tt14205554
+  imdb_url: https://www.imdb.com/title/tt14205554
+  tmdb_url: https://www.themoviedb.org/movie/803796
+  tmdb_title: null
+  tmdb_original_title: KPop Demon Hunters
+  tmdb_original_language: English
+  tmdb_director_original_name: Chris Appelhans
+  tmdb_director_name: null
+  tmdb_poster_path: /22AouvwlhlXbe3nrFcjzL24bvWH.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/22AouvwlhlXbe3nrFcjzL24bvWH.jpg
+- title: 'Mission: Impossible – The Final Reckoning'
+  year: 2025
+  director: Christopher McQuarrie
+  country: US
+  imdb_id: tt9603208
+  imdb_url: https://www.imdb.com/title/tt9603208
+  tmdb_url: https://www.themoviedb.org/movie/575265
+  tmdb_title: null
+  tmdb_original_title: 'Mission: Impossible - The Final Reckoning'
+  tmdb_original_language: English
+  tmdb_director_original_name: Christopher McQuarrie
+  tmdb_director_name: null
+  tmdb_poster_path: /z53D72EAOxGRqdr7KXXWp9dJiDe.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg
 - title: 여행자의 필요 (A Traveler’s Needs)
   year: 2024
   director: 홍상수
@@ -12,6 +112,20 @@
   tmdb_director_name: Hong Sang-soo
   tmdb_poster_path: /eDimH4UKv1qsXdnFePXuDZb3cA4.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/eDimH4UKv1qsXdnFePXuDZb3cA4.jpg
+- title: 하얼빈
+  year: 2024
+  director: 우민호
+  country: Korea
+  imdb_id: tt23630030
+  imdb_url: https://www.imdb.com/title/tt23630030
+  tmdb_url: https://www.themoviedb.org/movie/610251
+  tmdb_title: Harbin
+  tmdb_original_title: 하얼빈
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 우민호
+  tmdb_director_name: Woo Min-ho
+  tmdb_poster_path: /oNA9eRaFCLlFKRZlzYEldPZlFpg.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/oNA9eRaFCLlFKRZlzYEldPZlFpg.jpg
 - title: 'Joker: Folie à Deux'
   year: 2024
   director: Todd Phillips
@@ -72,6 +186,21 @@
   tmdb_director_name: null
   tmdb_poster_path: /xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
+- title: The Thinking Game
+  year: 2024
+  director: Greg Kohs
+  country: UK
+  imdb_id: tt32150119
+  imdb_url: https://www.imdb.com/title/tt32150119
+  tmdb_url: https://www.themoviedb.org/movie/1276011
+  tmdb_title: null
+  tmdb_original_title: The Thinking Game
+  tmdb_original_language: English
+  tmdb_director_original_name: Greg Kohs
+  tmdb_director_name: null
+  tmdb_poster_path: /jNMzCuUIt5tfHYJEpCIef7oqkfI.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/jNMzCuUIt5tfHYJEpCIef7oqkfI.jpg
+  my_best: true
 - title: 'Furiosa: A Mad Max Saga'
   year: 2024
   director: George Miller
@@ -86,6 +215,21 @@
   tmdb_director_name: null
   tmdb_poster_path: /iADOJ8Zymht2JPMoy3R7xceZprc.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/iADOJ8Zymht2JPMoy3R7xceZprc.jpg
+  my_best: true
+- title: The Brutalist
+  year: 2024
+  director: Brady Corbet
+  country: US
+  imdb_id: tt8999762
+  imdb_url: https://www.imdb.com/title/tt8999762
+  tmdb_url: https://www.themoviedb.org/movie/549509
+  tmdb_title: null
+  tmdb_original_title: The Brutalist
+  tmdb_original_language: English
+  tmdb_director_original_name: Brady Corbet
+  tmdb_director_name: null
+  tmdb_poster_path: /vP7Yd6couiAaw9jgMd5cjMRj3hQ.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vP7Yd6couiAaw9jgMd5cjMRj3hQ.jpg
   my_best: true
 - title: 콘크리트 유토피아 (Concrete Utopia)
   year: 2023
@@ -117,6 +261,34 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   awards:
   - blue_dragon
+- title: 어른 김장하
+  year: 2023
+  director: 김현지
+  country: Korea
+  imdb_id: tt30427991
+  imdb_url: https://www.imdb.com/title/tt30427991
+  tmdb_url: https://www.themoviedb.org/movie/1191370
+  tmdb_title: A Man Who Heals the City
+  tmdb_original_title: 어른 김장하
+  tmdb_original_language: Korean
+  tmdb_director_original_name: Kim Hyeon-ji
+  tmdb_director_name: null
+  tmdb_poster_path: /hIGuCLPy29KSytCbQHEXdYBizg7.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/hIGuCLPy29KSytCbQHEXdYBizg7.jpg
+- title: '노량: 죽음의 바다 '
+  year: 2023
+  director: 김한민
+  country: Korea
+  imdb_id: tt22813112
+  imdb_url: https://www.imdb.com/title/tt22813112
+  tmdb_url: https://www.themoviedb.org/movie/660360
+  tmdb_title: 'Noryang: Deadly Sea'
+  tmdb_original_title: '노량: 죽음의 바다'
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 김한민
+  tmdb_director_name: Kim Han-min
+  tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
 - title: 거미집 (Cobweb)
   year: 2023
   director: 김지운
@@ -218,20 +390,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg
-- title: '노량: 죽음의 바다 '
+- title: Io Capitano
   year: 2023
-  director: Kim Han-min
-  country: Korea
-  imdb_id: tt22813112
-  imdb_url: https://www.imdb.com/title/tt22813112
-  tmdb_url: https://www.themoviedb.org/movie/660360
-  tmdb_title: 'Noryang: Deadly Sea'
-  tmdb_original_title: '노량: 죽음의 바다'
-  tmdb_original_language: Korean
-  tmdb_director_original_name: 김한민
-  tmdb_director_name: Kim Han-min
-  tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
+  director: Matteo Garrone
+  country: Italia
+  imdb_id: tt14225838
+  imdb_url: https://www.imdb.com/title/tt14225838
+  tmdb_url: https://www.themoviedb.org/movie/937746
+  tmdb_title: Io Capitano
+  tmdb_original_title: Io capitano
+  tmdb_original_language: Italian
+  tmdb_director_original_name: Matteo Garrone
+  tmdb_director_name: null
+  tmdb_poster_path: /kGlZFwUQI5gAUdySNFfqGIkAF9n.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kGlZFwUQI5gAUdySNFfqGIkAF9n.jpg
 - title: The Old Oak
   year: 2023
   director: Ken Loach
@@ -366,6 +538,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /k8NYzD01zAUsdqocjhLXbO9BSS8.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/k8NYzD01zAUsdqocjhLXbO9BSS8.jpg
+- title: Past Lives
+  year: 2023
+  director: Celine Song
+  country: US
+  imdb_id: tt13238346
+  imdb_url: https://www.imdb.com/title/tt13238346
+  tmdb_url: https://www.themoviedb.org/movie/666277
+  tmdb_title: null
+  tmdb_original_title: Past Lives
+  tmdb_original_language: English
+  tmdb_director_original_name: Celine Song
+  tmdb_director_name: null
+  tmdb_poster_path: /k3waqVXSnvCZWfJYNtdamTgTtTA.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg
 - title: The Holdovers (바튼 아카데미)
   year: 2023
   director: Alexander Payne
@@ -585,6 +771,20 @@
   tmdb_poster_path: /yStW1TXF5s7Tbtu9KjIZEaWl6HL.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/yStW1TXF5s7Tbtu9KjIZEaWl6HL.jpg
   custom_korean_title: 스즈메의 문단속
+- title: Close
+  year: 2022
+  director: Lukas Dhont
+  country: Belgium
+  imdb_id: tt9660502
+  imdb_url: https://www.imdb.com/title/tt9660502
+  tmdb_url: https://www.themoviedb.org/movie/901563
+  tmdb_title: null
+  tmdb_original_title: Close
+  tmdb_original_language: French
+  tmdb_director_original_name: Lukas Dhont
+  tmdb_director_name: null
+  tmdb_poster_path: /dlMNnWs7Mz8Nk5AC447Ew1tD5pn.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dlMNnWs7Mz8Nk5AC447Ew1tD5pn.jpg
 - title: All The Beauty And The Bloodshed
   year: 2022
   director: Laura Poitras
@@ -673,6 +873,37 @@
   tmdb_director_name: Hirokazu Kore-eda
   tmdb_poster_path: /x86xaUnxU31JYiwlO35corDEV1i.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/x86xaUnxU31JYiwlO35corDEV1i.jpg
+- title: Guillermo Del Toro's Pinocchio
+  year: 2022
+  director: Guillermo del Toro
+  country: US
+  imdb_id: tt1488589
+  imdb_url: https://www.imdb.com/title/tt1488589
+  tmdb_url: https://www.themoviedb.org/movie/555604
+  tmdb_title: null
+  tmdb_original_title: Guillermo del Toro's Pinocchio
+  tmdb_original_language: English
+  tmdb_director_original_name: Mark Gustafson
+  tmdb_director_name: null
+  tmdb_poster_path: /vx1u0uwxdlhV2MUzj4VlcMB0N6m.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vx1u0uwxdlhV2MUzj4VlcMB0N6m.jpg
+  my_best: true
+- title: All Quiet on the Western Front
+  year: 2022
+  director: Edward Berger
+  country: Germany
+  imdb_id: tt1016150
+  imdb_url: https://www.imdb.com/title/tt1016150
+  tmdb_url: https://www.themoviedb.org/movie/49046
+  tmdb_title: All Quiet on the Western Front
+  tmdb_original_title: Im Westen nichts Neues
+  tmdb_original_language: German
+  tmdb_director_original_name: Edward Berger
+  tmdb_director_name: null
+  tmdb_poster_path: /2IRjbi9cADuDMKmHdLK7LaqQDKA.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/2IRjbi9cADuDMKmHdLK7LaqQDKA.jpg
+  awards:
+  - oscar
 - title: The Whale
   year: 2022
   director: Darren Aronofsky
@@ -1117,6 +1348,20 @@
   custom_korean_title: 레벤느망
   awards:
   - venice
+- title: Don’t Look Up
+  year: 2021
+  director: Adam McKay
+  country: US
+  imdb_id: tt11286314
+  imdb_url: https://www.imdb.com/title/tt11286314
+  tmdb_url: https://www.themoviedb.org/movie/646380
+  tmdb_title: null
+  tmdb_original_title: Don't Look Up
+  tmdb_original_language: English
+  tmdb_director_original_name: Adam McKay
+  tmdb_director_name: null
+  tmdb_poster_path: /th4E1yqsE8DGpAseLiUrI60Hf8V.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/th4E1yqsE8DGpAseLiUrI60Hf8V.jpg
 - title: 남매의 여름밤
   year: 2020
   director: 윤단비
@@ -1498,6 +1743,20 @@
   tmdb_director_name: Kim Do-young
   tmdb_poster_path: /gA4J1jio3O5monA9GrAnxjlcvqw.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gA4J1jio3O5monA9GrAnxjlcvqw.jpg
+- title: A Rainy Day in New York
+  year: 2019
+  director: Woody Allen
+  country: US
+  imdb_id: tt7139936
+  imdb_url: https://www.imdb.com/title/tt7139936
+  tmdb_url: https://www.themoviedb.org/movie/475303
+  tmdb_title: null
+  tmdb_original_title: A Rainy Day in New York
+  tmdb_original_language: English
+  tmdb_director_original_name: Woody Allen
+  tmdb_director_name: null
+  tmdb_poster_path: /z4A6mFOLTMZAhCSPRyrtzG0SPbd.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/z4A6mFOLTMZAhCSPRyrtzG0SPbd.jpg
 - title: Joker
   year: 2019
   director: Todd Phillips
@@ -1615,6 +1874,20 @@
   tmdb_poster_path: /iZf0KyrE25z1sage4SYFLCCrMi9.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/iZf0KyrE25z1sage4SYFLCCrMi9.jpg
   my_best: true
+- title: Uncut Gems
+  year: 2019
+  director: Safdie brothers
+  country: US
+  imdb_id: tt5727208
+  imdb_url: https://www.imdb.com/title/tt5727208
+  tmdb_url: https://www.themoviedb.org/movie/473033
+  tmdb_title: null
+  tmdb_original_title: Uncut Gems
+  tmdb_original_language: English
+  tmdb_director_original_name: Josh Safdie
+  tmdb_director_name: null
+  tmdb_poster_path: /sg0xxJeb3u1C4kAxhSuTwTNpEDt.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/sg0xxJeb3u1C4kAxhSuTwTNpEDt.jpg
 - title: Asako I & II
   year: 2019
   director: Ryusuke Hamaguchi
@@ -1771,6 +2044,20 @@
   tmdb_director_name: Makoto Shinkai
   tmdb_poster_path: /qgrk7r1fV4IjuoeiGS5HOhXNdLJ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qgrk7r1fV4IjuoeiGS5HOhXNdLJ.jpg
+- title: The Farewell
+  year: 2019
+  director: Lulu Wang
+  country: US
+  imdb_id: tt8637428
+  imdb_url: https://www.imdb.com/title/tt8637428
+  tmdb_url: https://www.themoviedb.org/movie/565310
+  tmdb_title: null
+  tmdb_original_title: The Farewell
+  tmdb_original_language: English
+  tmdb_director_original_name: Lulu Wang
+  tmdb_director_name: null
+  tmdb_poster_path: /7ht2IMGynDSVQGvAXhAb83DLET8.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7ht2IMGynDSVQGvAXhAb83DLET8.jpg
 - title: League of Legends Origins
   year: 2019
   director: Leslie Iwerks
@@ -2003,6 +2290,20 @@
   tmdb_director_name: Hong Sang-soo
   tmdb_poster_path: /bmtaMIrNXtfst3YChMlMRKy07un.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/bmtaMIrNXtfst3YChMlMRKy07un.jpg
+- title: 리틀 포레스트
+  year: 2018
+  director: 임순례
+  country: Korea
+  imdb_id: tt6083230
+  imdb_url: https://www.imdb.com/title/tt6083230
+  tmdb_url: https://www.themoviedb.org/movie/448491
+  tmdb_title: Little Forest
+  tmdb_original_title: 리틀 포레스트
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 임순례
+  tmdb_director_name: Yim Soon-rye
+  tmdb_poster_path: /gKmPuyjmALswSQUF94PWXoAvkKM.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gKmPuyjmALswSQUF94PWXoAvkKM.jpg
 - title: 버닝
   year: 2018
   director: 이창동
@@ -2129,6 +2430,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /uxzzxijgPIY7slzFvMotPv8wjKA.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/uxzzxijgPIY7slzFvMotPv8wjKA.jpg
+- title: Mary Poppins Returns
+  year: 2018
+  director: Rob Marshall
+  country: US
+  imdb_id: tt5028340
+  imdb_url: https://www.imdb.com/title/tt5028340
+  tmdb_url: https://www.themoviedb.org/movie/400650
+  tmdb_title: null
+  tmdb_original_title: Mary Poppins Returns
+  tmdb_original_language: English
+  tmdb_director_original_name: Rob Marshall
+  tmdb_director_name: null
+  tmdb_poster_path: /uTVGku4LibMGyKgQvjBtv3OYfAX.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/uTVGku4LibMGyKgQvjBtv3OYfAX.jpg
 - title: 'Spider-Man: Into the Spider-Verse'
   year: 2018
   director: Peter Ramsey
@@ -2202,6 +2517,21 @@
   tmdb_director_name: null
   tmdb_poster_path: /fF2xXApETxZqyluokyJ1x4gIiTf.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/fF2xXApETxZqyluokyJ1x4gIiTf.jpg
+- title: Us and Them (后来的我们, 먼 훗날 우리)
+  year: 2018
+  director: Liú Ruòyīng
+  country: China
+  imdb_id: tt8033592
+  imdb_url: https://www.imdb.com/title/tt8033592
+  tmdb_url: https://www.themoviedb.org/movie/508747
+  tmdb_title: Us and Them
+  tmdb_original_title: 后来的我们
+  tmdb_original_language: Chinese
+  tmdb_director_original_name: 劉若英
+  tmdb_director_name: René Liu
+  tmdb_poster_path: /awAgLglirZsEqLff79Z8HaMrTXn.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/awAgLglirZsEqLff79Z8HaMrTXn.jpg
+  custom_korean_title: 먼 훗날 우리
 - title: Shoplifters (어느 가족)
   year: 2018
   director: Hirokazu Koreeda
@@ -2261,6 +2591,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg
+- title: Transit
+  year: 2018
+  director: Christian Petzold
+  country: Germany
+  imdb_id: tt6675244
+  imdb_url: https://www.imdb.com/title/tt6675244
+  tmdb_url: https://www.themoviedb.org/movie/471853
+  tmdb_title: null
+  tmdb_original_title: Transit
+  tmdb_original_language: German
+  tmdb_director_original_name: Christian Petzold
+  tmdb_director_name: null
+  tmdb_poster_path: /mk9Kuqtdvs2bxsBTLhAMOg8XI1l.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mk9Kuqtdvs2bxsBTLhAMOg8XI1l.jpg
 - title: A Star Is Born
   year: 2018
   director: Bradley Cooper
@@ -2291,6 +2635,34 @@
   tmdb_poster_path: /8wUxYW7v2sahnFwipwzjRo8Z3sP.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8wUxYW7v2sahnFwipwzjRo8Z3sP.jpg
   custom_korean_title: 지구 최후의 밤
+- title: Todos lo saben (Everybody Knows)
+  year: 2018
+  director: Asghar Farhadi
+  country: Spain
+  imdb_id: tt4964788
+  imdb_url: https://www.imdb.com/title/tt4964788
+  tmdb_url: https://www.themoviedb.org/movie/401545
+  tmdb_title: Everybody Knows
+  tmdb_original_title: Todos lo saben
+  tmdb_original_language: Spanish
+  tmdb_director_original_name: اصغر فرهادی
+  tmdb_director_name: Asghar Farhadi
+  tmdb_poster_path: /1TuuM451os3NaltCwGfPCVL2BST.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1TuuM451os3NaltCwGfPCVL2BST.jpg
+- title: Hereditary
+  year: 2018
+  director: Ari Aster
+  country: US
+  imdb_id: tt7784604
+  imdb_url: https://www.imdb.com/title/tt7784604
+  tmdb_url: https://www.themoviedb.org/movie/493922
+  tmdb_title: null
+  tmdb_original_title: Hereditary
+  tmdb_original_language: English
+  tmdb_director_original_name: Ari Aster
+  tmdb_director_name: null
+  tmdb_poster_path: /hjlZSXM86wJrfCv5VKfR5DI2VeU.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/hjlZSXM86wJrfCv5VKfR5DI2VeU.jpg
 - title: Happy as Lazzaro
   year: 2018
   director: Alice Rohrwacher
@@ -2337,6 +2709,21 @@
   awards:
   - oscar
   - venice
+- title: 풀잎들
+  year: 2017
+  director: 홍상수
+  country: Korea
+  imdb_id: tt7913172
+  imdb_url: https://www.imdb.com/title/tt7913172
+  tmdb_url: https://www.themoviedb.org/movie/499255
+  tmdb_title: Grass
+  tmdb_original_title: 풀잎들
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 홍상수
+  tmdb_director_name: Hong Sang-soo
+  tmdb_poster_path: /22fPEFs3fdJnJuMDBinHaOwnRFx.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/22fPEFs3fdJnJuMDBinHaOwnRFx.jpg
+  my_best: true
 - title: 클레어의 카메라 (Claire's Camera)
   year: 2017
   director: 홍상수
@@ -2366,6 +2753,20 @@
   tmdb_director_name: Hong Sang-soo
   tmdb_poster_path: /AjOe8RrgFOqWvHE5YuPcB0tl0pR.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AjOe8RrgFOqWvHE5YuPcB0tl0pR.jpg
+- title: 소공녀
+  year: 2017
+  director: 전고운
+  country: Korea
+  imdb_id: tt8191502
+  imdb_url: https://www.imdb.com/title/tt8191502
+  tmdb_url: https://www.themoviedb.org/movie/483297
+  tmdb_title: Microhabitat
+  tmdb_original_title: 소공녀
+  tmdb_original_language: Korean
+  tmdb_director_original_name: Jeon Go-woon
+  tmdb_director_name: null
+  tmdb_poster_path: /9SR5gUh5Qwy0FnOEXwFdt0nnAgb.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/9SR5gUh5Qwy0FnOEXwFdt0nnAgb.jpg
 - title: 택시운전사
   year: 2017
   director: 장훈
@@ -3236,6 +3637,20 @@
   tmdb_poster_path: /6L1bbZcB7HbpxnlzGOKdhufrYNB.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6L1bbZcB7HbpxnlzGOKdhufrYNB.jpg
   custom_korean_title: '충돌: 아랍의 봄 그 이후'
+- title: Toni Erdmann
+  year: 2016
+  director: Maren Ade
+  country: Germany
+  imdb_id: tt4048272
+  imdb_url: https://www.imdb.com/title/tt4048272
+  tmdb_url: https://www.themoviedb.org/movie/374475
+  tmdb_title: null
+  tmdb_original_title: Toni Erdmann
+  tmdb_original_language: German
+  tmdb_director_original_name: Maren Ade
+  tmdb_director_name: null
+  tmdb_poster_path: /v3gf7T8hb8aYv05X2jHmxJQWPZr.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/v3gf7T8hb8aYv05X2jHmxJQWPZr.jpg
 - title: Your Name.
   year: 2016
   director: Makoto Shinkai
@@ -3574,6 +3989,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /cJeled7EyPdur6TnCA5GYg0UVna.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cJeled7EyPdur6TnCA5GYg0UVna.jpg
+- title: 'Bãhubali: The Beginning'
+  year: 2015
+  director: S.S. Rajamouli
+  country: India
+  imdb_id: tt2631186
+  imdb_url: https://www.imdb.com/title/tt2631186
+  tmdb_url: https://www.themoviedb.org/movie/256040
+  tmdb_title: 'Bāhubali: The Beginning'
+  tmdb_original_title: బాహుబలి:ద బిగినింగ్
+  tmdb_original_language: Telugu
+  tmdb_director_original_name: S. S. Rajamouli
+  tmdb_director_name: null
+  tmdb_poster_path: /9BAjt8nSSms62uOVYn1t3C3dVto.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/9BAjt8nSSms62uOVYn1t3C3dVto.jpg
 - title: The Martian
   year: 2015
   director: Ridley Scott
@@ -4123,6 +4552,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /lOQqeKxZg12ZSn0qfHAOXOtbVFR.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/lOQqeKxZg12ZSn0qfHAOXOtbVFR.jpg
+- title: 누구의 딸도 아닌 해원
+  year: 2013
+  director: 홍상수
+  country: Korea
+  imdb_id: tt2576522
+  imdb_url: https://www.imdb.com/title/tt2576522
+  tmdb_url: https://www.themoviedb.org/movie/160075
+  tmdb_title: Nobody's Daughter Haewon
+  tmdb_original_title: 누구의 딸도 아닌 해원
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 홍상수
+  tmdb_director_name: Hong Sang-soo
+  tmdb_poster_path: /5UirkMzr70C1hBBQNya8CgHPPa6.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/5UirkMzr70C1hBBQNya8CgHPPa6.jpg
 - title: 우리 선희
   year: 2013
   director: 홍상수
@@ -4328,6 +4771,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg
+- title: World War Z
+  year: 2013
+  director: Marc Forster
+  country: US
+  imdb_id: tt0816711
+  imdb_url: https://www.imdb.com/title/tt0816711
+  tmdb_url: https://www.themoviedb.org/movie/72190
+  tmdb_title: null
+  tmdb_original_title: World War Z
+  tmdb_original_language: English
+  tmdb_director_original_name: Marc Forster
+  tmdb_director_name: null
+  tmdb_poster_path: /aCnVdvExw6UWSeQfr0tUH3jr4qG.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/aCnVdvExw6UWSeQfr0tUH3jr4qG.jpg
 - title: Begin again
   year: 2013
   director: John Carney
@@ -5277,6 +5734,35 @@
   tmdb_director_name: null
   tmdb_poster_path: /mFvoEwSfLqbcWwFsDjQebn9bzFe.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/mFvoEwSfLqbcWwFsDjQebn9bzFe.jpg
+- title: 여행자 (A Brand New Life)
+  year: 2009
+  director: Ounie Lecomte
+  country: Korea
+  imdb_id: tt1287875
+  imdb_url: https://www.imdb.com/title/tt1287875
+  tmdb_url: https://www.themoviedb.org/movie/48508
+  tmdb_title: A Brand New Life
+  tmdb_original_title: 여행자
+  tmdb_original_language: Korean
+  tmdb_director_original_name: Ounie Lecomte
+  tmdb_director_name: null
+  tmdb_poster_path: /8A4ER897Wgm6b4pRBjyHf5waaq9.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/8A4ER897Wgm6b4pRBjyHf5waaq9.jpg
+  my_best: true
+- title: Public Enemies
+  year: 2009
+  director: Michael Mann
+  country: US
+  imdb_id: tt1152836
+  imdb_url: https://www.imdb.com/title/tt1152836
+  tmdb_url: https://www.themoviedb.org/movie/11322
+  tmdb_title: null
+  tmdb_original_title: Public Enemies
+  tmdb_original_language: English
+  tmdb_director_original_name: Michael Mann
+  tmdb_director_name: null
+  tmdb_poster_path: /3KgtekisQBrHRsm2cD5UOB6Ce3k.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3KgtekisQBrHRsm2cD5UOB6Ce3k.jpg
 - title: The White Ribbon
   year: 2009
   director: Michael Haneke
@@ -5575,6 +6061,22 @@
   tmdb_director_name: null
   tmdb_poster_path: /26wEWZYt6yJkwRVkjcbwJEFh9IS.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/26wEWZYt6yJkwRVkjcbwJEFh9IS.jpg
+- title: The Wrestler
+  year: 2008
+  director: Darren Aronofsky
+  country: US
+  imdb_id: tt1125849
+  imdb_url: https://www.imdb.com/title/tt1125849
+  tmdb_url: https://www.themoviedb.org/movie/12163
+  tmdb_title: null
+  tmdb_original_title: The Wrestler
+  tmdb_original_language: English
+  tmdb_director_original_name: Darren Aronofsky
+  tmdb_director_name: null
+  tmdb_poster_path: /6OTR8dSoNGjWohJNo3UhIGd3Tj.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6OTR8dSoNGjWohJNo3UhIGd3Tj.jpg
+  awards:
+  - venice
 - title: Slumdog Millionaire
   year: 2008
   director: Danny Boyle
@@ -5680,6 +6182,20 @@
   tmdb_poster_path: /vee1jyUrqUEmi5ZStWI1JJzLQJH.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vee1jyUrqUEmi5ZStWI1JJzLQJH.jpg
   my_best: true
+- title: 스카우트
+  year: 2007
+  director: 김현석
+  country: Korea
+  imdb_id: tt1872164
+  imdb_url: https://www.imdb.com/title/tt1872164
+  tmdb_url: https://www.themoviedb.org/movie/315202
+  tmdb_title: Scout
+  tmdb_original_title: 스카우트
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 김현석
+  tmdb_director_name: Kim Hyun-seok
+  tmdb_poster_path: /58uOTR2w5tkg1YlUStWpzTE3nAp.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/58uOTR2w5tkg1YlUStWpzTE3nAp.jpg
 - title: Spider-Man 3
   year: 2007
   director: Sam Raimi
@@ -5915,6 +6431,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /vHjEVTD8ucuwKSFOZJeyAnTZYli.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vHjEVTD8ucuwKSFOZJeyAnTZYli.jpg
+- title: The Holiday
+  year: 2006
+  director: Nancy Meyers
+  country: US
+  imdb_id: tt0457939
+  imdb_url: https://www.imdb.com/title/tt0457939
+  tmdb_url: https://www.themoviedb.org/movie/1581
+  tmdb_title: null
+  tmdb_original_title: The Holiday
+  tmdb_original_language: English
+  tmdb_director_original_name: Nancy Meyers
+  tmdb_director_name: null
+  tmdb_poster_path: /h1ITOpvJN3Tw4Sy60w2QTfYMvdd.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/h1ITOpvJN3Tw4Sy60w2QTfYMvdd.jpg
 - title: The Departed
   year: 2006
   director: Martin Scorsese
@@ -6690,6 +7220,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /wZ0l6or5juuVWqDkLEgaghs4f9l.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/wZ0l6or5juuVWqDkLEgaghs4f9l.jpg
+- title: 생활의 발견
+  year: 2002
+  director: 홍상수
+  country: Korea
+  imdb_id: tt0313550
+  imdb_url: https://www.imdb.com/title/tt0313550
+  tmdb_url: https://www.themoviedb.org/movie/53267
+  tmdb_title: On the Occasion of Remembering the Turning Gate
+  tmdb_original_title: 생활의 발견
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 홍상수
+  tmdb_director_name: Hong Sang-soo
+  tmdb_poster_path: /kU1DLrWyJwDVHHhBT5K2Pp826ev.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kU1DLrWyJwDVHHhBT5K2Pp826ev.jpg
 - title: 결혼은, 미친 짓이다
   year: 2002
   director: 유하
@@ -6704,21 +7248,6 @@
   tmdb_director_name: Yoo Ha
   tmdb_poster_path: /tQG2mfXzKfn5vdEwx5iVh3jGiGG.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tQG2mfXzKfn5vdEwx5iVh3jGiGG.jpg
-- title: Infernal Affairs (무간도)
-  year: 2002
-  director: 유위강, 맥조휘
-  country: Hong Kong
-  imdb_id: tt0338564
-  imdb_url: https://www.imdb.com/title/tt0338564
-  tmdb_url: https://www.themoviedb.org/movie/10775
-  tmdb_title: Infernal Affairs
-  tmdb_original_title: 無間道
-  tmdb_original_language: cn
-  tmdb_director_original_name: 麥兆輝
-  tmdb_director_name: Alan Mak Siu-Fai
-  tmdb_poster_path: /gix9thDBXfjJ8M7rYbihqbQGBcP.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gix9thDBXfjJ8M7rYbihqbQGBcP.jpg
-  custom_korean_title: 무간도
 - title: 질투는 나의 힘
   year: 2002
   director: 박찬옥
@@ -6763,6 +7292,21 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vxgZto2Cz7ILHAlmRXt50I2brB2.jpg
   custom_korean_title: '영웅: 천하의 시작'
   my_best: true
+- title: Infernal Affairs (무간도)
+  year: 2002
+  director: Wai Keung Lau and Alan Mak
+  country: Hong Kong
+  imdb_id: tt0338564
+  imdb_url: https://www.imdb.com/title/tt0338564
+  tmdb_url: https://www.themoviedb.org/movie/10775
+  tmdb_title: Infernal Affairs
+  tmdb_original_title: 無間道
+  tmdb_original_language: cn
+  tmdb_director_original_name: 麥兆輝
+  tmdb_director_name: Alan Mak Siu-Fai
+  tmdb_poster_path: /gix9thDBXfjJ8M7rYbihqbQGBcP.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gix9thDBXfjJ8M7rYbihqbQGBcP.jpg
+  custom_korean_title: 무간도
 - title: Catch Me If You Can
   year: 2002
   director: Steven Spielberg
@@ -7328,6 +7872,20 @@
   custom_korean_title: 와호장룡
   awards:
   - oscar
+- title: 해피 엔드
+  year: 1999
+  director: 정지우
+  country: Korea
+  imdb_id: tt0220507
+  imdb_url: https://www.imdb.com/title/tt0220507
+  tmdb_url: https://www.themoviedb.org/movie/27154
+  tmdb_title: Happy End
+  tmdb_original_title: 해피 엔드
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 정지우
+  tmdb_director_name: Jung Ji-woo
+  tmdb_poster_path: /oHqmSc7J9w4ZhoXyoSrpYWoxSTr.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/oHqmSc7J9w4ZhoXyoSrpYWoxSTr.jpg
 - title: 박하사탕
   year: 1999
   director: 이창동
@@ -7446,6 +8004,20 @@
   tmdb_poster_path: /p96dm7sCMn4VYAStA6siNz30G1r.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/p96dm7sCMn4VYAStA6siNz30G1r.jpg
   my_best: true
+- title: Eyes Wide Shut
+  year: 1999
+  director: Stanley Kubrick
+  country: US
+  imdb_id: tt0120663
+  imdb_url: https://www.imdb.com/title/tt0120663
+  tmdb_url: https://www.themoviedb.org/movie/345
+  tmdb_title: null
+  tmdb_original_title: Eyes Wide Shut
+  tmdb_original_language: English
+  tmdb_director_original_name: Stanley Kubrick
+  tmdb_director_name: null
+  tmdb_poster_path: /knEIz1eNGl5MQDbrEAVWA7iRqF9.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/knEIz1eNGl5MQDbrEAVWA7iRqF9.jpg
 - title: Being John Malkovich
   year: 1999
   director: Spike Jonze
@@ -7508,6 +8080,20 @@
   my_best: true
   awards:
   - berlin
+- title: The Sixth Sense
+  year: 1999
+  director: M. Night Shyamalan
+  country: US
+  imdb_id: tt0167404
+  imdb_url: https://www.imdb.com/title/tt0167404
+  tmdb_url: https://www.themoviedb.org/movie/745
+  tmdb_title: null
+  tmdb_original_title: The Sixth Sense
+  tmdb_original_language: English
+  tmdb_director_original_name: M. Night Shyamalan
+  tmdb_director_name: null
+  tmdb_poster_path: /vOyfUXNFSnaTk7Vk5AjpsKTUWsu.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vOyfUXNFSnaTk7Vk5AjpsKTUWsu.jpg
 - title: Toy Story 2
   year: 1999
   director: John Lasseter
@@ -7861,6 +8447,20 @@
   tmdb_director_name: Kang Woo-suk
   tmdb_poster_path: /aSRV0qmELMT0SSMiQF6H1vBAmYb.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/aSRV0qmELMT0SSMiQF6H1vBAmYb.jpg
+- title: Everyone Says I Love You
+  year: 1996
+  director: Woody Allen
+  country: US
+  imdb_id: tt0116242
+  imdb_url: https://www.imdb.com/title/tt0116242
+  tmdb_url: https://www.themoviedb.org/movie/9716
+  tmdb_title: null
+  tmdb_original_title: Everyone Says I Love You
+  tmdb_original_language: English
+  tmdb_director_original_name: Woody Allen
+  tmdb_director_name: null
+  tmdb_poster_path: /cFOZ4bNbWtnIIboc43M86yhwPBX.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cFOZ4bNbWtnIIboc43M86yhwPBX.jpg
 - title: Secrets & Lies
   year: 1996
   director: Mike Leigh
@@ -9220,6 +9820,24 @@
   tmdb_director_name: null
   tmdb_poster_path: /kjC8I6fvchcxPBdh4bw4w8Px8ue.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kjC8I6fvchcxPBdh4bw4w8Px8ue.jpg
+- title: 楢山節考 (나라야마 부시코)
+  year: 1983
+  director: Showhei Imamura
+  country: Japan
+  imdb_id: tt0084390
+  imdb_url: https://www.imdb.com/title/tt0084390
+  tmdb_url: https://www.themoviedb.org/movie/42113
+  tmdb_title: The Ballad of Narayama
+  tmdb_original_title: 楢山節考
+  tmdb_original_language: Japanese
+  tmdb_director_original_name: 今村昌平
+  tmdb_director_name: Shōhei Imamura
+  tmdb_poster_path: /h3iNimtw6HsFTtAvEDF3XYZ4Y5T.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/h3iNimtw6HsFTtAvEDF3XYZ4Y5T.jpg
+  custom_korean_title: 나라야마 부시코
+  my_best: true
+  awards:
+  - cannes
 - title: 'First Name: Carmen (Prénom Carmen, 미녀 갱 카르멘)'
   year: 1983
   director: Jean-Luc Godard
@@ -9416,6 +10034,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /yaPx3cK9zGFX3SbcKwxWM1QIbUh.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/yaPx3cK9zGFX3SbcKwxWM1QIbUh.jpg
+- title: Eraserhead
+  year: 1977
+  director: David Lynch
+  country: US
+  imdb_id: tt0074486
+  imdb_url: https://www.imdb.com/title/tt0074486
+  tmdb_url: https://www.themoviedb.org/movie/985
+  tmdb_title: null
+  tmdb_original_title: Eraserhead
+  tmdb_original_language: English
+  tmdb_director_original_name: David Lynch
+  tmdb_director_name: null
+  tmdb_poster_path: /mxveW3mGVc0DzLdOmtkZsgd7c3B.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mxveW3mGVc0DzLdOmtkZsgd7c3B.jpg
 - title: Taxi Driver
   year: 1976
   director: Martin Scorsese
@@ -9614,6 +10246,22 @@
   tmdb_director_name: null
   tmdb_poster_path: /v2KsLNChpT6vLf0YFhkJmAtGkNq.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/v2KsLNChpT6vLf0YFhkJmAtGkNq.jpg
+- title: The Battle of Algiers (La battaglia di Algeri)
+  year: 1966
+  director: Gillo Pontecorvo
+  country: Italia
+  imdb_id: tt0058946
+  imdb_url: https://www.imdb.com/title/tt0058946
+  tmdb_url: https://www.themoviedb.org/movie/17295
+  tmdb_title: The Battle of Algiers
+  tmdb_original_title: La battaglia di Algeri
+  tmdb_original_language: Italian
+  tmdb_director_original_name: Gillo Pontecorvo
+  tmdb_director_name: null
+  tmdb_poster_path: /2p3AFtOHFvP6OeVMqlnL1zLKOqL.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/2p3AFtOHFvP6OeVMqlnL1zLKOqL.jpg
+  awards:
+  - venice
 - title: The Sound of Music
   year: 1965
   director: Robert Wise
@@ -10051,6 +10699,20 @@
   awards:
   - oscar
   - cannes
+- title: A Star Is Born
+  year: 1954
+  director: George Cukor
+  country: US
+  imdb_id: tt0047522
+  imdb_url: https://www.imdb.com/title/tt0047522
+  tmdb_url: https://www.themoviedb.org/movie/3111
+  tmdb_title: null
+  tmdb_original_title: A Star Is Born
+  tmdb_original_language: English
+  tmdb_director_original_name: George Cukor
+  tmdb_director_name: null
+  tmdb_poster_path: /zpg2SzpYhZk1D1seDfIIlwaqAxT.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/zpg2SzpYhZk1D1seDfIIlwaqAxT.jpg
 - title: Rear Window (이창)
   year: 1954
   director: Alfred Hitchcock
@@ -10269,7 +10931,7 @@
   - oscar
 - title: Pinocchio
   year: 1940
-  director: Walt Disney
+  director: Ben Sharpsteen and Hamilton Luske
   country: US
   imdb_id: tt0032910
   imdb_url: https://www.imdb.com/title/tt0032910

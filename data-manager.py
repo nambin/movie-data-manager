@@ -214,18 +214,16 @@ def get_tmdb_movie_entry(
     else:
         tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
         if not tmdb_search_entry:
-            log(ERROR, f"Skip: Not found in TMDB: {debug_msg})")
+            log(DEBUG, f"Not found in TMDB: {debug_msg})")
             return None
 
         tmdb_id = tmdb_search_entry.get("id")
-        if not tmdb_id:
-            log(ERROR, f"Skip: No TMDB ID: {debug_msg}")
-            return None
+        assert tmdb_id, f"TMDB ID not found in search result: {debug_msg}"
 
     time.sleep(SLEEP_TIME)
     tmdb_movie_entry = call_tmdb_movie_details_api(tmdb_id)
     if not tmdb_movie_entry:
-        log(ERROR, f"Skip: No TMDB movie entry for {tmdb_id}: {debug_msg}")
+        log(WARNING, f"No TMDB movie entry for {tmdb_id}: {debug_msg}")
         return None
     return tmdb_movie_entry
 
@@ -298,24 +296,38 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             debug_msg = f"{title} ({year})"
 
             if is_incremental and (director, year, title) not in key_diff_set_csv:
-                log(DEBUG, f"Skip: Already exists in '{yml_file_path}': {debug_msg}")
+                log(DEBUG, f"Incremental mode: Already exists in '{yml_file_path}': {debug_msg}")
                 continue
+
+            _HARDCODED_IMDB_IDS = {
+                ("Victor Fleming", "The Wizard of Oz at Sphere"): "tt38084416",
+            }
 
             num_movies_inputs += 1
 
             movie_title_set = title_parser.MovieTitleSet(title)
             tmdb_movie_entry = get_tmdb_movie_entry(movie_title_set, year, director)
-            if not tmdb_movie_entry:
+            if not tmdb_movie_entry and (director, title) not in _HARDCODED_IMDB_IDS:
+                log(WARNING, f"Skip: Not found in TMDB: {debug_msg})")
                 continue
 
-            imdb_id = tmdb_movie_entry.get("imdb_id")
+            imdb_id = None
+            if (director, title) in _HARDCODED_IMDB_IDS:
+                imdb_id = _HARDCODED_IMDB_IDS[(director, title)]
+                log(INFO, f"Using hardcoded IMDB ID {imdb_id}: {debug_msg}")
+            else:
+                assert tmdb_movie_entry
+                imdb_id = tmdb_movie_entry.get("imdb_id")
+
             if imdb_id:
                 num_imdb_id += 1
             else:
-                log(WARNING, f"Skip: No IMDB ID in TMDB: {debug_msg}")
+                log(WARNING, f"Skip: No IMDB ID found: {debug_msg}")
                 continue
 
-            tmdb_poster_path = tmdb_movie_entry.get("poster_path")
+            tmdb_poster_path = (
+                tmdb_movie_entry.get("poster_path") if tmdb_movie_entry else None
+            )
             if tmdb_poster_path:
                 num_tmdb_poster += 1
             else:
@@ -330,7 +342,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                     crew for crew in tmdb_crew_list if crew.get("job") == "Director"
                 ]
 
-            tmdb_directors = _get_tmdb_directors(tmdb_movie_entry)
+            tmdb_directors = _get_tmdb_directors(tmdb_movie_entry) if tmdb_movie_entry else []
             if tmdb_directors:
                 director_name_score = max(
                     fuzz.ratio(
@@ -347,9 +359,9 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                         f"Director name mismatch: {debug_msg} {director_name_score}, '{director}' vs '{tmdb_directors[0].get('name')}' '{tmdb_directors[0].get('original_name')}'",
                     )
 
-            tmdb_original_lang = tmdb_movie_entry.get("original_language")
-            tmdb_original_title = tmdb_movie_entry.get("original_title")
-            tmdb_title = tmdb_movie_entry.get("title")
+            tmdb_original_lang = tmdb_movie_entry.get("original_language") if tmdb_movie_entry else None
+            tmdb_original_title = tmdb_movie_entry.get("original_title") if tmdb_movie_entry else None
+            tmdb_title = tmdb_movie_entry.get("title") if tmdb_movie_entry else None
 
             # Prepare movie entry in YAML.
             movie_entry = {
@@ -359,10 +371,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "country": country,
                 "imdb_id": imdb_id,
                 "imdb_url": f"https://www.imdb.com/title/{imdb_id}",
-                "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}",
+                "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}" if tmdb_movie_entry else None,
                 "tmdb_title": tmdb_title if tmdb_title != tmdb_original_title else None,
                 "tmdb_original_title": tmdb_original_title,
-                "tmdb_original_language": get_language_name(tmdb_original_lang),
+                "tmdb_original_language": get_language_name(tmdb_original_lang) if tmdb_original_lang else None,
                 "tmdb_director_original_name": (
                     tmdb_directors[0].get("original_name") if tmdb_directors else None
                 ),
@@ -418,7 +430,12 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                     f"Processed {num_movies_inputs} movies. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
                 )
 
+    num_movies_identified = len(movies_output)
     if is_incremental and value_survive_list_yml is not None:
+        with open(
+            os.path.basename(yml_file_path) + "_incremental.yml", mode="w", encoding="utf-8"
+        ) as yml_file:
+            yaml.dump(movies_output, yml_file, allow_unicode=True, sort_keys=False)
         movies_output.extend(value_survive_list_yml)
 
     sorted_movies_output = sorted(
@@ -431,10 +448,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 
     log(
         INFO,
-        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Identified {num_movies_identified}. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
     )
 
 
 generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
+# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+# generate_yaml("golden-251011-input-movies.csv", "golden-251011-output-movies.yml")
