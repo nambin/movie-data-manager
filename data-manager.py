@@ -192,9 +192,7 @@ def get_tmdb_search_entry(movie_title_set: title_parser.MovieTitleSet, year):
 
 
 # Returns (IMDB ID, TMDB poster path) or (None, None) if not found.
-def get_tmdb_movie_entry(
-    movie_title_set: title_parser.MovieTitleSet, year, director
-) -> (str, str):
+def get_tmdb_movie_entry(movie_title_set: title_parser.MovieTitleSet, year, director):
     _HARDCODED_TMDB_IDS = {
         ("이준익", "님은 먼 곳에"): 41538,
         ("Robert Zemeckis", "The Witches"): 531219,
@@ -296,7 +294,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             debug_msg = f"{title} ({year})"
 
             if is_incremental and (director, year, title) not in key_diff_set_csv:
-                log(DEBUG, f"Incremental mode: Already exists in '{yml_file_path}': {debug_msg}")
+                log(
+                    DEBUG,
+                    f"Incremental mode: Already exists in '{yml_file_path}': {debug_msg}",
+                )
                 continue
 
             _HARDCODED_IMDB_IDS = {
@@ -342,7 +343,9 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                     crew for crew in tmdb_crew_list if crew.get("job") == "Director"
                 ]
 
-            tmdb_directors = _get_tmdb_directors(tmdb_movie_entry) if tmdb_movie_entry else []
+            tmdb_directors = (
+                _get_tmdb_directors(tmdb_movie_entry) if tmdb_movie_entry else []
+            )
             if tmdb_directors:
                 director_name_score = max(
                     fuzz.ratio(
@@ -359,8 +362,12 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                         f"Director name mismatch: {debug_msg} {director_name_score}, '{director}' vs '{tmdb_directors[0].get('name')}' '{tmdb_directors[0].get('original_name')}'",
                     )
 
-            tmdb_original_lang = tmdb_movie_entry.get("original_language") if tmdb_movie_entry else None
-            tmdb_original_title = tmdb_movie_entry.get("original_title") if tmdb_movie_entry else None
+            tmdb_original_lang = (
+                tmdb_movie_entry.get("original_language") if tmdb_movie_entry else None
+            )
+            tmdb_original_title = (
+                tmdb_movie_entry.get("original_title") if tmdb_movie_entry else None
+            )
             tmdb_title = tmdb_movie_entry.get("title") if tmdb_movie_entry else None
 
             # Prepare movie entry in YAML.
@@ -371,10 +378,18 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "country": country,
                 "imdb_id": imdb_id,
                 "imdb_url": f"https://www.imdb.com/title/{imdb_id}",
-                "tmdb_url": f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}" if tmdb_movie_entry else None,
+                "tmdb_url": (
+                    f"https://www.themoviedb.org/movie/{tmdb_movie_entry.get('id')}"
+                    if tmdb_movie_entry
+                    else None
+                ),
                 "tmdb_title": tmdb_title if tmdb_title != tmdb_original_title else None,
                 "tmdb_original_title": tmdb_original_title,
-                "tmdb_original_language": get_language_name(tmdb_original_lang) if tmdb_original_lang else None,
+                "tmdb_original_language": (
+                    get_language_name(tmdb_original_lang)
+                    if tmdb_original_lang
+                    else None
+                ),
                 "tmdb_director_original_name": (
                     tmdb_directors[0].get("original_name") if tmdb_directors else None
                 ),
@@ -433,7 +448,9 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
     num_movies_identified = len(movies_output)
     if is_incremental and value_survive_list_yml is not None:
         with open(
-            os.path.basename(yml_file_path) + "_incremental.yml", mode="w", encoding="utf-8"
+            os.path.basename(yml_file_path) + "_incremental.yml",
+            mode="w",
+            encoding="utf-8",
         ) as yml_file:
             yaml.dump(movies_output, yml_file, allow_unicode=True, sort_keys=False)
         movies_output.extend(value_survive_list_yml)
@@ -452,5 +469,5 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
     )
 
 
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-# generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=False)
+# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
+generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=False)

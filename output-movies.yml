@@ -152,8 +152,8 @@
   tmdb_original_language: English
   tmdb_director_original_name: Sean Baker
   tmdb_director_name: null
-  tmdb_poster_path: /davwb31ZFhBUrZuRlxk8meRfATI.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/davwb31ZFhBUrZuRlxk8meRfATI.jpg
+  tmdb_poster_path: /cgXk2tNYhJZLXdBDO5DidAVzQ82.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cgXk2tNYhJZLXdBDO5DidAVzQ82.jpg
   my_best: true
   awards:
   - oscar
@@ -3248,7 +3248,7 @@
   tmdb_title: null
   tmdb_original_title: Loving Vincent
   tmdb_original_language: English
-  tmdb_director_original_name: Hugh Welchman
+  tmdb_director_original_name: DK Welchman
   tmdb_director_name: null
   tmdb_poster_path: /56sq57kDm7XgyXBYrgJLumo0Jac.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/56sq57kDm7XgyXBYrgJLumo0Jac.jpg
@@ -4526,16 +4526,16 @@
   year: 2014
   director: Alejandro González Iñárritu
   country: US
-  imdb_id: tt5130912
-  imdb_url: https://www.imdb.com/title/tt5130912
-  tmdb_url: https://www.themoviedb.org/movie/435092
+  imdb_id: tt2562232
+  imdb_url: https://www.imdb.com/title/tt2562232
+  tmdb_url: https://www.themoviedb.org/movie/194662
   tmdb_title: null
-  tmdb_original_title: Birdman
+  tmdb_original_title: Birdman or (The Unexpected Virtue of Ignorance)
   tmdb_original_language: English
-  tmdb_director_original_name: Guy Bolongaro
+  tmdb_director_original_name: Alejandro González Iñárritu
   tmdb_director_name: null
-  tmdb_poster_path: /9n0u3Ee7OUjgeyF5kIwahxkf4xm.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/9n0u3Ee7OUjgeyF5kIwahxkf4xm.jpg
+  tmdb_poster_path: /rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg
   awards:
   - oscar
 - title: 2 States
@@ -4809,7 +4809,7 @@
   tmdb_title: null
   tmdb_original_title: Inside Llewyn Davis
   tmdb_original_language: English
-  tmdb_director_original_name: Joel Coen
+  tmdb_director_original_name: Ethan Coen
   tmdb_director_name: null
   tmdb_poster_path: /nNxK3pC3DMpPpWKMvo2p3liREVT.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/nNxK3pC3DMpPpWKMvo2p3liREVT.jpg
@@ -8118,7 +8118,7 @@
   tmdb_title: null
   tmdb_original_title: Rosetta
   tmdb_original_language: French
-  tmdb_director_original_name: Luc Dardenne
+  tmdb_director_original_name: Jean-Pierre Dardenne
   tmdb_director_name: null
   tmdb_poster_path: /buwLjQPPA9FaATvKzeAppLXiGMB.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/buwLjQPPA9FaATvKzeAppLXiGMB.jpg
@@ -8328,8 +8328,8 @@
   tmdb_original_language: Japanese
   tmdb_director_original_name: 黒沢清
   tmdb_director_name: Kiyoshi Kurosawa
-  tmdb_poster_path: /zgTOGDeOPVOC1jjQgfsdADhVamG.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/zgTOGDeOPVOC1jjQgfsdADhVamG.jpg
+  tmdb_poster_path: /yTRrqIGusJuzG5Pe3iFQTnHg1Ps.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/yTRrqIGusJuzG5Pe3iFQTnHg1Ps.jpg
 - title: 'Speed 2: Cruise Control'
   year: 1997
   director: Jan de Bont
@@ -8768,16 +8768,16 @@
   year: 1995
   director: David Fincher
   country: US
-  imdb_id: tt0286071
-  imdb_url: https://www.imdb.com/title/tt0286071
-  tmdb_url: https://www.themoviedb.org/movie/475009
+  imdb_id: tt0114369
+  imdb_url: https://www.imdb.com/title/tt0114369
+  tmdb_url: https://www.themoviedb.org/movie/807
   tmdb_title: null
-  tmdb_original_title: Seven
+  tmdb_original_title: Se7en
   tmdb_original_language: English
-  tmdb_director_original_name: Shona Auerbach
+  tmdb_director_original_name: David Fincher
   tmdb_director_name: null
-  tmdb_poster_path: null
-  tmdb_poster_url: null
+  tmdb_poster_path: /191nKfP0ehp3uIvWqgPbFmI4lv9.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg
   my_best: true
 - title: Sense And Sensibility
   year: 1995
@@ -8923,8 +8923,8 @@
   tmdb_original_language: English
   tmdb_director_original_name: Jan de Bont
   tmdb_director_name: null
-  tmdb_poster_path: /Apu3Ecg11bIEEiKLnbhagGtWNg7.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/Apu3Ecg11bIEEiKLnbhagGtWNg7.jpg
+  tmdb_poster_path: /82PkCE4R95KhHICUDF7G4Ly2z3l.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/82PkCE4R95KhHICUDF7G4Ly2z3l.jpg
 - title: The Remains of the Day
   year: 1994
   director: James Ivory
@@ -10973,6 +10973,7 @@
   tmdb_director_name: null
   tmdb_poster_path: /pfAZFD7I2hxW9HCChTuAzsdE6UX.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/pfAZFD7I2hxW9HCChTuAzsdE6UX.jpg
+  my_best: true
 - title: Gone with the Wind
   year: 1939
   director: Victor Fleming

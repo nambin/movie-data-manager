@@ -1,6 +1,8 @@
 ## Movie Data Manager
 
-This project manages movie data to empower https://nambin.github.io/movies.html. This uses two TMDB APIs, [Search API](https://developer.themoviedb.org/reference/search-movie) and [Movie Details API](https://developer.themoviedb.org/reference/movie-details).
+A Python utility to enrich a personal movie list with authoritative data from The Movie Database (TMDb). This script is the data engine for my personal [movie log website](https://nambin.github.io/movies.html).
+
+It takes a simple, personally curated CSV file of movies and reconciles it with TMDb records to retrieve metadata like IMDb pages, poster URLs, and original titles, outputting a YAML file ready for a static site generator like Jekyll. It uses two TMDB APIs, [Search API](https://developer.themoviedb.org/reference/search-movie) and [Movie Details API](https://developer.themoviedb.org/reference/movie-details). 
 
 Search API examples
 - [Oppenheimer 2023](https://api.themoviedb.org/3/search/movie?api_key=f6d7fb04f4d4d6b07d2d750811e73a4c&query=Oppenheimer&primary_release_year=2023)
