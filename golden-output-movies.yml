@@ -8,6 +8,8 @@
   tmdb_title: null
   tmdb_original_title: Inside Out 2
   tmdb_original_language: English
+  tmdb_director_original_name: Kelsey Mann
+  tmdb_director_name: null
   tmdb_poster_path: /vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
 - title: Wicked
@@ -20,6 +22,8 @@
   tmdb_title: null
   tmdb_original_title: Wicked
   tmdb_original_language: English
+  tmdb_director_original_name: Jon M. Chu
+  tmdb_director_name: null
   tmdb_poster_path: /xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
 - title: 'Furiosa: A Mad Max Saga'
@@ -32,6 +36,8 @@
   tmdb_title: null
   tmdb_original_title: 'Furiosa: A Mad Max Saga'
   tmdb_original_language: English
+  tmdb_director_original_name: George Miller
+  tmdb_director_name: null
   tmdb_poster_path: /iADOJ8Zymht2JPMoy3R7xceZprc.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/iADOJ8Zymht2JPMoy3R7xceZprc.jpg
   my_best: true
@@ -45,6 +51,8 @@
   tmdb_title: Smugglers
   tmdb_original_title: 밀수
   tmdb_original_language: Korean
+  tmdb_director_original_name: 류승완
+  tmdb_director_name: Ryoo Seung-wan
   tmdb_poster_path: /j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   awards:
@@ -59,6 +67,8 @@
   tmdb_title: '12.12: The Day'
   tmdb_original_title: 서울의 봄
   tmdb_original_language: Korean
+  tmdb_director_original_name: 김성수
+  tmdb_director_name: Kim Sung-soo
   tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
 - title: Poor Things
@@ -71,6 +81,8 @@
   tmdb_title: null
   tmdb_original_title: Poor Things
   tmdb_original_language: English
+  tmdb_director_original_name: Γιώργος Λάνθιμος
+  tmdb_director_name: Yorgos Lanthimos
   tmdb_poster_path: /kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
   awards:
@@ -85,6 +97,8 @@
   tmdb_title: The Taste of Things
   tmdb_original_title: La Passion de Dodin Bouffant
   tmdb_original_language: French
+  tmdb_director_original_name: Trần Anh Hùng
+  tmdb_director_name: null
   tmdb_poster_path: /gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   custom_korean_title: 프렌치 수프
@@ -98,6 +112,8 @@
   tmdb_title: 'Noryang: Deadly Sea'
   tmdb_original_title: '노량: 죽음의 바다'
   tmdb_original_language: Korean
+  tmdb_director_original_name: 김한민
+  tmdb_director_name: Kim Han-min
   tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
 - title: Anatomy of a Fall
@@ -110,6 +126,8 @@
   tmdb_title: Anatomy of a Fall
   tmdb_original_title: Anatomie d'une chute
   tmdb_original_language: French
+  tmdb_director_original_name: Justine Triet
+  tmdb_director_name: null
   tmdb_poster_path: /kQs6keheMwCxJxrzV83VUwFtHkB.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kQs6keheMwCxJxrzV83VUwFtHkB.jpg
   my_best: true
@@ -125,6 +143,8 @@
   tmdb_title: Monster
   tmdb_original_title: 怪物
   tmdb_original_language: Japanese
+  tmdb_director_original_name: 是枝裕和
+  tmdb_director_name: Hirokazu Kore-eda
   tmdb_poster_path: /cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
 - title: Oppenheimer
@@ -137,6 +157,8 @@
   tmdb_title: null
   tmdb_original_title: Oppenheimer
   tmdb_original_language: English
+  tmdb_director_original_name: Christopher Nolan
+  tmdb_director_name: null
   tmdb_poster_path: /8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
   awards:
@@ -151,6 +173,8 @@
   tmdb_title: null
   tmdb_original_title: 'Mission: Impossible - Dead Reckoning Part One'
   tmdb_original_language: English
+  tmdb_director_original_name: Christopher McQuarrie
+  tmdb_director_name: null
   tmdb_poster_path: /NNxYkU70HPurnNCSiCjYAmacwm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/NNxYkU70HPurnNCSiCjYAmacwm.jpg
 - title: 기생충 (Parasite)
@@ -163,6 +187,8 @@
   tmdb_title: Parasite
   tmdb_original_title: 기생충
   tmdb_original_language: Korean
+  tmdb_director_original_name: 봉준호
+  tmdb_director_name: Bong Joon Ho
   tmdb_poster_path: /7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   my_best: true
@@ -179,6 +205,8 @@
   tmdb_title: Shoplifters
   tmdb_original_title: 万引き家族
   tmdb_original_language: Japanese
+  tmdb_director_original_name: 是枝裕和
+  tmdb_director_name: Hirokazu Kore-eda
   tmdb_poster_path: /4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
   custom_korean_title: 어느 가족
@@ -194,6 +222,8 @@
   tmdb_title: Mother
   tmdb_original_title: 마더
   tmdb_original_language: Korean
+  tmdb_director_original_name: 봉준호
+  tmdb_director_name: Bong Joon Ho
   tmdb_poster_path: /8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
   my_best: true
@@ -209,6 +239,8 @@
   tmdb_title: The Secret in Their Eyes
   tmdb_original_title: El secreto de sus ojos
   tmdb_original_language: Spanish
+  tmdb_director_original_name: Juan José Campanella
+  tmdb_director_name: null
   tmdb_poster_path: /dkeAwfZzwL3WvToydE3CXiY80E0.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkeAwfZzwL3WvToydE3CXiY80E0.jpg
   my_best: true
@@ -224,6 +256,8 @@
   tmdb_title: null
   tmdb_original_title: The Dark Knight
   tmdb_original_language: English
+  tmdb_director_original_name: Christopher Nolan
+  tmdb_director_name: null
   tmdb_poster_path: /qJ2tW6WMUDux911r6m7haRef0WH.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg
   my_best: true
@@ -237,6 +271,8 @@
   tmdb_title: null
   tmdb_original_title: Magnolia
   tmdb_original_language: English
+  tmdb_director_original_name: Paul Thomas Anderson
+  tmdb_director_name: null
   tmdb_poster_path: /tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   my_best: true
@@ -252,6 +288,8 @@
   tmdb_title: null
   tmdb_original_title: The Thin Red Line
   tmdb_original_language: English
+  tmdb_director_original_name: Terrence Malick
+  tmdb_director_name: null
   tmdb_poster_path: /seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
   awards:
@@ -266,6 +304,8 @@
   tmdb_title: null
   tmdb_original_title: Pulp Fiction
   tmdb_original_language: English
+  tmdb_director_original_name: Quentin Tarantino
+  tmdb_director_name: null
   tmdb_poster_path: /vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg
   awards:

@@ -267,26 +267,31 @@ def generate_yaml(csv_file_path, yml_file_path):
             else:
                 log(WARNING, f"No TMDB poster path: {debug_msg}")
 
-            tmdb_crew_list = tmdb_movie_entry.get("credits", {}).get("crew", [])
-            if tmdb_crew_list:
-                tmdb_directors = [
+            def _get_tmdb_directors(tmdb_movie_entry):
+                tmdb_crew_list = tmdb_movie_entry.get("credits", {}).get("crew", [])
+                if not tmdb_crew_list:
+                    return []
+
+                return [
                     crew for crew in tmdb_crew_list if crew.get("job") == "Director"
                 ]
-                if tmdb_directors:
-                    director_name_score = max(
-                        fuzz.ratio(
-                            tmdb_directors[0].get("name", "").lower(), director.lower()
-                        ),
-                        fuzz.ratio(
-                            tmdb_directors[0].get("original_name", "").lower(),
-                            director.lower(),
-                        ),
+
+            tmdb_directors = _get_tmdb_directors(tmdb_movie_entry)
+            if tmdb_directors:
+                director_name_score = max(
+                    fuzz.ratio(
+                        tmdb_directors[0].get("name", "").lower(), director.lower()
+                    ),
+                    fuzz.ratio(
+                        tmdb_directors[0].get("original_name", "").lower(),
+                        director.lower(),
+                    ),
+                )
+                if director_name_score < 85:
+                    log(
+                        WARNING,
+                        f"Director name mismatch: {debug_msg} {director_name_score}, '{director}' vs '{tmdb_directors[0].get('name')}' '{tmdb_directors[0].get('original_name')}'",
                     )
-                    if director_name_score < 85:
-                        log(
-                            WARNING,
-                            f"Director name mismatch: {debug_msg} {director_name_score}, '{director}' vs '{tmdb_directors[0].get('name')}' '{tmdb_directors[0].get('original_name')}'",
-                        )
 
             tmdb_original_lang = tmdb_movie_entry.get("original_language")
             tmdb_original_title = tmdb_movie_entry.get("original_title")
@@ -305,6 +310,16 @@ def generate_yaml(csv_file_path, yml_file_path):
                 "tmdb_title": tmdb_title if tmdb_title != tmdb_original_title else None,
                 "tmdb_original_title": tmdb_original_title,
                 "tmdb_original_language": get_language_name(tmdb_original_lang),
+                "tmdb_director_original_name": (
+                    tmdb_directors[0].get("original_name") if tmdb_directors else None
+                ),
+                "tmdb_director_name": (
+                    tmdb_directors[0].get("name")
+                    if tmdb_directors
+                    and tmdb_directors[0].get("original_name")
+                    != tmdb_directors[0].get("name")
+                    else None
+                ),
                 "tmdb_poster_path": tmdb_poster_path,
                 "tmdb_poster_url": (
                     f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"

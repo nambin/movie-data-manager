@@ -8,6 +8,8 @@
   tmdb_title: null
   tmdb_original_title: The Menu
   tmdb_original_language: English
+  tmdb_director_original_name: Mark Mylod
+  tmdb_director_name: null
   tmdb_poster_path: /fPtUgMcLIboqlTlPrq0bQpKK8eq.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/fPtUgMcLIboqlTlPrq0bQpKK8eq.jpg
 - title: No Bears
@@ -20,6 +22,8 @@
   tmdb_title: No Bears
   tmdb_original_title: Khers nist
   tmdb_original_language: Persian
+  tmdb_director_original_name: Jafar Panahi
+  tmdb_director_name: null
   tmdb_poster_path: /AqxE1Pm7EmnhKDe6pXBJF4sHLMU.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AqxE1Pm7EmnhKDe6pXBJF4sHLMU.jpg
 - title: Annette
@@ -32,6 +36,8 @@
   tmdb_title: null
   tmdb_original_title: Annette
   tmdb_original_language: French
+  tmdb_director_original_name: Leos Carax
+  tmdb_director_name: null
   tmdb_poster_path: /4FTnypxpGltJdIARrfFsP31pGTp.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4FTnypxpGltJdIARrfFsP31pGTp.jpg
 - title: Titane
@@ -44,6 +50,8 @@
   tmdb_title: null
   tmdb_original_title: Titane
   tmdb_original_language: French
+  tmdb_director_original_name: Julia Ducournau
+  tmdb_director_name: null
   tmdb_poster_path: /AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AeQC4gFwkIvjAwnSd2RPAlgs1VE.jpg
   my_best: true
@@ -59,6 +67,8 @@
   tmdb_title: null
   tmdb_original_title: Roald Dahl's The Witches
   tmdb_original_language: English
+  tmdb_director_original_name: Robert Zemeckis
+  tmdb_director_name: null
   tmdb_poster_path: /ht6EfsM5hrsUPSR4ReJQFDVU71F.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ht6EfsM5hrsUPSR4ReJQFDVU71F.jpg
 - title: Mank
@@ -71,6 +81,8 @@
   tmdb_title: null
   tmdb_original_title: Mank
   tmdb_original_language: English
+  tmdb_director_original_name: David Fincher
+  tmdb_director_name: null
   tmdb_poster_path: /4yzTcAtvzyZLLto4z04xobUK9el.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4yzTcAtvzyZLLto4z04xobUK9el.jpg
 - title: Undine
@@ -83,6 +95,8 @@
   tmdb_title: null
   tmdb_original_title: Undine
   tmdb_original_language: German
+  tmdb_director_original_name: Christian Petzold
+  tmdb_director_name: null
   tmdb_poster_path: /7PeaXj2EKef84zEZazxiGL8bXRH.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7PeaXj2EKef84zEZazxiGL8bXRH.jpg
   my_best: true
@@ -96,6 +110,8 @@
   tmdb_title: The House of Us
   tmdb_original_title: 우리집
   tmdb_original_language: Korean
+  tmdb_director_original_name: 윤가은
+  tmdb_director_name: Yoon Ga-eun
   tmdb_poster_path: /losNmoCPywJs6I0f7wQJ9pBlNJJ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/losNmoCPywJs6I0f7wQJ9pBlNJJ.jpg
   my_best: true
@@ -109,6 +125,8 @@
   tmdb_title: null
   tmdb_original_title: Us
   tmdb_original_language: English
+  tmdb_director_original_name: Jordan Peele
+  tmdb_director_name: null
   tmdb_poster_path: /ux2dU1jQ2ACIMShzB3yP93Udpzc.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ux2dU1jQ2ACIMShzB3yP93Udpzc.jpg
 - title: '1987'
@@ -121,6 +139,8 @@
   tmdb_title: '1987: When the Day Comes'
   tmdb_original_title: '1987'
   tmdb_original_language: Korean
+  tmdb_director_original_name: 장준환
+  tmdb_director_name: Jang Joon-hwan
   tmdb_poster_path: /3KgL5KiGk8ABfMFHzGP2GnoH8sL.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3KgL5KiGk8ABfMFHzGP2GnoH8sL.jpg
   awards:
@@ -135,6 +155,8 @@
   tmdb_title: House of Hummingbird
   tmdb_original_title: 벌새
   tmdb_original_language: Korean
+  tmdb_director_original_name: 김보라
+  tmdb_director_name: Kim Bora
   tmdb_poster_path: /ugWlKFgLnv8W6MmRmk0jnaJUSra.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ugWlKFgLnv8W6MmRmk0jnaJUSra.jpg
 - title: Cold War
@@ -147,6 +169,8 @@
   tmdb_title: Cold War
   tmdb_original_title: Zimna wojna
   tmdb_original_language: Polish
+  tmdb_director_original_name: Paweł Pawlikowski
+  tmdb_director_name: null
   tmdb_poster_path: /6rbS8oPIgUMhQgIX8oGVTtlNgLR.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6rbS8oPIgUMhQgIX8oGVTtlNgLR.jpg
 - title: First man
@@ -159,6 +183,8 @@
   tmdb_title: null
   tmdb_original_title: First Man
   tmdb_original_language: English
+  tmdb_director_original_name: Damien Chazelle
+  tmdb_director_name: null
   tmdb_poster_path: /i91mfvFcPPlaegcbOyjGgiWfZzh.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/i91mfvFcPPlaegcbOyjGgiWfZzh.jpg
 - title: Roma
@@ -171,6 +197,8 @@
   tmdb_title: null
   tmdb_original_title: Roma
   tmdb_original_language: Spanish
+  tmdb_director_original_name: Alfonso Cuarón
+  tmdb_director_name: null
   tmdb_poster_path: /dtIIyQyALk57ko5bjac7hi01YQ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dtIIyQyALk57ko5bjac7hi01YQ.jpg
   awards:
@@ -186,6 +214,8 @@
   tmdb_title: null
   tmdb_original_title: Wonder
   tmdb_original_language: English
+  tmdb_director_original_name: Stephen Chbosky
+  tmdb_director_name: null
   tmdb_poster_path: /sONh3LYGFcVDTy8pm1tbSOB13Li.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/sONh3LYGFcVDTy8pm1tbSOB13Li.jpg
 - title: Happy End
@@ -198,6 +228,8 @@
   tmdb_title: null
   tmdb_original_title: Happy End
   tmdb_original_language: French
+  tmdb_director_original_name: Michael Haneke
+  tmdb_director_name: null
   tmdb_poster_path: /tAHzP9O0MOswvWFv5jtWGTyMYXl.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tAHzP9O0MOswvWFv5jtWGTyMYXl.jpg
 - title: Elle
@@ -210,6 +242,8 @@
   tmdb_title: null
   tmdb_original_title: Elle
   tmdb_original_language: French
+  tmdb_director_original_name: Paul Verhoeven
+  tmdb_director_name: null
   tmdb_poster_path: /lpKIazNJncpV3sJ5MyTFS5tfTZk.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/lpKIazNJncpV3sJ5MyTFS5tfTZk.jpg
 - title: Moonlight
@@ -222,6 +256,8 @@
   tmdb_title: null
   tmdb_original_title: Moonlight
   tmdb_original_language: English
+  tmdb_director_original_name: Barry Jenkins
+  tmdb_director_name: null
   tmdb_poster_path: /rcICfiL9fvwRjoWHxW8QeroLYrJ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rcICfiL9fvwRjoWHxW8QeroLYrJ.jpg
   awards:
@@ -236,6 +272,8 @@
   tmdb_title: null
   tmdb_original_title: Spotlight
   tmdb_original_language: English
+  tmdb_director_original_name: Tom McCarthy
+  tmdb_director_name: null
   tmdb_poster_path: /8DPGG400FgaFWaqcv11n8mRd2NG.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8DPGG400FgaFWaqcv11n8mRd2NG.jpg
   my_best: true
@@ -251,6 +289,8 @@
   tmdb_title: Martian
   tmdb_original_title: Marsietis
   tmdb_original_language: Latvian
+  tmdb_director_original_name: Nils Skapāns
+  tmdb_director_name: null
   tmdb_poster_path: /m7HmCxD6EvIUvwdZ4zhHgZ3io4.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/m7HmCxD6EvIUvwdZ4zhHgZ3io4.jpg
 - title: Macbeth
@@ -263,6 +303,8 @@
   tmdb_title: null
   tmdb_original_title: Macbeth
   tmdb_original_language: English
+  tmdb_director_original_name: Justin Kurzel
+  tmdb_director_name: null
   tmdb_poster_path: /a5NEpil29Uns1wEYF8k99qVgj1T.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/a5NEpil29Uns1wEYF8k99qVgj1T.jpg
 - title: Brooklyn
@@ -275,6 +317,8 @@
   tmdb_title: null
   tmdb_original_title: Brooklyn
   tmdb_original_language: English
+  tmdb_director_original_name: John Crowley
+  tmdb_director_name: null
   tmdb_poster_path: /cs7W8j5lI7qzRW6tKSj9p1Q0Ze7.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cs7W8j5lI7qzRW6tKSj9p1Q0Ze7.jpg
 - title: Highway
@@ -287,6 +331,8 @@
   tmdb_title: Highway
   tmdb_original_title: हाईवे
   tmdb_original_language: Hindi
+  tmdb_director_original_name: Imtiaz Ali
+  tmdb_director_name: null
   tmdb_poster_path: /xuTevYF35WDkElpm5vNBVaISkT9.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xuTevYF35WDkElpm5vNBVaISkT9.jpg
 - title: Phoenix
@@ -299,6 +345,8 @@
   tmdb_title: null
   tmdb_original_title: Phoenix
   tmdb_original_language: German
+  tmdb_director_original_name: Christian Petzold
+  tmdb_director_name: null
   tmdb_poster_path: /rJuKu5Rpg92AkzyC5rbYbqsNPI9.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rJuKu5Rpg92AkzyC5rbYbqsNPI9.jpg
   my_best: true
@@ -312,6 +360,8 @@
   tmdb_title: null
   tmdb_original_title: Birdman
   tmdb_original_language: English
+  tmdb_director_original_name: Guy Bolongaro
+  tmdb_director_name: null
   tmdb_poster_path: /9n0u3Ee7OUjgeyF5kIwahxkf4xm.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/9n0u3Ee7OUjgeyF5kIwahxkf4xm.jpg
   awards:
@@ -326,6 +376,8 @@
   tmdb_title: null
   tmdb_original_title: Still Life
   tmdb_original_language: English
+  tmdb_director_original_name: Uberto Pasolini
+  tmdb_director_name: null
   tmdb_poster_path: /WxGIgw13bKHXFbMhJqBc8Sk2TY.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/WxGIgw13bKHXFbMhJqBc8Sk2TY.jpg
 - title: Her
@@ -338,6 +390,8 @@
   tmdb_title: null
   tmdb_original_title: Her
   tmdb_original_language: English
+  tmdb_director_original_name: Spike Jonze
+  tmdb_director_name: null
   tmdb_poster_path: /eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg
 - title: Ida
@@ -350,6 +404,8 @@
   tmdb_title: null
   tmdb_original_title: Ida
   tmdb_original_language: Polish
+  tmdb_director_original_name: Paweł Pawlikowski
+  tmdb_director_name: null
   tmdb_poster_path: /3uoCttE46RGHybiA26cXTvmFqbW.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3uoCttE46RGHybiA26cXTvmFqbW.jpg
   my_best: true
@@ -365,6 +421,8 @@
   tmdb_title: The Past
   tmdb_original_title: Le passé
   tmdb_original_language: French
+  tmdb_director_original_name: اصغر فرهادی
+  tmdb_director_name: Asghar Farhadi
   tmdb_poster_path: /8nff89qjYN3Hck5G33xeRPsM8TZ.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8nff89qjYN3Hck5G33xeRPsM8TZ.jpg
 - title: 다른 나라에서
@@ -377,6 +435,8 @@
   tmdb_title: In Another Country
   tmdb_original_title: 다른 나라에서
   tmdb_original_language: Korean
+  tmdb_director_original_name: 홍상수
+  tmdb_director_name: Hong Sang-soo
   tmdb_poster_path: /k3yhKHTkMzmgHyN5uArZNqxNoq.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/k3yhKHTkMzmgHyN5uArZNqxNoq.jpg
 - title: Amour
@@ -389,6 +449,8 @@
   tmdb_title: null
   tmdb_original_title: Amour
   tmdb_original_language: French
+  tmdb_director_original_name: Michael Haneke
+  tmdb_director_name: null
   tmdb_poster_path: /19hyCudualHxCD0GrEngqsi0wBF.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/19hyCudualHxCD0GrEngqsi0wBF.jpg
   awards:
@@ -404,6 +466,8 @@
   tmdb_title: The Front Line
   tmdb_original_title: 고지전
   tmdb_original_language: Korean
+  tmdb_director_original_name: 장훈
+  tmdb_director_name: Jang Hoon
   tmdb_poster_path: /cRw9czK3hOnNenW1iVVpGM3kbn7.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cRw9czK3hOnNenW1iVVpGM3kbn7.jpg
 - title: The Artist
@@ -416,6 +480,8 @@
   tmdb_title: null
   tmdb_original_title: The Artist
   tmdb_original_language: French
+  tmdb_director_original_name: Michel Hazanavicius
+  tmdb_director_name: null
   tmdb_poster_path: /z68py0ZqPgeacGPG54AGVRbNBS7.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/z68py0ZqPgeacGPG54AGVRbNBS7.jpg
   awards:
@@ -430,6 +496,8 @@
   tmdb_title: Poetry
   tmdb_original_title: 시
   tmdb_original_language: Korean
+  tmdb_director_original_name: 이창동
+  tmdb_director_name: Lee Chang-dong
   tmdb_poster_path: /dcefUQ0AIgRvkh9DS76tvetzxc2.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dcefUQ0AIgRvkh9DS76tvetzxc2.jpg
 - title: 님은 먼 곳에
@@ -442,6 +510,8 @@
   tmdb_title: Sunny
   tmdb_original_title: 님은 먼곳에
   tmdb_original_language: Korean
+  tmdb_director_original_name: 이준익
+  tmdb_director_name: Lee Joon-ik
   tmdb_poster_path: /oQ3tqtJ1Hg0jwiktosAVTIU89dk.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/oQ3tqtJ1Hg0jwiktosAVTIU89dk.jpg
 - title: 그때 그사람들
@@ -454,6 +524,8 @@
   tmdb_title: The President's Last Bang
   tmdb_original_title: 그때 그사람들
   tmdb_original_language: Korean
+  tmdb_director_original_name: 임상수
+  tmdb_director_name: Im Sang-soo
   tmdb_poster_path: /d7I2Qf1OfD9g2l9ElkEOvfAfIeW.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/d7I2Qf1OfD9g2l9ElkEOvfAfIeW.jpg
 - title: いま、会いにゆきます (지금, 만나러 갑니다)
@@ -466,6 +538,8 @@
   tmdb_title: Be with You
   tmdb_original_title: いま、会いにゆきます
   tmdb_original_language: Japanese
+  tmdb_director_original_name: 土井裕泰
+  tmdb_director_name: Nobuhiro Doi
   tmdb_poster_path: /osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
   custom_korean_title: 지금, 만나러 갑니다
@@ -480,6 +554,8 @@
   tmdb_title: null
   tmdb_original_title: The Matrix
   tmdb_original_language: English
+  tmdb_director_original_name: Lana Wachowski
+  tmdb_director_name: null
   tmdb_poster_path: /p96dm7sCMn4VYAStA6siNz30G1r.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/p96dm7sCMn4VYAStA6siNz30G1r.jpg
   my_best: true
@@ -493,6 +569,8 @@
   tmdb_title: null
   tmdb_original_title: Seven
   tmdb_original_language: English
+  tmdb_director_original_name: Shona Auerbach
+  tmdb_director_name: null
   tmdb_poster_path: null
   tmdb_poster_url: null
   my_best: true
