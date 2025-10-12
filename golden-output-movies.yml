@@ -1,17 +1,18 @@
-- title: Inside Out 2
-  year: 2024
-  director: Kelsey Mann
-  country: Pixar
-  imdb_id: tt22022452
-  imdb_url: https://www.imdb.com/title/tt22022452
-  tmdb_url: https://www.themoviedb.org/movie/1022789
+- title: The Wizard of Oz at Sphere
+  year: 2025
+  director: Victor Fleming
+  country: US
+  imdb_id: tt38084416
+  imdb_url: https://www.imdb.com/title/tt38084416
+  tmdb_url: null
   tmdb_title: null
-  tmdb_original_title: Inside Out 2
-  tmdb_original_language: English
-  tmdb_director_original_name: Kelsey Mann
+  tmdb_original_title: null
+  tmdb_original_language: null
+  tmdb_director_original_name: null
   tmdb_director_name: null
-  tmdb_poster_path: /vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg
+  tmdb_poster_path: null
+  tmdb_poster_url: null
+  my_best: true
 - title: Wicked
   year: 2024
   director: Jon M. Chu
@@ -26,21 +27,6 @@
   tmdb_director_name: null
   tmdb_poster_path: /xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
-- title: 'Furiosa: A Mad Max Saga'
-  year: 2024
-  director: George Miller
-  country: Australia
-  imdb_id: tt12037194
-  imdb_url: https://www.imdb.com/title/tt12037194
-  tmdb_url: https://www.themoviedb.org/movie/786892
-  tmdb_title: null
-  tmdb_original_title: 'Furiosa: A Mad Max Saga'
-  tmdb_original_language: English
-  tmdb_director_original_name: George Miller
-  tmdb_director_name: null
-  tmdb_poster_path: /iADOJ8Zymht2JPMoy3R7xceZprc.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/iADOJ8Zymht2JPMoy3R7xceZprc.jpg
-  my_best: true
 - title: 밀수
   year: 2023
   director: 류승완
@@ -102,20 +88,6 @@
   tmdb_poster_path: /gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   custom_korean_title: 프렌치 수프
-- title: '노량: 죽음의 바다 '
-  year: 2023
-  director: Kim Han-min
-  country: Korea
-  imdb_id: tt22813112
-  imdb_url: https://www.imdb.com/title/tt22813112
-  tmdb_url: https://www.themoviedb.org/movie/660360
-  tmdb_title: 'Noryang: Deadly Sea'
-  tmdb_original_title: '노량: 죽음의 바다'
-  tmdb_original_language: Korean
-  tmdb_director_original_name: 김한민
-  tmdb_director_name: Kim Han-min
-  tmdb_poster_path: /sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/sRvL19WMG883eFyfs3wBRxf6Vx0.jpg
 - title: Anatomy of a Fall
   year: 2023
   director: Justine Triet
@@ -163,20 +135,23 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
   awards:
   - oscar
-- title: 'Mission: Impossible – Dead Reckoning Part I'
-  year: 2023
-  director: Christopher McQuarrie
-  country: US
-  imdb_id: tt9603212
-  imdb_url: https://www.imdb.com/title/tt9603212
-  tmdb_url: https://www.themoviedb.org/movie/575264
-  tmdb_title: null
-  tmdb_original_title: 'Mission: Impossible - Dead Reckoning Part One'
-  tmdb_original_language: English
-  tmdb_director_original_name: Christopher McQuarrie
+- title: L'événement (레벤느망)
+  year: 2021
+  director: Audrey Diwan
+  country: France
+  imdb_id: tt13880104
+  imdb_url: https://www.imdb.com/title/tt13880104
+  tmdb_url: https://www.themoviedb.org/movie/793998
+  tmdb_title: Happening
+  tmdb_original_title: L'Événement
+  tmdb_original_language: French
+  tmdb_director_original_name: Audrey Diwan
   tmdb_director_name: null
-  tmdb_poster_path: /NNxYkU70HPurnNCSiCjYAmacwm.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/NNxYkU70HPurnNCSiCjYAmacwm.jpg
+  tmdb_poster_path: /f2lTAmLYpWpd8JxtJrMXFFGV9gZ.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/f2lTAmLYpWpd8JxtJrMXFFGV9gZ.jpg
+  custom_korean_title: 레벤느망
+  awards:
+  - venice
 - title: 기생충 (Parasite)
   year: 2019
   director: 봉준호
@@ -212,23 +187,67 @@
   custom_korean_title: 어느 가족
   awards:
   - cannes
-- title: 마더 (Mother)
-  year: 2009
-  director: 봉준호
-  country: Korea
-  imdb_id: tt1216496
-  imdb_url: https://www.imdb.com/title/tt1216496
-  tmdb_url: https://www.themoviedb.org/movie/30018
-  tmdb_title: Mother
-  tmdb_original_title: 마더
-  tmdb_original_language: Korean
-  tmdb_director_original_name: 봉준호
-  tmdb_director_name: Bong Joon Ho
-  tmdb_poster_path: /8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/8oBnSkZE6GDVugAbLPO6uJd4GcS.jpg
+- title: The Martian
+  year: 2015
+  director: Ridley Scott
+  country: US
+  imdb_id: tt3659388
+  imdb_url: https://www.imdb.com/title/tt3659388
+  tmdb_url: https://www.themoviedb.org/movie/286217
+  tmdb_title: null
+  tmdb_original_title: The Martian
+  tmdb_original_language: English
+  tmdb_director_original_name: Ridley Scott
+  tmdb_director_name: null
+  tmdb_poster_path: /3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg
+- title: Highway
+  year: 2014
+  director: Imtiaz Ali
+  country: India
+  imdb_id: tt2980794
+  imdb_url: https://www.imdb.com/title/tt2980794
+  tmdb_url: https://www.themoviedb.org/movie/252841
+  tmdb_title: Highway
+  tmdb_original_title: हाईवे
+  tmdb_original_language: Hindi
+  tmdb_director_original_name: Imtiaz Ali
+  tmdb_director_name: null
+  tmdb_poster_path: /xuTevYF35WDkElpm5vNBVaISkT9.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/xuTevYF35WDkElpm5vNBVaISkT9.jpg
+- title: Birdman
+  year: 2014
+  director: Alejandro González Iñárritu
+  country: US
+  imdb_id: tt2562232
+  imdb_url: https://www.imdb.com/title/tt2562232
+  tmdb_url: https://www.themoviedb.org/movie/194662
+  tmdb_title: null
+  tmdb_original_title: Birdman or (The Unexpected Virtue of Ignorance)
+  tmdb_original_language: English
+  tmdb_director_original_name: Alejandro González Iñárritu
+  tmdb_director_name: null
+  tmdb_poster_path: /rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg
+  awards:
+  - oscar
+- title: Ida
+  year: 2013
+  director: Pawel Pawlikowski
+  country: Poland
+  imdb_id: tt2718492
+  imdb_url: https://www.imdb.com/title/tt2718492
+  tmdb_url: https://www.themoviedb.org/movie/209274
+  tmdb_title: null
+  tmdb_original_title: Ida
+  tmdb_original_language: Polish
+  tmdb_director_original_name: Paweł Pawlikowski
+  tmdb_director_name: null
+  tmdb_poster_path: /3uoCttE46RGHybiA26cXTvmFqbW.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3uoCttE46RGHybiA26cXTvmFqbW.jpg
   my_best: true
   awards:
-  - blue_dragon
+  - oscar
 - title: The Secret in Their Eyes (El secreto de sus ojos)
   year: 2009
   director: Juan José Campanella
@@ -260,6 +279,22 @@
   tmdb_director_name: null
   tmdb_poster_path: /qJ2tW6WMUDux911r6m7haRef0WH.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg
+  my_best: true
+- title: いま、会いにゆきます (지금, 만나러 갑니다)
+  year: 2005
+  director: Nobuhiro Doi
+  country: Japan
+  imdb_id: tt0442268
+  imdb_url: https://www.imdb.com/title/tt0442268
+  tmdb_url: https://www.themoviedb.org/movie/36092
+  tmdb_title: Be with You
+  tmdb_original_title: いま、会いにゆきます
+  tmdb_original_language: Japanese
+  tmdb_director_original_name: 土井裕泰
+  tmdb_director_name: Nobuhiro Doi
+  tmdb_poster_path: /osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
+  custom_korean_title: 지금, 만나러 갑니다
   my_best: true
 - title: Magnolia
   year: 1999
@@ -294,6 +329,21 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
   awards:
   - berlin
+- title: Seven
+  year: 1995
+  director: David Fincher
+  country: US
+  imdb_id: tt0114369
+  imdb_url: https://www.imdb.com/title/tt0114369
+  tmdb_url: https://www.themoviedb.org/movie/807
+  tmdb_title: null
+  tmdb_original_title: Se7en
+  tmdb_original_language: English
+  tmdb_director_original_name: David Fincher
+  tmdb_director_name: null
+  tmdb_poster_path: /191nKfP0ehp3uIvWqgPbFmI4lv9.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg
+  my_best: true
 - title: Pulp Fiction
   year: 1994
   director: Quentin Tarantino
