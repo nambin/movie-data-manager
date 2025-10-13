@@ -279,6 +279,22 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   awards:
   - blue_dragon
+- title: '서울의 봄 (12.12: The Day)'
+  year: 2023
+  director: 김성수
+  country: Korea
+  imdb_id: tt22507524
+  imdb_url: https://www.imdb.com/title/tt22507524
+  tmdb_url: https://www.themoviedb.org/movie/919207
+  tmdb_title: '12.12: The Day'
+  tmdb_original_title: 서울의 봄
+  tmdb_original_language: Korean
+  tmdb_director_original_name: 김성수
+  tmdb_director_name: Kim Sung-soo
+  tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
+  awards:
+  - blue_dragon
 - title: Poor Things
   year: 2023
   director: Yorgos Lanthimos
@@ -383,20 +399,6 @@
   tmdb_director_name: Kim Jee-woon
   tmdb_poster_path: /aslkoEQ8idTeeAHe89IxbsxWdEF.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/aslkoEQ8idTeeAHe89IxbsxWdEF.jpg
-- title: '서울의 봄 (12.12: The Day)'
-  year: 2023
-  director: 김성수
-  country: Korea
-  imdb_id: tt22507524
-  imdb_url: https://www.imdb.com/title/tt22507524
-  tmdb_url: https://www.themoviedb.org/movie/919207
-  tmdb_title: '12.12: The Day'
-  tmdb_original_title: 서울의 봄
-  tmdb_original_language: Korean
-  tmdb_director_original_name: 김성수
-  tmdb_director_name: Kim Sung-soo
-  tmdb_poster_path: /vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
 - title: Asteroid City
   year: 2023
   director: Wes Anderson
@@ -1925,7 +1927,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/1mqL7VG4Ix8wmxwypmCA1HTHBky.jpg
 - title: American Factory
   year: 2019
-  director: Steven Bognar and Julia Reichert
+  director: Steven Bognar, Julia Reichert
   country: US
   imdb_id: tt9351980
   imdb_url: https://www.imdb.com/title/tt9351980
@@ -1933,7 +1935,7 @@
   tmdb_title: null
   tmdb_original_title: American Factory
   tmdb_original_language: English
-  tmdb_director_original_name: Steven Bognar
+  tmdb_director_original_name: Julia Reichert
   tmdb_director_name: null
   tmdb_poster_path: /7jH3dQOJ3CHMrp9tWsI3rRCDiaD.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7jH3dQOJ3CHMrp9tWsI3rRCDiaD.jpg
@@ -2193,7 +2195,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ux2dU1jQ2ACIMShzB3yP93Udpzc.jpg
 - title: Young Ahmed
   year: 2019
-  director: Jean-Pierre and Luc Dardenne
+  director: Jean-Pierre Dardenne, Luc Dardenne
   country: France
   imdb_id: tt8359822
   imdb_url: https://www.imdb.com/title/tt8359822
@@ -2265,7 +2267,7 @@
   custom_korean_title: 타오르는 여인의 초상
 - title: 'Avengers: Endgame'
   year: 2019
-  director: Anthony and Joe Russo
+  director: Anthony Russo, Joe Russo
   country: US
   imdb_id: tt4154796
   imdb_url: https://www.imdb.com/title/tt4154796
@@ -4413,7 +4415,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7TakQLT8gyzIMG8hX8RLTd5qROQ.jpg
 - title: Two Days One Night
   year: 2014
-  director: Jean-Pierre and Luc Dardenne
+  director: Jean-Pierre Dardenne, Luc Dardenne
   country: Belgium
   imdb_id: tt2737050
   imdb_url: https://www.imdb.com/title/tt2737050
@@ -4834,7 +4836,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qx4HXHXt528hS4rwePZbZo20xqZ.jpg
 - title: Inside Llewyn Davis
   year: 2013
-  director: Joel and Ethan Coen
+  director: Joel Coen, Ethan Coen
   country: US
   imdb_id: tt2042568
   imdb_url: https://www.imdb.com/title/tt2042568
@@ -5287,7 +5289,7 @@
   my_best: true
 - title: The Kid with a Bike
   year: 2011
-  director: Jean-Pierre and Luc Dardenne
+  director: Jean-Pierre Dardenne, Luc Dardenne
   country: Belgium
   imdb_id: tt1827512
   imdb_url: https://www.imdb.com/title/tt1827512
@@ -5295,7 +5297,7 @@
   tmdb_title: The Kid with a Bike
   tmdb_original_title: Le Gamin au vélo
   tmdb_original_language: French
-  tmdb_director_original_name: Jean-Pierre Dardenne
+  tmdb_director_original_name: Luc Dardenne
   tmdb_director_name: null
   tmdb_poster_path: /5uRiWyYSAYYScTRe9HP7BHpOQvr.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/5uRiWyYSAYYScTRe9HP7BHpOQvr.jpg
@@ -6140,7 +6142,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/zUybYvxWdAJy5hhYovsXtHSWI1l.jpg
 - title: No country for old men
   year: 2007
-  director: Joel and Ethan Coen
+  director: Joel Coen, Ethan Coen
   country: US
   imdb_id: tt0477348
   imdb_url: https://www.imdb.com/title/tt0477348
@@ -6605,7 +6607,7 @@
   - blue_dragon
 - title: The Child
   year: 2005
-  director: Jean-Pierre and Luc Dardenne
+  director: Jean-Pierre Dardenne, Luc Dardenne
   country: Belgium
   imdb_id: tt0456396
   imdb_url: https://www.imdb.com/title/tt0456396
@@ -7327,7 +7329,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7xNVM4UmFm27UUr52q7cxwYrrrW.jpg
 - title: Infernal Affairs (무간도)
   year: 2002
-  director: Wai Keung Lau and Alan Mak
+  director: Wai Keung Lau, Alan Mak
   country: Hong Kong
   imdb_id: tt0338564
   imdb_url: https://www.imdb.com/title/tt0338564
@@ -7425,20 +7427,6 @@
   tmdb_director_name: null
   tmdb_poster_path: /r6lIwPKVDa6Q76qH2TbIBqPhXL3.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/r6lIwPKVDa6Q76qH2TbIBqPhXL3.jpg
-- title: The Son
-  year: 2002
-  director: Jean-Pierre and Luc Dardenne
-  country: Belgium
-  imdb_id: tt0291172
-  imdb_url: https://www.imdb.com/title/tt0291172
-  tmdb_url: https://www.themoviedb.org/movie/35172
-  tmdb_title: The Son
-  tmdb_original_title: Le Fils
-  tmdb_original_language: French
-  tmdb_director_original_name: Jean-Pierre Dardenne
-  tmdb_director_name: null
-  tmdb_poster_path: /mbAG0JOVgcOIH8LVVynw87ONgej.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbAG0JOVgcOIH8LVVynw87ONgej.jpg
 - title: Amélie
   year: 2002
   director: Jean-Pierre Jeunet
@@ -7453,9 +7441,23 @@
   tmdb_director_name: null
   tmdb_poster_path: /nSxDa3M9aMvGVLoItzWTepQ5h5d.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/nSxDa3M9aMvGVLoItzWTepQ5h5d.jpg
+- title: The Son
+  year: 2002
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: Belgium
+  imdb_id: tt0291172
+  imdb_url: https://www.imdb.com/title/tt0291172
+  tmdb_url: https://www.themoviedb.org/movie/35172
+  tmdb_title: The Son
+  tmdb_original_title: Le Fils
+  tmdb_original_language: French
+  tmdb_director_original_name: Jean-Pierre Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /mbAG0JOVgcOIH8LVVynw87ONgej.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbAG0JOVgcOIH8LVVynw87ONgej.jpg
 - title: City of God
   year: 2002
-  director: Fernando Meirelles and Kátia Lund
+  director: Fernando Meirelles, Kátia Lund
   country: Brazil
   imdb_id: tt0317248
   imdb_url: https://www.imdb.com/title/tt0317248
@@ -7940,7 +7942,7 @@
   - blue_dragon
 - title: Rosetta
   year: 1999
-  director: Jean-Pierre and Luc Dardenne
+  director: Jean-Pierre Dardenne, Luc Dardenne
   country: Belgium
   imdb_id: tt0200071
   imdb_url: https://www.imdb.com/title/tt0200071
@@ -8510,20 +8512,6 @@
   tmdb_director_name: null
   tmdb_poster_path: /cFOZ4bNbWtnIIboc43M86yhwPBX.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cFOZ4bNbWtnIIboc43M86yhwPBX.jpg
-- title: Fargo
-  year: 1996
-  director: Joel and Ethan Coen
-  country: US
-  imdb_id: tt0116282
-  imdb_url: https://www.imdb.com/title/tt0116282
-  tmdb_url: https://www.themoviedb.org/movie/275
-  tmdb_title: null
-  tmdb_original_title: Fargo
-  tmdb_original_language: English
-  tmdb_director_original_name: Joel Coen
-  tmdb_director_name: null
-  tmdb_poster_path: /rt7cpEr1uP6RTZykBFhBTcRaKvG.jpg
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rt7cpEr1uP6RTZykBFhBTcRaKvG.jpg
 - title: 'A Time to Kill '
   year: 1996
   director: Joel Schumacher
@@ -8538,6 +8526,20 @@
   tmdb_director_name: null
   tmdb_poster_path: /w8UCke112E9jrhjKcwG32kyhTx5.jpg
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/w8UCke112E9jrhjKcwG32kyhTx5.jpg
+- title: Fargo
+  year: 1996
+  director: Joel Coen, Ethan Coen
+  country: US
+  imdb_id: tt0116282
+  imdb_url: https://www.imdb.com/title/tt0116282
+  tmdb_url: https://www.themoviedb.org/movie/275
+  tmdb_title: null
+  tmdb_original_title: Fargo
+  tmdb_original_language: English
+  tmdb_director_original_name: Joel Coen
+  tmdb_director_name: null
+  tmdb_poster_path: /rt7cpEr1uP6RTZykBFhBTcRaKvG.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rt7cpEr1uP6RTZykBFhBTcRaKvG.jpg
 - title: L'Appartement
   year: 1996
   director: Gilles Mimouni
@@ -10778,7 +10780,7 @@
   - venice
 - title: Singin' in the Rain
   year: 1952
-  director: Gene Kelly and Stanley Donen
+  director: Gene Kelly, Stanley Donen
   country: US
   imdb_id: tt0045152
   imdb_url: https://www.imdb.com/title/tt0045152
@@ -10948,7 +10950,7 @@
   - oscar
 - title: Pinocchio
   year: 1940
-  director: Ben Sharpsteen and Hamilton Luske
+  director: Ben Sharpsteen, Hamilton Luske
   country: US
   imdb_id: tt0032910
   imdb_url: https://www.imdb.com/title/tt0032910

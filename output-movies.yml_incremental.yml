@@ -1,1 +1,271 @@
-{}
+? !!python/tuple
+- Anthony Russo, Joe Russo
+- 2019
+- 'Avengers: Endgame'
+: title: 'Avengers: Endgame'
+  year: 2019
+  director: Anthony Russo, Joe Russo
+  country: US
+  imdb_id: tt4154796
+  imdb_url: https://www.imdb.com/title/tt4154796
+  tmdb_url: https://www.themoviedb.org/movie/299534
+  tmdb_title: null
+  tmdb_original_title: 'Avengers: Endgame'
+  tmdb_original_language: English
+  tmdb_director_original_name: Anthony Russo
+  tmdb_director_name: null
+  tmdb_poster_path: /ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg
+? !!python/tuple
+- Jean-Pierre Dardenne, Luc Dardenne
+- 2019
+- Young Ahmed
+: title: Young Ahmed
+  year: 2019
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: France
+  imdb_id: tt8359822
+  imdb_url: https://www.imdb.com/title/tt8359822
+  tmdb_url: https://www.themoviedb.org/movie/522373
+  tmdb_title: Young Ahmed
+  tmdb_original_title: Le jeune Ahmed
+  tmdb_original_language: French
+  tmdb_director_original_name: Jean-Pierre Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /z4D3GE3JzyrFe7pnSUqDwdq1KhY.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/z4D3GE3JzyrFe7pnSUqDwdq1KhY.jpg
+? !!python/tuple
+- Steven Bognar, Julia Reichert
+- 2019
+- American Factory
+: title: American Factory
+  year: 2019
+  director: Steven Bognar, Julia Reichert
+  country: US
+  imdb_id: tt9351980
+  imdb_url: https://www.imdb.com/title/tt9351980
+  tmdb_url: https://www.themoviedb.org/movie/565716
+  tmdb_title: null
+  tmdb_original_title: American Factory
+  tmdb_original_language: English
+  tmdb_director_original_name: Julia Reichert
+  tmdb_director_name: null
+  tmdb_poster_path: /7jH3dQOJ3CHMrp9tWsI3rRCDiaD.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7jH3dQOJ3CHMrp9tWsI3rRCDiaD.jpg
+? !!python/tuple
+- Jean-Pierre Dardenne, Luc Dardenne
+- 2014
+- Two Days One Night
+: title: Two Days One Night
+  year: 2014
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: Belgium
+  imdb_id: tt2737050
+  imdb_url: https://www.imdb.com/title/tt2737050
+  tmdb_url: https://www.themoviedb.org/movie/221902
+  tmdb_title: Two Days, One Night
+  tmdb_original_title: Deux jours, une nuit
+  tmdb_original_language: French
+  tmdb_director_original_name: Jean-Pierre Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /2qpZZ5a5Axpk8OeCtrvNTQfJiB2.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/2qpZZ5a5Axpk8OeCtrvNTQfJiB2.jpg
+? !!python/tuple
+- Joel Coen, Ethan Coen
+- 2013
+- Inside Llewyn Davis
+: title: Inside Llewyn Davis
+  year: 2013
+  director: Joel Coen, Ethan Coen
+  country: US
+  imdb_id: tt2042568
+  imdb_url: https://www.imdb.com/title/tt2042568
+  tmdb_url: https://www.themoviedb.org/movie/86829
+  tmdb_title: null
+  tmdb_original_title: Inside Llewyn Davis
+  tmdb_original_language: English
+  tmdb_director_original_name: Ethan Coen
+  tmdb_director_name: null
+  tmdb_poster_path: /nNxK3pC3DMpPpWKMvo2p3liREVT.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/nNxK3pC3DMpPpWKMvo2p3liREVT.jpg
+? !!python/tuple
+- Jean-Pierre Dardenne, Luc Dardenne
+- 2011
+- The Kid with a Bike
+: title: The Kid with a Bike
+  year: 2011
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: Belgium
+  imdb_id: tt1827512
+  imdb_url: https://www.imdb.com/title/tt1827512
+  tmdb_url: https://www.themoviedb.org/movie/63831
+  tmdb_title: The Kid with a Bike
+  tmdb_original_title: Le Gamin au vélo
+  tmdb_original_language: French
+  tmdb_director_original_name: Luc Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /5uRiWyYSAYYScTRe9HP7BHpOQvr.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/5uRiWyYSAYYScTRe9HP7BHpOQvr.jpg
+? !!python/tuple
+- Joel Coen, Ethan Coen
+- 2007
+- No country for old men
+: title: No country for old men
+  year: 2007
+  director: Joel Coen, Ethan Coen
+  country: US
+  imdb_id: tt0477348
+  imdb_url: https://www.imdb.com/title/tt0477348
+  tmdb_url: https://www.themoviedb.org/movie/6977
+  tmdb_title: null
+  tmdb_original_title: No Country for Old Men
+  tmdb_original_language: English
+  tmdb_director_original_name: Joel Coen
+  tmdb_director_name: null
+  tmdb_poster_path: /6d5XOczc226jECq0LIX0siKtgHR.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6d5XOczc226jECq0LIX0siKtgHR.jpg
+? !!python/tuple
+- Jean-Pierre Dardenne, Luc Dardenne
+- 2005
+- The Child
+: title: The Child
+  year: 2005
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: Belgium
+  imdb_id: tt0456396
+  imdb_url: https://www.imdb.com/title/tt0456396
+  tmdb_url: https://www.themoviedb.org/movie/11490
+  tmdb_title: The Child
+  tmdb_original_title: L'enfant
+  tmdb_original_language: French
+  tmdb_director_original_name: Luc Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /dk7ZpsVKLt2nwjQZZIde0WP4oQV.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dk7ZpsVKLt2nwjQZZIde0WP4oQV.jpg
+? !!python/tuple
+- Fernando Meirelles, Kátia Lund
+- 2002
+- City of God
+: title: City of God
+  year: 2002
+  director: Fernando Meirelles, Kátia Lund
+  country: Brazil
+  imdb_id: tt0317248
+  imdb_url: https://www.imdb.com/title/tt0317248
+  tmdb_url: https://www.themoviedb.org/movie/598
+  tmdb_title: City of God
+  tmdb_original_title: Cidade de Deus
+  tmdb_original_language: Portuguese
+  tmdb_director_original_name: Fernando Meirelles
+  tmdb_director_name: null
+  tmdb_poster_path: /k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg
+? !!python/tuple
+- Jean-Pierre Dardenne, Luc Dardenne
+- 2002
+- The Son
+: title: The Son
+  year: 2002
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: Belgium
+  imdb_id: tt0291172
+  imdb_url: https://www.imdb.com/title/tt0291172
+  tmdb_url: https://www.themoviedb.org/movie/35172
+  tmdb_title: The Son
+  tmdb_original_title: Le Fils
+  tmdb_original_language: French
+  tmdb_director_original_name: Jean-Pierre Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /mbAG0JOVgcOIH8LVVynw87ONgej.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbAG0JOVgcOIH8LVVynw87ONgej.jpg
+? !!python/tuple
+- Wai Keung Lau, Alan Mak
+- 2002
+- Infernal Affairs (무간도)
+: title: Infernal Affairs (무간도)
+  year: 2002
+  director: Wai Keung Lau, Alan Mak
+  country: Hong Kong
+  imdb_id: tt0338564
+  imdb_url: https://www.imdb.com/title/tt0338564
+  tmdb_url: https://www.themoviedb.org/movie/10775
+  tmdb_title: Infernal Affairs
+  tmdb_original_title: 無間道
+  tmdb_original_language: cn
+  tmdb_director_original_name: 麥兆輝
+  tmdb_director_name: Alan Mak Siu-Fai
+  tmdb_poster_path: /gix9thDBXfjJ8M7rYbihqbQGBcP.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gix9thDBXfjJ8M7rYbihqbQGBcP.jpg
+  custom_korean_title: 무간도
+? !!python/tuple
+- Jean-Pierre Dardenne, Luc Dardenne
+- 1999
+- Rosetta
+: title: Rosetta
+  year: 1999
+  director: Jean-Pierre Dardenne, Luc Dardenne
+  country: Belgium
+  imdb_id: tt0200071
+  imdb_url: https://www.imdb.com/title/tt0200071
+  tmdb_url: https://www.themoviedb.org/movie/11489
+  tmdb_title: null
+  tmdb_original_title: Rosetta
+  tmdb_original_language: French
+  tmdb_director_original_name: Jean-Pierre Dardenne
+  tmdb_director_name: null
+  tmdb_poster_path: /buwLjQPPA9FaATvKzeAppLXiGMB.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/buwLjQPPA9FaATvKzeAppLXiGMB.jpg
+? !!python/tuple
+- Joel Coen, Ethan Coen
+- 1996
+- Fargo
+: title: Fargo
+  year: 1996
+  director: Joel Coen, Ethan Coen
+  country: US
+  imdb_id: tt0116282
+  imdb_url: https://www.imdb.com/title/tt0116282
+  tmdb_url: https://www.themoviedb.org/movie/275
+  tmdb_title: null
+  tmdb_original_title: Fargo
+  tmdb_original_language: English
+  tmdb_director_original_name: Joel Coen
+  tmdb_director_name: null
+  tmdb_poster_path: /rt7cpEr1uP6RTZykBFhBTcRaKvG.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rt7cpEr1uP6RTZykBFhBTcRaKvG.jpg
+? !!python/tuple
+- Gene Kelly, Stanley Donen
+- 1952
+- Singin' in the Rain
+: title: Singin' in the Rain
+  year: 1952
+  director: Gene Kelly, Stanley Donen
+  country: US
+  imdb_id: tt0045152
+  imdb_url: https://www.imdb.com/title/tt0045152
+  tmdb_url: https://www.themoviedb.org/movie/872
+  tmdb_title: null
+  tmdb_original_title: Singin' in the Rain
+  tmdb_original_language: English
+  tmdb_director_original_name: Stanley Donen
+  tmdb_director_name: null
+  tmdb_poster_path: /w03EiJVHP8Un77boQeE7hg9DVdU.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/w03EiJVHP8Un77boQeE7hg9DVdU.jpg
+? !!python/tuple
+- Ben Sharpsteen, Hamilton Luske
+- 1940
+- Pinocchio
+: title: Pinocchio
+  year: 1940
+  director: Ben Sharpsteen, Hamilton Luske
+  country: US
+  imdb_id: tt0032910
+  imdb_url: https://www.imdb.com/title/tt0032910
+  tmdb_url: https://www.themoviedb.org/movie/10895
+  tmdb_title: null
+  tmdb_original_title: Pinocchio
+  tmdb_original_language: English
+  tmdb_director_original_name: Hamilton Luske
+  tmdb_director_name: null
+  tmdb_poster_path: /bnZJrLRnoQHpzEJdka1KYfsAF3N.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/bnZJrLRnoQHpzEJdka1KYfsAF3N.jpg
