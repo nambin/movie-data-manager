@@ -440,7 +440,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
         ) as yml_file:
             yaml.dump(movies_output_dict, yml_file, allow_unicode=True, sort_keys=False)
 
-        for (key, value) in value_survive_dict_yml.items():
+        for key, value in value_survive_dict_yml.items():
             assert (
                 key not in movies_output_dict
             ), f"Duplicate movie entry found during incremental update: {key}"
@@ -462,7 +462,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             movie_entry = movies_output_dict.get((director, year, title))
             if not movie_entry:
                 continue
-            
+
             movie_entry.pop("my_best", None)
             movie_entry.pop("awards", None)
 
@@ -485,7 +485,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             if (director, title) in _HARDCODED_AWARDS:
                 movie_entry["awards"] = _HARDCODED_AWARDS[(director, title)]
                 continue
-            
+
             if row[5] in _FILM_AWARDS or row[6] in _FILM_AWARDS:
                 awards = []
                 for award in _FILM_AWARDS.keys():
@@ -497,7 +497,12 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 
     sorted_movies_output_list = sorted(
         list(movies_output_dict.values()),
-        key=lambda movie: (movie.get("year", 0), movie.get("director", "")),
+        key=lambda movie: (
+            movie.get("year", 0),
+            movie.get("my_best", False),
+            len(movie.get("awards", [])),
+            movie.get("director", ""),
+        ),
         reverse=True,
     )
     with open(yml_file_path, mode="w", encoding="utf-8") as yml_file:
@@ -511,5 +516,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
     )
 
 
-generate_yaml("golden-input-movies.csv", "golden-output-movies.yml", is_incremental=True)
-# generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
+generate_yaml(
+    "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=True
+)
+generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
