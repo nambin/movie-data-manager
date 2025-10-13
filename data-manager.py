@@ -226,9 +226,10 @@ def get_tmdb_movie_entry(movie_title_set: title_parser.MovieTitleSet, year, dire
     return tmdb_movie_entry
 
 
-# Returns a pair of set and list.
-# The set consists of (director, year, title) tuples from the given CSV file. These keys are used to process the CSV file incrementally.
-# The list element is a movie entry dictionary parsed from the given YAML file. These entries are supposed to be merged into the output YAML file.
+# Returns a pair of set and dict.
+# The 1st set consists of (director, year, title) tuples from the given CSV file. These keys are used to process the CSV file incrementally.
+# The key of the dict is (director, year, title).
+# The value of the dict is a movie entry dictionary parsed from the given YAML file. These entries are supposed to be merged into the output YAML file.
 def generate_diff(csv_file_path, yml_file_path):
     key_set_csv = set()
     with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
@@ -240,7 +241,7 @@ def generate_diff(csv_file_path, yml_file_path):
             key_set_csv.add((director, year, title))
 
     key_set_yml = set()
-    value_survive_list_yml = list()
+    value_survive_dict_yml = dict()
     with open(yml_file_path, "r", encoding="utf-8") as yml_file:
         movies = yaml.safe_load(yml_file)
 
@@ -248,10 +249,11 @@ def generate_diff(csv_file_path, yml_file_path):
             director = movie.get("director")
             year = movie.get("year")
             title = movie.get("title")
+            key = (director, year, title)
 
-            key_set_yml.add((director, year, title))
-            if (director, year, title) in key_set_csv:
-                value_survive_list_yml.append(movie)
+            key_set_yml.add(key)
+            if key in key_set_csv:
+                value_survive_dict_yml[key] = movie
 
     key_diff_set_csv = key_set_csv - key_set_yml
 
@@ -259,25 +261,25 @@ def generate_diff(csv_file_path, yml_file_path):
         INFO,
         f"Parsed {len(key_set_csv)} movies from '{csv_file_path}' and {len(key_set_yml)} movies from '{yml_file_path}'.",
     )
-    return key_diff_set_csv, value_survive_list_yml
+    return key_diff_set_csv, value_survive_dict_yml
 
 
 def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
     assert os.path.exists(csv_file_path), f"File not found: {csv_file_path}"
 
     key_diff_set_csv = None
-    value_survive_list_yml = None
+    value_survive_dict_yml = None
     if is_incremental:
         assert os.path.exists(yml_file_path), f"File not found: {yml_file_path}"
-        key_diff_set_csv, value_survive_list_yml = generate_diff(
+        key_diff_set_csv, value_survive_dict_yml = generate_diff(
             csv_file_path, yml_file_path
         )
         log(
             INFO,
-            f"Incremental mode: {len(key_diff_set_csv)} movies to be processed, {len(value_survive_list_yml)} movies to be survived from '{yml_file_path}'",
+            f"Incremental mode: {len(key_diff_set_csv)} movies to be processed, {len(value_survive_dict_yml)} movies to be survived from '{yml_file_path}'",
         )
 
-    movies_output = []
+    movies_output_dict = dict()
     num_movies_inputs = 0
     num_imdb_id = 0
     num_tmdb_poster = 0
@@ -416,12 +418,60 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 if custom_korean_title:
                     movie_entry["custom_korean_title"] = custom_korean_title
 
+            movies_output_dict[(director, year, title)] = movie_entry
+            if num_movies_inputs % 50 == 0:
+                log(
+                    INFO,
+                    f"Processed {num_movies_inputs} movies. Outputs {len(movies_output_dict)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+                )
+
+    num_movies_identified = len(movies_output_dict)
+    if is_incremental:
+        log(
+            INFO,
+            f"'Incremental mode: Processed {num_movies_inputs} movies. Identified {num_movies_identified} with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+        )
+
+    if is_incremental and value_survive_dict_yml is not None:
+        with open(
+            os.path.basename(yml_file_path) + "_incremental.yml",
+            mode="w",
+            encoding="utf-8",
+        ) as yml_file:
+            yaml.dump(movies_output_dict, yml_file, allow_unicode=True, sort_keys=False)
+
+        for (key, value) in value_survive_dict_yml.items():
+            assert (
+                key not in movies_output_dict
+            ), f"Duplicate movie entry found during incremental update: {key}"
+            movies_output_dict[key] = value
+
+    # Update metadata such as "my_best" and "awards" from the CSV file.
+    # This is done after all TMDB API calls to update the metadata for all movies including those survived from the previous YAML file.
+    with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
+        log(INFO, f"'{csv_file_path}' is successfully opened for metadata population.")
+        csv_reader = csv.reader(csv_file)
+
+        for row in csv_reader:
+            director = row[0]
+            year = int(row[1])
+            title = row[2]
+            country = row[3]
+            debug_msg = f"{title} ({year})"
+
+            movie_entry = movies_output_dict.get((director, year, title))
+            if not movie_entry:
+                continue
+            
+            movie_entry.pop("my_best", None)
+            movie_entry.pop("awards", None)
+
             # Populate my favorite flag.
             if row[4] == "Masterpiece" or row[4] == "Special":
                 movie_entry["my_best"] = True
 
             # Populate award information.
-            _HARDCODED_FILM_AWARDS = {
+            _FILM_AWARDS = {
                 "청룡영화제 최우수 작품상": "blue_dragon",
                 "Oscar Best Picture": "oscar",
                 "Oscar Best International Film": "oscar",
@@ -429,45 +479,33 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "Venice Leone d’oro": "venice",
                 "Berlin Goldener Bär": "berlin",
             }
-            if row[5] in _HARDCODED_FILM_AWARDS or row[6] in _HARDCODED_FILM_AWARDS:
+            _HARDCODED_AWARDS = {
+                ("봉준호", "기생충 (Parasite)"): ["blue_dragon", "oscar", "cannes"],
+            }
+            if row[5] in _FILM_AWARDS or row[6] in _FILM_AWARDS:
                 awards = []
-                for award in _HARDCODED_FILM_AWARDS.keys():
+                for award in _FILM_AWARDS.keys():
                     if award == row[5] or award == row[6]:
                         if award not in awards:
-                            awards.append(_HARDCODED_FILM_AWARDS[award])
+                            awards.append(_FILM_AWARDS[award])
                 if awards:
                     movie_entry["awards"] = awards
 
-            movies_output.append(movie_entry)
-            if num_movies_inputs % 50 == 0:
-                log(
-                    INFO,
-                    f"Processed {num_movies_inputs} movies. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
-                )
-
-    num_movies_identified = len(movies_output)
-    if is_incremental and value_survive_list_yml is not None:
-        with open(
-            os.path.basename(yml_file_path) + "_incremental.yml",
-            mode="w",
-            encoding="utf-8",
-        ) as yml_file:
-            yaml.dump(movies_output, yml_file, allow_unicode=True, sort_keys=False)
-        movies_output.extend(value_survive_list_yml)
-
-    sorted_movies_output = sorted(
-        movies_output,
+    sorted_movies_output_list = sorted(
+        list(movies_output_dict.values()),
         key=lambda movie: (movie.get("year", 0), movie.get("director", "")),
         reverse=True,
     )
     with open(yml_file_path, mode="w", encoding="utf-8") as yml_file:
-        yaml.dump(sorted_movies_output, yml_file, allow_unicode=True, sort_keys=False)
+        yaml.dump(
+            sorted_movies_output_list, yml_file, allow_unicode=True, sort_keys=False
+        )
 
     log(
         INFO,
-        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Identified {num_movies_identified}. Outputs {len(movies_output)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
+        f"'{yml_file_path}' is successfully generated. Processed {num_movies_inputs} movies. Identified {num_movies_identified}. Outputs {len(movies_output_dict)} movies with {num_imdb_id} IMDB IDs and {num_tmdb_poster} TMDB poster paths.",
     )
 
 
-# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml")
-generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=False)
+# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml", is_incremental=True)
+generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)

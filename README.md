@@ -30,10 +30,3 @@ pip install pyyaml
 pip install thefuzz python-Levenshtein
 python data-manager.py
 ```
-
-<!-- Remaining TODOs
-Show external ratings (e.g. rotten tomatos).
-Lazy loading for quick scroll on mobile.
-Low res homepage beatles SVG.
-Award cross-validation: CSS vs TMDB vs other sources.
-Technical 1-pager by Gemini. -->
