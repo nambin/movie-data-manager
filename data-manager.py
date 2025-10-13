@@ -358,7 +358,11 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                         director.lower(),
                     ),
                 )
-                if director_name_score < 85:
+                if director_name_score < 85 and (
+                    tmdb_directors[0].get("name").lower() not in director.lower()
+                ) and (
+                    tmdb_directors[1].get("name").lower() not in director.lower()
+                ):
                     log(
                         WARNING,
                         f"Director name mismatch: {debug_msg} {director_name_score}, '{director}' vs '{tmdb_directors[0].get('name')}' '{tmdb_directors[0].get('original_name')}'",
@@ -517,6 +521,6 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 
 
 generate_yaml(
-    "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=True
+    "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=False
 )
 generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
