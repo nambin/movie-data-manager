@@ -482,6 +482,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             _HARDCODED_AWARDS = {
                 ("봉준호", "기생충 (Parasite)"): ["blue_dragon", "oscar", "cannes"],
             }
+            if (director, title) in _HARDCODED_AWARDS:
+                movie_entry["awards"] = _HARDCODED_AWARDS[(director, title)]
+                continue
+            
             if row[5] in _FILM_AWARDS or row[6] in _FILM_AWARDS:
                 awards = []
                 for award in _FILM_AWARDS.keys():
@@ -507,5 +511,5 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
     )
 
 
-# generate_yaml("golden-input-movies.csv", "golden-output-movies.yml", is_incremental=True)
-generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
+generate_yaml("golden-input-movies.csv", "golden-output-movies.yml", is_incremental=True)
+# generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
