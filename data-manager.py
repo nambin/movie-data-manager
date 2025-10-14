@@ -235,9 +235,9 @@ def generate_diff(csv_file_path, yml_file_path):
     with open(csv_file_path, mode="r", encoding="utf-8") as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
-            director = row[0]
+            director = row[0].strip()
             year = int(row[1])
-            title = row[2]
+            title = row[2].strip()
             key_set_csv.add((director, year, title))
 
     key_set_yml = set()
@@ -289,10 +289,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
         csv_reader = csv.reader(csv_file)
 
         for row in csv_reader:
-            director = row[0]
+            director = row[0].strip()
             year = int(row[1])
-            title = row[2]
-            country = row[3]
+            title = row[2].strip()
+            country = row[3].strip()
             debug_msg = f"{title} ({year})"
 
             if is_incremental and (director, year, title) not in key_diff_set_csv:
@@ -360,8 +360,6 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 )
                 if director_name_score < 85 and (
                     tmdb_directors[0].get("name").lower() not in director.lower()
-                ) and (
-                    tmdb_directors[1].get("name").lower() not in director.lower()
                 ):
                     log(
                         WARNING,
@@ -375,6 +373,13 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 tmdb_movie_entry.get("original_title") if tmdb_movie_entry else None
             )
             tmdb_title = tmdb_movie_entry.get("title") if tmdb_movie_entry else None
+            # tmdb_year = (
+            #     int(tmdb_movie_entry.get("release_date", "0000-00-00").split("-")[0])
+            #     if tmdb_movie_entry and tmdb_movie_entry.get("release_date")
+            #     else year
+            # )
+            # if tmdb_year != year:
+            #     log(INFO, f"Year differences - {debug_msg}: {year} vs {tmdb_year}")
 
             # Prepare movie entry in YAML.
             movie_entry = {
@@ -382,6 +387,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "year": year,
                 "director": director,
                 "country": country,
+                "is_korean_director": any("\uac00" <= char <= "\ud7a3" for char in director),
                 "imdb_id": imdb_id,
                 "imdb_url": f"https://www.imdb.com/title/{imdb_id}",
                 "tmdb_url": (
@@ -396,23 +402,18 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                     if tmdb_original_lang
                     else None
                 ),
-                "tmdb_director_original_name": (
-                    tmdb_directors[0].get("original_name") if tmdb_directors else None
+                "tmdb_director_name_1": (
+                    tmdb_directors[0].get("name") if len(tmdb_directors) > 0 else None
                 ),
-                "tmdb_director_name": (
-                    tmdb_directors[0].get("name")
-                    if tmdb_directors
-                    and tmdb_directors[0].get("original_name")
-                    != tmdb_directors[0].get("name")
-                    else None
-                ),
-                "tmdb_poster_path": tmdb_poster_path,
+                "tmdb_num_directors": len(tmdb_directors),
                 "tmdb_poster_url": (
                     f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
                     if tmdb_poster_path
                     else None
                 ),
             }
+            if len(tmdb_directors) > 1:
+                movie_entry["tmdb_director_name_2"] = tmdb_directors[1].get("name")
 
             # Populate Korean title if the original language is not Korean.
             if tmdb_original_lang != "ko":
@@ -457,10 +458,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
         csv_reader = csv.reader(csv_file)
 
         for row in csv_reader:
-            director = row[0]
+            director = row[0].strip()
             year = int(row[1])
-            title = row[2]
-            country = row[3]
+            title = row[2].strip()
+            country = row[3].strip()
             debug_msg = f"{title} ({year})"
 
             movie_entry = movies_output_dict.get((director, year, title))
@@ -470,8 +471,10 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             movie_entry.pop("my_best", None)
             movie_entry.pop("awards", None)
 
-            # Populate my favorite flag.
-            if row[4] == "Masterpiece" or row[4] == "Special":
+            # Populate my preferences.
+            if row[4] == "Masterpiece":
+                movie_entry["masterpiece"] = True
+            if row[4] == "Special":
                 movie_entry["my_best"] = True
 
             # Populate award information.
@@ -503,6 +506,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
         list(movies_output_dict.values()),
         key=lambda movie: (
             movie.get("year", 0),
+            movie.get("masterpiece", False),
             movie.get("my_best", False),
             len(movie.get("awards", [])),
             movie.get("director", ""),
@@ -523,4 +527,4 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 generate_yaml(
     "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=False
 )
-generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=True)
+generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=False)
