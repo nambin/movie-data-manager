@@ -405,6 +405,9 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "tmdb_director_name_1": (
                     tmdb_directors[0].get("name") if len(tmdb_directors) > 0 else None
                 ),
+                "tmdb_director_name_2": (
+                    tmdb_directors[1].get("name") if len(tmdb_directors) > 1 else None
+                ),
                 "tmdb_num_directors": len(tmdb_directors),
                 "tmdb_poster_url": (
                     f"https://image.tmdb.org/t/p/w200{tmdb_poster_path}"
@@ -412,8 +415,6 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                     else None
                 ),
             }
-            if len(tmdb_directors) > 1:
-                movie_entry["tmdb_director_name_2"] = tmdb_directors[1].get("name")
 
             # Populate Korean title if the original language is not Korean.
             if tmdb_original_lang != "ko":

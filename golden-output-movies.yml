@@ -10,6 +10,7 @@
   tmdb_original_title: null
   tmdb_original_language: null
   tmdb_director_name_1: null
+  tmdb_director_name_2: null
   tmdb_num_directors: 0
   tmdb_poster_url: null
   my_best: true
@@ -25,6 +26,7 @@
   tmdb_original_title: Wicked
   tmdb_original_language: English
   tmdb_director_name_1: Jon M. Chu
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg
 - title: Anatomy of a Fall
@@ -39,6 +41,7 @@
   tmdb_original_title: Anatomie d'une chute
   tmdb_original_language: French
   tmdb_director_name_1: Justine Triet
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kQs6keheMwCxJxrzV83VUwFtHkB.jpg
   masterpiece: true
@@ -56,6 +59,7 @@
   tmdb_original_title: 밀수
   tmdb_original_language: Korean
   tmdb_director_name_1: Ryoo Seung-wan
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
   awards:
@@ -72,6 +76,7 @@
   tmdb_original_title: Poor Things
   tmdb_original_language: English
   tmdb_director_name_1: Yorgos Lanthimos
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
   awards:
@@ -88,6 +93,7 @@
   tmdb_original_title: Oppenheimer
   tmdb_original_language: English
   tmdb_director_name_1: Christopher Nolan
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
   awards:
@@ -104,6 +110,7 @@
   tmdb_original_title: 서울의 봄
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Sung-soo
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vy14tKxsbJYdDyFl6kQuVkK2s44.jpg
 - title: The Taste of Things (프렌치 수프)
@@ -118,6 +125,7 @@
   tmdb_original_title: La Passion de Dodin Bouffant
   tmdb_original_language: French
   tmdb_director_name_1: Trần Anh Hùng
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gZsXtzwI3CgCvKF5TkgHVhhbEg1.jpg
   custom_korean_title: 프렌치 수프
@@ -133,6 +141,7 @@
   tmdb_original_title: 怪物
   tmdb_original_language: Japanese
   tmdb_director_name_1: Hirokazu Kore-eda
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
 - title: L'événement (레벤느망)
@@ -147,6 +156,7 @@
   tmdb_original_title: L'Événement
   tmdb_original_language: French
   tmdb_director_name_1: Audrey Diwan
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/f2lTAmLYpWpd8JxtJrMXFFGV9gZ.jpg
   custom_korean_title: 레벤느망
@@ -164,6 +174,7 @@
   tmdb_original_title: 기생충
   tmdb_original_language: Korean
   tmdb_director_name_1: Bong Joon Ho
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   masterpiece: true
@@ -183,6 +194,7 @@
   tmdb_original_title: 万引き家族
   tmdb_original_language: Japanese
   tmdb_director_name_1: Hirokazu Kore-eda
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
   custom_korean_title: 어느 가족
@@ -200,6 +212,7 @@
   tmdb_original_title: The Martian
   tmdb_original_language: English
   tmdb_director_name_1: Ridley Scott
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg
 - title: Birdman
@@ -214,6 +227,7 @@
   tmdb_original_title: Birdman or (The Unexpected Virtue of Ignorance)
   tmdb_original_language: English
   tmdb_director_name_1: Alejandro González Iñárritu
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg
   awards:
@@ -230,6 +244,7 @@
   tmdb_original_title: हाईवे
   tmdb_original_language: Hindi
   tmdb_director_name_1: Imtiaz Ali
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xuTevYF35WDkElpm5vNBVaISkT9.jpg
 - title: Ida
@@ -244,6 +259,7 @@
   tmdb_original_title: Ida
   tmdb_original_language: Polish
   tmdb_director_name_1: Paweł Pawlikowski
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3uoCttE46RGHybiA26cXTvmFqbW.jpg
   masterpiece: true
@@ -261,6 +277,7 @@
   tmdb_original_title: El secreto de sus ojos
   tmdb_original_language: Spanish
   tmdb_director_name_1: Juan José Campanella
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkeAwfZzwL3WvToydE3CXiY80E0.jpg
   my_best: true
@@ -278,6 +295,7 @@
   tmdb_original_title: The Dark Knight
   tmdb_original_language: English
   tmdb_director_name_1: Christopher Nolan
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg
   masterpiece: true
@@ -293,6 +311,7 @@
   tmdb_original_title: いま、会いにゆきます
   tmdb_original_language: Japanese
   tmdb_director_name_1: Nobuhiro Doi
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/osyTJKFpP3HEHbFY5FzuZNEXo7q.jpg
   custom_korean_title: 지금, 만나러 갑니다
@@ -309,6 +328,7 @@
   tmdb_original_title: Magnolia
   tmdb_original_language: English
   tmdb_director_name_1: Paul Thomas Anderson
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   masterpiece: true
@@ -326,9 +346,9 @@
   tmdb_original_title: Rosetta
   tmdb_original_language: French
   tmdb_director_name_1: Jean-Pierre Dardenne
+  tmdb_director_name_2: Luc Dardenne
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/buwLjQPPA9FaATvKzeAppLXiGMB.jpg
-  tmdb_director_name_2: Luc Dardenne
   awards:
   - cannes
 - title: The Thin Red Line
@@ -343,6 +363,7 @@
   tmdb_original_title: The Thin Red Line
   tmdb_original_language: English
   tmdb_director_name_1: Terrence Malick
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
   awards:
@@ -359,6 +380,7 @@
   tmdb_original_title: Se7en
   tmdb_original_language: English
   tmdb_director_name_1: David Fincher
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg
   my_best: true
@@ -374,6 +396,7 @@
   tmdb_original_title: Pulp Fiction
   tmdb_original_language: English
   tmdb_director_name_1: Quentin Tarantino
+  tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg
   awards:
@@ -390,6 +413,6 @@
   tmdb_original_title: Pinocchio
   tmdb_original_language: English
   tmdb_director_name_1: Hamilton Luske
+  tmdb_director_name_2: Ben Sharpsteen
   tmdb_num_directors: 7
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/bnZJrLRnoQHpzEJdka1KYfsAF3N.jpg
-  tmdb_director_name_2: Ben Sharpsteen
