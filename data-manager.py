@@ -201,6 +201,7 @@ def get_tmdb_movie_entry(movie_title_set: title_parser.MovieTitleSet, year, dire
         ("Alejandro González Iñárritu", "Birdman"): 194662,
         ("John Crowley", "Brooklyn"): 167073,
         ("David Fincher", "Seven"): 807,
+        ("봉준호", "지리멸렬 (Incoherence)"): 67415,
     }
     raw_title = movie_title_set.raw_title
     debug_msg = f"{raw_title} ({year})"
@@ -238,6 +239,8 @@ def generate_diff(csv_file_path, yml_file_path):
             director = row[0].strip()
             year = int(row[1])
             title = row[2].strip()
+            assert (director, year, title) not in key_set_csv, f"Duplicate movie entry found in CSV file: {title} {year} {director}"
+
             key_set_csv.add((director, year, title))
 
     key_set_yml = set()
@@ -441,12 +444,13 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
         )
 
     if is_incremental and value_survive_dict_yml is not None:
+        yml_base_name, extension = os.path.splitext(yml_file_path)
         with open(
-            os.path.basename(yml_file_path) + "_incremental.yml",
+            yml_base_name + "_incremental.yml",
             mode="w",
             encoding="utf-8",
         ) as yml_file:
-            yaml.dump(movies_output_dict, yml_file, allow_unicode=True, sort_keys=False)
+            yaml.dump(list(movies_output_dict.values()), yml_file, allow_unicode=True, sort_keys=False)
 
         for key, value in value_survive_dict_yml.items():
             assert (
@@ -527,7 +531,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
     )
 
 
-generate_yaml(
-    "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=False
-)
+# generate_yaml(
+#     "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=False
+# )
 generate_yaml("prod-input-movies.csv", "prod-output-movies.yml", is_incremental=True)
