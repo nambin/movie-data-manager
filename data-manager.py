@@ -387,7 +387,9 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "year": year,
                 "director": director,
                 "country": country,
-                "is_korean_director": any("\uac00" <= char <= "\ud7a3" for char in director),
+                "is_korean_director": any(
+                    "\uac00" <= char <= "\ud7a3" for char in director
+                ),
                 "imdb_id": imdb_id,
                 "imdb_url": f"https://www.imdb.com/title/{imdb_id}",
                 "tmdb_url": (
@@ -528,4 +530,4 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 generate_yaml(
     "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=False
 )
-generate_yaml("input-movies.csv", "output-movies.yml", is_incremental=False)
+generate_yaml("prod-input-movies.csv", "prod-output-movies.yml", is_incremental=True)
