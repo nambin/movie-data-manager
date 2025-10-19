@@ -75,6 +75,21 @@
   tmdb_num_directors: 0
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gyasYg4xhmmVfbsS96x4CCm6a30.jpg
   custom_korean_title: 소년의 시간
+- title: One Battle After Another
+  year: 2025
+  director: Paul Thomas Anderson
+  country: US
+  is_korean_director: false
+  imdb_id: tt30144839
+  imdb_url: https://www.imdb.com/title/tt30144839
+  tmdb_url: https://www.themoviedb.org/movie/1054867
+  tmdb_title: null
+  tmdb_original_title: One Battle After Another
+  tmdb_original_language: English
+  tmdb_director_name_1: Paul Thomas Anderson
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/m1jFoahEbeQXtx4zArT2FKdbNIj.jpg
 - title: Snow White
   year: 2025
   director: Marc Webb

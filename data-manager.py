@@ -213,7 +213,7 @@ def get_tmdb_movie_entry(movie_title_set: title_parser.MovieTitleSet, year, dire
     else:
         tmdb_search_entry = get_tmdb_search_entry(movie_title_set, year)
         if not tmdb_search_entry:
-            log(DEBUG, f"Not found in TMDB: {debug_msg})")
+            log(DEBUG, f"Not found in TMDB: {debug_msg}")
             return None
 
         tmdb_id = tmdb_search_entry.get("id")
@@ -328,7 +328,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
             if imdb_id:
                 num_imdb_id += 1
             else:
-                log(WARNING, f"Skip: No IMDB ID found: {debug_msg}")
+                log(WARNING, f"Skip: No IMDB ID found: {debug_msg}, TMDB ID: {tmdb_movie_entry.get('id') if tmdb_movie_entry else 'N/A'}")
                 continue
 
             tmdb_poster_path = (
