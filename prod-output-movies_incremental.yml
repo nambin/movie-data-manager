@@ -1,555 +1,62 @@
-- title: Perfect Days
-  year: 2023
-  director: Wim Wenders
-  country: Japan
-  is_korean_director: false
-  imdb_id: tt27503384
-  imdb_url: https://www.imdb.com/title/tt27503384
-  tmdb_url: https://www.themoviedb.org/movie/976893
-  tmdb_title: Perfect Days
-  tmdb_original_title: PERFECT DAYS
-  tmdb_original_language: Japanese
-  tmdb_director_name_1: Wim Wenders
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mjEk5Wwx6TYVqw29zSaUHclMIgp.jpg
-- title: 어쩔수가없다
+- title: Sinners
   year: 2025
-  director: 박찬욱
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1527793
-  imdb_url: https://www.imdb.com/title/tt1527793
-  tmdb_url: https://www.themoviedb.org/movie/639988
-  tmdb_title: No Other Choice
-  tmdb_original_title: 어쩔수가없다
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Park Chan-wook
+  director: Ryan Coogler
+  country: US
+  is_korean_director: false
+  imdb_id: tt31193180
+  imdb_url: https://www.imdb.com/title/tt31193180
+  tmdb_url: https://www.themoviedb.org/movie/1233413
+  tmdb_title: null
+  tmdb_original_title: Sinners
+  tmdb_original_language: English
+  tmdb_director_name_1: Ryan Coogler
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/i38zFYpbBnWbqcRayu9F1n71yVT.jpg
-- title: 장화, 홍련
-  year: 2003
-  director: 김지운
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0365376
-  imdb_url: https://www.imdb.com/title/tt0365376
-  tmdb_url: https://www.themoviedb.org/movie/4552
-  tmdb_title: A Tale of Two Sisters
-  tmdb_original_title: 장화, 홍련
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Jee-woon
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/l3exwhwyGE0NnHJ3lFQ7eXoBSkH.jpg
-- title: 달콤한 인생
-  year: 2005
-  director: 김지운
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0456912
-  imdb_url: https://www.imdb.com/title/tt0456912
-  tmdb_url: https://www.themoviedb.org/movie/11344
-  tmdb_title: A Bittersweet Life
-  tmdb_original_title: 달콤한 인생
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Jee-woon
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/czoCxjadYUT2oe9cKzSnU6ZrYoI.jpg
-- title: 좋은 놈, 나쁜 놈, 이상한 놈
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4CkZl1LK6a5rXBqJB2ZP77h3N5i.jpg
+- title: 'Red Cliff (적벽대전: 거대한 전쟁의 시작)'
   year: 2008
-  director: 김지운
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0901487
-  imdb_url: https://www.imdb.com/title/tt0901487
-  tmdb_url: https://www.themoviedb.org/movie/15067
-  tmdb_title: The Good, the Bad, the Weird
-  tmdb_original_title: 좋은 놈, 나쁜 놈, 이상한 놈
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Jee-woon
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/lbPZ0aNoF0cHisg6DubFO2eS8so.jpg
-- title: 밀정
-  year: 2016
-  director: 김지운
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt4914580
-  imdb_url: https://www.imdb.com/title/tt4914580
-  tmdb_url: https://www.themoviedb.org/movie/363579
-  tmdb_title: The Age of Shadows
-  tmdb_original_title: 밀정
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Jee-woon
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kHiBkgmMY8QJQo2r5yXRhJ7P7k.jpg
-- title: 비트
-  year: 1997
-  director: 김성수
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0158489
-  imdb_url: https://www.imdb.com/title/tt0158489
-  tmdb_url: https://www.themoviedb.org/movie/67089
-  tmdb_title: Beat
-  tmdb_original_title: 비트
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Sung-soo
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/hWx3FSlsTyBwcZz7AWisS0oWOFr.jpg
-- title: 아수라
-  year: 2016
-  director: 김성수
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt5918028
-  imdb_url: https://www.imdb.com/title/tt5918028
-  tmdb_url: https://www.themoviedb.org/movie/408620
-  tmdb_title: 'Asura: The City of Madness'
-  tmdb_original_title: 아수라
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Sung-soo
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vJmSw2QFvX5vqdGQSBGe1x7HEcJ.jpg
-- title: 중천
-  year: 2006
-  director: 조동오
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0929261
-  imdb_url: https://www.imdb.com/title/tt0929261
-  tmdb_url: https://www.themoviedb.org/movie/32158
-  tmdb_title: The Restless
-  tmdb_original_title: 중천
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Jo Dong-oh
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ww7WwDdFrbdjs3eTSu5r7x5Y8CY.jpg
-- title: 'Kill Bill: Vol. 1'
-  year: 2003
-  director: Quentin Tarantino
-  country: US
+  director: John Woo
+  country: China
   is_korean_director: false
-  imdb_id: tt0266697
-  imdb_url: https://www.imdb.com/title/tt0266697
-  tmdb_url: https://www.themoviedb.org/movie/24
-  tmdb_title: null
-  tmdb_original_title: 'Kill Bill: Vol. 1'
-  tmdb_original_language: English
-  tmdb_director_name_1: Quentin Tarantino
+  imdb_id: tt0425637
+  imdb_url: https://www.imdb.com/title/tt0425637
+  tmdb_url: https://www.themoviedb.org/movie/12289
+  tmdb_title: Red Cliff
+  tmdb_original_title: 赤壁
+  tmdb_original_language: Chinese
+  tmdb_director_name_1: John Woo
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg
-- title: Sin City
-  year: 2005
-  director: Frank Miller, Quentin Tarantino
-  country: US
-  is_korean_director: false
-  imdb_id: tt0401792
-  imdb_url: https://www.imdb.com/title/tt0401792
-  tmdb_url: https://www.themoviedb.org/movie/187
-  tmdb_title: null
-  tmdb_original_title: Sin City
-  tmdb_original_language: English
-  tmdb_director_name_1: Robert Rodriguez
-  tmdb_director_name_2: Frank Miller
-  tmdb_num_directors: 2
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/i66G50wATMmPrvpP95f0XP6ZdVS.jpg
-- title: 'The Lord of the Rings: The Fellowship of the Ring'
-  year: 2001
-  director: Peter Jackson
-  country: US
-  is_korean_director: false
-  imdb_id: tt0120737
-  imdb_url: https://www.imdb.com/title/tt0120737
-  tmdb_url: https://www.themoviedb.org/movie/120
-  tmdb_title: null
-  tmdb_original_title: 'The Lord of the Rings: The Fellowship of the Ring'
-  tmdb_original_language: English
-  tmdb_director_name_1: Peter Jackson
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg
-- title: 'The Lord of the Rings: The Two Towers'
-  year: 2002
-  director: Peter Jackson
-  country: US
-  is_korean_director: false
-  imdb_id: tt0167261
-  imdb_url: https://www.imdb.com/title/tt0167261
-  tmdb_url: https://www.themoviedb.org/movie/121
-  tmdb_title: null
-  tmdb_original_title: 'The Lord of the Rings: The Two Towers'
-  tmdb_original_language: English
-  tmdb_director_name_1: Peter Jackson
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg
-- title: King Kong
-  year: 2005
-  director: Peter Jackson
-  country: US
-  is_korean_director: false
-  imdb_id: tt0360717
-  imdb_url: https://www.imdb.com/title/tt0360717
-  tmdb_url: https://www.themoviedb.org/movie/254
-  tmdb_title: null
-  tmdb_original_title: King Kong
-  tmdb_original_language: English
-  tmdb_director_name_1: Peter Jackson
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qVCZtwBGls866wBb4PAfYtAjyr8.jpg
-- title: District 9
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eEelFTjUYJJDlwqd53VfSA8xMfj.jpg
+  custom_korean_title: '적벽대전: 거대한 전쟁의 시작'
+- title: 'Red Cliff 2 (적벽대전 2: 최후의 결전)'
   year: 2009
-  director: Peter Jackson
+  director: John Woo
+  country: China
+  is_korean_director: false
+  imdb_id: tt1326972
+  imdb_url: https://www.imdb.com/title/tt1326972
+  tmdb_url: https://www.themoviedb.org/movie/15384
+  tmdb_title: Red Cliff II
+  tmdb_original_title: 赤壁：決戰天下
+  tmdb_original_language: Chinese
+  tmdb_director_name_1: John Woo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/h4WZHa5K941lAthsa29g0RFJJtV.jpg
+  custom_korean_title: '적벽대전 2: 최후의 결전'
+- title: Face/Off
+  year: 1997
+  director: John Woo
   country: US
   is_korean_director: false
-  imdb_id: tt1136608
-  imdb_url: https://www.imdb.com/title/tt1136608
-  tmdb_url: https://www.themoviedb.org/movie/17654
+  imdb_id: tt0119094
+  imdb_url: https://www.imdb.com/title/tt0119094
+  tmdb_url: https://www.themoviedb.org/movie/754
   tmdb_title: null
-  tmdb_original_title: District 9
+  tmdb_original_title: Face/Off
   tmdb_original_language: English
-  tmdb_director_name_1: Neill Blomkamp
+  tmdb_director_name_1: John Woo
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/tuGlQkqLxnodDSk6mp5c2wvxUEd.jpg
-- title: 지리멸렬 (Incoherence)
-  year: 1994
-  director: 봉준호
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1997399
-  imdb_url: https://www.imdb.com/title/tt1997399
-  tmdb_url: https://www.themoviedb.org/movie/67415
-  tmdb_title: Incoherence
-  tmdb_original_title: 지리멸렬
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Bong Joon Ho
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/A8D7xLxLlr1HtvuLgEVSvG0sLdT.jpg
-- title: 울학교 이티
-  year: 2008
-  director: 박광춘
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1867121
-  imdb_url: https://www.imdb.com/title/tt1867121
-  tmdb_url: https://www.themoviedb.org/movie/48828
-  tmdb_title: Our School's E.T.
-  tmdb_original_title: 울학교 이티
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Park Kwang-chun
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/liAvukYQ5YgB41LkCA7975WBcmL.jpg
-- title: Groundhog Day
-  year: 1993
-  director: Harold Ramis
-  country: US
-  is_korean_director: false
-  imdb_id: tt0107048
-  imdb_url: https://www.imdb.com/title/tt0107048
-  tmdb_url: https://www.themoviedb.org/movie/137
-  tmdb_title: null
-  tmdb_original_title: Groundhog Day
-  tmdb_original_language: English
-  tmdb_director_name_1: Harold Ramis
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gCgt1WARPZaXnq523ySQEUKinCs.jpg
-- title: 12 Monkeys
-  year: 1995
-  director: Terry Gilliam
-  country: US
-  is_korean_director: false
-  imdb_id: tt0114746
-  imdb_url: https://www.imdb.com/title/tt0114746
-  tmdb_url: https://www.themoviedb.org/movie/63
-  tmdb_title: null
-  tmdb_original_title: Twelve Monkeys
-  tmdb_original_language: English
-  tmdb_director_name_1: Terry Gilliam
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gt3iyguaCIw8DpQZI1LIN5TohM2.jpg
-- title: Taken
-  year: 2008
-  director: Pierre Morel
-  country: US
-  is_korean_director: false
-  imdb_id: tt0936501
-  imdb_url: https://www.imdb.com/title/tt0936501
-  tmdb_url: https://www.themoviedb.org/movie/8681
-  tmdb_title: null
-  tmdb_original_title: Taken
-  tmdb_original_language: English
-  tmdb_director_name_1: Pierre Morel
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/y5Va1WXDX6nZElVirPrGxf6w99B.jpg
-- title: 싱글라이더
-  year: 2017
-  director: 이주영
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt5966750
-  imdb_url: https://www.imdb.com/title/tt5966750
-  tmdb_url: https://www.themoviedb.org/movie/435603
-  tmdb_title: A Single Rider
-  tmdb_original_title: 싱글라이더
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Zoo-young
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/8IOObR7vo4K1moBRv8AOMsg5J6U.jpg
-- title: Hitch
-  year: 2005
-  director: Andy Tennant
-  country: US
-  is_korean_director: false
-  imdb_id: tt0386588
-  imdb_url: https://www.imdb.com/title/tt0386588
-  tmdb_url: https://www.themoviedb.org/movie/8488
-  tmdb_title: null
-  tmdb_original_title: Hitch
-  tmdb_original_language: English
-  tmdb_director_name_1: Andy Tennant
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/x3W9H3nhGQbWSlyI8Amp2F6Z6cz.jpg
-- title: Scream
-  year: 1996
-  director: Wes Craven
-  country: US
-  is_korean_director: false
-  imdb_id: tt0117571
-  imdb_url: https://www.imdb.com/title/tt0117571
-  tmdb_url: https://www.themoviedb.org/movie/4232
-  tmdb_title: null
-  tmdb_original_title: Scream
-  tmdb_original_language: English
-  tmdb_director_name_1: Wes Craven
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/lr9ZIrmuwVmZhpZuTCW8D9g0ZJe.jpg
-- title: Home Alone
-  year: 1990
-  director: Chris Columbus
-  country: US
-  is_korean_director: false
-  imdb_id: tt0099785
-  imdb_url: https://www.imdb.com/title/tt0099785
-  tmdb_url: https://www.themoviedb.org/movie/771
-  tmdb_title: null
-  tmdb_original_title: Home Alone
-  tmdb_original_language: English
-  tmdb_director_name_1: Chris Columbus
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/i5We88HdO9Nsrv8xLyo4toNsLUM.jpg
-- title: 'Home Alone 2: Lost In New York'
-  year: 1992
-  director: Chris Columbus
-  country: US
-  is_korean_director: false
-  imdb_id: tt0104431
-  imdb_url: https://www.imdb.com/title/tt0104431
-  tmdb_url: https://www.themoviedb.org/movie/772
-  tmdb_title: null
-  tmdb_original_title: 'Home Alone 2: Lost in New York'
-  tmdb_original_language: English
-  tmdb_director_name_1: Chris Columbus
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/uuitWHpJwxD1wruFl2nZHIb4UGN.jpg
-- title: 도가니
-  year: 2011
-  director: 황동혁
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt2070649
-  imdb_url: https://www.imdb.com/title/tt2070649
-  tmdb_url: https://www.themoviedb.org/movie/81481
-  tmdb_title: Silenced
-  tmdb_original_title: 도가니
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Hwang Dong-hyuk
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbMp0oIFmYnw0i5gzRoKt8cH5ve.jpg
-- title: 한공주
-  year: 2014
-  director: 이수진
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt3265462
-  imdb_url: https://www.imdb.com/title/tt3265462
-  tmdb_url: https://www.themoviedb.org/movie/229304
-  tmdb_title: Han Gong-ju
-  tmdb_original_title: 한공주
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Su-jin
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3LKjzV4NXV76pF3CuL5YXzZs6zR.jpg
-- title: Bird Box
-  year: 2018
-  director: Susanne Bier
-  country: US
-  is_korean_director: false
-  imdb_id: tt2737304
-  imdb_url: https://www.imdb.com/title/tt2737304
-  tmdb_url: https://www.themoviedb.org/movie/405774
-  tmdb_title: null
-  tmdb_original_title: Bird Box
-  tmdb_original_language: English
-  tmdb_director_name_1: Susanne Bier
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg
-- title: 구미호 가족
-  year: 2006
-  director: 이형곤
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0891496
-  imdb_url: https://www.imdb.com/title/tt0891496
-  tmdb_url: https://www.themoviedb.org/movie/58542
-  tmdb_title: The Fox Family
-  tmdb_original_title: 구미호 가족
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Hyung-gon
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/xvlBxg7vIxyBEi0uFVHDftHE69m.jpg
-- title: Transformers
-  year: 2007
-  director: Michael Bay
-  country: US
-  is_korean_director: false
-  imdb_id: tt0418279
-  imdb_url: https://www.imdb.com/title/tt0418279
-  tmdb_url: https://www.themoviedb.org/movie/1858
-  tmdb_title: null
-  tmdb_original_title: Transformers
-  tmdb_original_language: English
-  tmdb_director_name_1: Michael Bay
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1P7w3AImoEOWJX7nn3fdaKDfEQA.jpg
-- title: The Cure
-  year: 1995
-  director: Peter Horton
-  country: US
-  is_korean_director: false
-  imdb_id: tt0112757
-  imdb_url: https://www.imdb.com/title/tt0112757
-  tmdb_url: https://www.themoviedb.org/movie/6715
-  tmdb_title: null
-  tmdb_original_title: The Cure
-  tmdb_original_language: English
-  tmdb_director_name_1: Peter Horton
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3WN1H5NzLOjhY9AP848v8WPc9uu.jpg
-- title: Before Sunrise
-  year: 1995
-  director: Richard Linklater
-  country: US
-  is_korean_director: false
-  imdb_id: tt0112471
-  imdb_url: https://www.imdb.com/title/tt0112471
-  tmdb_url: https://www.themoviedb.org/movie/76
-  tmdb_title: null
-  tmdb_original_title: Before Sunrise
-  tmdb_original_language: English
-  tmdb_director_name_1: Richard Linklater
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kf1Jb1c2JAOqjuzA3H4oDM263uB.jpg
-- title: Before Sunset
-  year: 2004
-  director: Richard Linklater
-  country: US
-  is_korean_director: false
-  imdb_id: tt0381681
-  imdb_url: https://www.imdb.com/title/tt0381681
-  tmdb_url: https://www.themoviedb.org/movie/80
-  tmdb_title: null
-  tmdb_original_title: Before Sunset
-  tmdb_original_language: English
-  tmdb_director_name_1: Richard Linklater
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gycdE1ARByGQcK4fYR2mgpU6OO.jpg
-- title: Before Midnight
-  year: 2013
-  director: Richard Linklater
-  country: US
-  is_korean_director: false
-  imdb_id: tt2209418
-  imdb_url: https://www.imdb.com/title/tt2209418
-  tmdb_url: https://www.themoviedb.org/movie/132344
-  tmdb_title: null
-  tmdb_original_title: Before Midnight
-  tmdb_original_language: English
-  tmdb_director_name_1: Richard Linklater
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qbGKJmNUroDz75kh5Oafoall89e.jpg
-- title: Bring It On
-  year: 2000
-  director: Peyton Reed
-  country: US
-  is_korean_director: false
-  imdb_id: tt0204946
-  imdb_url: https://www.imdb.com/title/tt0204946
-  tmdb_url: https://www.themoviedb.org/movie/1588
-  tmdb_title: null
-  tmdb_original_title: Bring It On
-  tmdb_original_language: English
-  tmdb_director_name_1: Peyton Reed
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/bnVby0qI0dS7YunbShP7mw68HY3.jpg
-- title: 'Dragon Wars: D-War'
-  year: 2007
-  director: 심형래
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0372873
-  imdb_url: https://www.imdb.com/title/tt0372873
-  tmdb_url: https://www.themoviedb.org/movie/10253
-  tmdb_title: 'Dragon Wars: D-War'
-  tmdb_original_title: 디 워
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Shim Hyung-rae
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rEpvqWGu08coDLUpcpiz4sMoDYo.jpg
-- title: 싱글즈
-  year: 2003
-  director: 권칠인
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0371226
-  imdb_url: https://www.imdb.com/title/tt0371226
-  tmdb_url: https://www.themoviedb.org/movie/200836
-  tmdb_title: Singles
-  tmdb_original_title: 싱글즈
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kwon Chil-in
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1qFZhxM7OMdKdD18bxim5xMFJyc.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/69Xzn8UdPbVnmqSChKz2RTpoNfB.jpg

@@ -14,6 +14,22 @@
   tmdb_num_directors: 0
   tmdb_poster_url: null
   my_best: true
+- title: Sinners
+  year: 2025
+  director: Ryan Coogler
+  country: US
+  is_korean_director: false
+  imdb_id: tt31193180
+  imdb_url: https://www.imdb.com/title/tt31193180
+  tmdb_url: https://www.themoviedb.org/movie/1233413
+  tmdb_title: null
+  tmdb_original_title: Sinners
+  tmdb_original_language: English
+  tmdb_director_name_1: Ryan Coogler
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4CkZl1LK6a5rXBqJB2ZP77h3N5i.jpg
+  my_best: true
 - title: Mickey 17
   year: 2025
   director: 봉준호
@@ -6410,6 +6426,22 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ge7zbYvpfsDP3luKi0iSpzOgncM.jpg
+- title: 'Red Cliff 2 (적벽대전 2: 최후의 결전)'
+  year: 2009
+  director: John Woo
+  country: China
+  is_korean_director: false
+  imdb_id: tt1326972
+  imdb_url: https://www.imdb.com/title/tt1326972
+  tmdb_url: https://www.themoviedb.org/movie/15384
+  tmdb_title: Red Cliff II
+  tmdb_original_title: 赤壁：決戰天下
+  tmdb_original_language: Chinese
+  tmdb_director_name_1: John Woo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/h4WZHa5K941lAthsa29g0RFJJtV.jpg
+  custom_korean_title: '적벽대전 2: 최후의 결전'
 - title: A Prophet (예언자)
   year: 2009
   director: Jacques Audiard
@@ -6710,6 +6742,22 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/78lPtwv72eTNqFW9COBYI0dWDJa.jpg
+- title: 'Red Cliff (적벽대전: 거대한 전쟁의 시작)'
+  year: 2008
+  director: John Woo
+  country: China
+  is_korean_director: false
+  imdb_id: tt0425637
+  imdb_url: https://www.imdb.com/title/tt0425637
+  tmdb_url: https://www.themoviedb.org/movie/12289
+  tmdb_title: Red Cliff
+  tmdb_original_title: 赤壁
+  tmdb_original_language: Chinese
+  tmdb_director_name_1: John Woo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eEelFTjUYJJDlwqd53VfSA8xMfj.jpg
+  custom_korean_title: '적벽대전: 거대한 전쟁의 시작'
 - title: Avatar
   year: 2008
   director: James Cameron
@@ -9389,6 +9437,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/yTRrqIGusJuzG5Pe3iFQTnHg1Ps.jpg
+- title: Face/Off
+  year: 1997
+  director: John Woo
+  country: US
+  is_korean_director: false
+  imdb_id: tt0119094
+  imdb_url: https://www.imdb.com/title/tt0119094
+  tmdb_url: https://www.themoviedb.org/movie/754
+  tmdb_title: null
+  tmdb_original_title: Face/Off
+  tmdb_original_language: English
+  tmdb_director_name_1: John Woo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/69Xzn8UdPbVnmqSChKz2RTpoNfB.jpg
 - title: 'Speed 2: Cruise Control'
   year: 1997
   director: Jan de Bont
