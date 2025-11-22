@@ -30,21 +30,6 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4CkZl1LK6a5rXBqJB2ZP77h3N5i.jpg
   my_best: true
-- title: Mickey 17
-  year: 2025
-  director: 봉준호
-  country: US
-  is_korean_director: true
-  imdb_id: tt12299608
-  imdb_url: https://www.imdb.com/title/tt12299608
-  tmdb_url: https://www.themoviedb.org/movie/696506
-  tmdb_title: null
-  tmdb_original_title: Mickey 17
-  tmdb_original_language: English
-  tmdb_director_name_1: Bong Joon Ho
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg
 - title: 어쩔수가없다
   year: 2025
   director: 박찬욱
@@ -60,6 +45,40 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/i38zFYpbBnWbqcRayu9F1n71yVT.jpg
+  awards:
+  - blue_dragon
+- title: It Was Just an Accident
+  year: 2025
+  director: Jafar Panahi
+  country: Iran
+  is_korean_director: false
+  imdb_id: tt36491653
+  imdb_url: https://www.imdb.com/title/tt36491653
+  tmdb_url: https://www.themoviedb.org/movie/1456349
+  tmdb_title: It Was Just an Accident
+  tmdb_original_title: یک تصادف ساده
+  tmdb_original_language: Persian
+  tmdb_director_name_1: Jafar Panahi
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eNYGj2DG3n8OrVPTfYunpPW9uas.jpg
+  awards:
+  - cannes
+- title: Mickey 17
+  year: 2025
+  director: 봉준호
+  country: US
+  is_korean_director: true
+  imdb_id: tt12299608
+  imdb_url: https://www.imdb.com/title/tt12299608
+  tmdb_url: https://www.themoviedb.org/movie/696506
+  tmdb_title: null
+  tmdb_original_title: Mickey 17
+  tmdb_original_language: English
+  tmdb_director_name_1: Bong Joon Ho
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg
 - title: 승부
   year: 2025
   director: 김형주
@@ -136,6 +155,21 @@
   tmdb_director_name_2: Chris Appelhans
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AjlRXTpRLAIiuofNqKcqrpUfPCZ.jpg
+- title: Frankenstein
+  year: 2025
+  director: Guillermo del Toro
+  country: US
+  is_korean_director: false
+  imdb_id: tt1312221
+  imdb_url: https://www.imdb.com/title/tt1312221
+  tmdb_url: https://www.themoviedb.org/movie/1062722
+  tmdb_title: null
+  tmdb_original_title: Frankenstein
+  tmdb_original_language: English
+  tmdb_director_name_1: Guillermo del Toro
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/g4JtvGlQO7DByTI6frUobqvSL3R.jpg
 - title: 'Mission: Impossible – The Final Reckoning'
   year: 2025
   director: Christopher McQuarrie
@@ -263,6 +297,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/if8QiqCI7WAGImKcJCfzp6VTyKA.jpg
+- title: The Room Next Door
+  year: 2024
+  director: Pedro Almodóvar
+  country: US
+  is_korean_director: false
+  imdb_id: tt29439114
+  imdb_url: https://www.imdb.com/title/tt29439114
+  tmdb_url: https://www.themoviedb.org/movie/1088514
+  tmdb_title: The Room Next Door
+  tmdb_original_title: La habitación de al lado
+  tmdb_original_language: Spanish
+  tmdb_director_name_1: Pedro Almodóvar
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qMibLyArrlBJ87AoqQBeVaFeRXp.jpg
 - title: Inside Out 2
   year: 2024
   director: Kelsey Mann
@@ -2481,6 +2530,21 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg
   custom_korean_title: 타오르는 여인의 초상
+- title: Midsommar
+  year: 2019
+  director: Ari Aster
+  country: US
+  is_korean_director: false
+  imdb_id: tt8772262
+  imdb_url: https://www.imdb.com/title/tt8772262
+  tmdb_url: https://www.themoviedb.org/movie/530385
+  tmdb_title: null
+  tmdb_original_title: Midsommar
+  tmdb_original_language: English
+  tmdb_director_name_1: Ari Aster
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg
 - title: 'Avengers: Endgame'
   year: 2019
   director: Anthony Russo, Joe Russo
@@ -2806,6 +2870,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6rbS8oPIgUMhQgIX8oGVTtlNgLR.jpg
+- title: 'Mamma Mia: Here We Go Again!'
+  year: 2018
+  director: Ol Parker
+  country: US
+  is_korean_director: false
+  imdb_id: tt6911608
+  imdb_url: https://www.imdb.com/title/tt6911608
+  tmdb_url: https://www.themoviedb.org/movie/458423
+  tmdb_title: null
+  tmdb_original_title: Mamma Mia! Here We Go Again
+  tmdb_original_language: English
+  tmdb_director_name_1: Ol Parker
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/aWicerX4Y7n7tUwRAVHsVcBBpj2.jpg
 - title: Raazi
   year: 2018
   director: Meghna Gulzar
@@ -3175,6 +3254,21 @@
   custom_korean_title: 우리는 같은 꿈을 꾼다
   awards:
   - berlin
+- title: 남한산성
+  year: 2017
+  director: 황동혁
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt7160176
+  imdb_url: https://www.imdb.com/title/tt7160176
+  tmdb_url: https://www.themoviedb.org/movie/437081
+  tmdb_title: The Fortress
+  tmdb_original_title: 남한산성
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Hwang Dong-hyuk
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ww0h7mVg9AdPEMjRJKAic1w3ELa.jpg
 - title: 클레어의 카메라 (Claire's Camera)
   year: 2017
   director: 홍상수
@@ -6682,6 +6776,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/lbPZ0aNoF0cHisg6DubFO2eS8so.jpg
+- title: 과속스캔들
+  year: 2008
+  director: 강형철
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt1360795
+  imdb_url: https://www.imdb.com/title/tt1360795
+  tmdb_url: https://www.themoviedb.org/movie/18384
+  tmdb_title: Scandal Makers
+  tmdb_original_title: 과속스캔들
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Kang Hyoung-chul
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1DHrv3dQpLX3x2GBbBRd05VX3dG.jpg
 - title: Vicky Cristina Barcelona
   year: 2008
   director: Woody Allen
@@ -6697,6 +6806,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/wSVeD1mw2cGE9k8rWHdTbjqGrfS.jpg
+- title: Let the Right One In
+  year: 2008
+  director: Tomas Alfredson
+  country: Sweden
+  is_korean_director: false
+  imdb_id: tt1139797
+  imdb_url: https://www.imdb.com/title/tt1139797
+  tmdb_url: https://www.themoviedb.org/movie/13310
+  tmdb_title: Let the Right One In
+  tmdb_original_title: Låt den rätte komma in
+  tmdb_original_language: Swedish
+  tmdb_director_name_1: Tomas Alfredson
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IG4WjaAOVDlLvLUkh513HSwhW8.jpg
 - title: Taken
   year: 2008
   director: Pierre Morel
@@ -6712,6 +6836,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/y5Va1WXDX6nZElVirPrGxf6w99B.jpg
+- title: Mamma Mia!
+  year: 2008
+  director: Phyllida Lloyd
+  country: US
+  is_korean_director: false
+  imdb_id: tt0795421
+  imdb_url: https://www.imdb.com/title/tt0795421
+  tmdb_url: https://www.themoviedb.org/movie/11631
+  tmdb_title: null
+  tmdb_original_title: Mamma Mia!
+  tmdb_original_language: English
+  tmdb_director_name_1: Phyllida Lloyd
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/zdUA4FNHbXPadzVOJiU0Rgn6cHR.jpg
 - title: Tokyo Sonata
   year: 2008
   director: Kiyoshi Kurosawa
@@ -6886,6 +7025,23 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/r32KWFc2jRItbAzHypGu9yHSfNs.jpg
   awards:
   - blue_dragon
+- title: 4 Months, 3 Weeks & 2 Days
+  year: 2007
+  director: Cristian Mungiu
+  country: Romania
+  is_korean_director: false
+  imdb_id: tt1032846
+  imdb_url: https://www.imdb.com/title/tt1032846
+  tmdb_url: https://www.themoviedb.org/movie/2009
+  tmdb_title: 4 Months, 3 Weeks and 2 Days
+  tmdb_original_title: 4 luni, 3 săptămîni și 2 zile
+  tmdb_original_language: Romanian
+  tmdb_director_name_1: Cristian Mungiu
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/acEtvzFPeOQwbzRWncjRLenhnKV.jpg
+  awards:
+  - cannes
 - title: Lust, Caution
   year: 2007
   director: Ang Lee
@@ -7853,6 +8009,21 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kDUUdWrbBBVqzSmm27pHFJcTvCU.jpg
   custom_korean_title: 아무도 모른다
+- title: Howl's Moving Castle
+  year: 2004
+  director: Hayao Miyazaki
+  country: Japan
+  is_korean_director: false
+  imdb_id: tt0347149
+  imdb_url: https://www.imdb.com/title/tt0347149
+  tmdb_url: https://www.themoviedb.org/movie/4935
+  tmdb_title: Howl's Moving Castle
+  tmdb_original_title: ハウルの動く城
+  tmdb_original_language: Japanese
+  tmdb_director_name_1: Hayao Miyazaki
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/13kOl2v0nD2OLbVSHnHk8GUFEhO.jpg
 - title: Harry Potter and the Prisoner of Azkaban
   year: 2004
   director: Alfonso Cuarón
@@ -8617,6 +8788,36 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/oTEmaYRKqWig5lhmwEQE0ZU3SRl.jpg
   awards:
   - oscar
+- title: 친구
+  year: 2001
+  director: 곽경택
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt0281718
+  imdb_url: https://www.imdb.com/title/tt0281718
+  tmdb_url: https://www.themoviedb.org/movie/19635
+  tmdb_title: Friend
+  tmdb_original_title: 친구
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Kwak Kyung-taek
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7al31Qw0z72G232xm7cRgQ6XWC8.jpg
+- title: Bridget Jones's Diary
+  year: 2001
+  director: Sharon Maguire
+  country: US
+  is_korean_director: false
+  imdb_id: tt0243155
+  imdb_url: https://www.imdb.com/title/tt0243155
+  tmdb_url: https://www.themoviedb.org/movie/634
+  tmdb_title: null
+  tmdb_original_title: Bridget Jones's Diary
+  tmdb_original_language: English
+  tmdb_director_name_1: Sharon Maguire
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkauRl9TosBFikftrC3OVcKWDoz.jpg
 - title: 'The Lord of the Rings: The Fellowship of the Ring'
   year: 2001
   director: Peter Jackson

@@ -1,62 +1,195 @@
-- title: Sinners
-  year: 2025
-  director: Ryan Coogler
-  country: US
-  is_korean_director: false
-  imdb_id: tt31193180
-  imdb_url: https://www.imdb.com/title/tt31193180
-  tmdb_url: https://www.themoviedb.org/movie/1233413
-  tmdb_title: null
-  tmdb_original_title: Sinners
-  tmdb_original_language: English
-  tmdb_director_name_1: Ryan Coogler
+- title: 친구
+  year: 2001
+  director: 곽경택
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt0281718
+  imdb_url: https://www.imdb.com/title/tt0281718
+  tmdb_url: https://www.themoviedb.org/movie/19635
+  tmdb_title: Friend
+  tmdb_original_title: 친구
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Kwak Kyung-taek
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4CkZl1LK6a5rXBqJB2ZP77h3N5i.jpg
-- title: 'Red Cliff (적벽대전: 거대한 전쟁의 시작)'
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7al31Qw0z72G232xm7cRgQ6XWC8.jpg
+- title: Let the Right One In
   year: 2008
-  director: John Woo
-  country: China
+  director: Tomas Alfredson
+  country: Sweden
   is_korean_director: false
-  imdb_id: tt0425637
-  imdb_url: https://www.imdb.com/title/tt0425637
-  tmdb_url: https://www.themoviedb.org/movie/12289
-  tmdb_title: Red Cliff
-  tmdb_original_title: 赤壁
-  tmdb_original_language: Chinese
-  tmdb_director_name_1: John Woo
+  imdb_id: tt1139797
+  imdb_url: https://www.imdb.com/title/tt1139797
+  tmdb_url: https://www.themoviedb.org/movie/13310
+  tmdb_title: Let the Right One In
+  tmdb_original_title: Låt den rätte komma in
+  tmdb_original_language: Swedish
+  tmdb_director_name_1: Tomas Alfredson
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eEelFTjUYJJDlwqd53VfSA8xMfj.jpg
-  custom_korean_title: '적벽대전: 거대한 전쟁의 시작'
-- title: 'Red Cliff 2 (적벽대전 2: 최후의 결전)'
-  year: 2009
-  director: John Woo
-  country: China
-  is_korean_director: false
-  imdb_id: tt1326972
-  imdb_url: https://www.imdb.com/title/tt1326972
-  tmdb_url: https://www.themoviedb.org/movie/15384
-  tmdb_title: Red Cliff II
-  tmdb_original_title: 赤壁：決戰天下
-  tmdb_original_language: Chinese
-  tmdb_director_name_1: John Woo
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IG4WjaAOVDlLvLUkh513HSwhW8.jpg
+- title: 남한산성
+  year: 2017
+  director: 황동혁
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt7160176
+  imdb_url: https://www.imdb.com/title/tt7160176
+  tmdb_url: https://www.themoviedb.org/movie/437081
+  tmdb_title: The Fortress
+  tmdb_original_title: 남한산성
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Hwang Dong-hyuk
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/h4WZHa5K941lAthsa29g0RFJJtV.jpg
-  custom_korean_title: '적벽대전 2: 최후의 결전'
-- title: Face/Off
-  year: 1997
-  director: John Woo
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ww0h7mVg9AdPEMjRJKAic1w3ELa.jpg
+- title: Frankenstein
+  year: 2025
+  director: Guillermo del Toro
   country: US
   is_korean_director: false
-  imdb_id: tt0119094
-  imdb_url: https://www.imdb.com/title/tt0119094
-  tmdb_url: https://www.themoviedb.org/movie/754
+  imdb_id: tt1312221
+  imdb_url: https://www.imdb.com/title/tt1312221
+  tmdb_url: https://www.themoviedb.org/movie/1062722
   tmdb_title: null
-  tmdb_original_title: Face/Off
+  tmdb_original_title: Frankenstein
   tmdb_original_language: English
-  tmdb_director_name_1: John Woo
+  tmdb_director_name_1: Guillermo del Toro
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/69Xzn8UdPbVnmqSChKz2RTpoNfB.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/g4JtvGlQO7DByTI6frUobqvSL3R.jpg
+- title: 과속스캔들
+  year: 2008
+  director: 강형철
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt1360795
+  imdb_url: https://www.imdb.com/title/tt1360795
+  tmdb_url: https://www.themoviedb.org/movie/18384
+  tmdb_title: Scandal Makers
+  tmdb_original_title: 과속스캔들
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Kang Hyoung-chul
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1DHrv3dQpLX3x2GBbBRd05VX3dG.jpg
+- title: It Was Just an Accident
+  year: 2025
+  director: Jafar Panahi
+  country: Iran
+  is_korean_director: false
+  imdb_id: tt36491653
+  imdb_url: https://www.imdb.com/title/tt36491653
+  tmdb_url: https://www.themoviedb.org/movie/1456349
+  tmdb_title: It Was Just an Accident
+  tmdb_original_title: یک تصادف ساده
+  tmdb_original_language: Persian
+  tmdb_director_name_1: Jafar Panahi
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eNYGj2DG3n8OrVPTfYunpPW9uas.jpg
+- title: The Room Next Door
+  year: 2024
+  director: Pedro Almodóvar
+  country: US
+  is_korean_director: false
+  imdb_id: tt29439114
+  imdb_url: https://www.imdb.com/title/tt29439114
+  tmdb_url: https://www.themoviedb.org/movie/1088514
+  tmdb_title: The Room Next Door
+  tmdb_original_title: La habitación de al lado
+  tmdb_original_language: Spanish
+  tmdb_director_name_1: Pedro Almodóvar
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qMibLyArrlBJ87AoqQBeVaFeRXp.jpg
+- title: Mamma Mia!
+  year: 2008
+  director: Phyllida Lloyd
+  country: US
+  is_korean_director: false
+  imdb_id: tt0795421
+  imdb_url: https://www.imdb.com/title/tt0795421
+  tmdb_url: https://www.themoviedb.org/movie/11631
+  tmdb_title: null
+  tmdb_original_title: Mamma Mia!
+  tmdb_original_language: English
+  tmdb_director_name_1: Phyllida Lloyd
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/zdUA4FNHbXPadzVOJiU0Rgn6cHR.jpg
+- title: 'Mamma Mia: Here We Go Again!'
+  year: 2018
+  director: Ol Parker
+  country: US
+  is_korean_director: false
+  imdb_id: tt6911608
+  imdb_url: https://www.imdb.com/title/tt6911608
+  tmdb_url: https://www.themoviedb.org/movie/458423
+  tmdb_title: null
+  tmdb_original_title: Mamma Mia! Here We Go Again
+  tmdb_original_language: English
+  tmdb_director_name_1: Ol Parker
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/aWicerX4Y7n7tUwRAVHsVcBBpj2.jpg
+- title: Bridget Jones's Diary
+  year: 2001
+  director: Sharon Maguire
+  country: US
+  is_korean_director: false
+  imdb_id: tt0243155
+  imdb_url: https://www.imdb.com/title/tt0243155
+  tmdb_url: https://www.themoviedb.org/movie/634
+  tmdb_title: null
+  tmdb_original_title: Bridget Jones's Diary
+  tmdb_original_language: English
+  tmdb_director_name_1: Sharon Maguire
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkauRl9TosBFikftrC3OVcKWDoz.jpg
+- title: Howl's Moving Castle
+  year: 2004
+  director: Hayao Miyazaki
+  country: Japan
+  is_korean_director: false
+  imdb_id: tt0347149
+  imdb_url: https://www.imdb.com/title/tt0347149
+  tmdb_url: https://www.themoviedb.org/movie/4935
+  tmdb_title: Howl's Moving Castle
+  tmdb_original_title: ハウルの動く城
+  tmdb_original_language: Japanese
+  tmdb_director_name_1: Hayao Miyazaki
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/13kOl2v0nD2OLbVSHnHk8GUFEhO.jpg
+- title: Midsommar
+  year: 2019
+  director: Ari Aster
+  country: US
+  is_korean_director: false
+  imdb_id: tt8772262
+  imdb_url: https://www.imdb.com/title/tt8772262
+  tmdb_url: https://www.themoviedb.org/movie/530385
+  tmdb_title: null
+  tmdb_original_title: Midsommar
+  tmdb_original_language: English
+  tmdb_director_name_1: Ari Aster
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg
+- title: 4 Months, 3 Weeks & 2 Days
+  year: 2007
+  director: Cristian Mungiu
+  country: Romania
+  is_korean_director: false
+  imdb_id: tt1032846
+  imdb_url: https://www.imdb.com/title/tt1032846
+  tmdb_url: https://www.themoviedb.org/movie/2009
+  tmdb_title: 4 Months, 3 Weeks and 2 Days
+  tmdb_original_title: 4 luni, 3 săptămîni și 2 zile
+  tmdb_original_language: Romanian
+  tmdb_director_name_1: Cristian Mungiu
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/acEtvzFPeOQwbzRWncjRLenhnKV.jpg
