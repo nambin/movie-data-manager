@@ -170,6 +170,21 @@
   tmdb_director_name_2: Chris Appelhans
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AjlRXTpRLAIiuofNqKcqrpUfPCZ.jpg
+- title: 'Avatar: Fire and Ash'
+  year: 2025
+  director: James Cameron
+  country: US
+  is_korean_director: false
+  imdb_id: tt1757678
+  imdb_url: https://www.imdb.com/title/tt1757678
+  tmdb_url: https://www.themoviedb.org/movie/83533
+  tmdb_title: null
+  tmdb_original_title: 'Avatar: Fire and Ash'
+  tmdb_original_language: English
+  tmdb_director_name_1: James Cameron
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/g96wHxU7EnoIFwemb2RgohIXrgW.jpg
 - title: Frankenstein
   year: 2025
   director: Guillermo del Toro
@@ -5917,6 +5932,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4ZuTrrDQhCS9f6KzIX6HfsjjyMd.jpg
+- title: Zero Dark Thirty
+  year: 2012
+  director: Kathryn Bigelow
+  country: US
+  is_korean_director: false
+  imdb_id: tt1790885
+  imdb_url: https://www.imdb.com/title/tt1790885
+  tmdb_url: https://www.themoviedb.org/movie/97630
+  tmdb_title: null
+  tmdb_original_title: Zero Dark Thirty
+  tmdb_original_language: English
+  tmdb_director_name_1: Kathryn Bigelow
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/wNSdSSxowM3WIqmPJNg3RagYbwP.jpg
 - title: The Act Of Killing
   year: 2012
   director: Joshua Oppenheimer
@@ -6141,6 +6171,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbMp0oIFmYnw0i5gzRoKt8cH5ve.jpg
+- title: 북촌방향
+  year: 2011
+  director: 홍상수
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt1922561
+  imdb_url: https://www.imdb.com/title/tt1922561
+  tmdb_url: https://www.themoviedb.org/movie/85525
+  tmdb_title: The Day He Arrives
+  tmdb_original_title: 북촌방향
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Hong Sang-soo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/nYgTNFSFKJMDQF4mq9vt3ieJ7eQ.jpg
 - title: 고지전
   year: 2011
   director: 장훈
@@ -6434,6 +6479,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/twx3c3SYYvpkuKOpZ57yfodNr0f.jpg
+- title: 방자전
+  year: 2010
+  director: 김대우
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt1905059
+  imdb_url: https://www.imdb.com/title/tt1905059
+  tmdb_url: https://www.themoviedb.org/movie/50727
+  tmdb_title: The Servant
+  tmdb_original_title: 방자전
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Kim Dae-woo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/t7vY6aU6rDNNDGFni604dk6FgIR.jpg
 - title: 이끼
   year: 2010
   director: 강우석
@@ -8107,6 +8167,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/w4Y1WJMUP6w2hZo5FnQdZL3OWjN.jpg
+- title: 'Star Wars: Episode III - Revenge of the Sith'
+  year: 2005
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0121766
+  imdb_url: https://www.imdb.com/title/tt0121766
+  tmdb_url: https://www.themoviedb.org/movie/1895
+  tmdb_title: null
+  tmdb_original_title: 'Star Wars: Episode III - Revenge of the Sith'
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg
 - title: Sin City
   year: 2005
   director: Frank Miller, Quentin Tarantino
@@ -8983,6 +9058,21 @@
   tmdb_director_name_2: Luc Dardenne
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbAG0JOVgcOIH8LVVynw87ONgej.jpg
+- title: 'Star Wars: Episode II - Attack of the Clones'
+  year: 2002
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0121765
+  imdb_url: https://www.imdb.com/title/tt0121765
+  tmdb_url: https://www.themoviedb.org/movie/1894
+  tmdb_title: null
+  tmdb_original_title: 'Star Wars: Episode II - Attack of the Clones'
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/oZNPzxqM2s5DyVWab09NTQScDQt.jpg
 - title: City of God
   year: 2002
   director: Fernando Meirelles, Kátia Lund
@@ -9865,6 +9955,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/yFWQkz2ynjwsazT6xQiIXEUsyuh.jpg
+- title: 'Star Wars: Episode I - The Phantom Menace'
+  year: 1999
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0120915
+  imdb_url: https://www.imdb.com/title/tt0120915
+  tmdb_url: https://www.themoviedb.org/movie/1893
+  tmdb_title: null
+  tmdb_original_title: 'Star Wars: Episode I - The Phantom Menace'
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg
 - title: Fight Club
   year: 1999
   director: David Fincher
@@ -10195,6 +10300,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6yBgZJYqaR4XkxwjsB9tS4GK1ZN.jpg
+- title: Children of Heaven
+  year: 1997
+  director: Majid Majidi
+  country: Iran
+  is_korean_director: false
+  imdb_id: tt0118849
+  imdb_url: https://www.imdb.com/title/tt0118849
+  tmdb_url: https://www.themoviedb.org/movie/21334
+  tmdb_title: Children of Heaven
+  tmdb_original_title: بچه‌های آسمان
+  tmdb_original_language: Persian
+  tmdb_director_name_1: Majid Majidi
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/jWqh1CJWAEcxckMRrf6ARhIEh0R.jpg
 - title: Cure
   year: 1997
   director: Kiyoshi Kurosawa
@@ -10597,6 +10717,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/21nqRJ6ofEgVvEl68J4O9V26Xzy.jpg
+- title: Dead Man Walking
+  year: 1995
+  director: Tim Robbins
+  country: US
+  is_korean_director: false
+  imdb_id: tt0112818
+  imdb_url: https://www.imdb.com/title/tt0112818
+  tmdb_url: https://www.themoviedb.org/movie/687
+  tmdb_title: null
+  tmdb_original_title: Dead Man Walking
+  tmdb_original_language: English
+  tmdb_director_name_1: Tim Robbins
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eShxyjhWoFl3BwsuEmVsr4nLaMZ.jpg
 - title: 12 Monkeys
   year: 1995
   director: Terry Gilliam
@@ -10888,6 +11023,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cUaCpjVDefYShKyLmkcDsiPaBHn.jpg
+- title: Léon
+  year: 1994
+  director: Luc Besson
+  country: France
+  is_korean_director: false
+  imdb_id: tt0110413
+  imdb_url: https://www.imdb.com/title/tt0110413
+  tmdb_url: https://www.themoviedb.org/movie/101
+  tmdb_title: 'Léon: The Professional'
+  tmdb_original_title: Léon
+  tmdb_original_language: French
+  tmdb_director_name_1: Luc Besson
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/bxB2q91nKYp8JNzqE7t7TWBVupB.jpg
 - title: 'Three Colours: Red'
   year: 1994
   director: Krzysztof Kieślowski
@@ -11266,6 +11416,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rLOk4z9zL1tTukIYV56P94aZXKk.jpg
+- title: Basic Instinct
+  year: 1992
+  director: Paul Verhoeven
+  country: US
+  is_korean_director: false
+  imdb_id: tt0103772
+  imdb_url: https://www.imdb.com/title/tt0103772
+  tmdb_url: https://www.themoviedb.org/movie/402
+  tmdb_title: null
+  tmdb_original_title: Basic Instinct
+  tmdb_original_language: English
+  tmdb_director_name_1: Paul Verhoeven
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/76Ts0yoHk8kVQj9MMnoMixhRWoh.jpg
 - title: The Last of the Mohicans
   year: 1992
   director: Michael Mann
@@ -11938,6 +12103,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kjC8I6fvchcxPBdh4bw4w8Px8ue.jpg
+- title: 'Star Wars: Return of the Jedi'
+  year: 1983
+  director: Richard Marquand
+  country: US
+  is_korean_director: false
+  imdb_id: tt0086190
+  imdb_url: https://www.imdb.com/title/tt0086190
+  tmdb_url: https://www.themoviedb.org/movie/1892
+  tmdb_title: null
+  tmdb_original_title: Return of the Jedi
+  tmdb_original_language: English
+  tmdb_director_name_1: Richard Marquand
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/jQYlydvHm3kUix1f8prMucrplhm.jpg
 - title: Fanny and Alexander
   year: 1982
   director: Ingmar Bergman
@@ -12064,6 +12244,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/1WV7WlTS8LI1L5NkCgjWT9GSW3O.jpg
+- title: 'Star Wars: The Empire Strikes Back'
+  year: 1980
+  director: Irvin Kershner
+  country: US
+  is_korean_director: false
+  imdb_id: tt0080684
+  imdb_url: https://www.imdb.com/title/tt0080684
+  tmdb_url: https://www.themoviedb.org/movie/1891
+  tmdb_title: null
+  tmdb_original_title: The Empire Strikes Back
+  tmdb_original_language: English
+  tmdb_director_name_1: Irvin Kershner
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg
 - title: Manhattan
   year: 1979
   director: Woody Allen
@@ -12129,6 +12324,21 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/yaPx3cK9zGFX3SbcKwxWM1QIbUh.jpg
+- title: Star Wars
+  year: 1977
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0076759
+  imdb_url: https://www.imdb.com/title/tt0076759
+  tmdb_url: https://www.themoviedb.org/movie/11
+  tmdb_title: null
+  tmdb_original_title: Star Wars
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg
 - title: Eraserhead
   year: 1977
   director: David Lynch

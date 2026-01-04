@@ -1,600 +1,210 @@
-- title: Cameraperson
-  year: 2016
-  director: Kirsten Johnson
-  country: US
-  is_korean_director: false
-  imdb_id: tt5375040
-  imdb_url: https://www.imdb.com/title/tt5375040
-  tmdb_url: https://www.themoviedb.org/movie/376534
-  tmdb_title: null
-  tmdb_original_title: Cameraperson
-  tmdb_original_language: English
-  tmdb_director_name_1: Kirsten Johnson
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/p1Od99QxnzCB9vKu9uxkZQlPZQ5.jpg
-- title: Romeo and Juliet
-  year: 1968
-  director: Franco Zeffirelli
-  country: Italia
-  is_korean_director: false
-  imdb_id: tt0063518
-  imdb_url: https://www.imdb.com/title/tt0063518
-  tmdb_url: https://www.themoviedb.org/movie/6003
-  tmdb_title: null
-  tmdb_original_title: Romeo and Juliet
-  tmdb_original_language: English
-  tmdb_director_name_1: Franco Zeffirelli
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vaBQKLbSWkXGTOlsz9ARdJP4lvg.jpg
-- title: Happy Hour
-  year: 2015
-  director: Ryusuke Hamaguchi
-  country: Japan
-  is_korean_director: false
-  imdb_id: tt4780662
-  imdb_url: https://www.imdb.com/title/tt4780662
-  tmdb_url: https://www.themoviedb.org/movie/354759
-  tmdb_title: null
-  tmdb_original_title: Happy Hour
-  tmdb_original_language: Japanese
-  tmdb_director_name_1: Ryūsuke Hamaguchi
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vocqarMfsL4TtyDqf9eMD8FdqnR.jpg
-- title: 남자의 향기
-  year: 1998
-  director: 장현수
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0294759
-  imdb_url: https://www.imdb.com/title/tt0294759
-  tmdb_url: https://www.themoviedb.org/movie/349515
-  tmdb_title: Scent of a Man
-  tmdb_original_title: 남자의 향기
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Jang Hyeon-su
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/sPBIVLDKAb1lROUyu2MtLxPZhan.jpg
-- title: The Red Shoes
-  year: 1948
-  director: Michael Powell and Emeric Pressburger
-  country: UK
-  is_korean_director: false
-  imdb_id: tt0040725
-  imdb_url: https://www.imdb.com/title/tt0040725
-  tmdb_url: https://www.themoviedb.org/movie/19542
-  tmdb_title: null
-  tmdb_original_title: The Red Shoes
-  tmdb_original_language: English
-  tmdb_director_name_1: Michael Powell
-  tmdb_director_name_2: Emeric Pressburger
-  tmdb_num_directors: 2
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/w6qzOivBPyX8ph6UvZaYMPgLiyx.jpg
-- title: 태양은 없다
-  year: 1999
-  director: 김성수
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0240077
-  imdb_url: https://www.imdb.com/title/tt0240077
-  tmdb_url: https://www.themoviedb.org/movie/267407
-  tmdb_title: City of the Rising Sun
-  tmdb_original_title: 태양은 없다
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Sung-soo
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/k6b2I8vj0uHskPQfrfZIWIUaYwF.jpg
-- title: Marona's Fantastic Tale
-  year: 2020
-  director: Anca Damian
-  country: Romania
-  is_korean_director: false
-  imdb_id: tt6785292
-  imdb_url: https://www.imdb.com/title/tt6785292
-  tmdb_url: https://www.themoviedb.org/movie/568381
-  tmdb_title: Marona's Fantastic Tale
-  tmdb_original_title: L'Extraordinaire Voyage de Marona
-  tmdb_original_language: French
-  tmdb_director_name_1: Anca Damian
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4r3EKD3v2q9vx9nGj5ziq8oUtfp.jpg
-- title: Serendipity
-  year: 2001
-  director: Peter Chelsom
-  country: US
-  is_korean_director: false
-  imdb_id: tt0240890
-  imdb_url: https://www.imdb.com/title/tt0240890
-  tmdb_url: https://www.themoviedb.org/movie/9778
-  tmdb_title: null
-  tmdb_original_title: Serendipity
-  tmdb_original_language: English
-  tmdb_director_name_1: Peter Chelsom
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/4jS66Qmq2Ru5S2YzHVknGd4xJyT.jpg
-- title: The Bucket List
-  year: 2007
-  director: Rob Reiner
-  country: US
-  is_korean_director: false
-  imdb_id: tt0825232
-  imdb_url: https://www.imdb.com/title/tt0825232
-  tmdb_url: https://www.themoviedb.org/movie/7350
-  tmdb_title: null
-  tmdb_original_title: The Bucket List
-  tmdb_original_language: English
-  tmdb_director_name_1: Rob Reiner
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/idbNSe8zsYKQL97dJApfOrDSdya.jpg
-- title: 곤지암
-  year: 2018
-  director: 정범식
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt8119752
-  imdb_url: https://www.imdb.com/title/tt8119752
-  tmdb_url: https://www.themoviedb.org/movie/508642
-  tmdb_title: 'Gonjiam: Haunted Asylum'
-  tmdb_original_title: 곤지암
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Jung Bum-shik
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/fNqlsmu2tiI1bXcpU31yjHPkiJz.jpg
-- title: Cloverfield
-  year: 2008
-  director: Matt Reeves
-  country: US
-  is_korean_director: false
-  imdb_id: tt1060277
-  imdb_url: https://www.imdb.com/title/tt1060277
-  tmdb_url: https://www.themoviedb.org/movie/7191
-  tmdb_title: null
-  tmdb_original_title: Cloverfield
-  tmdb_original_language: English
-  tmdb_director_name_1: Matt Reeves
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qIegUGJqyMMCRjkKV1s7A9MqdJ8.jpg
-- title: Ring
-  year: 1998
-  director: Hideo Nakata
-  country: Japan
-  is_korean_director: false
-  imdb_id: tt0178868
-  imdb_url: https://www.imdb.com/title/tt0178868
-  tmdb_url: https://www.themoviedb.org/movie/2671
-  tmdb_title: Ring
-  tmdb_original_title: リング
-  tmdb_original_language: Japanese
-  tmdb_director_name_1: Hideo Nakata
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1YINof6kN5yRdePEbcU5360ejoq.jpg
-- title: 최종병기 활
-  year: 2011
-  director: 김한민
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt2025526
-  imdb_url: https://www.imdb.com/title/tt2025526
-  tmdb_url: https://www.themoviedb.org/movie/79224
-  tmdb_title: War of the Arrows
-  tmdb_original_title: 최종병기 활
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Han-min
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/iOTRRHt9GNbUfQhV3MhMCznjrPI.jpg
-- title: 극락도 살인사건
-  year: 2007
-  director: 김한민
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1662506
-  imdb_url: https://www.imdb.com/title/tt1662506
-  tmdb_url: https://www.themoviedb.org/movie/27516
-  tmdb_title: Paradise Murdered
-  tmdb_original_title: 극락도 살인사건
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Han-min
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/buvZgMoiYVAmDmZ9o2qmPU7FCoO.jpg
-- title: 접속
-  year: 1997
-  director: 장윤현
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0140914
-  imdb_url: https://www.imdb.com/title/tt0140914
-  tmdb_url: https://www.themoviedb.org/movie/183507
-  tmdb_title: The Contact
-  tmdb_original_title: 접속
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Chang Youn-hyun
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/fOcwRDDi7yQy3a2B9BN3Rb8jHZ6.jpg
-- title: 텔 미 썸딩
-  year: 1999
-  director: 장윤현
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0220806
-  imdb_url: https://www.imdb.com/title/tt0220806
-  tmdb_url: https://www.themoviedb.org/movie/16371
-  tmdb_title: Tell Me Something
-  tmdb_original_title: 텔 미 썸딩
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Chang Youn-hyun
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/jRyGUU4WiK8EOQqeIUvhutITFlr.jpg
-- title: 인어공주
-  year: 2004
-  director: 박흥식
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0417782
-  imdb_url: https://www.imdb.com/title/tt0417782
-  tmdb_url: https://www.themoviedb.org/movie/137298
-  tmdb_title: My Mother the Mermaid
-  tmdb_original_title: 인어공주
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Park Heung-sik
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/yjLps4IPgtzoGahlPnyiM0tI5G8.jpg
-- title: 내 마음의 풍금
-  year: 1999
-  director: 이영재
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0235452
-  imdb_url: https://www.imdb.com/title/tt0235452
-  tmdb_url: https://www.themoviedb.org/movie/142499
-  tmdb_title: The Harmonium in My Memory
-  tmdb_original_title: 내 마음의 풍금
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Young-jae
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/vWVuht8stXzNF38bfxTHgK80SOW.jpg
-- title: 약속
-  year: 1998
-  director: 김유진
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0289633
-  imdb_url: https://www.imdb.com/title/tt0289633
-  tmdb_url: https://www.themoviedb.org/movie/294118
-  tmdb_title: A Promise
-  tmdb_original_title: 약속
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Yoo-jin
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/v7KZlNAvELz2gfdvwPJOmqvYjoT.jpg
-- title: 나도 아내가 있었으면 좋겠다
-  year: 2001
-  director: 박흥식
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0287583
-  imdb_url: https://www.imdb.com/title/tt0287583
-  tmdb_url: https://www.themoviedb.org/movie/161336
-  tmdb_title: I Wish I Had a Wife
-  tmdb_original_title: 나도 아내가 있었으면 좋겠다
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Park Heung-sik
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/f5OrCWQ8r4My3hyhsqzAbB7qJ9K.jpg
-- title: 너는 내 운명
-  year: 2005
-  director: 박진표
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0479773
-  imdb_url: https://www.imdb.com/title/tt0479773
-  tmdb_url: https://www.themoviedb.org/movie/112283
-  tmdb_title: You Are My Sunshine
-  tmdb_original_title: 너는 내 운명
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Park Jin-pyo
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/iAFj8oCQmTfBbQzDe2ptLzWUzD1.jpg
-- title: 하녀
-  year: 2010
-  director: 임상수
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1314652
-  imdb_url: https://www.imdb.com/title/tt1314652
-  tmdb_url: https://www.themoviedb.org/movie/45202
-  tmdb_title: The Housemaid
-  tmdb_original_title: 하녀
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Im Sang-soo
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/tx1aeNr7GGChRrcZ9lMV2DwEvgo.jpg
-- title: 생일
-  year: 2019
-  director: 이종언
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt10248334
-  imdb_url: https://www.imdb.com/title/tt10248334
-  tmdb_url: https://www.themoviedb.org/movie/574297
-  tmdb_title: Birthday
-  tmdb_original_title: 생일
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Jong-un
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/brlmQTkZwi1HYBzUf2l4cv1LF17.jpg
-- title: 후아유
-  year: 2002
-  director: 최호
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0320763
-  imdb_url: https://www.imdb.com/title/tt0320763
-  tmdb_url: https://www.themoviedb.org/movie/201334
-  tmdb_title: Who Are You?
-  tmdb_original_title: 후아유
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Choi Ho
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3yOjvsm41XoamwWDtpzpY3LBRpy.jpg
-- title: 광식이 동생 광태
-  year: 2005
-  director: 김현석
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0488736
-  imdb_url: https://www.imdb.com/title/tt0488736
-  tmdb_url: https://www.themoviedb.org/movie/57147
-  tmdb_title: When Romance Meets Destiny
-  tmdb_original_title: 광식이 동생 광태
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Hyun-seok
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/945Z4EZnKL1SSkcJ9wxmFJvnaDm.jpg
-- title: 시라노; 연애조작단
-  year: 2010
-  director: 김현석
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1786668
-  imdb_url: https://www.imdb.com/title/tt1786668
-  tmdb_url: https://www.themoviedb.org/movie/53514
-  tmdb_title: Cyrano Agency
-  tmdb_original_title: 시라노; 연애조작단
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Hyun-seok
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/twx3c3SYYvpkuKOpZ57yfodNr0f.jpg
-- title: 미녀는 괴로워
-  year: 2006
-  director: 김용화
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0940642
-  imdb_url: https://www.imdb.com/title/tt0940642
-  tmdb_url: https://www.themoviedb.org/movie/18377
-  tmdb_title: 200 Pounds Beauty
-  tmdb_original_title: 미녀는 괴로워
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Yong-hwa
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/AnyJmyOQQGiqR9DLIiQ9aejIbkx.jpg
-- title: 국가대표
-  year: 2009
-  director: 김용화
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt1298648
-  imdb_url: https://www.imdb.com/title/tt1298648
-  tmdb_url: https://www.themoviedb.org/movie/37870
-  tmdb_title: Take Off
-  tmdb_original_title: 국가대표
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Yong-hwa
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/wH4XJtvNPDzRdJjHV7s8pszuvRM.jpg
-- title: 신과함께-죄와 벌
-  year: 2017
-  director: 김용화
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt7160070
-  imdb_url: https://www.imdb.com/title/tt7160070
-  tmdb_url: https://www.themoviedb.org/movie/397567
-  tmdb_title: 'Along with the Gods: The Two Worlds'
-  tmdb_original_title: 신과함께-죄와 벌
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Yong-hwa
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/gJSvIsI6oQfFim0PGyuuiCYfqKs.jpg
-- title: 국화꽃 향기
-  year: 2003
-  director: 이정욱
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0349517
-  imdb_url: https://www.imdb.com/title/tt0349517
-  tmdb_url: https://www.themoviedb.org/movie/29978
-  tmdb_title: Scent of Love
-  tmdb_original_title: 국화꽃 향기
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Jeong-wook
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/391lp6iwxhoWKoIX4f083KnUgy1.jpg
-- title: 은교
-  year: 2012
-  director: 정지우
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt2390253
-  imdb_url: https://www.imdb.com/title/tt2390253
-  tmdb_url: https://www.themoviedb.org/movie/118451
-  tmdb_title: Eungyo
-  tmdb_original_title: 은교
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Jung Ji-woo
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/rbxlxwD0YEK31Fm0QUqDlUo6HZx.jpg
-- title: 번지점프를 하다
-  year: 2001
-  director: 김대승
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0276818
-  imdb_url: https://www.imdb.com/title/tt0276818
-  tmdb_url: https://www.themoviedb.org/movie/83013
-  tmdb_title: Bungee Jumping of Their Own
-  tmdb_original_title: 번지점프를 하다
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Dae-seung
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/dJTDjWhcy67lRfFwRXJkcyvHEMU.jpg
-- title: '후궁: 제왕의 첩'
-  year: 2012
-  director: 김대승
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt2544120
-  imdb_url: https://www.imdb.com/title/tt2544120
-  tmdb_url: https://www.themoviedb.org/movie/122126
-  tmdb_title: The Concubine
-  tmdb_original_title: '후궁: 제왕의 첩'
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Kim Dae-seung
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cLT2eYXoDSXWkqJQcDqVinxIkf0.jpg
-- title: All We Imagine as Light
-  year: 2024
-  director: Payal Kapadia
-  country: India
-  is_korean_director: false
-  imdb_id: tt32086077
-  imdb_url: https://www.imdb.com/title/tt32086077
-  tmdb_url: https://www.themoviedb.org/movie/927547
-  tmdb_title: All We Imagine as Light
-  tmdb_original_title: പ്രഭയായ് നിനച്ചതെല്ലാം
-  tmdb_original_language: Malayalam
-  tmdb_director_name_1: Payal Kapadia
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/ruImrzB4POsrgwCMozmOBV67zs5.jpg
-- title: Hard Truths
-  year: 2024
-  director: Mike Leigh
-  country: UK
-  is_korean_director: false
-  imdb_id: tt11891850
-  imdb_url: https://www.imdb.com/title/tt11891850
-  tmdb_url: https://www.themoviedb.org/movie/1013154
-  tmdb_title: null
-  tmdb_original_title: Hard Truths
-  tmdb_original_language: English
-  tmdb_director_name_1: Mike Leigh
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eEj1TGrGc4IQ8bscFC17Ggdg6ft.jpg
-- title: 시월애
-  year: 2000
-  director: 이현승
-  country: Korea
-  is_korean_director: true
-  imdb_id: tt0282599
-  imdb_url: https://www.imdb.com/title/tt0282599
-  tmdb_url: https://www.themoviedb.org/movie/12650
-  tmdb_title: Il Mare
-  tmdb_original_title: 시월애
-  tmdb_original_language: Korean
-  tmdb_director_name_1: Lee Hyun-seung
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/93A4yzQPQKV34XBECN8EsBzGlu0.jpg
-- title: 'Wake Up Dead Man: A Knives Out Mystery'
+- title: 'Avatar: Fire and Ash'
   year: 2025
-  director: Rian Johnson
+  director: James Cameron
   country: US
   is_korean_director: false
-  imdb_id: tt14364480
-  imdb_url: https://www.imdb.com/title/tt14364480
-  tmdb_url: https://www.themoviedb.org/movie/812583
+  imdb_id: tt1757678
+  imdb_url: https://www.imdb.com/title/tt1757678
+  tmdb_url: https://www.themoviedb.org/movie/83533
   tmdb_title: null
-  tmdb_original_title: 'Wake Up Dead Man: A Knives Out Mystery'
+  tmdb_original_title: 'Avatar: Fire and Ash'
   tmdb_original_language: English
-  tmdb_director_name_1: Rian Johnson
+  tmdb_director_name_1: James Cameron
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eDKPKlMtHjRQimYQz4eOgKYW5q6.jpg
-- title: 홀리데이
-  year: 2006
-  director: 양윤호
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/g96wHxU7EnoIFwemb2RgohIXrgW.jpg
+- title: 북촌방향
+  year: 2011
+  director: 홍상수
   country: Korea
   is_korean_director: true
-  imdb_id: tt0757223
-  imdb_url: https://www.imdb.com/title/tt0757223
-  tmdb_url: https://www.themoviedb.org/movie/13311
-  tmdb_title: Holiday
-  tmdb_original_title: 홀리데이
+  imdb_id: tt1922561
+  imdb_url: https://www.imdb.com/title/tt1922561
+  tmdb_url: https://www.themoviedb.org/movie/85525
+  tmdb_title: The Day He Arrives
+  tmdb_original_title: 북촌방향
   tmdb_original_language: Korean
-  tmdb_director_name_1: Yun-ho Yang
+  tmdb_director_name_1: Hong Sang-soo
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/bjYhn9XRzAIVixo8WgoQLA9jngS.jpg
-- title: Air Force One
-  year: 1997
-  director: Wolfgang Petersen
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/nYgTNFSFKJMDQF4mq9vt3ieJ7eQ.jpg
+- title: Zero Dark Thirty
+  year: 2012
+  director: Kathryn Bigelow
   country: US
   is_korean_director: false
-  imdb_id: tt0118571
-  imdb_url: https://www.imdb.com/title/tt0118571
-  tmdb_url: https://www.themoviedb.org/movie/9772
+  imdb_id: tt1790885
+  imdb_url: https://www.imdb.com/title/tt1790885
+  tmdb_url: https://www.themoviedb.org/movie/97630
   tmdb_title: null
-  tmdb_original_title: Air Force One
+  tmdb_original_title: Zero Dark Thirty
   tmdb_original_language: English
-  tmdb_director_name_1: Wolfgang Petersen
+  tmdb_director_name_1: Kathryn Bigelow
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/evO1iENjLpUnbwjnt5XK85jRYob.jpg
-- title: Miséricorde
-  year: 2024
-  director: Alain Guiraudie
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/wNSdSSxowM3WIqmPJNg3RagYbwP.jpg
+- title: 방자전
+  year: 2010
+  director: 김대우
+  country: Korea
+  is_korean_director: true
+  imdb_id: tt1905059
+  imdb_url: https://www.imdb.com/title/tt1905059
+  tmdb_url: https://www.themoviedb.org/movie/50727
+  tmdb_title: The Servant
+  tmdb_original_title: 방자전
+  tmdb_original_language: Korean
+  tmdb_director_name_1: Kim Dae-woo
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/t7vY6aU6rDNNDGFni604dk6FgIR.jpg
+- title: 'Star Wars: Episode III - Revenge of the Sith'
+  year: 2005
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0121766
+  imdb_url: https://www.imdb.com/title/tt0121766
+  tmdb_url: https://www.themoviedb.org/movie/1895
+  tmdb_title: null
+  tmdb_original_title: 'Star Wars: Episode III - Revenge of the Sith'
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg
+- title: 'Star Wars: Episode II - Attack of the Clones'
+  year: 2002
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0121765
+  imdb_url: https://www.imdb.com/title/tt0121765
+  tmdb_url: https://www.themoviedb.org/movie/1894
+  tmdb_title: null
+  tmdb_original_title: 'Star Wars: Episode II - Attack of the Clones'
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/oZNPzxqM2s5DyVWab09NTQScDQt.jpg
+- title: 'Star Wars: Episode I - The Phantom Menace'
+  year: 1999
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0120915
+  imdb_url: https://www.imdb.com/title/tt0120915
+  tmdb_url: https://www.themoviedb.org/movie/1893
+  tmdb_title: null
+  tmdb_original_title: 'Star Wars: Episode I - The Phantom Menace'
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg
+- title: Children of Heaven
+  year: 1997
+  director: Majid Majidi
+  country: Iran
+  is_korean_director: false
+  imdb_id: tt0118849
+  imdb_url: https://www.imdb.com/title/tt0118849
+  tmdb_url: https://www.themoviedb.org/movie/21334
+  tmdb_title: Children of Heaven
+  tmdb_original_title: بچه‌های آسمان
+  tmdb_original_language: Persian
+  tmdb_director_name_1: Majid Majidi
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/jWqh1CJWAEcxckMRrf6ARhIEh0R.jpg
+- title: Dead Man Walking
+  year: 1995
+  director: Tim Robbins
+  country: US
+  is_korean_director: false
+  imdb_id: tt0112818
+  imdb_url: https://www.imdb.com/title/tt0112818
+  tmdb_url: https://www.themoviedb.org/movie/687
+  tmdb_title: null
+  tmdb_original_title: Dead Man Walking
+  tmdb_original_language: English
+  tmdb_director_name_1: Tim Robbins
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/eShxyjhWoFl3BwsuEmVsr4nLaMZ.jpg
+- title: Léon
+  year: 1994
+  director: Luc Besson
   country: France
   is_korean_director: false
-  imdb_id: tt32085997
-  imdb_url: https://www.imdb.com/title/tt32085997
-  tmdb_url: https://www.themoviedb.org/movie/1063574
-  tmdb_title: Misericordia
-  tmdb_original_title: Miséricorde
+  imdb_id: tt0110413
+  imdb_url: https://www.imdb.com/title/tt0110413
+  tmdb_url: https://www.themoviedb.org/movie/101
+  tmdb_title: 'Léon: The Professional'
+  tmdb_original_title: Léon
   tmdb_original_language: French
-  tmdb_director_name_1: Alain Guiraudie
+  tmdb_director_name_1: Luc Besson
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/7LVCXVdsGPPXRYGu5SRqgfVP96h.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/bxB2q91nKYp8JNzqE7t7TWBVupB.jpg
+- title: Basic Instinct
+  year: 1992
+  director: Paul Verhoeven
+  country: US
+  is_korean_director: false
+  imdb_id: tt0103772
+  imdb_url: https://www.imdb.com/title/tt0103772
+  tmdb_url: https://www.themoviedb.org/movie/402
+  tmdb_title: null
+  tmdb_original_title: Basic Instinct
+  tmdb_original_language: English
+  tmdb_director_name_1: Paul Verhoeven
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/76Ts0yoHk8kVQj9MMnoMixhRWoh.jpg
+- title: 'Star Wars: Return of the Jedi'
+  year: 1983
+  director: Richard Marquand
+  country: US
+  is_korean_director: false
+  imdb_id: tt0086190
+  imdb_url: https://www.imdb.com/title/tt0086190
+  tmdb_url: https://www.themoviedb.org/movie/1892
+  tmdb_title: null
+  tmdb_original_title: Return of the Jedi
+  tmdb_original_language: English
+  tmdb_director_name_1: Richard Marquand
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/jQYlydvHm3kUix1f8prMucrplhm.jpg
+- title: 'Star Wars: The Empire Strikes Back'
+  year: 1980
+  director: Irvin Kershner
+  country: US
+  is_korean_director: false
+  imdb_id: tt0080684
+  imdb_url: https://www.imdb.com/title/tt0080684
+  tmdb_url: https://www.themoviedb.org/movie/1891
+  tmdb_title: null
+  tmdb_original_title: The Empire Strikes Back
+  tmdb_original_language: English
+  tmdb_director_name_1: Irvin Kershner
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg
+- title: Star Wars
+  year: 1977
+  director: George Lucas
+  country: US
+  is_korean_director: false
+  imdb_id: tt0076759
+  imdb_url: https://www.imdb.com/title/tt0076759
+  tmdb_url: https://www.themoviedb.org/movie/11
+  tmdb_title: null
+  tmdb_original_title: Star Wars
+  tmdb_original_language: English
+  tmdb_director_name_1: George Lucas
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg
