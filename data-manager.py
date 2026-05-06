@@ -477,6 +477,7 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 
             movie_entry.pop("my_best", None)
             movie_entry.pop("awards", None)
+            movie_entry.pop("award_names", None)
             movie_entry.pop("note", None)
 
             # Populate my preferences.
@@ -490,6 +491,9 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 movie_entry["note"] = row[7].strip()
 
             # Populate award information.
+            # `award_names` holds the full real-name strings sourced from the CSV (cols 6-7)
+            # or the hardcoded override. `awards` is the list of badge keys consumed by
+            # nambin.github.io/movies.html, derived from `award_names` via _FILM_AWARDS.
             _FILM_AWARDS = {
                 "청룡영화제 최우수 작품상": "blue_dragon",
                 "Oscar Best Picture": "oscar",
@@ -498,19 +502,29 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
                 "Venice Leone d’oro": "venice",
                 "Berlin Goldener Bär": "berlin",
             }
-            _HARDCODED_AWARDS = {
-                ("봉준호", "기생충 (Parasite)"): ["blue_dragon", "oscar", "cannes"],
+            _HARDCODED_AWARD_NAMES = {
+                ("봉준호", "기생충 (Parasite)"): [
+                    "청룡영화제 최우수 작품상",
+                    "Cannes Palme d'Or",
+                    "Oscar Best Picture",
+                ],
             }
-            if (director, title) in _HARDCODED_AWARDS:
-                movie_entry["awards"] = _HARDCODED_AWARDS[(director, title)]
-                continue
 
-            if row[5] in _FILM_AWARDS or row[6] in _FILM_AWARDS:
+            if (director, title) in _HARDCODED_AWARD_NAMES:
+                award_names = list(_HARDCODED_AWARD_NAMES[(director, title)])
+            else:
+                award_names = []
+                for col in (row[5].strip(), row[6].strip()):
+                    if col and col not in award_names:
+                        award_names.append(col)
+
+            if award_names:
+                movie_entry["award_names"] = award_names
                 awards = []
-                for award in _FILM_AWARDS.keys():
-                    if award == row[5] or award == row[6]:
-                        if award not in awards:
-                            awards.append(_FILM_AWARDS[award])
+                for name in award_names:
+                    badge = _FILM_AWARDS.get(name)
+                    if badge and badge not in awards:
+                        awards.append(badge)
                 if awards:
                     movie_entry["awards"] = awards
 
