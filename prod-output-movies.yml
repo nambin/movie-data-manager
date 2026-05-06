@@ -47,6 +47,23 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/i38zFYpbBnWbqcRayu9F1n71yVT.jpg
   awards:
   - blue_dragon
+- title: One Battle After Another
+  year: 2025
+  director: Paul Thomas Anderson
+  country: US
+  is_korean_director: false
+  imdb_id: tt30144839
+  imdb_url: https://www.imdb.com/title/tt30144839
+  tmdb_url: https://www.themoviedb.org/movie/1054867
+  tmdb_title: null
+  tmdb_original_title: One Battle After Another
+  tmdb_original_language: English
+  tmdb_director_name_1: Paul Thomas Anderson
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/m1jFoahEbeQXtx4zArT2FKdbNIj.jpg
+  awards:
+  - oscar
 - title: It Was Just an Accident
   year: 2025
   director: Jafar Panahi
@@ -125,21 +142,6 @@
   tmdb_num_directors: 0
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gyasYg4xhmmVfbsS96x4CCm6a30.jpg
   custom_korean_title: 소년의 시간
-- title: One Battle After Another
-  year: 2025
-  director: Paul Thomas Anderson
-  country: US
-  is_korean_director: false
-  imdb_id: tt30144839
-  imdb_url: https://www.imdb.com/title/tt30144839
-  tmdb_url: https://www.themoviedb.org/movie/1054867
-  tmdb_title: null
-  tmdb_original_title: One Battle After Another
-  tmdb_original_language: English
-  tmdb_director_name_1: Paul Thomas Anderson
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/m1jFoahEbeQXtx4zArT2FKdbNIj.jpg
 - title: Snow White
   year: 2025
   director: Marc Webb
@@ -451,6 +453,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xN293BKB0MDqpILmLCtGGYxQXKW.jpg
   my_best: true
+  note: Make dishes. Build communities. Pursue arts.
 - title: 밀수
   year: 2023
   director: 류승완
@@ -2004,6 +2007,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/woLMRroHyoTGoXyxdEeBJEYBFtu.jpg
   masterpiece: true
+  note: Cinematic moment of technology.
 - title: Joker
   year: 2019
   director: Todd Phillips
@@ -2103,6 +2107,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/csVZ2ZQCj98XdZoCuW1aixMYJ0W.jpg
   custom_korean_title: 소년 시절의 너
   my_best: true
+  note: 하나의 삶. 당신뿐이었던 나날들.
 - title: Toy story 4
   year: 2019
   director: Josh Cooley
@@ -4399,6 +4404,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/oScZQ3ZVvnVtgZpuFW75msSVmHC.jpg
+  note: 인생이란 폭풍우 속에 당첨되지 않을 복권을 찾는 것
 - title: Dear Zindagi
   year: 2016
   director: Gauri Shinde
@@ -4521,6 +4527,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/hA2ple9q4qnwxp3hKVNhroipsir.jpg
   masterpiece: true
+  note: Just one movie is enough to prove true genius.
 - title: Spotlight
   year: 2015
   director: Tom McCarthy
@@ -4589,6 +4596,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vocqarMfsL4TtyDqf9eMD8FdqnR.jpg
   my_best: true
+  note: 끝끝내 설득해내는 하마구치의 집념
 - title: Hitchcock/Truffaut
   year: 2015
   director: Kent Jones
@@ -5280,6 +5288,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3uoCttE46RGHybiA26cXTvmFqbW.jpg
   masterpiece: true
+  note: One answer to why someone should become a nun.
   awards:
   - oscar
 - title: Blue Is the Warmest Color
@@ -5298,6 +5307,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kgUk1wti2cvrptIgUz0VTAtSF6w.jpg
   masterpiece: true
+  note: Adele, love.
   awards:
   - cannes
 - title: Gravity
@@ -6053,6 +6063,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/wQVvASmpm8jGhJBQU20OkoMcNzi.jpg
   masterpiece: true
+  note: Irony, justice, sympathy, and us.
   awards:
   - oscar
   - berlin
@@ -6072,6 +6083,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/l8cwuB5WJSoj4uMAsnzuHBOMaSJ.jpg
   masterpiece: true
+  note: Memory, scar, and eternity.
   awards:
   - cannes
 - title: Midnight in Paris
@@ -7290,6 +7302,7 @@
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6d5XOczc226jECq0LIX0siKtgHR.jpg
   masterpiece: true
+  note: Fragility of life
   awards:
   - oscar
 - title: 밀양 (Secret Sunshine)
@@ -7656,6 +7669,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/s8C4whhKtDaJvMDcyiMvx3BIF5F.jpg
   my_best: true
+  note: Most tragic story that a movie can tell.
 - title: Children of Men
   year: 2006
   director: Alfonso Cuarón
@@ -7672,6 +7686,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8Xgvmx7WWc7Z9Ws9RAYk7uya2kh.jpg
   my_best: true
+  note: The precursor of 1917.
 - title: 괴물
   year: 2006
   director: 봉준호
@@ -9421,6 +9436,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/pWzOfTJRZHPNO1VNrMnNFqRcJwg.jpg
   masterpiece: true
+  note: I won't watch Trier's movies anymore.
   awards:
   - cannes
 - title: Yi Yi (하나 그리고 둘)
@@ -9657,6 +9673,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   masterpiece: true
+  note: Agony of life.
   awards:
   - berlin
 - title: The Matrix
@@ -10421,6 +10438,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/zQBuRQ3hrLhkEsXcxteUxuxLrvs.jpg
   masterpiece: true
+  note: Two best long-takes.
   awards:
   - cannes
 - title: The Rock
@@ -10913,6 +10931,24 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg
   masterpiece: true
+- title: Forrest Gump
+  year: 1994
+  director: Robert Zemeckis
+  country: US
+  is_korean_director: false
+  imdb_id: tt0109830
+  imdb_url: https://www.imdb.com/title/tt0109830
+  tmdb_url: https://www.themoviedb.org/movie/13
+  tmdb_title: null
+  tmdb_original_title: Forrest Gump
+  tmdb_original_language: English
+  tmdb_director_name_1: Robert Zemeckis
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/saHP97rTPS5eLmrLQEcANmKrsFl.jpg
+  my_best: true
+  awards:
+  - oscar
 - title: Little Women
   year: 1994
   director: Gillian Armstrong
@@ -10929,23 +10965,6 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/1ZzH1XMcKAe5NdrKL5MfcqZHHsZ.jpg
   my_best: true
-- title: Forrest Gump
-  year: 1994
-  director: Robert Zemeckis
-  country: US
-  is_korean_director: false
-  imdb_id: tt0109830
-  imdb_url: https://www.imdb.com/title/tt0109830
-  tmdb_url: https://www.themoviedb.org/movie/13
-  tmdb_title: null
-  tmdb_original_title: Forrest Gump
-  tmdb_original_language: English
-  tmdb_director_name_1: Robert Zemeckis
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/saHP97rTPS5eLmrLQEcANmKrsFl.jpg
-  awards:
-  - oscar
 - title: Pulp Fiction
   year: 1994
   director: Quentin Tarantino
@@ -11508,6 +11527,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/un81oln6mAv66sqnkgPSpWONUqP.jpg
   my_best: true
+  note: Goodbye! Our splendid 1990.
 - title: The Silence of the Lambs
   year: 1991
   director: Jonathan Demme
@@ -11589,6 +11609,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/uLUFI5sJIfWrBUWB2Y1dEuyvvVy.jpg
   my_best: true
+  note: David Linch's love.
   awards:
   - cannes
 - title: Dances with Wolves
@@ -11685,6 +11706,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/pj1uKm07svgXZDHbYE8AzRfNHcu.jpg
   my_best: true
+  note: Prelude of American Beauty.
   awards:
   - cannes
 - title: Rain Man
@@ -12134,6 +12156,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/q8jlA3Wc1Z987hNKRFA44g5OugC.jpg
   my_best: true
+  note: Personal monologue of Ingmar Bergman.
   awards:
   - oscar
 - title: An Officer and a Gentleman
@@ -12275,6 +12298,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/k4eT3EvfxW1L9Wmt04UqJqCvCR6.jpg
   masterpiece: true
+  note: The first Woody Allen.
 - title: Apocalypse Now
   year: 1979
   director: Francis Ford Coppola
@@ -12486,6 +12510,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg
   masterpiece: true
+  note: SF movie to be remembered for thousands of years.
 - title: Night of the Living Dead
   year: 1968
   director: George A. Romero
@@ -12632,6 +12657,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/i124H6iQB4CawrgFW9aZaZs7OBO.jpg
   custom_korean_title: 미치광이 삐에로
   my_best: true
+  note: Unforgettable their love story. Personal drama of Godard.
 - title: Les Parapluies de Cherbourg
   year: 1964
   director: Jacques Demy
@@ -12648,6 +12674,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tAgTf64XKK5ir7w5C7dnB53jWWG.jpg
   masterpiece: true
+  note: Why is absence so hard to bear.
   awards:
   - cannes
 - title: My Fair Lady
@@ -12747,6 +12774,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/A0BjScjASfMFgyGI5sU0CwfKh3l.jpg
   masterpiece: true
+  note: Anna Karina, Beauty of movie.
 - title: Ivan's Childhood
   year: 1962
   director: Andrei Tarkovsky
@@ -13125,6 +13153,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/g2YbTYKpY7N2yDSk7BfXZ18I5QV.jpg
   masterpiece: true
+  note: True art is about finding the best representation of an era.
 - title: Forbidden Games (금지된 장난)
   year: 1952
   director: René Clément

@@ -477,12 +477,17 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 
             movie_entry.pop("my_best", None)
             movie_entry.pop("awards", None)
+            movie_entry.pop("note", None)
 
             # Populate my preferences.
             if row[4] == "Masterpiece":
                 movie_entry["masterpiece"] = True
             if row[4] == "Special":
                 movie_entry["my_best"] = True
+
+            # Populate freeform note from the trailing CSV column, if present.
+            if len(row) > 7 and row[7].strip():
+                movie_entry["note"] = row[7].strip()
 
             # Populate award information.
             _FILM_AWARDS = {
