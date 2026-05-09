@@ -1,0 +1,13 @@
+{
+  "name": "movie-data-manager-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Static web editor for the movie collection YAML.",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
