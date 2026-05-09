@@ -74,7 +74,7 @@ There are two distinct concepts:
 
 The award picker UI must use these exact strings as the options. Treat this list as the authoritative source — bake it into a constant in the JS so it's easy to extend later.
 
-**Badge keys** — the short identifiers used for icon lookup in [movies.html:239-261](../nambin.github.io/movies.html#L239-L261). Mapping (mirrors [data-manager.py:493-500](data-manager.py#L493-L500)):
+**Badge keys** — the short identifiers used for icon lookup in [movies.html:239-261](../nambin.github.io/movies.html#L239-L261). Mapping (mirrors `_FILM_AWARDS` at [data-manager.py:497-504](data-manager.py#L497-L504)):
 
 | Real name                       | Badge key       |
 | ------------------------------- | --------------- |
@@ -103,9 +103,13 @@ Korean directors are often stored under their Korean name in `director` (e.g. `�
 
 Set when the movie's original language is not Korean **and** the user-entered `title` contained a Korean supplemental title in parentheses, e.g. `Adolescence (소년의 시간)` → `custom_korean_title: 소년의 시간`. See [title_parser.py](title_parser.py) for the parsing rules. The web editor should expose this as an editable text field; populating it manually is fine.
 
+*Gate relaxation:* [data-manager.py:425](data-manager.py#L425) only writes `custom_korean_title` when `tmdb_original_language != "ko"`. The web app may expose the input unconditionally — when the original language is Korean, [movies.html:193-197](../nambin.github.io/movies.html#L193-L197) ignores `custom_korean_title` for display anyway (it gates on `tmdb_title`, which is always `null` for Korean-original movies). Setting it for a Korean movie has no rendering effect, so the gate is purely cosmetic.
+
 ### Sort order (matters for diff churn)
 
-[data-manager.py:517-527](data-manager.py#L517-L527) sorts the output list by, descending: `year`, `masterpiece`, `my_best`, `len(awards)`, `director`. The web editor must produce the same order on download to keep diffs minimal.
+[data-manager.py:531-541](data-manager.py#L531-L541) sorts the output list by, descending: `year`, `masterpiece`, `my_best`, `len(awards)`, `director`. The web editor must produce the same order on download to keep diffs minimal.
+
+Boolean semantics: missing `masterpiece`/`my_best` keys are treated as `False`; `True` sorts before `False/missing`. In JS, coerce booleans before comparing (e.g., `Number(b.masterpiece ?? false) - Number(a.masterpiece ?? false)`) — JS `>` on bare booleans coerces but is fragile across engines.
 
 ### YAML formatting
 
@@ -123,7 +127,7 @@ Set when the movie's original language is not Korean **and** the user-entered `t
 - Input: paste a TMDB movie URL. Extract the ID with a regex on `/movie/(\d+)`.
 - Call TMDB Movie Details API: `https://api.themoviedb.org/3/movie/{id}?api_key={KEY}&append_to_response=credits`.
 - Build a new entry mirroring [data-manager.py:388-422](data-manager.py#L388-L422) exactly:
-  - `title` set to `tmdb_original_title`. Not editable in the UI (the field is unused by [movies.html](../nambin.github.io/movies.html), kept only for YML consistency).
+  - `title` set to `tmdb_original_title`. Not editable in the UI (the field is unused by [movies.html](../nambin.github.io/movies.html), kept only for YML consistency). *Deviation from data-manager.py:* the legacy CSV pipeline stored the user-typed CSV title verbatim — including parenthetical Korean overlays like `Adolescence (소년의 시간)`. The web app drops that convention; Korean overlays go through `custom_korean_title` exclusively going forward.
   - `year` defaults to the leading 4 chars of `release_date`. User-editable.
   - `director` defaults to `credits.crew[?job=Director][0].name`. User-editable.
   - `country` — **do not emit** for newly added entries. The field is unused by [movies.html](../nambin.github.io/movies.html) and `tmdb_original_language` covers the same intent better. Legacy entries loaded from YML keep their existing `country` verbatim.
@@ -158,7 +162,7 @@ All other fields are read-only display. Do **not** add UI for `title` or any `tm
 
 When `director` is edited, recompute `is_korean_director` automatically.
 
-When the personal-rating dropdown is set to `(none)`, or any optional list/string field becomes empty, **omit the key from the YAML entirely** rather than writing `false` / `[]` / `""`. This matches the existing YML's conditional-emit behavior in [data-manager.py:478-515](data-manager.py#L478-L515).
+When the personal-rating dropdown is set to `(none)`, or any optional list/string field becomes empty, **omit the key from the YAML entirely** rather than writing `false` / `[]` / `""`. This matches the existing YML's conditional-emit behavior in [data-manager.py:478-529](data-manager.py#L478-L529).
 
 ### 4. Delete a movie
 
@@ -180,7 +184,7 @@ Save the working list to `localStorage` after every edit so an accidental refres
 - No editing of TMDB-sourced fields (titles, posters, language, IMDB ID).
 - No re-running TMDB searches by title — adds happen only via TMDB URL.
 - No CSV export. The CSV pipeline is being retired by this UI.
-- No support for the hardcoded TMDB/IMDB ID overrides used in `data-manager.py` — those rare cases can stay in the YML manually after import, since the UI never refetches.
+- No support for `data-manager.py`'s hardcoded overrides: `_HARDCODED_TMDB_IDS` ([196-205](data-manager.py#L196-L205)), `_HARDCODED_IMDB_IDS` ([308-310](data-manager.py#L308-L310)), the `tt0442268` `custom_korean_title` patch ([427-428](data-manager.py#L427-L428)), and `_HARDCODED_AWARD_NAMES` ([505-511](data-manager.py#L505-L511)). Their effects are already baked into the existing YML and survive round-trip — the web app does not need to know they exist.
 
 ## Suggested tech
 
@@ -197,4 +201,8 @@ Save the working list to `localStorage` after every edit so an accidental refres
 
 ## Acceptance test
 
-Round-trip check: load the current [prod-output-movies.yml](prod-output-movies.yml), make no edits, click download. The downloaded file must be byte-identical to the loaded one (modulo a trailing newline). Any diff means YAML serialization, field-ordering, or sort-order is off.
+Round-trip check: load the current [prod-output-movies.yml](prod-output-movies.yml), make no edits, click download.
+
+**Primary assertion (structural):** parse the input and the downloaded output with the same parser; the resulting in-memory data structures must be deep-equal — same length, same per-entry key set in the same order, same scalar values including `null`s.
+
+**Secondary assertion (byte-identity, best-effort):** aim for byte-identical output (modulo a trailing newline). If a diff appears, manually inspect — js-yaml and PyYAML can disagree on cosmetic quoting choices (single vs double quotes, when to quote a string containing `:` like `'서울의 봄 (12.12: The Day)'`). Cosmetic-only differences are acceptable; any structural diff (missing/added field, changed order, changed scalar) is a bug.
