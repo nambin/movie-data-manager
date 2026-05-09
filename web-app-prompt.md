@@ -6,7 +6,7 @@ Build a static web page that lets me maintain my personal movie collection witho
 
 1. **Load** an existing YAML file to append more movies (Step 2) or edit existing movies' attributes (Step 3).
 2. **Add** a movie by pasting its TMDB URL (e.g. `https://www.themoviedb.org/movie/496243`).
-3. **Edit** a small set of fields per movie: `year`, `director`, `custom_korean_title`, `masterpiece`, `my_best`, `awards`, `note`.
+3. **Edit** a small set of fields per movie: `year`, `director`, `custom_korean_title`, personal rating (`masterpiece` xor `my_best`), `award_names`, `note`.
 4. **Download** the resulting collection as a YAML file with the exact same schema and ordering my Jekyll site already consumes, so I can drop it into [nambin.github.io](https://github.com/nambin/nambin.github.io) and commit.
 
 The page is for personal, single-user use. No authentication, no server, no database.
@@ -23,28 +23,34 @@ The web editor is the user-facing replacement for the CSV-editing step. It must 
 
 Each movie entry in `prod-output-movies.yml` looks like this (see [data-manager.py:388-431](data-manager.py#L388-L431) for the canonical construction):
 
+Field order below is the **exact** order data-manager.py emits and the web app must reproduce on download for round-trip equality. `note` precedes `award_names` and `awards`.
+
 ```yaml
-- title: 어쩔수가없다 # raw user-entered title (may include "(English)" suffix). Not needed for this web app.
-  year: 2025 # user-entered year. It'd be help if the initial value is given by extracting it from TMDB metadata. Note that TMDB year is sometimes not correct.
-  director: 박찬욱 # user-entered director, can be Korean
-  country: Korea # raw user-entered country. Not needed for this web app.
-  is_korean_director: true # derived: true if any Hangul in director
+- title: 어쩔수가없다 # auto-populated; not exposed in the web app's edit UI
+  year: 2025 # default from TMDB release_date; user-editable (TMDB year is sometimes wrong)
+  director: 박찬욱 # user-editable; can be Korean
+  country: Korea # legacy field — preserved verbatim on load, NOT emitted for entries added via the web app
+  is_korean_director: true # derived: true if `director` contains any char in U+AC00–U+D7A3
   imdb_id: tt1527793
   imdb_url: https://www.imdb.com/title/tt1527793
   tmdb_url: https://www.themoviedb.org/movie/639988
-  tmdb_title: No Other Choice # null if same as tmdb_original_title
-  tmdb_original_title: 어쩔수가없다
-  tmdb_original_language: Korean # full name, not ISO code
-  tmdb_director_name_1: Park Chan-wook
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
+  tmdb_title: No Other Choice # ← TMDB JSON `title`; set to null when equal to `tmdb_original_title`
+  tmdb_original_title: 어쩔수가없다 # ← TMDB JSON `original_title`
+  tmdb_original_language: Korean # ← TMDB JSON `original_language` (ISO 639-1) converted to full name
+  tmdb_director_name_1: Park Chan-wook # first crew member with job=="Director"; null if none
+  tmdb_director_name_2: null # second such crew member; null if none
+  tmdb_num_directors: 1 # total count of crew with job=="Director"
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/i38zFYpbBnWbqcRayu9F1n71yVT.jpg
   custom_korean_title: ... # OPTIONAL
   masterpiece: true # OPTIONAL — mutually exclusive with my_best
   my_best: true # OPTIONAL — mutually exclusive with masterpiece
-  award_names: [Cannes Palme d'Or, Oscar Best Picture] # OPTIONAL — NEW field, full real names
-  awards: [oscar, cannes] # OPTIONAL — derived from award_names, badge keys
   note: Some free-form text. # OPTIONAL
+  award_names: # OPTIONAL — full real names; block-style sequence
+  - Cannes Palme d'Or
+  - Oscar Best Picture
+  awards: # OPTIONAL — derived from award_names; block-style sequence
+  - cannes
+  - oscar
 ```
 
 `masterpiece` and `my_best` are mutually exclusive — at most one is `true`, both can be absent.
@@ -103,7 +109,7 @@ Set when the movie's original language is not Korean **and** the user-entered `t
 
 ### YAML formatting
 
-`data-manager.py` writes via `yaml.dump(..., allow_unicode=True, sort_keys=False)`. Match that exact output style: keys in insertion order matching the dict above, unicode preserved, no anchors. Use a JS YAML library (e.g. `js-yaml`) configured to match.
+`data-manager.py` writes via `yaml.dump(..., allow_unicode=True, sort_keys=False)`. Match that exact output style: keys in insertion order matching the dict above, unicode preserved, no anchors, **block-style sequences** (one item per line with leading `- `, no `[...]` flow style anywhere). With `js-yaml`, dump with `{ noRefs: true, lineWidth: -1, flowLevel: -1, sortKeys: false }`.
 
 ## Functional requirements
 
@@ -117,19 +123,21 @@ Set when the movie's original language is not Korean **and** the user-entered `t
 - Input: paste a TMDB movie URL. Extract the ID with a regex on `/movie/(\d+)`.
 - Call TMDB Movie Details API: `https://api.themoviedb.org/3/movie/{id}?api_key={KEY}&append_to_response=credits`.
 - Build a new entry mirroring [data-manager.py:388-422](data-manager.py#L388-L422) exactly:
-  - `title` defaults to `tmdb_original_title` (the user can edit before saving).
-  - `year` from `release_date`'s leading 4 chars.
-  - `director` defaults to `credits.crew[?job=Director][0].name` (user-editable).
-  - `country` — default to the first `production_countries[].name` from TMDB; the user can edit if needed. (TMDB doesn't always match my hand-curated values like `Pixar`, but defaulting is fine — manual edit covers the exceptions.)
-  - `is_korean_director` — recompute from final `director` value (any Hangul → true).
+  - `title` set to `tmdb_original_title`. Not editable in the UI (the field is unused by [movies.html](../nambin.github.io/movies.html), kept only for YML consistency).
+  - `year` defaults to the leading 4 chars of `release_date`. User-editable.
+  - `director` defaults to `credits.crew[?job=Director][0].name`. User-editable.
+  - `country` — **do not emit** for newly added entries. The field is unused by [movies.html](../nambin.github.io/movies.html) and `tmdb_original_language` covers the same intent better. Legacy entries loaded from YML keep their existing `country` verbatim.
+  - `is_korean_director` — recompute from final `director` value: `true` iff any character is in U+AC00–U+D7A3, else `false`.
   - `imdb_id` / `imdb_url` from TMDB `imdb_id`.
   - `tmdb_url` from `id`.
-  - `tmdb_title` — set only if `title` differs from `original_title`, else `null`.
-  - `tmdb_original_title`, `tmdb_original_language` (convert ISO 639-1 → full name; the Python script uses `pycountry`. In JS, ship a small map for the languages that actually appear in the YML, or use a library).
-  - `tmdb_director_name_1` / `_2` from credits.
-  - `tmdb_num_directors` = count of crew with `job == "Director"`.
+  - `tmdb_title` — TMDB JSON `title`, with one optimization: emit `null` when the API's `title` equals its `original_title` (avoids storing the same string twice).
+  - `tmdb_original_title` — TMDB JSON `original_title`, verbatim.
+  - `tmdb_original_language` — TMDB JSON `original_language` (an ISO 639-1 code like `ko`), converted to the full English language name (e.g. `Korean`). Python uses `pycountry`; in JS, ship a small map for the languages that appear in the YML or use a library.
+  - `tmdb_director_name_1` / `_2` — the first and second entries (in API order) of `credits.crew` filtered by `job == "Director"`. Emit `null` (not omitted) when absent — required for round-trip parity with the existing YML.
+  - `tmdb_num_directors` — total count of crew entries with `job == "Director"`.
   - `tmdb_poster_url` = `https://image.tmdb.org/t/p/w200{poster_path}` if present, else `null`.
-- Reject (or warn) if a movie with the same `imdb_id` already exists in the loaded list.
+- If a movie with the same `imdb_id` already exists in the loaded list, warn but allow the user to add it anyway (they have final say).
+- Error states to surface to the user: TMDB URL has no `/movie/<id>` match; TMDB API returns 404 / network error; TMDB response has no `imdb_id`.
 
 The TMDB API key is in [data-manager.py:35](data-manager.py#L35) (`f6d7fb04f4d4d6b07d2d750811e73a4c`). Embedding it client-side is acceptable for this personal tool, since it's already public in this repo and the README. TMDB's CORS policy permits browser requests.
 
@@ -140,7 +148,7 @@ For each entry, expose **only these fields** as editable controls:
 | Field                 | Control                                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `director`            | text input                                                                                                                                             |
-| `year`                | text input                                                                                                                                             |
+| `year`                | number input restricted to a 4-digit integer                                                                                                           |
 | `custom_korean_title` | text input (clear → omit from YML)                                                                                                                     |
 | Personal rating       | dropdown with three mutually exclusive options: `(none)`, `My Best`, `Masterpiece`. Writes either `my_best: true`, `masterpiece: true`, or omits both. |
 | `award_names`         | multi-select listing the full real names (see Awards taxonomy). On change, also recompute and write `awards` (badge keys) automatically.               |
@@ -150,7 +158,7 @@ All other fields are read-only display. Do **not** add UI for `title` or any `tm
 
 When `director` is edited, recompute `is_korean_director` automatically.
 
-When a checkbox is unchecked or a list/string field becomes empty, **omit the key from the YAML entirely** rather than writing `false` / `[]` / `""`. This matches the existing YML's conditional-emit behavior in [data-manager.py:478-515](data-manager.py#L478-L515).
+When the personal-rating dropdown is set to `(none)`, or any optional list/string field becomes empty, **omit the key from the YAML entirely** rather than writing `false` / `[]` / `""`. This matches the existing YML's conditional-emit behavior in [data-manager.py:478-515](data-manager.py#L478-L515).
 
 ### 4. Delete a movie
 
@@ -182,13 +190,11 @@ Save the working list to `localStorage` after every edit so an accidental refres
 
 ## Decisions already made
 
-- **Country**: default from TMDB's first `production_countries[].name`, user-editable.
+- **Country**: not emitted for entries added via the web app (unused by the site, redundant with `tmdb_original_language`). Legacy entries loaded from YML keep their existing `country` verbatim so the round-trip stays clean.
 - **CSV pipeline**: deprecated. Load the current YML on first run; the CSV is no longer maintained.
 - **`title` not editable**: `title` is unused by [movies.html](../nambin.github.io/movies.html), so the web app does not expose it. Use `custom_korean_title` for Korean overlays.
-- **Hosting**: the web app lives inside this `movie-data-manager` repo (e.g. `index.html` at the repo root or under a subdirectory), not inside `nambin.github.io`.
+- **Hosting**: the web app lives inside this `movie-data-manager` repo (e.g. `index.html` at the repo root). Run by opening the file directly via `file://` or serving the directory with any static server (e.g. `python -m http.server`). No GitHub Pages, no build step.
 
 ## Acceptance test
 
-Round-trip check: load the current [prod-output-movies.yml](prod-output-movies.yml), make no edits, click download.
-
-No other field should change. If it does, the YAML serialization, field-ordering, or sort-order is off.
+Round-trip check: load the current [prod-output-movies.yml](prod-output-movies.yml), make no edits, click download. The downloaded file must be byte-identical to the loaded one (modulo a trailing newline). Any diff means YAML serialization, field-ordering, or sort-order is off.
