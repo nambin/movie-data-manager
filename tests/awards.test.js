@@ -7,7 +7,7 @@ import {
 } from "../lib/utils.js";
 
 test("deriveAwardBadges: Anora-style two-name input", () => {
-  // Real entry from prod-output-movies.yml: Anora has both Cannes + Oscar.
+  // Real entry from data/movies.yml: Anora has both Cannes + Oscar.
   assert.deepEqual(
     deriveAwardBadges(["Cannes Palme d'Or", "Oscar Best Picture"]),
     ["cannes", "oscar"]

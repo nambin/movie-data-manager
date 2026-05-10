@@ -1,4 +1,4 @@
-// Round-trip test against the real prod-output-movies.yml.
+// Round-trip test against the real data/movies.yml.
 // Loads the file, runs each entry through canonicalize + sort, dumps with
 // js-yaml using YAML_DUMP_OPTIONS, parses the dumped output, and asserts
 // structural equality with the original.
@@ -13,7 +13,7 @@ import yaml from "js-yaml";
 import { canonicalizeAll } from "../lib/canonicalize.js";
 import { sortMovies, YAML_DUMP_OPTIONS } from "../lib/utils.js";
 
-const YML_PATH = new URL("../prod-output-movies.yml", import.meta.url);
+const YML_PATH = new URL("../data/movies.yml", import.meta.url);
 
 test("round-trip: load → canonicalize → sort → dump → parse → deep-equal", () => {
   const text = readFileSync(YML_PATH, "utf-8");

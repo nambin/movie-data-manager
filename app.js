@@ -466,7 +466,7 @@ downloadBtn.addEventListener("click", () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "prod-output-movies.yml";
+  a.download = "movies.yml";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

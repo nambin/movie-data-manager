@@ -551,6 +551,6 @@ def generate_yaml(csv_file_path, yml_file_path, is_incremental=False):
 
 
 # generate_yaml(
-#     "golden-input-movies.csv", "golden-output-movies.yml", is_incremental=False
+#     "data/movies-golden.csv", "data/movies-golden.yml", is_incremental=False
 # )
-generate_yaml("prod-input-movies.csv", "prod-output-movies.yml", is_incremental=True)
+generate_yaml("data/movies.csv", "data/movies.yml", is_incremental=True)

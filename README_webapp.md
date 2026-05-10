@@ -1,6 +1,6 @@
 ## Movie Collection Web Editor
 
-A static, single-user web page for maintaining the movie collection without touching the Google Spreadsheet. Replaces the CSV-editing step in the [data-manager.py](data-manager.py) pipeline; produces a YAML file structurally compatible with [prod-output-movies.yml](prod-output-movies.yml) for direct commit into [nambin.github.io](https://github.com/nambin/nambin.github.io)'s `_data/movies.yml`.
+A static, single-user web page for maintaining the movie collection without touching the Google Spreadsheet. Replaces the CSV-editing step in the [data-manager.py](data-manager.py) pipeline; produces a YAML file structurally compatible with [data/movies.yml](data/movies.yml) for direct commit into [nambin.github.io](https://github.com/nambin/nambin.github.io)'s `data/movies.yml`.
 
 The full specification lives in [web-app-prompt.md](web-app-prompt.md).
 
@@ -33,7 +33,7 @@ npm install   # one-time, pulls in js-yaml
 npm test
 ```
 
-The acceptance test (round-trip parity) loads the real [prod-output-movies.yml](prod-output-movies.yml), runs every entry through the canonicalize → sort → dump → re-parse pipeline, and asserts deep equality with the original. See [tests/yaml-roundtrip.test.js](tests/yaml-roundtrip.test.js).
+The acceptance test (round-trip parity) loads the real [data/movies.yml](data/movies.yml), runs every entry through the canonicalize → sort → dump → re-parse pipeline, and asserts deep equality with the original. See [tests/yaml-roundtrip.test.js](tests/yaml-roundtrip.test.js).
 
 ### Architecture
 

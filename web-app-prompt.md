@@ -13,15 +13,15 @@ The page is for personal, single-user use. No authentication, no server, no data
 
 ## Existing system this replaces
 
-- Source of truth today is a Google Spreadsheet exported as [prod-input-movies.csv](prod-input-movies.csv).
-- [data-manager.py](data-manager.py) reads that CSV, calls TMDB Search + Movie Details APIs, merges with the prior [prod-output-movies.yml](prod-output-movies.yml) (incremental), and rewrites the YML.
+- Source of truth today is a Google Spreadsheet exported as [data/movies.csv](data/movies.csv).
+- [data-manager.py](data-manager.py) reads that CSV, calls TMDB Search + Movie Details APIs, merges with the prior [data/movies.yml](data/movies.yml) (incremental), and rewrites the YML.
 - The YML is consumed by [movies.html](../nambin.github.io/movies.html) via Jekyll's `site.data.movies`.
 
 The web editor is the user-facing replacement for the CSV-editing step. It must produce a YML that is byte-equivalent in structure to what `data-manager.py` produces — same fields, same null handling, same sort order — so the rest of the pipeline keeps working unchanged.
 
 ## Data model
 
-Each movie entry in `prod-output-movies.yml` looks like this (see [data-manager.py:388-431](data-manager.py#L388-L431) for the canonical construction):
+Each movie entry in `data/movies.yml` looks like this (see [data-manager.py:388-431](data-manager.py#L388-L431) for the canonical construction):
 
 Field order below is the **exact** order data-manager.py emits and the web app must reproduce on download for round-trip equality. `note` precedes `award_names` and `awards`.
 
@@ -59,7 +59,7 @@ Field order below is the **exact** order data-manager.py emits and the web app m
 
 There are two distinct concepts:
 
-**Real award names** — the human-readable names I actually track. The full set (extracted from columns 6–7 of [prod-input-movies.csv](prod-input-movies.csv)) is:
+**Real award names** — the human-readable names I actually track. The full set (extracted from columns 6–7 of [data/movies.csv](data/movies.csv)) is:
 
 - `Berlin Goldener Bär`
 - `Cannes Palme d'Or`
@@ -176,7 +176,7 @@ A delete button per entry. Confirm before removing.
 
 - Sort the list per the rule above.
 - Serialize to YAML with the field order shown in the data model section.
-- Trigger a browser download as `prod-output-movies.yml`.
+- Trigger a browser download as `movies.yml`.
 
 ### 6. Persistence between page reloads
 
@@ -205,7 +205,7 @@ Save the working list to `localStorage` after every edit so an accidental refres
 
 ## Acceptance test
 
-Round-trip check: load the current [prod-output-movies.yml](prod-output-movies.yml), make no edits, click download.
+Round-trip check: load the current [data/movies.yml](data/movies.yml), make no edits, click download.
 
 **Primary assertion (structural):** parse the input and the downloaded output with the same parser; the resulting in-memory data structures must be deep-equal — same length, same per-entry key set in the same order, same scalar values including `null`s.
 
