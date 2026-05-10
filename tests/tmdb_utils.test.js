@@ -53,8 +53,9 @@ test("Parasite (id=496243) — Korean original, English tmdb_title", () => {
   const tmdb = loadFixture("tmdb-parasite");
   const entry = buildMovieEntryFromTmdb(tmdb);
 
+  // title combines TMDB title + original_title because they differ.
   assert.deepEqual(entry, {
-    title: "기생충",
+    title: "Parasite (기생충)",
     year: 2019,
     director: "Bong Joon Ho",
     is_korean_director: false,
@@ -94,7 +95,8 @@ test("Oppenheimer (id=872585) — English original, tmdb_title is null", () => {
   const tmdb = loadFixture("tmdb-oppenheimer");
   const entry = buildMovieEntryFromTmdb(tmdb);
 
-  // TMDB's `title` equals `original_title` → tmdb_title MUST be null.
+  // TMDB's `title` equals `original_title` → tmdb_title MUST be null
+  // and the composed `title` is just the single form (no duplication).
   assert.deepEqual(entry, {
     title: "Oppenheimer",
     year: 2023,
@@ -120,8 +122,9 @@ test("Shoplifters (id=505192) — Japanese original, English tmdb_title", () => 
 
   // Director: TMDB returns name="Hirokazu Kore-eda" / original_name="是枝裕和".
   // We must use `name`, not `original_name`, to match data-manager.py.
+  // title combines TMDB title + original_title because they differ.
   assert.deepEqual(entry, {
-    title: "万引き家族",
+    title: "Shoplifters (万引き家族)",
     year: 2018,
     director: "Hirokazu Kore-eda",
     is_korean_director: false,
@@ -143,7 +146,8 @@ test("The Witches (id=531219) — apostrophe in original_title; tmdb_title is nu
   const tmdb = loadFixture("tmdb-the-witches");
   const entry = buildMovieEntryFromTmdb(tmdb);
 
-  // title === original_title here, so tmdb_title is null.
+  // title === original_title here, so tmdb_title is null and the composed
+  // `title` is just the single form (no duplication).
   // The apostrophe in the title is a regular U+0027.
   assert.deepEqual(entry, {
     title: "Roald Dahl's The Witches",
