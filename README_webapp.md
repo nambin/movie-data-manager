@@ -15,14 +15,24 @@ The full specification lives in [web-app-prompt.md](web-app-prompt.md).
 
 ### How to Run
 
-No build step. Either open `index.html` directly via `file://`, or serve the directory:
+`index.html` references the bundle at `assets/movies_editor.js`, so produce that once before serving:
 
 ```bash
+npm install     # one-time, pulls in js-yaml + esbuild
+npm run build   # produces assets/movies_editor.js
 python -m http.server
-# then open http://localhost:8000
+# open http://localhost:8000
 ```
 
-CORS note: TMDB's API allows browser requests, so adding via TMDB URL works from both `file://` and a static server. If a particular browser blocks `file://` fetches, use the static-server option.
+For active development, run the watcher in a separate terminal — it rebuilds on every save (no minification, faster):
+
+```bash
+npm run watch
+```
+
+Hard-refresh the browser (`Ctrl+F5`) after each save to bypass the cache.
+
+CORS note: TMDB's API allows browser requests, so adding via TMDB URL works from any static server. The auto-load of `data/movies.yml` requires HTTP (not `file://`); use `python -m http.server` rather than opening the HTML directly.
 
 ### How to Test
 
@@ -35,18 +45,36 @@ npm test
 
 The acceptance test (round-trip parity) loads the real [data/movies.yml](data/movies.yml), runs every entry through the canonicalize → sort → dump → re-parse pipeline, and asserts deep equality with the original. See [tests/yaml-roundtrip.test.js](tests/yaml-roundtrip.test.js).
 
+### Deploying to nambin.github.io
+
+```bash
+npm run build
+```
+
+That's it on this side. The deploy is a plain copy of two files — no edits required:
+
+| Source (this repo) | Destination (nambin.github.io) |
+| --- | --- |
+| `index.html` | `movies_editor.html` |
+| `assets/movies_editor.js` | `assets/movies_editor.js` |
+
+`index.html` already references `assets/movies_editor.js` and has CSS inlined, so the file works as-is once placed at the deploy location. js-yaml is inlined in the bundle — no CDN dependency, no importmap.
+
+Commit and push both files in `nambin.github.io`. URL: `https://nambin.github.io/movies_editor.html`.
+
+**Auto-load of `data/movies.yml`:** on page load, the editor fetches `data/movies.yml` from the same origin. On github.io that's `nambin.github.io/data/movies.yml`; locally, `python -m http.server` in this repo serves `data/movies.yml` at the same relative path. If localStorage has unsaved local edits (`dirty=true`), the auto-load is skipped and a status message offers the file picker for explicit override. Pushing a new `data/movies.yml` to nambin.github.io is effectively a deploy of the latest movie list.
+
 ### Architecture
 
-Pure data-correctness logic is isolated in [lib/](lib/) so it's testable in Node without DOM. The UI is hand-written vanilla JS using `<script type="module">` and an importmap for js-yaml — no framework, no bundler.
+Pure data-correctness logic is isolated in [lib/](lib/) so it's testable in Node without DOM. The UI is hand-written vanilla JS, bundled by esbuild for both local serve and deploy — no framework, single bundle output.
 
 | Module | Purpose |
 | --- | --- |
 | [lib/utils.js](lib/utils.js) | Hangul detection, ISO 639 → English name, awards (real names + badge mapping + derivation), sort comparator matching [data-manager.py:531-541](data-manager.py#L531-L541), js-yaml dump options |
 | [lib/tmdb_utils.js](lib/tmdb_utils.js) | TMDB Movie Details JSON → web-app entry |
 | [lib/canonicalize.js](lib/canonicalize.js) | Field-order enforcement, omit-when-empty, awards derivation |
-| [app.js](app.js) | DOM, file I/O, TMDB fetching, localStorage |
-| [index.html](index.html) | Layout, card template, importmap |
-| [style.css](style.css) | Styling |
+| [lib/app.js](lib/app.js) | Entry point: DOM, file I/O, TMDB fetching, localStorage. Bundled into `assets/movies_editor.js`. |
+| [index.html](index.html) | Layout, card template, inline CSS. References the bundled JS. |
 
 ### Notable design decisions
 

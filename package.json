@@ -5,9 +5,14 @@
   "type": "module",
   "description": "Static web editor for the movie collection YAML.",
   "scripts": {
-    "test": "node --test \"tests/**/*.test.js\""
+    "test": "node --test \"tests/**/*.test.js\"",
+    "build": "esbuild lib/app.js --bundle --format=esm --minify --outfile=assets/movies_editor.js",
+    "watch": "esbuild lib/app.js --bundle --format=esm --outfile=assets/movies_editor.js --watch"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
   }
 }
