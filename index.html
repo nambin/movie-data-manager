@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Collection Editor</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Map "js-yaml" to a CDN ESM bundle so app.js and tests/ can both use
+         `import yaml from "js-yaml"`. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "js-yaml": "https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/+esm"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Movie Collection Editor</h1>
+      <div class="toolbar">
+        <label class="file-picker">
+          Load YML
+          <input type="file" id="file-input" accept=".yml,.yaml" />
+        </label>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search title, director, year, language…"
+        />
+        <span id="count"></span>
+        <span id="dirty-indicator" hidden>● unsaved</span>
+        <button id="download-btn" type="button">Download YML</button>
+      </div>
+
+      <div class="add-bar">
+        <input
+          type="url"
+          id="tmdb-url-input"
+          placeholder="Paste TMDB movie URL (e.g. https://www.themoviedb.org/movie/496243)"
+        />
+        <button id="add-btn" type="button">Add movie</button>
+        <span id="add-status" class="status"></span>
+      </div>
+    </header>
+
+    <main>
+      <ul id="movie-list" class="movie-list"></ul>
+    </main>
+
+    <template id="movie-card-template">
+      <li class="movie-card">
+        <a class="poster-link" target="_blank" rel="noopener">
+          <img class="poster" alt="" loading="lazy" />
+        </a>
+        <div class="info">
+          <div class="row top-row">
+            <h2 class="title"></h2>
+            <button class="delete" type="button" title="Delete">×</button>
+          </div>
+          <p class="tmdb-title"></p>
+          <div class="row meta-row">
+            <label
+              >Year <input class="year" type="number" min="1900" max="2099" /></label
+            >
+            <label>Director <input class="director" type="text" /></label>
+            <span class="language"></span>
+            <span class="kor-flag"></span>
+          </div>
+          <div class="row meta-row">
+            <label
+              >Title in Korean
+              <input class="custom-korean-title" type="text" placeholder="(optional)" />
+            </label>
+            <label>
+              Rating
+              <select class="rating">
+                <option value="">(none)</option>
+                <option value="my_best">My Best</option>
+                <option value="masterpiece">Masterpiece</option>
+              </select>
+            </label>
+          </div>
+          <div class="awards">
+            <span class="awards-label">Awards:</span>
+            <span class="awards-checkboxes"></span>
+          </div>
+          <label class="note-label">
+            Note
+            <textarea class="note" rows="2" placeholder="(optional)"></textarea>
+          </label>
+          <p class="ids"></p>
+        </div>
+      </li>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
