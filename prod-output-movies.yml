@@ -117,7 +117,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/epI43M0kT1FNr2qPXOoke4ux8U1.jpg
-- title: "Wake Up Dead Man: A Knives Out Mystery"
+- title: 'Wake Up Dead Man: A Knives Out Mystery'
   year: 2025
   director: Rian Johnson
   country: US
@@ -126,7 +126,7 @@
   imdb_url: https://www.imdb.com/title/tt14364480
   tmdb_url: https://www.themoviedb.org/movie/812583
   tmdb_title: null
-  tmdb_original_title: "Wake Up Dead Man: A Knives Out Mystery"
+  tmdb_original_title: 'Wake Up Dead Man: A Knives Out Mystery'
   tmdb_original_language: English
   tmdb_director_name_1: Rian Johnson
   tmdb_director_name_2: null
@@ -141,7 +141,7 @@
   imdb_url: https://www.imdb.com/title/tt36861174
   tmdb_url: https://www.themoviedb.org/movie/1478143
   tmdb_title: null
-  tmdb_original_title: "The Real Adolescence: Our Killer Kids"
+  tmdb_original_title: 'The Real Adolescence: Our Killer Kids'
   tmdb_original_language: English
   tmdb_director_name_1: null
   tmdb_director_name_2: null
@@ -178,7 +178,7 @@
   tmdb_director_name_2: Chris Appelhans
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AjlRXTpRLAIiuofNqKcqrpUfPCZ.jpg
-- title: "Avatar: Fire and Ash"
+- title: 'Avatar: Fire and Ash'
   year: 2025
   director: James Cameron
   country: US
@@ -187,7 +187,7 @@
   imdb_url: https://www.imdb.com/title/tt1757678
   tmdb_url: https://www.themoviedb.org/movie/83533
   tmdb_title: null
-  tmdb_original_title: "Avatar: Fire and Ash"
+  tmdb_original_title: 'Avatar: Fire and Ash'
   tmdb_original_language: English
   tmdb_director_name_1: James Cameron
   tmdb_director_name_2: null
@@ -208,7 +208,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/g4JtvGlQO7DByTI6frUobqvSL3R.jpg
-- title: "Mission: Impossible – The Final Reckoning"
+- title: 'Mission: Impossible – The Final Reckoning'
   year: 2025
   director: Christopher McQuarrie
   country: US
@@ -217,7 +217,7 @@
   imdb_url: https://www.imdb.com/title/tt9603208
   tmdb_url: https://www.themoviedb.org/movie/575265
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible - The Final Reckoning"
+  tmdb_original_title: 'Mission: Impossible - The Final Reckoning'
   tmdb_original_language: English
   tmdb_director_name_1: Christopher McQuarrie
   tmdb_director_name_2: null
@@ -261,7 +261,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/jNMzCuUIt5tfHYJEpCIef7oqkfI.jpg
   my_best: true
-- title: "Furiosa: A Mad Max Saga"
+- title: 'Furiosa: A Mad Max Saga'
   year: 2024
   director: George Miller
   country: Australia
@@ -270,7 +270,7 @@
   imdb_url: https://www.imdb.com/title/tt12037194
   tmdb_url: https://www.themoviedb.org/movie/786892
   tmdb_title: null
-  tmdb_original_title: "Furiosa: A Mad Max Saga"
+  tmdb_original_title: 'Furiosa: A Mad Max Saga'
   tmdb_original_language: English
   tmdb_director_name_1: George Miller
   tmdb_director_name_2: null
@@ -323,7 +323,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/oNA9eRaFCLlFKRZlzYEldPZlFpg.jpg
-- title: "Joker: Folie à Deux"
+- title: 'Joker: Folie à Deux'
   year: 2024
   director: Todd Phillips
   country: US
@@ -332,7 +332,7 @@
   imdb_url: https://www.imdb.com/title/tt11315808
   tmdb_url: https://www.themoviedb.org/movie/889737
   tmdb_title: null
-  tmdb_original_title: "Joker: Folie à Deux"
+  tmdb_original_title: 'Joker: Folie à Deux'
   tmdb_original_language: English
   tmdb_director_name_1: Todd Phillips
   tmdb_director_name_2: null
@@ -484,7 +484,7 @@
     - 청룡영화제 최우수 작품상
   awards:
     - blue_dragon
-- title: "서울의 봄 (12.12: The Day)"
+- title: '서울의 봄 (12.12: The Day)'
   year: 2023
   director: 김성수
   country: Korea
@@ -492,7 +492,7 @@
   imdb_id: tt22507524
   imdb_url: https://www.imdb.com/title/tt22507524
   tmdb_url: https://www.themoviedb.org/movie/919207
-  tmdb_title: "12.12: The Day"
+  tmdb_title: '12.12: The Day'
   tmdb_original_title: 서울의 봄
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Sung-soo
@@ -590,7 +590,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/hIGuCLPy29KSytCbQHEXdYBizg7.jpg
-- title: "노량: 죽음의 바다"
+- title: '노량: 죽음의 바다'
   year: 2023
   director: 김한민
   country: Korea
@@ -598,8 +598,8 @@
   imdb_id: tt22813112
   imdb_url: https://www.imdb.com/title/tt22813112
   tmdb_url: https://www.themoviedb.org/movie/660360
-  tmdb_title: "Noryang: Deadly Sea"
-  tmdb_original_title: "노량: 죽음의 바다"
+  tmdb_title: 'Noryang: Deadly Sea'
+  tmdb_original_title: '노량: 죽음의 바다'
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Han-min
   tmdb_director_name_2: null
@@ -711,7 +711,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kGlZFwUQI5gAUdySNFfqGIkAF9n.jpg
-- title: "Spider-Man: Across the Spider-Verse"
+- title: 'Spider-Man: Across the Spider-Verse'
   year: 2023
   director: Joaquim Dos Santos, Kemp Powers, Justin K. Thompson
   country: US
@@ -720,7 +720,7 @@
   imdb_url: https://www.imdb.com/title/tt9362722
   tmdb_url: https://www.themoviedb.org/movie/569094
   tmdb_title: null
-  tmdb_original_title: "Spider-Man: Across the Spider-Verse"
+  tmdb_original_title: 'Spider-Man: Across the Spider-Verse'
   tmdb_original_language: English
   tmdb_director_name_1: Kemp Powers
   tmdb_director_name_2: Justin K. Thompson
@@ -756,7 +756,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg
-- title: "Mission: Impossible – Dead Reckoning Part I"
+- title: 'Mission: Impossible – Dead Reckoning Part I'
   year: 2023
   director: Christopher McQuarrie
   country: US
@@ -765,7 +765,7 @@
   imdb_url: https://www.imdb.com/title/tt9603212
   tmdb_url: https://www.themoviedb.org/movie/575264
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible - Dead Reckoning Part One"
+  tmdb_original_title: 'Mission: Impossible - Dead Reckoning Part One'
   tmdb_original_language: English
   tmdb_director_name_1: Christopher McQuarrie
   tmdb_director_name_2: null
@@ -884,7 +884,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/h7llKkqkkJtJrTOaDLuVeUYDQ7I.jpg
   my_best: true
-- title: "Top Gun: Maverick"
+- title: 'Top Gun: Maverick'
   year: 2022
   director: Joseph Kosinski
   country: US
@@ -893,7 +893,7 @@
   imdb_url: https://www.imdb.com/title/tt1745960
   tmdb_url: https://www.themoviedb.org/movie/361743
   tmdb_title: null
-  tmdb_original_title: "Top Gun: Maverick"
+  tmdb_original_title: 'Top Gun: Maverick'
   tmdb_original_language: English
   tmdb_director_name_1: Joseph Kosinski
   tmdb_director_name_2: null
@@ -1043,7 +1043,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/qWkLnFsgHmV8NeyJMal5yUlpFEN.jpg
-- title: "한산: 용의 출현"
+- title: '한산: 용의 출현'
   year: 2022
   director: 김한민
   country: Korea
@@ -1051,8 +1051,8 @@
   imdb_id: tt21109538
   imdb_url: https://www.imdb.com/title/tt21109538
   tmdb_url: https://www.themoviedb.org/movie/588108
-  tmdb_title: "Hansan: Rising Dragon"
-  tmdb_original_title: "한산: 용의 출현"
+  tmdb_title: 'Hansan: Rising Dragon'
+  tmdb_original_title: '한산: 용의 출현'
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Han-min
   tmdb_director_name_2: null
@@ -1195,7 +1195,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/AcKVlWaNVVVFQwro3nLXqPljcYA.jpg
-- title: "Avatar: The Way of Water"
+- title: 'Avatar: The Way of Water'
   year: 2022
   director: James Cameron
   country: US
@@ -1204,7 +1204,7 @@
   imdb_url: https://www.imdb.com/title/tt1630029
   tmdb_url: https://www.themoviedb.org/movie/76600
   tmdb_title: null
-  tmdb_original_title: "Avatar: The Way of Water"
+  tmdb_original_title: 'Avatar: The Way of Water'
   tmdb_original_language: English
   tmdb_director_name_1: James Cameron
   tmdb_director_name_2: null
@@ -1255,7 +1255,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/jQ0gylJMxWSL490sy0RrPj1Lj7e.jpg
-- title: "Jurassic World: Dominion"
+- title: 'Jurassic World: Dominion'
   year: 2022
   director: Colin Trevorrow
   country: US
@@ -1465,7 +1465,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/z3xqVWOsetW6pSEgx1uiqXfzRet.jpg
   custom_korean_title: 우연과 상상
-- title: "The Beatles: Get Back"
+- title: 'The Beatles: Get Back'
   year: 2021
   director: Peter Jackson
   country: US
@@ -1474,7 +1474,7 @@
   imdb_url: https://www.imdb.com/title/tt16899584
   tmdb_url: https://www.themoviedb.org/movie/923403
   tmdb_title: null
-  tmdb_original_title: "The Beatles: Get Back - The Rooftop Concert"
+  tmdb_original_title: 'The Beatles: Get Back - The Rooftop Concert'
   tmdb_original_language: English
   tmdb_director_name_1: Peter Jackson
   tmdb_director_name_2: null
@@ -1570,7 +1570,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4xs6nHNBjYpRymw8ZQmnVIbJ8Xa.jpg
-- title: "Spider-Man: No Way Home"
+- title: 'Spider-Man: No Way Home'
   year: 2021
   director: Jon Watts
   country: US
@@ -1579,7 +1579,7 @@
   imdb_url: https://www.imdb.com/title/tt10872600
   tmdb_url: https://www.themoviedb.org/movie/634649
   tmdb_title: null
-  tmdb_original_title: "Spider-Man: No Way Home"
+  tmdb_original_title: 'Spider-Man: No Way Home'
   tmdb_original_language: English
   tmdb_director_name_1: Jon Watts
   tmdb_director_name_2: null
@@ -1843,7 +1843,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ht6EfsM5hrsUPSR4ReJQFDVU71F.jpg
-- title: "Black Holes: The Edge of All We Know"
+- title: 'Black Holes: The Edge of All We Know'
   year: 2020
   director: Peter Galison
   country: US
@@ -1852,7 +1852,7 @@
   imdb_url: https://www.imdb.com/title/tt11863046
   tmdb_url: https://www.themoviedb.org/movie/686002
   tmdb_title: null
-  tmdb_original_title: "Black Holes: The Edge of All We Know"
+  tmdb_original_title: 'Black Holes: The Edge of All We Know'
   tmdb_original_language: English
   tmdb_director_name_1: Peter Galison
   tmdb_director_name_2: null
@@ -1978,7 +1978,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg
-- title: "Blackpink: Light Up the Sky"
+- title: 'Blackpink: Light Up the Sky'
   year: 2020
   director: Caroline Suh
   country: Korea
@@ -1986,8 +1986,8 @@
   imdb_id: tt13058290
   imdb_url: https://www.imdb.com/title/tt13058290
   tmdb_url: https://www.themoviedb.org/movie/740996
-  tmdb_title: "BLACKPINK: Light Up the Sky"
-  tmdb_original_title: "블랙핑크: 세상을 밝혀라"
+  tmdb_title: 'BLACKPINK: Light Up the Sky'
+  tmdb_original_title: '블랙핑크: 세상을 밝혀라'
   tmdb_original_language: Korean
   tmdb_director_name_1: Caroline Suh
   tmdb_director_name_2: null
@@ -2117,7 +2117,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/losNmoCPywJs6I0f7wQJ9pBlNJJ.jpg
   my_best: true
-- title: "1917"
+- title: '1917'
   year: 2019
   director: Sam Mendes
   country: UK
@@ -2126,7 +2126,7 @@
   imdb_url: https://www.imdb.com/title/tt8579674
   tmdb_url: https://www.themoviedb.org/movie/530915
   tmdb_title: null
-  tmdb_original_title: "1917"
+  tmdb_original_title: '1917'
   tmdb_original_language: English
   tmdb_director_name_1: Sam Mendes
   tmdb_director_name_2: null
@@ -2292,7 +2292,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/z4A6mFOLTMZAhCSPRyrtzG0SPbd.jpg
-- title: "Terminator: Dark Fate"
+- title: 'Terminator: Dark Fate'
   year: 2019
   director: Tim Miller
   country: US
@@ -2301,7 +2301,7 @@
   imdb_url: https://www.imdb.com/title/tt6450804
   tmdb_url: https://www.themoviedb.org/movie/290859
   tmdb_title: null
-  tmdb_original_title: "Terminator: Dark Fate"
+  tmdb_original_title: 'Terminator: Dark Fate'
   tmdb_original_language: English
   tmdb_director_name_1: Tim Miller
   tmdb_director_name_2: null
@@ -2442,7 +2442,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cMlueArJXXwZbeLpb4NhC3pxmBk.jpg
-- title: "Lunana: A Yak in the Classroom"
+- title: 'Lunana: A Yak in the Classroom'
   year: 2019
   director: Pawo Choyning Dorji
   country: Bhutan
@@ -2450,7 +2450,7 @@
   imdb_id: tt10189300
   imdb_url: https://www.imdb.com/title/tt10189300
   tmdb_url: https://www.themoviedb.org/movie/627087
-  tmdb_title: "Lunana: A Yak in the Classroom"
+  tmdb_title: 'Lunana: A Yak in the Classroom'
   tmdb_original_title: ལུང་ནག་ན
   tmdb_original_language: Dzongkha
   tmdb_director_name_1: Pawo Choyning Dorji
@@ -2503,7 +2503,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/eHojoVxYRyqGABgoiTYyfkYqTra.jpg
   custom_korean_title: 카페 벨 에포크
-- title: "Rolling Thunder Revue: A Bob Dylan Story"
+- title: 'Rolling Thunder Revue: A Bob Dylan Story'
   year: 2019
   director: Martin Scorsese
   country: US
@@ -2512,7 +2512,7 @@
   imdb_url: https://www.imdb.com/title/tt9577852
   tmdb_url: https://www.themoviedb.org/movie/574638
   tmdb_title: null
-  tmdb_original_title: "Rolling Thunder Revue: A Bob Dylan Story by Martin Scorsese"
+  tmdb_original_title: 'Rolling Thunder Revue: A Bob Dylan Story by Martin Scorsese'
   tmdb_original_language: English
   tmdb_director_name_1: Martin Scorsese
   tmdb_director_name_2: null
@@ -2557,7 +2557,7 @@
   imdb_url: https://www.imdb.com/title/tt11131032
   tmdb_url: https://www.themoviedb.org/movie/639834
   tmdb_title: null
-  tmdb_original_title: "League of Legends: Origins"
+  tmdb_original_title: 'League of Legends: Origins'
   tmdb_original_language: English
   tmdb_director_name_1: Leslie Iwerks
   tmdb_director_name_2: Suki Medencevic
@@ -2681,7 +2681,7 @@
   imdb_url: https://www.imdb.com/title/tt2527338
   tmdb_url: https://www.themoviedb.org/movie/181812
   tmdb_title: null
-  tmdb_original_title: "Star Wars: The Rise of Skywalker"
+  tmdb_original_title: 'Star Wars: The Rise of Skywalker'
   tmdb_original_language: English
   tmdb_director_name_1: J.J. Abrams
   tmdb_director_name_2: null
@@ -2718,7 +2718,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg
-- title: "Avengers: Endgame"
+- title: 'Avengers: Endgame'
   year: 2019
   director: Anthony Russo, Joe Russo
   country: US
@@ -2727,7 +2727,7 @@
   imdb_url: https://www.imdb.com/title/tt4154796
   tmdb_url: https://www.themoviedb.org/movie/299534
   tmdb_title: null
-  tmdb_original_title: "Avengers: Endgame"
+  tmdb_original_title: 'Avengers: Endgame'
   tmdb_original_language: English
   tmdb_director_name_1: Anthony Russo
   tmdb_director_name_2: Joe Russo
@@ -2849,7 +2849,7 @@
   imdb_id: tt8119752
   imdb_url: https://www.imdb.com/title/tt8119752
   tmdb_url: https://www.themoviedb.org/movie/508642
-  tmdb_title: "Gonjiam: Haunted Asylum"
+  tmdb_title: 'Gonjiam: Haunted Asylum'
   tmdb_original_title: 곤지암
   tmdb_original_language: Korean
   tmdb_director_name_1: Jung Bum-shik
@@ -3036,7 +3036,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/uTVGku4LibMGyKgQvjBtv3OYfAX.jpg
-- title: "Spider-Man: Into the Spider-Verse"
+- title: 'Spider-Man: Into the Spider-Verse'
   year: 2018
   director: Peter Ramsey
   country: US
@@ -3045,7 +3045,7 @@
   imdb_url: https://www.imdb.com/title/tt4633694
   tmdb_url: https://www.themoviedb.org/movie/324857
   tmdb_title: null
-  tmdb_original_title: "Spider-Man: Into the Spider-Verse"
+  tmdb_original_title: 'Spider-Man: Into the Spider-Verse'
   tmdb_original_language: English
   tmdb_director_name_1: Bob Persichetti
   tmdb_director_name_2: Peter Ramsey
@@ -3066,7 +3066,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6rbS8oPIgUMhQgIX8oGVTtlNgLR.jpg
-- title: "Mamma Mia: Here We Go Again!"
+- title: 'Mamma Mia: Here We Go Again!'
   year: 2018
   director: Ol Parker
   country: US
@@ -3144,7 +3144,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ftRRIYNzpTDYeTznrAxgT5v1vJY.jpg
-- title: "Mission: Impossible - Fallout"
+- title: 'Mission: Impossible - Fallout'
   year: 2018
   director: Christopher McQuarrie
   country: US
@@ -3153,7 +3153,7 @@
   imdb_url: https://www.imdb.com/title/tt4912910
   tmdb_url: https://www.themoviedb.org/movie/353081
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible - Fallout"
+  tmdb_original_title: 'Mission: Impossible - Fallout'
   tmdb_original_language: English
   tmdb_director_name_1: Christopher McQuarrie
   tmdb_director_name_2: null
@@ -3388,7 +3388,7 @@
     - 청룡영화제 최우수 작품상
   awards:
     - blue_dragon
-- title: "1987"
+- title: '1987'
   year: 2017
   director: 장준환
   country: Korea
@@ -3396,8 +3396,8 @@
   imdb_id: tt6493286
   imdb_url: https://www.imdb.com/title/tt6493286
   tmdb_url: https://www.themoviedb.org/movie/437103
-  tmdb_title: "1987: When the Day Comes"
-  tmdb_original_title: "1987"
+  tmdb_title: '1987: When the Day Comes'
+  tmdb_original_title: '1987'
   tmdb_original_language: Korean
   tmdb_director_name_1: Jang Joon-hwan
   tmdb_director_name_2: null
@@ -3595,7 +3595,7 @@
   imdb_id: tt7160070
   imdb_url: https://www.imdb.com/title/tt7160070
   tmdb_url: https://www.themoviedb.org/movie/397567
-  tmdb_title: "Along with the Gods: The Two Worlds"
+  tmdb_title: 'Along with the Gods: The Two Worlds'
   tmdb_original_title: 신과함께-죄와 벌
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Yong-hwa
@@ -3703,13 +3703,13 @@
   imdb_url: https://www.imdb.com/title/tt2527336
   tmdb_url: https://www.themoviedb.org/movie/181808
   tmdb_title: null
-  tmdb_original_title: "Star Wars: The Last Jedi"
+  tmdb_original_title: 'Star Wars: The Last Jedi'
   tmdb_original_language: English
   tmdb_director_name_1: Rian Johnson
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg
-- title: "Redoubtable (네 멋대로 해라 : 장 뤽 고다르)"
+- title: 'Redoubtable (네 멋대로 해라 : 장 뤽 고다르)'
   year: 2017
   director: Michel Hazanavicius
   country: France
@@ -3724,7 +3724,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/JfAE5Pj1Qqv7Ij5DaUG0QoZC97.jpg
-  custom_korean_title: "네 멋대로 해라 : 장 뤽 고다르"
+  custom_korean_title: '네 멋대로 해라 : 장 뤽 고다르'
 - title: Happy End
   year: 2017
   director: Michael Haneke
@@ -3846,7 +3846,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg
-- title: "Spider-Man: Homecoming"
+- title: 'Spider-Man: Homecoming'
   year: 2017
   director: Jon Watts
   country: US
@@ -3855,7 +3855,7 @@
   imdb_url: https://www.imdb.com/title/tt2250912
   tmdb_url: https://www.themoviedb.org/movie/315635
   tmdb_title: null
-  tmdb_original_title: "Spider-Man: Homecoming"
+  tmdb_original_title: 'Spider-Man: Homecoming'
   tmdb_original_language: English
   tmdb_director_name_1: Jon Watts
   tmdb_director_name_2: null
@@ -3876,7 +3876,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/xa6G3aKlysQeVg9wOb0dRcIGlWu.jpg
-- title: "Joshua : Teenager vs. Superpower"
+- title: 'Joshua : Teenager vs. Superpower'
   year: 2017
   director: Joe Piscatella
   country: Hong Kong
@@ -3885,7 +3885,7 @@
   imdb_url: https://www.imdb.com/title/tt6333072
   tmdb_url: https://www.themoviedb.org/movie/433084
   tmdb_title: null
-  tmdb_original_title: "Joshua: Teenager vs. Superpower"
+  tmdb_original_title: 'Joshua: Teenager vs. Superpower'
   tmdb_original_language: English
   tmdb_director_name_1: Joe Piscatella
   tmdb_director_name_2: null
@@ -4145,7 +4145,7 @@
   imdb_id: tt5799928
   imdb_url: https://www.imdb.com/title/tt5799928
   tmdb_url: https://www.themoviedb.org/movie/382336
-  tmdb_title: "Dongju: The Portrait of a Poet"
+  tmdb_title: 'Dongju: The Portrait of a Poet'
   tmdb_original_title: 동주
   tmdb_original_language: Korean
   tmdb_director_name_1: Lee Joon-ik
@@ -4265,7 +4265,7 @@
   imdb_id: tt5918028
   imdb_url: https://www.imdb.com/title/tt5918028
   tmdb_url: https://www.themoviedb.org/movie/408620
-  tmdb_title: "Asura: The City of Madness"
+  tmdb_title: 'Asura: The City of Madness'
   tmdb_original_title: 아수라
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Sung-soo
@@ -4410,10 +4410,10 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cJRPOLEexI7qp2DKtFfCh7YaaUG.jpg
-- title: "Clash (충돌: 아랍의 봄 그 이후)"
+- title: 'Clash (충돌: 아랍의 봄 그 이후)'
   year: 2016
   director: Mohamed Diab
-  country: ""
+  country: ''
   is_korean_director: false
   imdb_id: tt5599692
   imdb_url: https://www.imdb.com/title/tt5599692
@@ -4425,7 +4425,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6L1bbZcB7HbpxnlzGOKdhufrYNB.jpg
-  custom_korean_title: "충돌: 아랍의 봄 그 이후"
+  custom_korean_title: '충돌: 아랍의 봄 그 이후'
 - title: Toni Erdmann
   year: 2016
   director: Maren Ade
@@ -4609,7 +4609,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/59KtPlcr2GQIudEA6B5KNY5NnBf.jpg
   masterpiece: true
-- title: "Mad Max: Fury Road"
+- title: 'Mad Max: Fury Road'
   year: 2015
   director: George Miller
   country: Australia
@@ -4618,7 +4618,7 @@
   imdb_url: https://www.imdb.com/title/tt1392190
   tmdb_url: https://www.themoviedb.org/movie/76341
   tmdb_title: null
-  tmdb_original_title: "Mad Max: Fury Road"
+  tmdb_original_title: 'Mad Max: Fury Road'
   tmdb_original_language: English
   tmdb_director_name_1: George Miller
   tmdb_director_name_2: null
@@ -4828,7 +4828,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cJeled7EyPdur6TnCA5GYg0UVna.jpg
-- title: "Bãhubali: The Beginning"
+- title: 'Bãhubali: The Beginning'
   year: 2015
   director: S.S. Rajamouli
   country: India
@@ -4836,7 +4836,7 @@
   imdb_id: tt2631186
   imdb_url: https://www.imdb.com/title/tt2631186
   tmdb_url: https://www.themoviedb.org/movie/256040
-  tmdb_title: "Bāhubali: The Beginning"
+  tmdb_title: 'Bāhubali: The Beginning'
   tmdb_original_title: బాహుబలి:ద బిగినింగ్
   tmdb_original_language: Telugu
   tmdb_director_name_1: S. S. Rajamouli
@@ -4949,7 +4949,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/zMg4uP2Ev8lIZr1kOvHrPOM8teA.jpg
   custom_korean_title: 산하고인
-- title: "Star Wars 7: The Force Awakens"
+- title: 'Star Wars 7: The Force Awakens'
   year: 2015
   director: J.J. Abrams
   country: US
@@ -4958,7 +4958,7 @@
   imdb_url: https://www.imdb.com/title/tt2488496
   tmdb_url: https://www.themoviedb.org/movie/140607
   tmdb_title: null
-  tmdb_original_title: "Star Wars: The Force Awakens"
+  tmdb_original_title: 'Star Wars: The Force Awakens'
   tmdb_original_language: English
   tmdb_director_name_1: J.J. Abrams
   tmdb_director_name_2: null
@@ -4982,7 +4982,7 @@
   custom_korean_title: 바닷마을 다이어리
   award_names:
     - Japan Academy Prize
-- title: "Mission: Impossible – Rogue Nation"
+- title: 'Mission: Impossible – Rogue Nation'
   year: 2015
   director: Christopher McQuarrie
   country: US
@@ -4991,7 +4991,7 @@
   imdb_url: https://www.imdb.com/title/tt2381249
   tmdb_url: https://www.themoviedb.org/movie/177677
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible - Rogue Nation"
+  tmdb_original_title: 'Mission: Impossible - Rogue Nation'
   tmdb_original_language: English
   tmdb_director_name_1: Christopher McQuarrie
   tmdb_director_name_2: null
@@ -5150,7 +5150,7 @@
   imdb_id: tt3541262
   imdb_url: https://www.imdb.com/title/tt3541262
   tmdb_url: https://www.themoviedb.org/movie/282631
-  tmdb_title: "The Admiral: Roaring Currents"
+  tmdb_title: 'The Admiral: Roaring Currents'
   tmdb_original_title: 명량
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Han-min
@@ -5890,7 +5890,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rbxlxwD0YEK31Fm0QUqDlUo6HZx.jpg
-- title: "범죄와의 전쟁: 나쁜놈들 전성시대"
+- title: '범죄와의 전쟁: 나쁜놈들 전성시대'
   year: 2012
   director: 윤종빈
   country: Korea
@@ -5920,7 +5920,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/bX8OXtPoxbJWcHszHmYQGhLtTmm.jpg
-- title: "후궁: 제왕의 첩"
+- title: '후궁: 제왕의 첩'
   year: 2012
   director: 김대승
   country: Korea
@@ -5929,7 +5929,7 @@
   imdb_url: https://www.imdb.com/title/tt2544120
   tmdb_url: https://www.themoviedb.org/movie/122126
   tmdb_title: The Concubine
-  tmdb_original_title: "후궁: 제왕의 첩"
+  tmdb_original_title: '후궁: 제왕의 첩'
   tmdb_original_language: Korean
   tmdb_director_name_1: Kim Dae-seung
   tmdb_director_name_2: null
@@ -6443,7 +6443,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/2kSElneXSKmMsGL55k0CbPGqLbu.jpg
   custom_korean_title: 토리노의 말
-- title: "Mission: Impossible – Ghost Protocol"
+- title: 'Mission: Impossible – Ghost Protocol'
   year: 2011
   director: Brad Bird
   country: US
@@ -6452,7 +6452,7 @@
   imdb_url: https://www.imdb.com/title/tt1229238
   tmdb_url: https://www.themoviedb.org/movie/56292
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible - Ghost Protocol"
+  tmdb_original_title: 'Mission: Impossible - Ghost Protocol'
   tmdb_original_language: English
   tmdb_director_name_1: Brad Bird
   tmdb_director_name_2: null
@@ -6841,7 +6841,7 @@
   imdb_id: tt1274293
   imdb_url: https://www.imdb.com/title/tt1274293
   tmdb_url: https://www.themoviedb.org/movie/40171
-  tmdb_title: "Woochi: The Demon Slayer"
+  tmdb_title: 'Woochi: The Demon Slayer'
   tmdb_original_title: 전우치
   tmdb_original_language: Korean
   tmdb_director_name_1: Choi Dong-hoon
@@ -6985,7 +6985,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/ge7zbYvpfsDP3luKi0iSpzOgncM.jpg
-- title: "Red Cliff 2 (적벽대전 2: 최후의 결전)"
+- title: 'Red Cliff 2 (적벽대전 2: 최후의 결전)'
   year: 2009
   director: John Woo
   country: China
@@ -7000,7 +7000,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/h4WZHa5K941lAthsa29g0RFJJtV.jpg
-  custom_korean_title: "적벽대전 2: 최후의 결전"
+  custom_korean_title: '적벽대전 2: 최후의 결전'
 - title: A Prophet (예언자)
   year: 2009
   director: Jacques Audiard
@@ -7371,7 +7371,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/78lPtwv72eTNqFW9COBYI0dWDJa.jpg
-- title: "Red Cliff (적벽대전: 거대한 전쟁의 시작)"
+- title: 'Red Cliff (적벽대전: 거대한 전쟁의 시작)'
   year: 2008
   director: John Woo
   country: China
@@ -7386,7 +7386,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/eEelFTjUYJJDlwqd53VfSA8xMfj.jpg
-  custom_korean_title: "적벽대전: 거대한 전쟁의 시작"
+  custom_korean_title: '적벽대전: 거대한 전쟁의 시작'
 - title: Avatar
   year: 2008
   director: James Cameron
@@ -7573,7 +7573,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/u7uWshJUUMGJ4Dq4qapY6vm5Rn5.jpg
-- title: "Dragon Wars: D-War"
+- title: 'Dragon Wars: D-War'
   year: 2007
   director: 심형래
   country: Korea
@@ -7581,7 +7581,7 @@
   imdb_id: tt0372873
   imdb_url: https://www.imdb.com/title/tt0372873
   tmdb_url: https://www.themoviedb.org/movie/10253
-  tmdb_title: "Dragon Wars: D-War"
+  tmdb_title: 'Dragon Wars: D-War'
   tmdb_original_title: 디 워
   tmdb_original_language: Korean
   tmdb_director_name_1: Shim Hyung-rae
@@ -7755,7 +7755,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/t3vaWRPSf6WjDSamIkKDs1iQWna.jpg
-- title: "타짜 (Tazza: The High Rollers/The War Of Flower)"
+- title: '타짜 (Tazza: The High Rollers/The War Of Flower)'
   year: 2006
   director: 최동훈
   country: Korea
@@ -7763,7 +7763,7 @@
   imdb_id: tt0875025
   imdb_url: https://www.imdb.com/title/tt0875025
   tmdb_url: https://www.themoviedb.org/movie/38015
-  tmdb_title: "Tazza: The High Rollers"
+  tmdb_title: 'Tazza: The High Rollers'
   tmdb_original_title: 타짜
   tmdb_original_language: Korean
   tmdb_director_name_1: Choi Dong-hoon
@@ -8039,7 +8039,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/h1ITOpvJN3Tw4Sy60w2QTfYMvdd.jpg
-- title: "Mission: Impossible III"
+- title: 'Mission: Impossible III'
   year: 2006
   director: J.J. Abrams
   country: US
@@ -8048,7 +8048,7 @@
   imdb_url: https://www.imdb.com/title/tt0317919
   tmdb_url: https://www.themoviedb.org/movie/956
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible III"
+  tmdb_original_title: 'Mission: Impossible III'
   tmdb_original_language: English
   tmdb_director_name_1: J.J. Abrams
   tmdb_director_name_2: null
@@ -8370,7 +8370,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/w4Y1WJMUP6w2hZo5FnQdZL3OWjN.jpg
   award_names:
     - César Award for Best Film
-- title: "Star Wars: Episode III - Revenge of the Sith"
+- title: 'Star Wars: Episode III - Revenge of the Sith'
   year: 2005
   director: George Lucas
   country: US
@@ -8379,7 +8379,7 @@
   imdb_url: https://www.imdb.com/title/tt0121766
   tmdb_url: https://www.themoviedb.org/movie/1895
   tmdb_title: null
-  tmdb_original_title: "Star Wars: Episode III - Revenge of the Sith"
+  tmdb_original_title: 'Star Wars: Episode III - Revenge of the Sith'
   tmdb_original_language: English
   tmdb_director_name_1: George Lucas
   tmdb_director_name_2: null
@@ -8730,7 +8730,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vvjC5LSMANKvGGDHjIWj1YomPdN.jpg
   my_best: true
-- title: "The Lord of the Rings: The Return of the King"
+- title: 'The Lord of the Rings: The Return of the King'
   year: 2003
   director: Peter Jackson
   country: US
@@ -8739,7 +8739,7 @@
   imdb_url: https://www.imdb.com/title/tt0167260
   tmdb_url: https://www.themoviedb.org/movie/122
   tmdb_title: null
-  tmdb_original_title: "The Lord of the Rings: The Return of the King"
+  tmdb_original_title: 'The Lord of the Rings: The Return of the King'
   tmdb_original_language: English
   tmdb_director_name_1: Peter Jackson
   tmdb_director_name_2: null
@@ -8773,7 +8773,7 @@
   imdb_url: https://www.imdb.com/title/tt0380689
   tmdb_url: https://www.themoviedb.org/movie/50476
   tmdb_title: Untold Scandal
-  tmdb_original_title: "스캔들: 조선남녀상열지사"
+  tmdb_original_title: '스캔들: 조선남녀상열지사'
   tmdb_original_language: Korean
   tmdb_director_name_1: E J-yong
   tmdb_director_name_2: null
@@ -8884,7 +8884,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7QPeVsr9rcFU9Gl90yg0gTOTpVv.jpg
-- title: "Kill Bill: Vol. 1"
+- title: 'Kill Bill: Vol. 1'
   year: 2003
   director: Quentin Tarantino
   country: US
@@ -8893,7 +8893,7 @@
   imdb_url: https://www.imdb.com/title/tt0266697
   tmdb_url: https://www.themoviedb.org/movie/24
   tmdb_title: null
-  tmdb_original_title: "Kill Bill: Vol. 1"
+  tmdb_original_title: 'Kill Bill: Vol. 1'
   tmdb_original_language: English
   tmdb_director_name_1: Quentin Tarantino
   tmdb_director_name_2: null
@@ -8989,7 +8989,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/wZ0l6or5juuVWqDkLEgaghs4f9l.jpg
-- title: "Hero (영웅: 천하의 시작)"
+- title: 'Hero (영웅: 천하의 시작)'
   year: 2002
   director: Zhang Yimou
   country: China
@@ -9004,7 +9004,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vxgZto2Cz7ILHAlmRXt50I2brB2.jpg
-  custom_korean_title: "영웅: 천하의 시작"
+  custom_korean_title: '영웅: 천하의 시작'
   my_best: true
 - title: The Pianist
   year: 2002
@@ -9183,7 +9183,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg
-- title: "The Lord of the Rings: The Two Towers"
+- title: 'The Lord of the Rings: The Two Towers'
   year: 2002
   director: Peter Jackson
   country: US
@@ -9192,7 +9192,7 @@
   imdb_url: https://www.imdb.com/title/tt0167261
   tmdb_url: https://www.themoviedb.org/movie/121
   tmdb_title: null
-  tmdb_original_title: "The Lord of the Rings: The Two Towers"
+  tmdb_original_title: 'The Lord of the Rings: The Two Towers'
   tmdb_original_language: English
   tmdb_director_name_1: Peter Jackson
   tmdb_director_name_2: null
@@ -9276,7 +9276,7 @@
   tmdb_director_name_2: Luc Dardenne
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/mbAG0JOVgcOIH8LVVynw87ONgej.jpg
-- title: "Star Wars: Episode II - Attack of the Clones"
+- title: 'Star Wars: Episode II - Attack of the Clones'
   year: 2002
   director: George Lucas
   country: US
@@ -9285,7 +9285,7 @@
   imdb_url: https://www.imdb.com/title/tt0121765
   tmdb_url: https://www.themoviedb.org/movie/1894
   tmdb_title: null
-  tmdb_original_title: "Star Wars: Episode II - Attack of the Clones"
+  tmdb_original_title: 'Star Wars: Episode II - Attack of the Clones'
   tmdb_original_language: English
   tmdb_director_name_1: George Lucas
   tmdb_director_name_2: null
@@ -9561,7 +9561,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkauRl9TosBFikftrC3OVcKWDoz.jpg
-- title: "The Lord of the Rings: The Fellowship of the Ring"
+- title: 'The Lord of the Rings: The Fellowship of the Ring'
   year: 2001
   director: Peter Jackson
   country: US
@@ -9570,7 +9570,7 @@
   imdb_url: https://www.imdb.com/title/tt0120737
   tmdb_url: https://www.themoviedb.org/movie/120
   tmdb_title: null
-  tmdb_original_title: "The Lord of the Rings: The Fellowship of the Ring"
+  tmdb_original_title: 'The Lord of the Rings: The Fellowship of the Ring'
   tmdb_original_language: English
   tmdb_director_name_1: Peter Jackson
   tmdb_director_name_2: null
@@ -9834,7 +9834,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/bnVby0qI0dS7YunbShP7mw68HY3.jpg
-- title: "Mission: Impossible II"
+- title: 'Mission: Impossible II'
   year: 2000
   director: John Woo
   country: US
@@ -9843,7 +9843,7 @@
   imdb_url: https://www.imdb.com/title/tt0120755
   tmdb_url: https://www.themoviedb.org/movie/955
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible II"
+  tmdb_original_title: 'Mission: Impossible II'
   tmdb_original_language: English
   tmdb_director_name_1: John Woo
   tmdb_director_name_2: null
@@ -10204,7 +10204,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/yFWQkz2ynjwsazT6xQiIXEUsyuh.jpg
-- title: "Star Wars: Episode I - The Phantom Menace"
+- title: 'Star Wars: Episode I - The Phantom Menace'
   year: 1999
   director: George Lucas
   country: US
@@ -10213,7 +10213,7 @@
   imdb_url: https://www.imdb.com/title/tt0120915
   tmdb_url: https://www.themoviedb.org/movie/1893
   tmdb_title: null
-  tmdb_original_title: "Star Wars: Episode I - The Phantom Menace"
+  tmdb_original_title: 'Star Wars: Episode I - The Phantom Menace'
   tmdb_original_language: English
   tmdb_director_name_1: George Lucas
   tmdb_director_name_2: null
@@ -10516,7 +10516,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/evO1iENjLpUnbwjnt5XK85jRYob.jpg
-- title: "The Lost World: Jurassic Park"
+- title: 'The Lost World: Jurassic Park'
   year: 1997
   director: Steven Spielberg
   country: US
@@ -10525,7 +10525,7 @@
   imdb_url: https://www.imdb.com/title/tt0119567
   tmdb_url: https://www.themoviedb.org/movie/330
   tmdb_title: null
-  tmdb_original_title: "The Lost World: Jurassic Park"
+  tmdb_original_title: 'The Lost World: Jurassic Park'
   tmdb_original_language: English
   tmdb_director_name_1: Steven Spielberg
   tmdb_director_name_2: null
@@ -10606,7 +10606,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/69Xzn8UdPbVnmqSChKz2RTpoNfB.jpg
-- title: "Speed 2: Cruise Control"
+- title: 'Speed 2: Cruise Control'
   year: 1997
   director: Jan de Bont
   country: US
@@ -10615,7 +10615,7 @@
   imdb_url: https://www.imdb.com/title/tt0120179
   tmdb_url: https://www.themoviedb.org/movie/1639
   tmdb_title: null
-  tmdb_original_title: "Speed 2: Cruise Control"
+  tmdb_original_title: 'Speed 2: Cruise Control'
   tmdb_original_language: English
   tmdb_director_name_1: Jan de Bont
   tmdb_director_name_2: null
@@ -10722,7 +10722,7 @@
     - Oscar Best Picture
   awards:
     - oscar
-- title: "아기공룡 둘리: 얼음별 대모험"
+- title: '아기공룡 둘리: 얼음별 대모험'
   year: 1996
   director: 김수정
   country: Korea
@@ -10731,7 +10731,7 @@
   imdb_url: https://www.imdb.com/title/tt0181503
   tmdb_url: https://www.themoviedb.org/movie/467885
   tmdb_title: A Little Dinosaur Dooly - The Adventure of Ice Planet
-  tmdb_original_title: "아기공룡 둘리: 얼음별 대모험"
+  tmdb_original_title: '아기공룡 둘리: 얼음별 대모험'
   tmdb_original_language: Korean
   tmdb_director_name_1: Lim Kyung-won
   tmdb_director_name_2: Kim Soo-jung
@@ -10857,7 +10857,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/lABvGN7fDk5ifnwZoxij6G96t2w.jpg
-- title: "Mission: Impossible"
+- title: 'Mission: Impossible'
   year: 1996
   director: Brian De Palma
   country: US
@@ -10866,7 +10866,7 @@
   imdb_url: https://www.imdb.com/title/tt0117060
   tmdb_url: https://www.themoviedb.org/movie/954
   tmdb_title: null
-  tmdb_original_title: "Mission: Impossible"
+  tmdb_original_title: 'Mission: Impossible'
   tmdb_original_language: English
   tmdb_director_name_1: Brian De Palma
   tmdb_director_name_2: null
@@ -11270,7 +11270,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4T6Po0XnZlevmhfPh3ZfEs5butR.jpg
-- title: "Interview With The Vampire: The Vampire Chronicles"
+- title: 'Interview With The Vampire: The Vampire Chronicles'
   year: 1994
   director: Neil Jordan
   country: US
@@ -11285,7 +11285,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/2162lAT2MP36MyJd2sttmj5du5T.jpg
-- title: "Il Postino: The Postman"
+- title: 'Il Postino: The Postman'
   year: 1994
   director: Michael Radford
   country: Italia
@@ -11308,14 +11308,14 @@
   imdb_id: tt0110413
   imdb_url: https://www.imdb.com/title/tt0110413
   tmdb_url: https://www.themoviedb.org/movie/101
-  tmdb_title: "Léon: The Professional"
+  tmdb_title: 'Léon: The Professional'
   tmdb_original_title: Léon
   tmdb_original_language: French
   tmdb_director_name_1: Luc Besson
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/bxB2q91nKYp8JNzqE7t7TWBVupB.jpg
-- title: "Three Colours: Red"
+- title: 'Three Colours: Red'
   year: 1994
   director: Krzysztof Kieślowski
   country: France
@@ -11323,14 +11323,14 @@
   imdb_id: tt0111495
   imdb_url: https://www.imdb.com/title/tt0111495
   tmdb_url: https://www.themoviedb.org/movie/110
-  tmdb_title: "Three Colors: Red"
-  tmdb_original_title: "Trois couleurs : Rouge"
+  tmdb_title: 'Three Colors: Red'
+  tmdb_original_title: 'Trois couleurs : Rouge'
   tmdb_original_language: French
   tmdb_director_name_1: Krzysztof Kieślowski
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/JHmsBiX1tjCKqAul1lzC20WcAW.jpg
-- title: "Three Colors: White"
+- title: 'Three Colors: White'
   year: 1994
   director: Krzysztof Kieślowski
   country: France
@@ -11338,8 +11338,8 @@
   imdb_id: tt0111507
   imdb_url: https://www.imdb.com/title/tt0111507
   tmdb_url: https://www.themoviedb.org/movie/109
-  tmdb_title: "Three Colors: White"
-  tmdb_original_title: "Trois couleurs : Blanc"
+  tmdb_title: 'Three Colors: White'
+  tmdb_original_title: 'Trois couleurs : Blanc'
   tmdb_original_language: French
   tmdb_director_name_1: Krzysztof Kieślowski
   tmdb_director_name_2: null
@@ -11441,7 +11441,7 @@
     - Oscar Best Picture
   awards:
     - oscar
-- title: "Three Colours: Blue"
+- title: 'Three Colours: Blue'
   year: 1993
   director: Krzysztof Kieślowski
   country: France
@@ -11449,8 +11449,8 @@
   imdb_id: tt0108394
   imdb_url: https://www.imdb.com/title/tt0108394
   tmdb_url: https://www.themoviedb.org/movie/108
-  tmdb_title: "Three Colors: Blue"
-  tmdb_original_title: "Trois couleurs : Bleu"
+  tmdb_title: 'Three Colors: Blue'
+  tmdb_original_title: 'Trois couleurs : Bleu'
   tmdb_original_language: French
   tmdb_director_name_1: Krzysztof Kieślowski
   tmdb_director_name_2: null
@@ -11750,7 +11750,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4adI7IaveWb7EidYXfLb3MK3CgO.jpg
-- title: "Home Alone 2: Lost In New York"
+- title: 'Home Alone 2: Lost In New York'
   year: 1992
   director: Chris Columbus
   country: US
@@ -11759,13 +11759,13 @@
   imdb_url: https://www.imdb.com/title/tt0104431
   tmdb_url: https://www.themoviedb.org/movie/772
   tmdb_title: null
-  tmdb_original_title: "Home Alone 2: Lost in New York"
+  tmdb_original_title: 'Home Alone 2: Lost in New York'
   tmdb_original_language: English
   tmdb_director_name_1: Chris Columbus
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/uuitWHpJwxD1wruFl2nZHIb4UGN.jpg
-- title: "Terminator 2: Judgment Day"
+- title: 'Terminator 2: Judgment Day'
   year: 1991
   director: James Cameron
   country: US
@@ -11774,7 +11774,7 @@
   imdb_url: https://www.imdb.com/title/tt0103064
   tmdb_url: https://www.themoviedb.org/movie/280
   tmdb_title: null
-  tmdb_original_title: "Terminator 2: Judgment Day"
+  tmdb_original_title: 'Terminator 2: Judgment Day'
   tmdb_original_language: English
   tmdb_director_name_1: James Cameron
   tmdb_director_name_2: null
@@ -12390,7 +12390,7 @@
     - Japan Academy Prize
   awards:
     - cannes
-- title: "First Name: Carmen (Prénom Carmen, 미녀 갱 카르멘)"
+- title: 'First Name: Carmen (Prénom Carmen, 미녀 갱 카르멘)'
   year: 1983
   director: Jean-Luc Godard
   country: France
@@ -12398,7 +12398,7 @@
   imdb_id: tt0086153
   imdb_url: https://www.imdb.com/title/tt0086153
   tmdb_url: https://www.themoviedb.org/movie/32689
-  tmdb_title: "First Name: Carmen"
+  tmdb_title: 'First Name: Carmen'
   tmdb_original_title: Prénom Carmen
   tmdb_original_language: French
   tmdb_director_name_1: Jean-Luc Godard
@@ -12425,7 +12425,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kjC8I6fvchcxPBdh4bw4w8Px8ue.jpg
-- title: "Star Wars: Return of the Jedi"
+- title: 'Star Wars: Return of the Jedi'
   year: 1983
   director: Richard Marquand
   country: US
@@ -12571,7 +12571,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/1WV7WlTS8LI1L5NkCgjWT9GSW3O.jpg
-- title: "Star Wars: The Empire Strikes Back"
+- title: 'Star Wars: The Empire Strikes Back'
   year: 1980
   director: Irvin Kershner
   country: US
@@ -12724,7 +12724,7 @@
     - Oscar Best Picture
   awards:
     - oscar
-- title: "The Godfather: Part II"
+- title: 'The Godfather: Part II'
   year: 1974
   director: Francis Ford Coppola
   country: US
@@ -12812,7 +12812,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/scl2JDHzYoIEs5xyYy5ITCfyY0G.jpg
-- title: "2001: A Space Odyssey"
+- title: '2001: A Space Odyssey'
   year: 1968
   director: Stanley Kubrick
   country: US
@@ -12821,7 +12821,7 @@
   imdb_url: https://www.imdb.com/title/tt0062622
   tmdb_url: https://www.themoviedb.org/movie/62
   tmdb_title: null
-  tmdb_original_title: "2001: A Space Odyssey"
+  tmdb_original_title: '2001: A Space Odyssey'
   tmdb_original_language: English
   tmdb_director_name_1: Stanley Kubrick
   tmdb_director_name_2: null
@@ -13031,9 +13031,7 @@
   imdb_url: https://www.imdb.com/title/tt0057012
   tmdb_url: https://www.themoviedb.org/movie/935
   tmdb_title: null
-  tmdb_original_title:
-    "Dr. Strangelove or: How I Learned to Stop Worrying and Love
-    the Bomb"
+  tmdb_original_title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb'
   tmdb_original_language: English
   tmdb_director_name_1: Stanley Kubrick
   tmdb_director_name_2: null
@@ -13098,7 +13096,7 @@
   imdb_url: https://www.imdb.com/title/tt0056663
   tmdb_url: https://www.themoviedb.org/movie/1626
   tmdb_title: Vivre Sa Vie
-  tmdb_original_title: "Vivre sa vie: film en douze tableaux"
+  tmdb_original_title: 'Vivre sa vie: film en douze tableaux'
   tmdb_original_language: French
   tmdb_director_name_1: Jean-Luc Godard
   tmdb_director_name_2: null
@@ -13821,7 +13819,7 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7uoiKOEjxBBW0AgDGQWrlfGQ90w.jpg
-- title: "Sunrise: A Song of Two Humans"
+- title: 'Sunrise: A Song of Two Humans'
   year: 1927
   director: F. W. Murnau
   country: US
@@ -13830,7 +13828,7 @@
   imdb_url: https://www.imdb.com/title/tt0018455
   tmdb_url: https://www.themoviedb.org/movie/631
   tmdb_title: null
-  tmdb_original_title: "Sunrise: A Song of Two Humans"
+  tmdb_original_title: 'Sunrise: A Song of Two Humans'
   tmdb_original_language: English
   tmdb_director_name_1: F. W. Murnau
   tmdb_director_name_2: null
