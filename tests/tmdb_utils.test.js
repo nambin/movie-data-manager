@@ -168,6 +168,57 @@ test("The Witches (id=531219) — apostrophe in original_title; tmdb_title is nu
   });
 });
 
+test("Police Story (id=9056) — Cantonese original; TMDb language code 'cn'", () => {
+  const tmdb = loadFixture("tmdb-police-story");
+  const entry = buildMovieEntryFromTmdb(tmdb);
+
+  // tmdb_original_language is "Cantonese" via the TMDb-specific override —
+  // not a raw "cn" passthrough, which is what TMDb returns and Intl.DisplayNames
+  // can't resolve.
+  assert.deepEqual(entry, {
+    title: "Police Story (警察故事)",
+    year: 1985,
+    director: "Jackie Chan",
+    is_korean_director: false,
+    imdb_id: "tt0089374",
+    imdb_url: "https://www.imdb.com/title/tt0089374",
+    tmdb_url: "https://www.themoviedb.org/movie/9056",
+    tmdb_title: "Police Story",
+    tmdb_original_title: "警察故事",
+    tmdb_original_language: "Cantonese",
+    tmdb_director_name_1: "Jackie Chan",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/1eFB0Iy1TMU4VO5hMcoCE064JAT.jpg",
+  });
+});
+
+test("Infernal Affairs (id=10775) — Cantonese original, two directors", () => {
+  const tmdb = loadFixture("tmdb-infernal-affairs");
+  const entry = buildMovieEntryFromTmdb(tmdb);
+
+  // Same "cn" → Cantonese override case as Police Story; also exercises the
+  // two-director path (tmdb_director_name_2 non-null, tmdb_num_directors=2).
+  assert.deepEqual(entry, {
+    title: "Infernal Affairs (無間道)",
+    year: 2002,
+    director: "Alan Mak Siu-Fai",
+    is_korean_director: false,
+    imdb_id: "tt0338564",
+    imdb_url: "https://www.imdb.com/title/tt0338564",
+    tmdb_url: "https://www.themoviedb.org/movie/10775",
+    tmdb_title: "Infernal Affairs",
+    tmdb_original_title: "無間道",
+    tmdb_original_language: "Cantonese",
+    tmdb_director_name_1: "Alan Mak Siu-Fai",
+    tmdb_director_name_2: "Andrew Lau Wai-Keung",
+    tmdb_num_directors: 2,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/gix9thDBXfjJ8M7rYbihqbQGBcP.jpg",
+  });
+});
+
 test("missing imdb_id throws", () => {
   // Construct a minimal fake response with imdb_id missing.
   const fake = {

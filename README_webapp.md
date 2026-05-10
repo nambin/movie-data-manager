@@ -90,7 +90,7 @@ The fixtures under [tests/fixtures/](tests/fixtures/) are a frozen snapshot of T
 ```bash
 cd tests/fixtures
 KEY=f6d7fb04f4d4d6b07d2d750811e73a4c
-for pair in 496243:parasite 872585:oppenheimer 505192:shoplifters 531219:the-witches; do
+for pair in 496243:parasite 872585:oppenheimer 505192:shoplifters 531219:the-witches 9056:police-story 10775:infernal-affairs; do
   id=${pair%:*}; name=${pair#*:}
   curl -s "https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&append_to_response=credits" \
     | python -m json.tool --no-ensure-ascii > "tmdb-${name}.json"
