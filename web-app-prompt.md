@@ -127,7 +127,11 @@ Boolean semantics: missing `masterpiece`/`my_best` keys are treated as `False`; 
 - Input: paste a TMDB movie URL. Extract the ID with a regex on `/movie/(\d+)`.
 - Call TMDB Movie Details API: `https://api.themoviedb.org/3/movie/{id}?api_key={KEY}&append_to_response=credits`.
 - Build a new entry mirroring [data-manager.py:388-422](data-manager.py#L388-L422) exactly:
-  - `title` set to `tmdb_original_title`. Not editable in the UI (the field is unused by [movies.html](../nambin.github.io/movies.html), kept only for YML consistency). *Deviation from data-manager.py:* the legacy CSV pipeline stored the user-typed CSV title verbatim — including parenthetical Korean overlays like `Adolescence (소년의 시간)`. The web app drops that convention; Korean overlays go through `custom_korean_title` exclusively going forward.
+  - `title` composed from TMDB `title` + `original_title`:
+    - if either is missing, use whichever is present
+    - if both are present and identical, use one (no redundant duplication)
+    - if both differ, combine as `"<tmdb title> (<original title>)"` (e.g. `Parasite (기생충)`)
+    Not editable in the UI (the field is unused by [movies.html](../nambin.github.io/movies.html), kept only for YML consistency). *Deviation from data-manager.py:* the legacy CSV pipeline stored the user-typed CSV title verbatim — including parenthetical Korean overlays like `Adolescence (소년의 시간)`. The web app reconstructs that parenthetical pattern directly from TMDB; further Korean overlays beyond what TMDB provides go through `custom_korean_title`.
   - `year` defaults to the leading 4 chars of `release_date`. User-editable.
   - `director` defaults to `credits.crew[?job=Director][0].name`. User-editable.
   - `country` — **do not emit** for newly added entries. The field is unused by [movies.html](../nambin.github.io/movies.html) and `tmdb_original_language` covers the same intent better. Legacy entries loaded from YML keep their existing `country` verbatim.
