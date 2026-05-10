@@ -1,0 +1,208 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import {
+  buildMovieEntryFromTmdb,
+  extractTmdbIdFromUrl,
+} from "../lib/tmdb_utils.js";
+
+function loadFixture(name) {
+  const path = new URL(`./fixtures/${name}.json`, import.meta.url);
+  return JSON.parse(readFileSync(path, "utf-8"));
+}
+
+test("extractTmdbIdFromUrl: bare URL", () => {
+  assert.equal(
+    extractTmdbIdFromUrl("https://www.themoviedb.org/movie/496243"),
+    496243
+  );
+});
+
+test("extractTmdbIdFromUrl: URL with slug", () => {
+  assert.equal(
+    extractTmdbIdFromUrl("https://www.themoviedb.org/movie/496243-parasite"),
+    496243
+  );
+});
+
+test("extractTmdbIdFromUrl: URL with query string", () => {
+  assert.equal(
+    extractTmdbIdFromUrl(
+      "https://www.themoviedb.org/movie/872585?language=en"
+    ),
+    872585
+  );
+});
+
+test("extractTmdbIdFromUrl: invalid input → null", () => {
+  assert.equal(extractTmdbIdFromUrl("https://example.com"), null);
+  assert.equal(extractTmdbIdFromUrl("not a url"), null);
+  assert.equal(extractTmdbIdFromUrl(""), null);
+  assert.equal(extractTmdbIdFromUrl(null), null);
+  assert.equal(extractTmdbIdFromUrl(undefined), null);
+});
+
+// ---------------------------------------------------------------------------
+// Fixture-driven tests against real TMDB Movie Details responses.
+// Fixtures fetched once from the URLs in README.md and stored under
+// tests/fixtures/. Updating them is a manual operation — these JSON blobs
+// represent a stable snapshot of the API at fetch time.
+// ---------------------------------------------------------------------------
+
+test("Parasite (id=496243) — Korean original, English tmdb_title", () => {
+  const tmdb = loadFixture("tmdb-parasite");
+  const entry = buildMovieEntryFromTmdb(tmdb);
+
+  assert.deepEqual(entry, {
+    title: "기생충",
+    year: 2019,
+    director: "Bong Joon Ho",
+    is_korean_director: false,
+    imdb_id: "tt6751668",
+    imdb_url: "https://www.imdb.com/title/tt6751668",
+    tmdb_url: "https://www.themoviedb.org/movie/496243",
+    tmdb_title: "Parasite",
+    tmdb_original_title: "기생충",
+    tmdb_original_language: "Korean",
+    tmdb_director_name_1: "Bong Joon Ho",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+  });
+
+  // deepEqual above ignores key insertion order; emission order matters for YAML.
+  assert.deepEqual(Object.keys(entry), [
+    "title",
+    "year",
+    "director",
+    "is_korean_director",
+    "imdb_id",
+    "imdb_url",
+    "tmdb_url",
+    "tmdb_title",
+    "tmdb_original_title",
+    "tmdb_original_language",
+    "tmdb_director_name_1",
+    "tmdb_director_name_2",
+    "tmdb_num_directors",
+    "tmdb_poster_url",
+  ]);
+});
+
+test("Oppenheimer (id=872585) — English original, tmdb_title is null", () => {
+  const tmdb = loadFixture("tmdb-oppenheimer");
+  const entry = buildMovieEntryFromTmdb(tmdb);
+
+  // TMDB's `title` equals `original_title` → tmdb_title MUST be null.
+  assert.deepEqual(entry, {
+    title: "Oppenheimer",
+    year: 2023,
+    director: "Christopher Nolan",
+    is_korean_director: false,
+    imdb_id: "tt15398776",
+    imdb_url: "https://www.imdb.com/title/tt15398776",
+    tmdb_url: "https://www.themoviedb.org/movie/872585",
+    tmdb_title: null,
+    tmdb_original_title: "Oppenheimer",
+    tmdb_original_language: "English",
+    tmdb_director_name_1: "Christopher Nolan",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+  });
+});
+
+test("Shoplifters (id=505192) — Japanese original, English tmdb_title", () => {
+  const tmdb = loadFixture("tmdb-shoplifters");
+  const entry = buildMovieEntryFromTmdb(tmdb);
+
+  // Director: TMDB returns name="Hirokazu Kore-eda" / original_name="是枝裕和".
+  // We must use `name`, not `original_name`, to match data-manager.py.
+  assert.deepEqual(entry, {
+    title: "万引き家族",
+    year: 2018,
+    director: "Hirokazu Kore-eda",
+    is_korean_director: false,
+    imdb_id: "tt8075192",
+    imdb_url: "https://www.imdb.com/title/tt8075192",
+    tmdb_url: "https://www.themoviedb.org/movie/505192",
+    tmdb_title: "Shoplifters",
+    tmdb_original_title: "万引き家族",
+    tmdb_original_language: "Japanese",
+    tmdb_director_name_1: "Hirokazu Kore-eda",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg",
+  });
+});
+
+test("The Witches (id=531219) — apostrophe in original_title; tmdb_title is null", () => {
+  const tmdb = loadFixture("tmdb-the-witches");
+  const entry = buildMovieEntryFromTmdb(tmdb);
+
+  // title === original_title here, so tmdb_title is null.
+  // The apostrophe in the title is a regular U+0027.
+  assert.deepEqual(entry, {
+    title: "Roald Dahl's The Witches",
+    year: 2020,
+    director: "Robert Zemeckis",
+    is_korean_director: false,
+    imdb_id: "tt0805647",
+    imdb_url: "https://www.imdb.com/title/tt0805647",
+    tmdb_url: "https://www.themoviedb.org/movie/531219",
+    tmdb_title: null,
+    tmdb_original_title: "Roald Dahl's The Witches",
+    tmdb_original_language: "English",
+    tmdb_director_name_1: "Robert Zemeckis",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/ht6EfsM5hrsUPSR4ReJQFDVU71F.jpg",
+  });
+});
+
+test("missing imdb_id throws", () => {
+  // Construct a minimal fake response with imdb_id missing.
+  const fake = {
+    id: 999999,
+    title: "X",
+    original_title: "X",
+    original_language: "en",
+    release_date: "2020-01-01",
+    poster_path: null,
+    credits: { crew: [] },
+    imdb_id: "", // empty string treated as missing (matches data-manager.py:328)
+  };
+  assert.throws(() => buildMovieEntryFromTmdb(fake), /no imdb_id/);
+});
+
+test("missing release_date → year is null (caller must require user entry)", () => {
+  const tmdb = loadFixture("tmdb-oppenheimer");
+  const fake = { ...tmdb, release_date: "" };
+  const entry = buildMovieEntryFromTmdb(fake);
+  assert.equal(entry.year, null);
+});
+
+test("missing poster_path → tmdb_poster_url is null", () => {
+  const tmdb = loadFixture("tmdb-oppenheimer");
+  const fake = { ...tmdb, poster_path: null };
+  const entry = buildMovieEntryFromTmdb(fake);
+  assert.equal(entry.tmdb_poster_url, null);
+});
+
+test("no Director crew → director defaults to empty, names are null", () => {
+  const tmdb = loadFixture("tmdb-oppenheimer");
+  const fake = {
+    ...tmdb,
+    credits: { crew: tmdb.credits.crew.filter((c) => c.job !== "Director") },
+  };
+  const entry = buildMovieEntryFromTmdb(fake);
+  assert.equal(entry.director, "");
+  assert.equal(entry.is_korean_director, false);
+  assert.equal(entry.tmdb_director_name_1, null);
+  assert.equal(entry.tmdb_director_name_2, null);
+  assert.equal(entry.tmdb_num_directors, 0);
+});
