@@ -127,26 +127,37 @@ addBtn.addEventListener("click", async () => {
     setAddStatus("Couldn't extract a TMDB ID from that URL.", "error");
     return;
   }
+  // Dup check by TMDB ID first — runs before the fetch so a re-paste
+  // short-circuits without hitting the API.
+  const tmdbUrl = `https://www.themoviedb.org/movie/${id}`;
+  const dupByTmdb = movies.find((m) => m.tmdb_url === tmdbUrl);
+  if (dupByTmdb) {
+    setAddStatus(
+      `Already in list: ${dupByTmdb.title} (TMDB id ${id}). Not added.`,
+      "error"
+    );
+    return;
+  }
   setAddStatus("Fetching from TMDB…");
   try {
     const tmdb = await fetchTmdbMovie(id);
     const entry = buildMovieEntryFromTmdb(tmdb);
+    // Dup check by IMDB ID after the fetch — catches the rare case where two
+    // distinct TMDB records share the same imdb_id.
+    const dupByImdb = movies.find((m) => m.imdb_id === entry.imdb_id);
+    if (dupByImdb) {
+      setAddStatus(
+        `Already in list: ${dupByImdb.title} (imdb_id ${entry.imdb_id}). Not added.`,
+        "error"
+      );
+      return;
+    }
     if (entry.year === null) {
       setAddStatus(
         `Added (${entry.title}) — TMDB has no release_date; please set Year manually.`,
         "success"
       );
     } else {
-      const dup = movies.find((m) => m.imdb_id === entry.imdb_id);
-      if (dup) {
-        const proceed = confirm(
-          `A movie with imdb_id ${entry.imdb_id} (${dup.title}) is already in the list.\n\nAdd anyway?`
-        );
-        if (!proceed) {
-          setAddStatus("Add cancelled.", "");
-          return;
-        }
-      }
       setAddStatus(`Added: ${entry.title}`, "success");
     }
     movies.push(entry);

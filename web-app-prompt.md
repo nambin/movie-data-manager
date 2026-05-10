@@ -144,7 +144,7 @@ Boolean semantics: missing `masterpiece`/`my_best` keys are treated as `False`; 
   - `tmdb_director_name_1` / `_2` — the first and second entries (in API order) of `credits.crew` filtered by `job == "Director"`. Emit `null` (not omitted) when absent — required for round-trip parity with the existing YML.
   - `tmdb_num_directors` — total count of crew entries with `job == "Director"`.
   - `tmdb_poster_url` = `https://image.tmdb.org/t/p/w200{poster_path}` if present, else `null`.
-- If a movie with the same `imdb_id` already exists in the loaded list, warn but allow the user to add it anyway (they have final say).
+- Refuse duplicates and surface a clear error. Check by TMDB ID first (before fetching, so a re-paste of an already-added URL short-circuits without an API call), then by `imdb_id` after the fetch as defense in depth.
 - Error states to surface to the user: TMDB URL has no `/movie/<id>` match; TMDB API returns 404 / network error; TMDB response has no `imdb_id`.
 
 The TMDB API key is in [data-manager.py:35](data-manager.py#L35) (`f6d7fb04f4d4d6b07d2d750811e73a4c`). Embedding it client-side is acceptable for this personal tool, since it's already public in this repo and the README. TMDB's CORS policy permits browser requests.
