@@ -43,8 +43,10 @@
   tmdb_director_name_1: Justine Triet
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kQs6keheMwCxJxrzV83VUwFtHkB.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/1ho0d4LNZw3Y0voeKmSvPSgJOJ2.jpg
   masterpiece: true
+  award_names:
+  - Cannes Palme d'Or
   awards:
   - cannes
 - title: 밀수
@@ -62,6 +64,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/j8Jx4vpBG258jPxd4o0kOLDwTvm.jpg
+  award_names:
+  - 청룡영화제 최우수 작품상
   awards:
   - blue_dragon
 - title: Poor Things
@@ -79,6 +83,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg
+  award_names:
+  - Venice Leone d’oro
   awards:
   - venice
 - title: Oppenheimer
@@ -96,6 +102,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg
+  award_names:
+  - Oscar Best Picture
   awards:
   - oscar
 - title: '서울의 봄 (12.12: The Day)'
@@ -143,7 +151,7 @@
   tmdb_director_name_1: Hirokazu Kore-eda
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/cecXXWJ5YINoUFPU8tMMUqz0yqG.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/kvUJUyUGOhEoiWWNH04IXoExPE2.jpg
 - title: L'événement (레벤느망)
   year: 2021
   director: Audrey Diwan
@@ -160,6 +168,8 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/f2lTAmLYpWpd8JxtJrMXFFGV9gZ.jpg
   custom_korean_title: 레벤느망
+  award_names:
+  - Venice Leone d’oro
   awards:
   - venice
 - title: 기생충 (Parasite)
@@ -178,10 +188,14 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg
   masterpiece: true
+  award_names:
+  - 청룡영화제 최우수 작품상
+  - Cannes Palme d'Or
+  - Oscar Best Picture
   awards:
   - blue_dragon
-  - oscar
   - cannes
+  - oscar
 - title: Shoplifters (어느 가족)
   year: 2018
   director: Hirokazu Koreeda
@@ -198,6 +212,9 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4nfRUOv3LX5zLn98WS1WqVBk9E9.jpg
   custom_korean_title: 어느 가족
+  award_names:
+  - Cannes Palme d'Or
+  - Japan Academy Prize
   awards:
   - cannes
 - title: The Martian
@@ -214,7 +231,7 @@
   tmdb_director_name_1: Ridley Scott
   tmdb_director_name_2: null
   tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/fASz8A0yFE3QB6LgGoOfwvFSseV.jpg
 - title: Birdman
   year: 2014
   director: Alejandro González Iñárritu
@@ -226,10 +243,12 @@
   tmdb_title: null
   tmdb_original_title: Birdman or (The Unexpected Virtue of Ignorance)
   tmdb_original_language: English
-  tmdb_director_name_1: Alejandro González Iñárritu
+  tmdb_director_name_1: Alejandro G. Iñárritu
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/rHUg2AuIuLSIYMYFgavVwqt1jtc.jpg
+  award_names:
+  - Oscar Best Picture
   awards:
   - oscar
 - title: Highway
@@ -263,6 +282,8 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/3uoCttE46RGHybiA26cXTvmFqbW.jpg
   masterpiece: true
+  award_names:
+  - Oscar Best International Film
   awards:
   - oscar
 - title: The Secret in Their Eyes (El secreto de sus ojos)
@@ -281,6 +302,8 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/dkeAwfZzwL3WvToydE3CXiY80E0.jpg
   my_best: true
+  award_names:
+  - Oscar Best International Film
   awards:
   - oscar
 - title: The Dark Knight
@@ -332,6 +355,8 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/tpfC325Jk6S38VTe5dDWjWtoyxr.jpg
   masterpiece: true
+  award_names:
+  - Berlin Goldener Bär
   awards:
   - berlin
 - title: Rosetta
@@ -345,10 +370,12 @@
   tmdb_title: null
   tmdb_original_title: Rosetta
   tmdb_original_language: French
-  tmdb_director_name_1: Jean-Pierre Dardenne
-  tmdb_director_name_2: Luc Dardenne
+  tmdb_director_name_1: Luc Dardenne
+  tmdb_director_name_2: Jean-Pierre Dardenne
   tmdb_num_directors: 2
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/buwLjQPPA9FaATvKzeAppLXiGMB.jpg
+  award_names:
+  - Cannes Palme d'Or
   awards:
   - cannes
 - title: The Thin Red Line
@@ -366,6 +393,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/seMydAaoxQP6F0xbE1jOcTmn5Jr.jpg
+  award_names:
+  - Berlin Goldener Bär
   awards:
   - berlin
 - title: Seven
@@ -399,6 +428,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg
+  award_names:
+  - Cannes Palme d'Or
   awards:
   - cannes
 - title: Pinocchio
