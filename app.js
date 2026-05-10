@@ -20,12 +20,19 @@ import {
 const TMDB_API_KEY = "f6d7fb04f4d4d6b07d2d750811e73a4c";
 
 const LOCAL_STORAGE_KEY = "movie-collection-v1";
+const NEW_IDS_STORAGE_KEY = "movie-collection-new-ids-v1";
 
 // -----------------------------------------------------------------------------
 // State
 // -----------------------------------------------------------------------------
 let movies = []; // array of entry objects
 let dirty = false;
+// imdb_ids of entries added via TMDB URL since the last YML load or download.
+// Powers the "All / New" toolbar toggle so the user can focus on editing
+// fresh entries without scrolling through hundreds of unchanged ones.
+let newImdbIds = new Set();
+// Toggle state: true → only show entries in newImdbIds; false → show all.
+let newOnly = false;
 
 // -----------------------------------------------------------------------------
 // DOM refs
@@ -41,6 +48,9 @@ const movieList = $("movie-list");
 const countEl = $("count");
 const dirtyIndicator = $("dirty-indicator");
 const cardTemplate = $("movie-card-template");
+const newOnlyToggle = $("new-only-toggle");
+const newOnlyLabel = $("new-only-label");
+const newCountEl = $("new-count");
 
 // -----------------------------------------------------------------------------
 // Persistence
@@ -73,6 +83,47 @@ function setDirty(v) {
 }
 
 // -----------------------------------------------------------------------------
+// "Newly added" tracking
+// -----------------------------------------------------------------------------
+function persistNewIds() {
+  try {
+    localStorage.setItem(NEW_IDS_STORAGE_KEY, JSON.stringify([...newImdbIds]));
+  } catch (e) {
+    console.warn("localStorage write failed:", e);
+  }
+}
+
+function restoreNewIds() {
+  try {
+    const raw = localStorage.getItem(NEW_IDS_STORAGE_KEY);
+    if (!raw) return;
+    const arr = JSON.parse(raw);
+    if (Array.isArray(arr)) newImdbIds = new Set(arr);
+  } catch (e) {
+    console.warn("localStorage restore failed:", e);
+  }
+}
+
+// Reset on natural workflow boundaries: a fresh YML load, or after the user
+// downloads (treat the download as "shipped — start a new batch").
+function clearNewIds() {
+  newImdbIds = new Set();
+  newOnly = false;
+  persistNewIds();
+}
+
+// Always show the toggle in the toolbar; disable it when there are no new
+// entries to filter to (clicking "New" with N=0 would just empty the list).
+function refreshNewIndicator() {
+  const n = newImdbIds.size;
+  if (n === 0) newOnly = false;
+  newCountEl.textContent = n > 0 ? `(${n})` : "";
+  newOnlyLabel.textContent = newOnly ? "New" : "All";
+  newOnlyToggle.setAttribute("aria-pressed", newOnly ? "true" : "false");
+  newOnlyToggle.disabled = n === 0;
+}
+
+// -----------------------------------------------------------------------------
 // Status messages
 // -----------------------------------------------------------------------------
 function setAddStatus(msg, level = "") {
@@ -93,6 +144,7 @@ fileInput.addEventListener("change", async (e) => {
       throw new Error("YML root is not a list of movies");
     }
     movies = parsed;
+    clearNewIds();
     setDirty(false);
     persist();
     renderAll();
@@ -161,6 +213,8 @@ addBtn.addEventListener("click", async () => {
       setAddStatus(`Added: ${entry.title}`, "success");
     }
     movies.push(entry);
+    newImdbIds.add(entry.imdb_id);
+    persistNewIds();
     setDirty(true);
     persist();
     renderAll();
@@ -179,6 +233,7 @@ tmdbUrlInput.addEventListener("keydown", (e) => {
 // -----------------------------------------------------------------------------
 function renderAll() {
   movieList.innerHTML = "";
+  refreshNewIndicator();
   if (movies.length === 0) {
     movieList.innerHTML =
       '<li class="empty-state">No movies loaded. Use "Load YML" or paste a TMDB URL above.</li>';
@@ -194,7 +249,6 @@ function renderAll() {
     movieList.appendChild(node);
   }
   applyFilter(searchInput.value);
-  countEl.textContent = `${movies.length} movies`;
 }
 
 function renderCard(entry) {
@@ -340,10 +394,14 @@ function renderCard(entry) {
       return;
     const idx = movies.indexOf(entry);
     if (idx !== -1) movies.splice(idx, 1);
+    if (newImdbIds.delete(entry.imdb_id)) persistNewIds();
     setDirty(true);
     persist();
     renderAll();
   });
+
+  // Mark new entries so the "Only newly added" filter can pick them out.
+  node.dataset.isNew = newImdbIds.has(entry.imdb_id) ? "1" : "0";
 
   // Build a search-text blob on the card for fast filtering.
   node.dataset.searchText = [
@@ -378,11 +436,13 @@ function applyFilter(query) {
   const q = (query ?? "").trim().toLowerCase();
   let visible = 0;
   for (const li of movieList.querySelectorAll(".movie-card")) {
-    const matches = !q || li.dataset.searchText.includes(q);
+    const matchesQuery = !q || li.dataset.searchText.includes(q);
+    const matchesNew = !newOnly || li.dataset.isNew === "1";
+    const matches = matchesQuery && matchesNew;
     li.classList.toggle("hidden", !matches);
     if (matches) visible++;
   }
-  if (q) {
+  if (q || newOnly) {
     countEl.textContent = `${visible} of ${movies.length} movies`;
   } else {
     countEl.textContent = `${movies.length} movies`;
@@ -390,6 +450,11 @@ function applyFilter(query) {
 }
 
 searchInput.addEventListener("input", () => applyFilter(searchInput.value));
+newOnlyToggle.addEventListener("click", () => {
+  newOnly = !newOnly;
+  refreshNewIndicator();
+  applyFilter(searchInput.value);
+});
 
 // -----------------------------------------------------------------------------
 // Download
@@ -406,7 +471,9 @@ downloadBtn.addEventListener("click", () => {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+  clearNewIds();
   setDirty(false);
+  renderAll();
 });
 
 // -----------------------------------------------------------------------------
@@ -418,6 +485,7 @@ window.addEventListener("beforeunload", (e) => {
   e.returnValue = "";
 });
 
+restoreNewIds();
 if (restoreFromLocalStorage()) {
   setAddStatus(`Restored ${movies.length} movies from this browser's storage.`, "success");
 }
