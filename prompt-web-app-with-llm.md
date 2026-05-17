@@ -34,7 +34,7 @@ Other memo shapes the LLM must also handle gracefully when mixed in:
 
 - An English title outright: `Anora 2024`
 - A Korean *original* title for a Korean movie: `어쩔수가없다 박찬욱` — search TMDB in Korean, expect a Korean-original result.
-- An English title with a parenthetical Korean overlay the user *does* want preserved: `Adolescence (소년의 시간)` — emit `korean_overlay: "소년의 시간"` so the editor sets `custom_korean_title`. **Only** this parenthetical pattern produces a `korean_overlay`; bare Korean transliterations like `보헤미안 랩소디` do not.
+- An English title with a parenthetical Korean overlay the user *does* want preserved: `Adolescence (소년의 시간)` — emit `title_korean_overlay: "소년의 시간"` so the editor sets `custom_korean_title`. **Only** this parenthetical pattern produces a `title_korean_overlay`; bare Korean transliterations like `보헤미안 랩소디` do not.
 
 ## Non-goals
 
@@ -48,7 +48,7 @@ Other memo shapes the LLM must also handle gracefully when mixed in:
 1. **Paste** unstructured memo into a textarea at the top of [index.html](index.html), above (or below) the existing TMDB-URL "Add movie" bar.
 2. Click **Process memo**. The button is disabled until both (a) the memo is non-empty and (b) a Gemini API key is stored (see *API key handling*).
 3. The app splits the memo into one line per non-empty paragraph (a plain string split — no LLM call). Each line spawns an independent **per-movie pipeline** that runs in parallel with the others:
-   1. **Call A — Parse** (1 LLM call): turn the line into a `MemoEntry { title, year?, director?, korean_overlay? }` TMDB-searchable query, or `{ is_movie: false }` if the line isn't a movie title at all (chatter, a date, a note).
+   1. **Call A — Parse** (1 LLM call): turn the line into a `MemoEntry { title, year?, director?, title_korean_overlay? }` TMDB-searchable query, or `{ is_movie: false }` if the line isn't a movie title at all (chatter, a date, a note).
    2. **TMDB search** (1–3 HTTP calls): `GET /search/movie` with the parsed query (filtered by year when present, retried without year on zero results); keep the top 5 candidates; for the top 2–3, fetch `/movie/{id}?append_to_response=credits` so director and poster are available for the next step.
    3. **Call B — Match** (1 LLM call): show Gemini the **raw memo line** alongside the candidate list (title, original title, year, director, poster URL) and let it pick the right candidate or explicitly declare "no match." This is the verification step — Gemini decides yes/no, returns a confidence level, and emits a one-sentence `reasoning` that the review pane can surface.
    4. **Entry build** (no LLM call): app constructs the YAML-shaped entry from the picked TMDB candidate, identical to the URL-paste flow.
@@ -104,11 +104,11 @@ System / instruction text, roughly:
 
 > You receive a single line from an unstructured memo of movie titles. Decide whether it names a movie. If it does not (e.g. a note like "watched with J", a date, a comment), return `{ "is_movie": false }`. Otherwise return a TMDB-searchable query.
 >
-> A very common case is that **a non-Korean movie is written in Korean phonetic transliteration** (e.g. `보헤미안 랩소디` = "Bohemian Rhapsody", `플라워킬링문` = "Killers of the Flower Moon", `에밀리아 페레스` = "Emilia Pérez"). For these, return the original English title in `title`. Do **not** put the Korean phonetic form in `korean_overlay`.
+> A very common case is that **a non-Korean movie is written in Korean phonetic transliteration** (e.g. `보헤미안 랩소디` = "Bohemian Rhapsody", `플라워킬링문` = "Killers of the Flower Moon", `에밀리아 페레스` = "Emilia Pérez"). For these, return the original English title in `title`. Do **not** put the Korean phonetic form in `title_korean_overlay`.
 >
 > For a Korean *original*-language movie (e.g. `어쩔수가없다`, `기생충`), return the canonical Korean title in `title`. Light normalization is fine — fix obvious typos, adjust whitespace, expand common abbreviations — but keep the result in Korean script. TMDB search handles Korean originals natively.
 >
-> `korean_overlay` is **only** for the explicit `English Title (한국어)` parenthetical pattern, e.g. `Adolescence (소년의 시간)` → `korean_overlay: "소년의 시간"`.
+> `title_korean_overlay` is **only** for the explicit `English Title (한국어)` parenthetical pattern, e.g. `Adolescence (소년의 시간)` → `title_korean_overlay: "소년의 시간"`.
 >
 > Do not invent year or director unless they are explicit in the line. Return JSON conforming to the provided schema.
 
@@ -122,7 +122,7 @@ Response schema:
     "title":          { "type": "string",  "nullable": true }, // TMDB-searchable title
     "year":           { "type": "integer", "nullable": true },
     "director":       { "type": "string",  "nullable": true }, // as written in memo
-    "korean_overlay": { "type": "string",  "nullable": true }  // ONLY the parenthetical pattern
+    "title_korean_overlay": { "type": "string",  "nullable": true }  // ONLY the parenthetical pattern
   },
   "required": ["is_movie"]
 }
@@ -275,7 +275,7 @@ Every approved card becomes an entry that follows the **exact** schema and field
 
 Two specific reuses:
 
-- `custom_korean_title` is set from `MemoEntry.korean_overlay` when the TMDB original language is not Korean. Same gate-relaxation as the existing editor — setting it for Korean originals is a no-op for rendering. **Korean phonetic spellings of foreign titles** (`보헤미안 랩소디`, etc.) do **not** populate this field; they only serve as the LLM's lookup key and are discarded post-resolution.
+- `custom_korean_title` is set from `MemoEntry.title_korean_overlay` when the TMDB original language is not Korean. Same gate-relaxation as the existing editor — setting it for Korean originals is a no-op for rendering. **Korean phonetic spellings of foreign titles** (`보헤미안 랩소디`, etc.) do **not** populate this field; they only serve as the LLM's lookup key and are discarded post-resolution.
 - `director` is resolved in this order: existing-YML romanized→Korean map hit → Call C (gated by Korean-context signals; see *Call C*) → TMDB `credits.crew[?job=Director][0].name` (i.e. the same default as the existing add-by-URL flow).
 
 `awards` / `award_names` / `note` / `masterpiece` / `my_best` are **never** populated by the bulk-import path. The user clicks them in afterwards using the existing per-card controls.

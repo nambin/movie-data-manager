@@ -313,8 +313,8 @@ test("parseMemoLine: schema declares all five expected fields", async () => {
   assert.deepEqual(Object.keys(schema.properties).sort(), [
     "director",
     "is_movie",
-    "korean_overlay",
     "title",
+    "title_korean_overlay",
     "year",
   ]);
   assert.deepEqual(schema.required, ["is_movie"]);
@@ -327,7 +327,7 @@ test("parseMemoLine: returns the parsed JSON payload from the candidate text", a
       title: "Bohemian Rhapsody",
       year: 2018,
       director: null,
-      korean_overlay: null,
+      title_korean_overlay: null,
     })
   );
   const result = await parseMemoLine("보헤미안 랩소디", "KEY");
@@ -336,7 +336,7 @@ test("parseMemoLine: returns the parsed JSON payload from the candidate text", a
     title: "Bohemian Rhapsody",
     year: 2018,
     director: null,
-    korean_overlay: null,
+    title_korean_overlay: null,
   });
 });
 
@@ -353,7 +353,7 @@ test("parseMemoLine: handles the parenthetical Korean-overlay pattern", async ()
       title: "Adolescence",
       year: null,
       director: null,
-      korean_overlay: "소년의 시간",
+      title_korean_overlay: "소년의 시간",
     })
   );
   const result = await parseMemoLine("Adolescence (소년의 시간)", "KEY");
@@ -362,7 +362,7 @@ test("parseMemoLine: handles the parenthetical Korean-overlay pattern", async ()
     title: "Adolescence",
     year: null,
     director: null,
-    korean_overlay: "소년의 시간",
+    title_korean_overlay: "소년의 시간",
   });
 });
 
