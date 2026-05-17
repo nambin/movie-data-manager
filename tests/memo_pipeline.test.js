@@ -337,6 +337,136 @@ test("processMemoLine: Korean original (기생충) with Korean-director map hit"
 });
 
 // ---------------------------------------------------------------------------
+// Scenario 2b — Korean phonetic transliteration of a Brazilian film with a
+// year that's off by one. "아임 스틸 히어 2025" (the user's memo) should
+// resolve to "Ainda Estou Aqui" / "I'm Still Here" (TMDB id 1000837, real
+// release year 2024 — Call A's year=2025 is wrong, but the year-offset
+// search catches it via the year-1 offset).
+//
+// This test was added in response to a real-world failure report: the user
+// observed that the pipeline sometimes produces a final entry without an
+// IMDB URL for this memo line. The most likely cause is Call B picking one
+// of the year-2025 candidates (e.g. id=1551447 "Pretend I'm Still Here" or
+// id=1632888 "I'm Still Here: A Dog's Purpose Forever") whose TMDB details
+// happen to lack `imdb_id` — buildMovieEntryFromTmdb then throws. This test
+// pins the CORRECT outcome: when Call B picks 1000837 (the actual movie),
+// the pipeline produces a valid entry with imdb_id="tt14961016".
+//
+// If TMDB ever drops the imdb_id from id=1000837, this test fails with the
+// "Entry build failed: TMDB response has no imdb_id" message, surfacing
+// the regression. Reproducing the picked-wrong-candidate failure would
+// require either fixture-capturing those candidates' details OR adding a
+// filter step (drop enriched candidates with empty imdb_id) before Call B.
+// ---------------------------------------------------------------------------
+
+test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ainda Estou Aqui)", async () => {
+  const calls = installPipelineMocks({
+    geminiParseResult: {
+      is_movie: true,
+      title: "I'm Still Here",
+      year: 2025,
+      director: null,
+      title_korean_overlay: null,
+    },
+    geminiMatchResult: {
+      matched_tmdb_id: 1000837,
+      confidence: "high",
+      reasoning:
+        "the Brazilian film by Walter Salles released 2024-09-19; the memo's year is off by one but the title matches",
+    },
+    tmdbSearchFixtures: {
+      "I'm Still Here|2024": "memo/search-im-still-here-2024",
+      "I'm Still Here|2025": "memo/search-im-still-here-2025",
+      "I'm Still Here|2026": "memo/search-im-still-here-2026",
+    },
+    tmdbDetailsFixtures: {
+      // Only the matched candidate is registered. The other four candidates
+      // within CANDIDATE_DETAILS_FETCH_LIMIT will hit the mock's "no fixture"
+      // branch and their details fetches will throw — enrichCandidatesForMatch
+      // swallows the throw and produces `{ ...c, directors: [] }`.
+      1000837: "tmdb-ainda-estou-aqui",
+    },
+  });
+
+  const result = await processMemoLine({
+    rawLine: "아임 스틸 히어 2025",
+    geminiKey: "TEST_GEMINI_KEY",
+    tmdbApiKey: "TEST_TMDB_KEY",
+    koreanDirectorMap: new Map(),
+  });
+
+  assert.equal(result.status, "ok");
+  assert.equal(result.rawLine, "아임 스틸 히어 2025");
+
+  assert.deepStrictEqual(result.parseResult, {
+    is_movie: true,
+    title: "I'm Still Here",
+    year: 2025,
+    director: null,
+    title_korean_overlay: null,
+  });
+
+  // Merged candidates in primary-year-first order. Primary (2025) returns 2
+  // results; year+1 (2026) returns 1; year-1 (2024) returns 6 — the matched
+  // candidate (1000837) is at index 3, within CANDIDATE_DETAILS_FETCH_LIMIT
+  // (=5), so it gets enriched. The other 4 candidates within the enrichment
+  // window fail-and-swallow because we only register 1000837's details
+  // fixture; the 4 candidates beyond the window (indices 5–8) are never
+  // attempted. The matched candidate is the only one carrying `_details`.
+  const search2025Results = loadFixture("memo/search-im-still-here-2025").results;
+  const search2026Results = loadFixture("memo/search-im-still-here-2026").results;
+  const search2024Results = loadFixture("memo/search-im-still-here-2024").results;
+  const aindaDetails = loadFixture("tmdb-ainda-estou-aqui");
+  assert.deepStrictEqual(result.candidates, [
+    { ...search2025Results[0], directors: [] },
+    { ...search2025Results[1], directors: [] },
+    { ...search2026Results[0], directors: [] },
+    { ...search2024Results[0], directors: ["Walter Salles"], _details: aindaDetails },
+    { ...search2024Results[1], directors: [] },
+    { ...search2024Results[2], directors: [] },
+    { ...search2024Results[3], directors: [] },
+    { ...search2024Results[4], directors: [] },
+    { ...search2024Results[5], directors: [] },
+  ]);
+
+  assert.deepStrictEqual(result.matchResult, {
+    matched_tmdb_id: 1000837,
+    confidence: "high",
+    reasoning:
+      "the Brazilian film by Walter Salles released 2024-09-19; the memo's year is off by one but the title matches",
+  });
+
+  // Full entry shape. Note: `year` is 2024 (derived from TMDB's
+  // release_date), NOT 2025 (Call A's year) — the year-offset search
+  // catches the off-by-one and the matched candidate's TMDB year wins at
+  // entry-build time. `title` is the parenthetical-combined form because
+  // TMDB's title ("I'm Still Here") differs from original_title ("Ainda
+  // Estou Aqui").
+  assert.deepStrictEqual(result.entry, {
+    title: "I'm Still Here (Ainda Estou Aqui)",
+    year: 2024,
+    director: "Walter Salles",
+    is_korean_director: false,
+    imdb_id: "tt14961016",
+    imdb_url: "https://www.imdb.com/title/tt14961016",
+    tmdb_url: "https://www.themoviedb.org/movie/1000837",
+    tmdb_title: "I'm Still Here",
+    tmdb_original_title: "Ainda Estou Aqui",
+    tmdb_original_language: "Portuguese",
+    tmdb_director_name_1: "Walter Salles",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/gZnsMbhCvhzAQlKaVpeFRHYjGyb.jpg",
+  });
+
+  // 2 Gemini (A + B) + 3 TMDB searches (year ± 1) + 5 details-fetch attempts
+  // (top CANDIDATE_DETAILS_FETCH_LIMIT of the 7 merged candidates; 4 throw
+  // because no fixture, 1 succeeds).
+  assert.equal(calls.length, 10);
+});
+
+// ---------------------------------------------------------------------------
 // Scenario 3 — `is_movie: false` short-circuits the pipeline.
 // No TMDB calls, no Call B. Only Call A fires.
 // ---------------------------------------------------------------------------

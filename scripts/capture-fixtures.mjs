@@ -63,6 +63,16 @@ const FIXTURES = [
   // Used by the "no year given → single TMDB search" test.
   ["tests/fixtures/memo/search-bohemian-rhapsody-no-year.json", searchUrl("Bohemian Rhapsody", null)],
 
+  // Scenario 5: "I'm Still Here" (TMDB id 1000837, Brazilian film, real year
+  // 2024). The user's memo says 2025, so we search 2024/2025/2026. The TMDB
+  // details for 1000837 currently have no imdb_id, so buildMovieEntryFromTmdb
+  // throws and processMemoLine returns status="error". Captures the failure
+  // mode for regression coverage.
+  ["tests/fixtures/memo/search-im-still-here-2024.json", searchUrl("I'm Still Here", 2024)],
+  ["tests/fixtures/memo/search-im-still-here-2025.json", searchUrl("I'm Still Here", 2025)],
+  ["tests/fixtures/memo/search-im-still-here-2026.json", searchUrl("I'm Still Here", 2026)],
+  ["tests/fixtures/tmdb-ainda-estou-aqui.json", detailsUrl(1000837)],
+
   // Scenario 2: 기생충 (Parasite, Bong Joon-ho 2019) — search across year ± 1
   // The query is Korean script; URLSearchParams handles the UTF-8 encoding.
   ["tests/fixtures/memo/search-parasite-2018.json", searchUrl("기생충", 2018)],
