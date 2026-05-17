@@ -16,7 +16,7 @@ import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 
 import { processMemoLine } from "../lib/memo_pipeline.js";
-import { installPipelineMocks } from "./_helpers/pipeline_mocks.js";
+import { installPipelineMocks, loadFixture } from "./_helpers/pipeline_mocks.js";
 
 beforeEach(() => {
   globalThis.fetch = undefined;
@@ -59,38 +59,71 @@ test("processMemoLine: Korean phonetic → English (Bohemian Rhapsody) happy pat
   });
 
   assert.equal(result.status, "ok");
-  assert.equal(result.entry.year, 2018);
-  assert.equal(result.entry.director, "Bryan Singer");
-  assert.equal(result.entry.is_korean_director, false);
-  assert.equal(result.entry.imdb_id, "tt1727824");
-  assert.equal(result.entry.tmdb_url, "https://www.themoviedb.org/movie/424694");
-  // Bohemian Rhapsody is an English-original film, so tmdb_title and
-  // tmdb_original_title coincide → tmdb_title is null per buildMovieEntryFromTmdb.
-  assert.equal(result.entry.tmdb_title, null);
-  assert.equal(result.entry.tmdb_original_title, "Bohemian Rhapsody");
-  assert.equal(result.entry.tmdb_director_name_1, "Bryan Singer");
+  assert.equal(result.rawLine, "보헤미안 랩소디 2018");
 
-  // result.candidates is the array the review-card UI binds to. The matched
-  // candidate should be present AND carry _details (it was within the
-  // CANDIDATE_DETAILS_FETCH_LIMIT, so enrichCandidatesForMatch fetched its
-  // /movie/{id} response and stashed it for the picker change handler).
-  assert.ok(
-    Array.isArray(result.candidates) && result.candidates.length > 0,
-    "result.candidates must be a non-empty array for the review-card dropdown"
-  );
-  const matchedBohemian = result.candidates.find((c) => c.id === 424694);
-  assert.ok(matchedBohemian, "matched candidate (id=424694) must appear in result.candidates");
-  assert.ok(matchedBohemian._details, "matched candidate should carry enriched _details");
+  assert.deepStrictEqual(result.parseResult, {
+    is_movie: true,
+    title: "Bohemian Rhapsody",
+    year: 2018,
+    director: null,
+    title_korean_overlay: null,
+  });
 
-  // 3 TMDB searches (year ± 1) + 1 TMDB details fetch + 2 Gemini calls (A + B).
-  // Details fetch happens during enrichCandidatesForMatch (top-5 enrichment).
+  // result.candidates is exactly what enrichCandidatesForMatch produces from
+  // the year-offset merge. Primary year (2018) yields [424694]; year+1 (2019)
+  // yields [769442, 643844]; year-1 (2017) is empty. Only 424694 has a
+  // registered details fixture; the other two trigger the helper's "no
+  // fixture" error, which enrichCandidatesForMatch's try/catch swallows and
+  // produces `{...c, directors: []}` (no _details).
+  const search2018Results = loadFixture("memo/search-bohemian-rhapsody-2018").results;
+  const search2019Results = loadFixture("memo/search-bohemian-rhapsody-2019").results;
+  const brDetails = loadFixture("tmdb-bohemian-rhapsody");
+  assert.deepStrictEqual(result.candidates, [
+    { ...search2018Results[0], directors: ["Bryan Singer"], _details: brDetails },
+    { ...search2019Results[0], directors: [] },
+    { ...search2019Results[1], directors: [] },
+  ]);
+
+  assert.deepStrictEqual(result.matchResult, {
+    matched_tmdb_id: 424694,
+    confidence: "high",
+    reasoning: "title and year line up exactly",
+  });
+
+  assert.deepStrictEqual(result.entry, {
+    title: "Bohemian Rhapsody",
+    year: 2018,
+    director: "Bryan Singer",
+    is_korean_director: false,
+    imdb_id: "tt1727824",
+    imdb_url: "https://www.imdb.com/title/tt1727824",
+    tmdb_url: "https://www.themoviedb.org/movie/424694",
+    tmdb_title: null,
+    tmdb_original_title: "Bohemian Rhapsody",
+    tmdb_original_language: "English",
+    tmdb_director_name_1: "Bryan Singer",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
+  });
+
+  // 2 Gemini (A + B) + 3 TMDB searches (year ± 1) + 3 details-fetch attempts
+  // (one per merged candidate; the two unregistered fixtures throw inside the
+  // mock but their calls are still logged because `calls.push` runs before
+  // URL routing).
+  assert.equal(calls.length, 8);
   const tmdbSearches = calls.filter((c) => c.url.includes("/search/movie"));
   const tmdbDetails = calls.filter((c) => c.url.includes("/movie/424694"));
   const geminiCalls = calls.filter((c) =>
     c.url.includes("generativelanguage.googleapis.com")
   );
   assert.equal(tmdbSearches.length, 3);
-  assert.ok(tmdbDetails.length >= 1, "expected at least one details fetch for the matched movie");
+  // Exactly one /movie/424694 fetch — the eager enrichment in
+  // enrichCandidatesForMatch covers it (424694 is at index 0 of the merged
+  // candidates, well within CANDIDATE_DETAILS_FETCH_LIMIT). No lazy fetch
+  // fires later because the matched candidate already carries _details.
+  assert.equal(tmdbDetails.length, 1, "exactly one /movie/424694 fetch");
   assert.equal(geminiCalls.length, 2);
 });
 
@@ -133,9 +166,66 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
   });
 
   assert.equal(result.status, "ok");
-  assert.equal(result.entry.imdb_id, "tt1727824");
-  assert.equal(result.entry.director, "Bryan Singer");
+  assert.equal(result.rawLine, "Bohemian Rhapsody");
 
+  assert.deepStrictEqual(result.parseResult, {
+    is_movie: true,
+    title: "Bohemian Rhapsody",
+    year: null,
+    director: null,
+    title_korean_overlay: null,
+  });
+
+  // Exact-match the candidates produced by the single no-year search (6
+  // results from TMDB). Top CANDIDATE_DETAILS_FETCH_LIMIT (=5) get enrichment
+  // attempts; only id=424694 has a registered details fixture, so the other
+  // four enrichment attempts fail-and-swallow → `directors: []`. The 6th
+  // candidate (index 5, beyond the limit) is never even attempted → also
+  // `directors: []` but for a different reason.
+  const searchNoYearResults = loadFixture(
+    "memo/search-bohemian-rhapsody-no-year"
+  ).results;
+  assert.deepStrictEqual(result.candidates, [
+    { ...searchNoYearResults[0], directors: ["Bryan Singer"], _details: loadFixture("tmdb-bohemian-rhapsody") },
+    { ...searchNoYearResults[1], directors: [] },
+    { ...searchNoYearResults[2], directors: [] },
+    { ...searchNoYearResults[3], directors: [] },
+    { ...searchNoYearResults[4], directors: [] },
+    { ...searchNoYearResults[5], directors: [] },
+  ]);
+
+  assert.deepStrictEqual(result.matchResult, {
+    matched_tmdb_id: 424694,
+    confidence: "high",
+    reasoning: "title matches the most popular 'Bohemian Rhapsody' entry",
+  });
+
+  // Full entry shape. Identical to the year-bearing scenario — `year` is
+  // derived from TMDB's release_date (2018-10-24), NOT from Call A's year
+  // (which is null here). The two tests share the same expected entry by
+  // design: regardless of whether the user gives a year, if Call B picks
+  // 424694, the same entry comes out.
+  assert.deepStrictEqual(result.entry, {
+    title: "Bohemian Rhapsody",
+    year: 2018,
+    director: "Bryan Singer",
+    is_korean_director: false,
+    imdb_id: "tt1727824",
+    imdb_url: "https://www.imdb.com/title/tt1727824",
+    tmdb_url: "https://www.themoviedb.org/movie/424694",
+    tmdb_title: null,
+    tmdb_original_title: "Bohemian Rhapsody",
+    tmdb_original_language: "English",
+    tmdb_director_name_1: "Bryan Singer",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
+  });
+
+  // 2 Gemini + 1 TMDB search (no offsets) + 5 details-fetch attempts (top
+  // CANDIDATE_DETAILS_FETCH_LIMIT of the 6 merged candidates).
+  assert.equal(calls.length, 8);
   // Key assertion: ONE search call, not three.
   // (The year-offset expansion only runs when parsed.year is truthy.)
   const tmdbSearches = calls.filter((c) => c.url.includes("/search/movie"));
@@ -146,11 +236,6 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
     false,
     "no-year search should omit primary_release_year"
   );
-
-  // Same review-card contract as the year-bearing scenario.
-  const matched = result.candidates.find((c) => c.id === 424694);
-  assert.ok(matched, "matched candidate (id=424694) must appear in result.candidates");
-  assert.ok(matched._details, "matched candidate should carry enriched _details");
 });
 
 // ---------------------------------------------------------------------------
@@ -159,7 +244,7 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
 // ---------------------------------------------------------------------------
 
 test("processMemoLine: Korean original (기생충) with Korean-director map hit", async () => {
-  installPipelineMocks({
+  const calls = installPipelineMocks({
     geminiParseResult: {
       is_movie: true,
       title: "기생충",
@@ -192,27 +277,63 @@ test("processMemoLine: Korean original (기생충) with Korean-director map hit"
   });
 
   assert.equal(result.status, "ok");
-  // Map override: director is the Korean form, NOT the TMDB romanization.
-  assert.equal(result.entry.director, "봉준호");
-  assert.equal(result.entry.is_korean_director, true);
-  // The TMDB-sourced fields are untouched — only `director` gets the override.
-  assert.equal(result.entry.tmdb_director_name_1, "Bong Joon Ho");
-  assert.equal(result.entry.imdb_id, "tt6751668");
-  assert.equal(result.entry.tmdb_original_language, "Korean");
-  // Parasite has a separate English title — both `tmdb_title` and
-  // `tmdb_original_title` should be present.
-  assert.equal(result.entry.tmdb_title, "Parasite");
-  assert.equal(result.entry.tmdb_original_title, "기생충");
+  assert.equal(result.rawLine, "기생충 2019");
 
-  // result.candidates is the array the review-card UI binds to. Same checks
-  // as the Bohemian Rhapsody scenario: matched candidate present + enriched.
-  assert.ok(
-    Array.isArray(result.candidates) && result.candidates.length > 0,
-    "result.candidates must be a non-empty array for the review-card dropdown"
-  );
-  const matchedParasite = result.candidates.find((c) => c.id === 496243);
-  assert.ok(matchedParasite, "matched candidate (id=496243) must appear in result.candidates");
-  assert.ok(matchedParasite._details, "matched candidate should carry enriched _details");
+  assert.deepStrictEqual(result.parseResult, {
+    is_movie: true,
+    title: "기생충",
+    year: 2019,
+    director: null,
+    title_korean_overlay: null,
+  });
+
+  // Exact-match the candidates. Only the 2019 search returns a result
+  // (Parasite, id=496243); 2018 and 2020 are empty. Single candidate;
+  // enriched with _details since 496243 has a registered fixture.
+  const searchParasite2019Results = loadFixture("memo/search-parasite-2019").results;
+  assert.deepStrictEqual(result.candidates, [
+    {
+      ...searchParasite2019Results[0],
+      directors: ["Bong Joon Ho"],
+      _details: loadFixture("tmdb-parasite"),
+    },
+  ]);
+
+  assert.deepStrictEqual(result.matchResult, {
+    matched_tmdb_id: 496243,
+    confidence: "high",
+    reasoning: "exact Korean title match",
+  });
+
+  // Full entry shape. Key contracts pinned by this deep match:
+  //   - Korean-director map override: `director` is "봉준호" (not TMDB's
+  //     romanization), `is_korean_director` is recomputed to true.
+  //   - TMDB-sourced fields are untouched: `tmdb_director_name_1` remains
+  //     the Latin "Bong Joon Ho" — only `director` is overridden.
+  //   - Parasite has a separate English title, so both `tmdb_title` and
+  //     `tmdb_original_title` are populated (not the collapsed-to-null
+  //     behavior of the Bohemian Rhapsody scenarios).
+  assert.deepStrictEqual(result.entry, {
+    title: "Parasite (기생충)",
+    year: 2019,
+    director: "봉준호",
+    is_korean_director: true,
+    imdb_id: "tt6751668",
+    imdb_url: "https://www.imdb.com/title/tt6751668",
+    tmdb_url: "https://www.themoviedb.org/movie/496243",
+    tmdb_title: "Parasite",
+    tmdb_original_title: "기생충",
+    tmdb_original_language: "Korean",
+    tmdb_director_name_1: "Bong Joon Ho",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url:
+      "https://image.tmdb.org/t/p/w200/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+  });
+
+  // 2 Gemini (A + B) + 3 TMDB searches (year ± 1, only 2019 has results) +
+  // 1 details fetch (1 merged candidate within CANDIDATE_DETAILS_FETCH_LIMIT).
+  assert.equal(calls.length, 6);
 });
 
 // ---------------------------------------------------------------------------
@@ -235,9 +356,11 @@ test("processMemoLine: is_movie=false short-circuits before any TMDB or Call B a
   });
 
   assert.equal(result.status, "not_movie");
+  assert.equal(result.rawLine, "watched with J");
   assert.deepStrictEqual(result.parseResult, { is_movie: false });
-  assert.equal(result.entry, undefined);
   assert.equal(result.candidates, undefined);
+  assert.equal(result.matchResult, undefined);
+  assert.equal(result.entry, undefined);
 
   // Only ONE fetch happened — Call A. No TMDB, no Call B.
   assert.equal(calls.length, 1);
@@ -275,11 +398,21 @@ test("processMemoLine: TMDB zero results across year ± 1 → status=no_match, C
   });
 
   assert.equal(result.status, "no_match");
-  assert.equal(result.entry, undefined);
+  assert.equal(result.rawLine, "Xyzqqq Notarealmovie 2999");
+  assert.deepStrictEqual(result.parseResult, {
+    is_movie: true,
+    title: "Xyzqqq Notarealmovie",
+    year: 2999,
+    director: null,
+    title_korean_overlay: null,
+  });
   assert.equal(result.candidates, undefined);
   assert.equal(result.matchResult, undefined);
+  assert.equal(result.entry, undefined);
 
-  // Call A + 3 TMDB searches. NO Call B, NO details fetch.
+  // 1 Gemini (Call A only) + 3 TMDB searches (year ± 1) + 0 details fetches
+  // (no candidates to enrich since every search returned empty).
+  assert.equal(calls.length, 4);
   const geminiCalls = calls.filter((c) =>
     c.url.includes("generativelanguage.googleapis.com")
   );
