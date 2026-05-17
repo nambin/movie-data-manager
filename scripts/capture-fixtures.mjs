@@ -93,7 +93,7 @@ const FIXTURES = [
 
   // Legacy movie-details fixtures used by tests/tmdb_utils.test.js and
   // tests/yaml-roundtrip.test.js. Previously refreshed via a hand-rolled
-  // bash loop documented in README_webapp.md; consolidated here so the
+  // bash loop documented in README.md; consolidated here so the
   // single `npm run capture:fixtures` command refreshes everything.
   ["tests/fixtures/tmdb-parasite.json", detailsUrl(496243)],
   ["tests/fixtures/tmdb-oppenheimer.json", detailsUrl(872585)],
