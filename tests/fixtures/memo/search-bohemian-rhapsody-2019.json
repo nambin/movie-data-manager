@@ -1,0 +1,46 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        10402,
+        99
+      ],
+      "id": 769442,
+      "title": "Bohemian Rhapsody: Recreating Live Aid",
+      "original_language": "en",
+      "original_title": "Bohemian Rhapsody: Recreating Live Aid",
+      "overview": "This piece offers interviews with the real life May and Taylor, who reminisce about the concert, along with other interviews and behind the scenes footage.",
+      "popularity": 0.2873,
+      "poster_path": "/ylElqsVC6DI31s2d3u5QFazghWT.jpg",
+      "release_date": "2019-02-19",
+      "softcore": false,
+      "video": false,
+      "vote_average": 8.9,
+      "vote_count": 15
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 643844,
+      "title": "Bohemian Rhapsody : La vraie histoire de Queen",
+      "original_language": "fr",
+      "original_title": "Bohemian Rhapsody : La vraie histoire de Queen",
+      "overview": "",
+      "popularity": 0.1429,
+      "poster_path": "/2iduFT4zglXodYWeLC3KT4qnx2k.jpg",
+      "release_date": "2019-10-29",
+      "softcore": false,
+      "video": false,
+      "vote_average": 8.6,
+      "vote_count": 5
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}

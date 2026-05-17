@@ -1,0 +1,27 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/dcvbs8z0GEXslC1kCT77x19XDeR.jpg",
+      "genre_ids": [
+        10402,
+        18
+      ],
+      "id": 424694,
+      "title": "Bohemian Rhapsody",
+      "original_language": "en",
+      "original_title": "Bohemian Rhapsody",
+      "overview": "Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.",
+      "popularity": 11.1997,
+      "poster_path": "/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
+      "release_date": "2018-10-24",
+      "softcore": false,
+      "video": false,
+      "vote_average": 7.957,
+      "vote_count": 17750
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}

@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/TU9NIjwzjoKPwQHoHshkFcQUCG.jpg",
+      "genre_ids": [
+        35,
+        53,
+        18
+      ],
+      "id": 496243,
+      "title": "Parasite",
+      "original_language": "ko",
+      "original_title": "기생충",
+      "overview": "All unemployed, Ki-taek's family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.",
+      "popularity": 35.6055,
+      "poster_path": "/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+      "release_date": "2019-05-30",
+      "softcore": false,
+      "video": false,
+      "vote_average": 8.494,
+      "vote_count": 20587
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
