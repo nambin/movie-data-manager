@@ -177,11 +177,10 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
   });
 
   // Exact-match the candidates produced by the single no-year search (6
-  // results from TMDB). Top CANDIDATE_DETAILS_FETCH_LIMIT (=5) get enrichment
-  // attempts; only id=424694 has a registered details fixture, so the other
-  // four enrichment attempts fail-and-swallow → `directors: []`. The 6th
-  // candidate (index 5, beyond the limit) is never even attempted → also
-  // `directors: []` but for a different reason.
+  // results from TMDB). All 6 are within CANDIDATE_DETAILS_FETCH_LIMIT (=10),
+  // so all get enrichment attempts. Only id=424694 has a registered details
+  // fixture; the other five enrichment attempts fail-and-swallow → all the
+  // non-matched candidates end up with `directors: []` and no `_details`.
   const searchNoYearResults = loadFixture(
     "memo/search-bohemian-rhapsody-no-year"
   ).results;
@@ -223,9 +222,9 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
       "https://image.tmdb.org/t/p/w200/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
   });
 
-  // 2 Gemini + 1 TMDB search (no offsets) + 5 details-fetch attempts (top
-  // CANDIDATE_DETAILS_FETCH_LIMIT of the 6 merged candidates).
-  assert.equal(calls.length, 8);
+  // 2 Gemini + 1 TMDB search (no offsets) + 6 details-fetch attempts (all 6
+  // merged candidates are within CANDIDATE_DETAILS_FETCH_LIMIT=10).
+  assert.equal(calls.length, 9);
   // Key assertion: ONE search call, not three.
   // (The year-offset expansion only runs when parsed.year is truthy.)
   const tmdbSearches = calls.filter((c) => c.url.includes("/search/movie"));
@@ -407,12 +406,11 @@ test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ai
   });
 
   // Merged candidates in primary-year-first order. Primary (2025) returns 2
-  // results; year+1 (2026) returns 1; year-1 (2024) returns 6 — the matched
-  // candidate (1000837) is at index 3, within CANDIDATE_DETAILS_FETCH_LIMIT
-  // (=5), so it gets enriched. The other 4 candidates within the enrichment
-  // window fail-and-swallow because we only register 1000837's details
-  // fixture; the 4 candidates beyond the window (indices 5–8) are never
-  // attempted. The matched candidate is the only one carrying `_details`.
+  // results; year+1 (2026) returns 1; year-1 (2024) returns 6 — 9 total, all
+  // within CANDIDATE_DETAILS_FETCH_LIMIT (=10), so all get enrichment
+  // attempts. Only id=1000837 has a registered details fixture; the other
+  // 8 attempts fail-and-swallow → `directors: []` and no `_details`. The
+  // matched candidate is the only one carrying `_details`.
   const search2025Results = loadFixture("memo/search-im-still-here-2025").results;
   const search2026Results = loadFixture("memo/search-im-still-here-2026").results;
   const search2024Results = loadFixture("memo/search-im-still-here-2024").results;
@@ -460,10 +458,11 @@ test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ai
       "https://image.tmdb.org/t/p/w200/gZnsMbhCvhzAQlKaVpeFRHYjGyb.jpg",
   });
 
-  // 2 Gemini (A + B) + 3 TMDB searches (year ± 1) + 5 details-fetch attempts
-  // (top CANDIDATE_DETAILS_FETCH_LIMIT of the 7 merged candidates; 4 throw
-  // because no fixture, 1 succeeds).
-  assert.equal(calls.length, 10);
+  // 2 Gemini (A + B) + 3 TMDB searches (year ± 1) + 9 details-fetch attempts
+  // (all 9 merged candidates within CANDIDATE_DETAILS_FETCH_LIMIT=10; only
+  // the 1000837 fetch succeeds, the other 8 throw due to no registered
+  // fixture).
+  assert.equal(calls.length, 14);
 });
 
 // ---------------------------------------------------------------------------

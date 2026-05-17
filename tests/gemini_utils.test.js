@@ -337,7 +337,7 @@ test("matchTmdbCandidate: builds the full user prompt verbatim", async () => {
       `Parsed query: title="Bohemian Rhapsody" year=2018 director=""`,
       ``,
       `TMDB candidates:`,
-      `1. tmdb_id=424694 title="Bohemian Rhapsody" original_title="Bohemian Rhapsody" year=2018 directors="Bryan Singer" popularity=89.2`,
+      `1. tmdb_id=424694 title="Bohemian Rhapsody" original_title="Bohemian Rhapsody" year=2018 directors="Bryan Singer" popularity=89.2 has_imdb=unknown`,
     ].join("\n")
   );
 });
@@ -384,8 +384,8 @@ test("matchTmdbCandidate: builds the full user prompt with multiple candidates",
       `Parsed query: title="Bohemian Rhapsody" year=- director=""`,
       ``,
       `TMDB candidates:`,
-      `1. tmdb_id=424694 title="Bohemian Rhapsody" original_title="Bohemian Rhapsody" year=2018 directors="Bryan Singer" popularity=89.2`,
-      `2. tmdb_id=999 title="Other Movie" original_title="他" year=2010 directors="A, B" popularity=5.3`,
+      `1. tmdb_id=424694 title="Bohemian Rhapsody" original_title="Bohemian Rhapsody" year=2018 directors="Bryan Singer" popularity=89.2 has_imdb=unknown`,
+      `2. tmdb_id=999 title="Other Movie" original_title="他" year=2010 directors="A, B" popularity=5.3 has_imdb=unknown`,
     ].join("\n")
   );
 });
@@ -419,6 +419,8 @@ test("matchTmdbCandidate: builds the full user prompt with missing candidate fie
   //   release_date=""      → year=          (empty, NOT "-"; the `??`
   //                                          fallback only triggers for
   //                                          null/undefined, not "")
+  //   _details=undefined   → has_imdb=unknown (no details fetched for this
+  //                                            candidate)
   // The "year=-" in the Parsed query line comes from parsed.year=null,
   // not the candidate row.
   assert.deepStrictEqual(
@@ -428,7 +430,67 @@ test("matchTmdbCandidate: builds the full user prompt with missing candidate fie
       `Parsed query: title="Mystery" year=- director=""`,
       ``,
       `TMDB candidates:`,
-      `1. tmdb_id=42 title="Mystery" original_title="Mystery" year= directors="-" popularity=-`,
+      `1. tmdb_id=42 title="Mystery" original_title="Mystery" year= directors="-" popularity=- has_imdb=unknown`,
+    ].join("\n")
+  );
+});
+
+test("matchTmdbCandidate: has_imdb=yes/no/unknown branches by _details + imdb_id presence", async () => {
+  // Exercises all three branches of the has_imdb computation:
+  //   - candidate with _details.imdb_id truthy   → has_imdb=yes
+  //   - candidate with _details but no imdb_id   → has_imdb=no
+  //   - candidate without _details (rank beyond
+  //     CANDIDATE_DETAILS_FETCH_LIMIT in production) → has_imdb=unknown
+  // This is the cue Call B uses to filter out unreleased / uncatalogued
+  // entries that would crash buildMovieEntryFromTmdb downstream.
+  const calls = installFetchMock(
+    geminiResponseFor({ matched_tmdb_id: 1, confidence: "high", reasoning: "ok" })
+  );
+  await matchTmdbCandidate({
+    rawLine: "Anora",
+    parsed: { title: "Anora", year: 2024, director: null },
+    candidates: [
+      {
+        id: 1,
+        title: "Anora",
+        original_title: "Anora",
+        release_date: "2024-10-18",
+        directors: ["Sean Baker"],
+        popularity: 50,
+        _details: { imdb_id: "tt28607951" }, // truthy → yes
+      },
+      {
+        id: 2,
+        title: "Anora (Unreleased Cut)",
+        original_title: "Anora (Unreleased Cut)",
+        release_date: "2026-01-01",
+        directors: [],
+        popularity: 0.05,
+        _details: { imdb_id: "" }, // empty → no
+      },
+      {
+        id: 3,
+        title: "Anora Behind the Scenes",
+        original_title: "Anora Behind the Scenes",
+        release_date: "2024-12-01",
+        directors: [],
+        popularity: 0.1,
+        // no _details → unknown
+      },
+    ],
+    apiKey: "KEY",
+  });
+  const text = bodyOf(calls[0]).contents[0].parts[0].text;
+  assert.deepStrictEqual(
+    text,
+    [
+      `User memo line: Anora`,
+      `Parsed query: title="Anora" year=2024 director=""`,
+      ``,
+      `TMDB candidates:`,
+      `1. tmdb_id=1 title="Anora" original_title="Anora" year=2024 directors="Sean Baker" popularity=50.0 has_imdb=yes`,
+      `2. tmdb_id=2 title="Anora (Unreleased Cut)" original_title="Anora (Unreleased Cut)" year=2026 directors="-" popularity=0.1 has_imdb=no`,
+      `3. tmdb_id=3 title="Anora Behind the Scenes" original_title="Anora Behind the Scenes" year=2024 directors="-" popularity=0.1 has_imdb=unknown`,
     ].join("\n")
   );
 });
