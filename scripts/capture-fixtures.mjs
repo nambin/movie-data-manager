@@ -91,7 +91,16 @@ const FIXTURES = [
   // if TMDB ever shifts the canonical ID.)
   ["tests/fixtures/tmdb-bohemian-rhapsody.json", detailsUrl(424694)],
 
-  // Scenario 2 details are reused from the pre-existing tests/fixtures/tmdb-parasite.json
+  // Legacy movie-details fixtures used by tests/tmdb_utils.test.js and
+  // tests/yaml-roundtrip.test.js. Previously refreshed via a hand-rolled
+  // bash loop documented in README_webapp.md; consolidated here so the
+  // single `npm run capture:fixtures` command refreshes everything.
+  ["tests/fixtures/tmdb-parasite.json", detailsUrl(496243)],
+  ["tests/fixtures/tmdb-oppenheimer.json", detailsUrl(872585)],
+  ["tests/fixtures/tmdb-shoplifters.json", detailsUrl(505192)],
+  ["tests/fixtures/tmdb-the-witches.json", detailsUrl(531219)],
+  ["tests/fixtures/tmdb-police-story.json", detailsUrl(9056)],
+  ["tests/fixtures/tmdb-infernal-affairs.json", detailsUrl(10775)],
 ];
 
 async function captureOne(path, url) {

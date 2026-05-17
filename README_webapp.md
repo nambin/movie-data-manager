@@ -133,18 +133,16 @@ Pure data-correctness logic is isolated in [lib/](lib/) so it's testable in Node
 
 ### Updating fixtures
 
-The fixtures under [tests/fixtures/](tests/fixtures/) are a frozen snapshot of TMDB responses. To refresh:
+The fixtures under [tests/fixtures/](tests/fixtures/) are a frozen snapshot of TMDB responses (both `/movie/{id}?append_to_response=credits` details and `/search/movie?...` results). To refresh all of them:
 
 ```bash
-cd tests/fixtures
-KEY=f6d7fb04f4d4d6b07d2d750811e73a4c
-for pair in 496243:parasite 872585:oppenheimer 505192:shoplifters 531219:the-witches 9056:police-story 10775:infernal-affairs; do
-  id=${pair%:*}; name=${pair#*:}
-  curl -s "https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&append_to_response=credits" \
-    | python -m json.tool --no-ensure-ascii > "tmdb-${name}.json"
-done
+npm run capture:fixtures
 ```
 
-The pipe through `python -m json.tool` keeps the fixtures pretty-printed (indent=2, unicode preserved) so they're readable in diffs.
+This runs [scripts/capture-fixtures.mjs](scripts/capture-fixtures.mjs), which holds the canonical list of `(output path, TMDB URL)` pairs and hits TMDB once per pair. The TMDB API key it uses is the same hardcoded one in `lib/app.js` — no extra setup. The fixtures it writes are pretty-printed with 2-space indent, unicode preserved, trailing newline.
+
+To add a new fixture, append a `[path, url]` entry to the `FIXTURES` array in [scripts/capture-fixtures.mjs](scripts/capture-fixtures.mjs) and re-run the command.
 
 Test assertions reference specific values from these responses — if TMDB changes them, expect the fixture-driven tests to fail until the assertions are updated to match.
+
+**One-time normalization caveat:** the legacy `tmdb-*.json` fixtures (parasite, oppenheimer, shoplifters, the-witches, police-story, infernal-affairs) were originally produced by a `python -m json.tool` shell pipeline that wrote CRLF line endings. The capture script writes LF. The first time `npm run capture:fixtures` is run against those files, expect a one-time CRLF → LF normalization diff (~14k lines, no semantic change). After that, refreshes show only real TMDB content changes.
