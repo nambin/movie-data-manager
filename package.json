@@ -6,8 +6,9 @@
   "description": "Static web editor for the movie collection YAML.",
   "scripts": {
     "test": "node --test \"tests/**/*.test.js\"",
-    "build": "esbuild lib/app.js --bundle --format=esm --minify --outfile=assets/movies_editor.js",
-    "watch": "esbuild lib/app.js --bundle --format=esm --outfile=assets/movies_editor.js --watch",
+    "build": "esbuild lib/app.js --bundle --format=esm --minify --define:__GEMINI_KEY__=\"\\\"\\\"\" --outfile=assets/movies_editor.js",
+    "build:dev": "node scripts/build-dev.mjs",
+    "watch": "esbuild lib/app.js --bundle --format=esm --define:__GEMINI_KEY__=\"\\\"\\\"\" --outfile=assets/movies_editor.js --watch",
     "capture:fixtures": "node scripts/capture-fixtures.mjs"
   },
   "dependencies": {

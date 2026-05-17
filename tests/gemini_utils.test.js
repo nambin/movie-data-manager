@@ -2,11 +2,7 @@ import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  GEMINI_KEY_STORAGE_KEY,
-  getStoredGeminiKey,
-  setStoredGeminiKey,
-  clearStoredGeminiKey,
-  maskGeminiKey,
+  getGeminiKey,
   parseMemoLine,
   matchTmdbCandidate,
   translateDirectorToKorean,
@@ -15,32 +11,7 @@ import {
   CALL_C_SYSTEM,
 } from "../lib/gemini_utils.js";
 
-// ---------------------------------------------------------------------------
-// Test harness: polyfills for browser APIs not present in Node.
-// ---------------------------------------------------------------------------
-
-// localStorage polyfill (browser API). gemini_utils.js references it inside
-// the key-management functions, so it must exist before those functions run —
-// but not before the module is imported (the references are inside function
-// bodies, not at top-level).
-const localStorageStore = new Map();
-globalThis.localStorage = {
-  getItem(k) {
-    return localStorageStore.has(k) ? localStorageStore.get(k) : null;
-  },
-  setItem(k, v) {
-    localStorageStore.set(k, String(v));
-  },
-  removeItem(k) {
-    localStorageStore.delete(k);
-  },
-  clear() {
-    localStorageStore.clear();
-  },
-};
-
 beforeEach(() => {
-  localStorageStore.clear();
   globalThis.fetch = undefined;
 });
 
@@ -92,72 +63,18 @@ function bodyOf(call) {
 }
 
 // ---------------------------------------------------------------------------
-// Key management
+// Key access
 // ---------------------------------------------------------------------------
+//
+// getGeminiKey() returns whatever esbuild --define inlined as __GEMINI_KEY__
+// at build time. Under `node --test`, esbuild doesn't run and the identifier
+// is undefined → the `typeof` guard in getGeminiKey returns null. That's the
+// only behavior we can verify without running a real build; the dev/prod
+// build paths are covered by inspecting the bundle after `npm run build` /
+// `npm run build:dev`.
 
-test("getStoredGeminiKey returns null when nothing is stored", () => {
-  assert.equal(getStoredGeminiKey(), null);
-});
-
-test("setStoredGeminiKey writes under the documented localStorage slot", () => {
-  setStoredGeminiKey("AIzaSyFAKE_AAAAAA_BBBBBB_CCCC");
-  assert.equal(
-    localStorageStore.get(GEMINI_KEY_STORAGE_KEY),
-    "AIzaSyFAKE_AAAAAA_BBBBBB_CCCC"
-  );
-});
-
-test("getStoredGeminiKey round-trips a stored key", () => {
-  setStoredGeminiKey("AIzaSyFAKE_AAAAAA_BBBBBB_CCCC");
-  assert.equal(getStoredGeminiKey(), "AIzaSyFAKE_AAAAAA_BBBBBB_CCCC");
-});
-
-test("setStoredGeminiKey('') removes the slot (treats empty as a clear)", () => {
-  setStoredGeminiKey("AIzaSyFAKE_AAAAAA_BBBBBB_CCCC");
-  setStoredGeminiKey("");
-  assert.equal(getStoredGeminiKey(), null);
-});
-
-test("clearStoredGeminiKey removes the slot", () => {
-  setStoredGeminiKey("AIzaSyFAKE_AAAAAA_BBBBBB_CCCC");
-  clearStoredGeminiKey();
-  assert.equal(getStoredGeminiKey(), null);
-});
-
-test("clearStoredGeminiKey is a no-op when nothing is stored", () => {
-  // Should not throw, should leave state unchanged.
-  clearStoredGeminiKey();
-  assert.equal(getStoredGeminiKey(), null);
-});
-
-// ---------------------------------------------------------------------------
-// maskGeminiKey
-// ---------------------------------------------------------------------------
-
-test("maskGeminiKey masks a realistic-length key as <first6>…<last4>", () => {
-  // Typical AI Studio key: 39 chars starting with "AIzaSy"
-  assert.equal(
-    maskGeminiKey("AIzaSyAbCdEfGhIjKlMnOpQrStUvWxYz1234567"),
-    "AIzaSy…4567"
-  );
-});
-
-test("maskGeminiKey: keys shorter than 12 chars are obscured to •••", () => {
-  assert.equal(maskGeminiKey("short"), "•••");
-  assert.equal(maskGeminiKey("abc123"), "•••");
-  // exactly 11 chars: still short → bullets
-  assert.equal(maskGeminiKey("12345678901"), "•••");
-});
-
-test("maskGeminiKey: 12-char threshold is inclusive", () => {
-  // 12 chars: long enough to show the mask form.
-  assert.equal(maskGeminiKey("123456789012"), "123456…9012");
-});
-
-test("maskGeminiKey: falsy inputs return empty string", () => {
-  assert.equal(maskGeminiKey(""), "");
-  assert.equal(maskGeminiKey(null), "");
-  assert.equal(maskGeminiKey(undefined), "");
+test("getGeminiKey returns null when no key was inlined at build time", () => {
+  assert.equal(getGeminiKey(), null);
 });
 
 // ---------------------------------------------------------------------------

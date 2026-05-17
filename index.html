@@ -298,6 +298,200 @@
         text-align: center;
         color: #888;
       }
+
+      /* ----- memo bar ----- */
+
+      .memo-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+        padding: 0.6rem 0.75rem;
+        background: #f3f7fb;
+        border: 1px solid #d6e2ee;
+        border-radius: 8px;
+      }
+
+      #memo-input {
+        width: 100%;
+        min-height: 4.5rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        resize: vertical;
+      }
+
+      .memo-actions {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      #process-memo-btn {
+        background: #36a;
+        color: white;
+        border-color: #258;
+        font-weight: 600;
+      }
+
+      #process-memo-btn:hover:not(:disabled) {
+        background: #258;
+      }
+
+      #process-memo-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* ----- review pane ----- */
+
+      #review-pane {
+        max-width: 900px;
+        margin: 0 0 1.25rem 0;
+        padding: 0.75rem 1rem;
+        background: #fffdf5;
+        border: 1px solid #e6deb6;
+        border-radius: 8px;
+      }
+
+      #review-pane[hidden] {
+        display: none;
+      }
+
+      .review-header {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .review-header h2 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .review-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .review-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.6rem 0.75rem;
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-left-width: 4px;
+        border-radius: 6px;
+        margin-bottom: 0.6rem;
+      }
+
+      .review-card[data-confidence="high"] { border-left-color: #2a6; }
+      .review-card[data-confidence="medium"] { border-left-color: #c80; }
+      .review-card[data-confidence="low"] { border-left-color: #c33; }
+      .review-card[data-status="not_movie"] { border-left-color: #aaa; opacity: 0.7; }
+      .review-card[data-status="no_match"] { border-left-color: #c33; }
+      .review-card[data-status="error"] { border-left-color: #c00; background: #fff5f5; }
+      .review-card[data-status="pending"] { border-left-color: #ddd; }
+
+      .review-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .review-status-badge {
+        font-size: 0.75rem;
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+        background: #eee;
+        color: #555;
+        white-space: nowrap;
+      }
+
+      .review-raw-line {
+        flex: 1;
+        min-width: 0;
+        color: #555;
+        font-size: 0.9rem;
+        font-style: italic;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .review-approve {
+        display: inline-flex;
+        flex-direction: row;
+        gap: 0.3rem;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #444;
+      }
+
+      .review-body {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .review-body .poster {
+        width: 70px;
+        height: 105px;
+      }
+
+      .review-body .info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .review-body .title {
+        margin: 0 0 0.15rem 0;
+        font-size: 1.05rem;
+      }
+
+      .candidate-picker-label {
+        width: 100%;
+      }
+
+      .candidate-picker {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .reasoning-disclosure summary {
+        cursor: pointer;
+        font-size: 0.8rem;
+        color: #666;
+      }
+
+      .reasoning {
+        margin: 0.25rem 0 0 0;
+        font-size: 0.85rem;
+        color: #555;
+      }
+
+      .review-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      #commit-all-btn {
+        background: #2c7;
+        color: white;
+        border-color: #2a6;
+        font-weight: 600;
+      }
+
+      #commit-all-btn:hover {
+        background: #1b6;
+      }
     </style>
   </head>
   <body>
@@ -335,9 +529,34 @@
         <button id="add-btn" type="button">Add movie</button>
         <span id="add-status" class="status"></span>
       </div>
+
+      <div class="memo-bar">
+        <textarea
+          id="memo-input"
+          rows="3"
+          placeholder="Paste a memo of movie titles — one per line. Korean phonetic spellings like '보헤미안 랩소디' are recognized."
+        ></textarea>
+        <div class="memo-actions">
+          <button id="process-memo-btn" type="button" disabled>
+            Process memo
+          </button>
+          <span id="memo-status" class="status"></span>
+        </div>
+      </div>
     </header>
 
     <main>
+      <section id="review-pane" hidden>
+        <div class="review-header">
+          <h2>Review and approve</h2>
+          <span id="review-summary" class="status"></span>
+        </div>
+        <ul id="review-list" class="review-list"></ul>
+        <div class="review-actions">
+          <button id="commit-all-btn" type="button">Commit all approved</button>
+          <button id="discard-all-btn" type="button">Discard all</button>
+        </div>
+      </section>
       <ul id="movie-list" class="movie-list"></ul>
     </main>
 
@@ -383,6 +602,59 @@
             <textarea class="note" rows="2" placeholder="(optional)"></textarea>
           </label>
           <p class="ids"></p>
+        </div>
+      </li>
+    </template>
+
+    <template id="review-card-template">
+      <li class="review-card" data-status="pending">
+        <div class="review-card-header">
+          <span class="review-status-badge"></span>
+          <span class="review-raw-line"></span>
+          <label class="review-approve" hidden>
+            <input type="checkbox" class="approve-cb" checked />
+            <span>Approve</span>
+          </label>
+        </div>
+        <div class="review-body" hidden>
+          <a class="poster-link" target="_blank" rel="noopener">
+            <img class="poster" alt="" loading="lazy" />
+          </a>
+          <div class="info">
+            <h3 class="title"></h3>
+            <p class="tmdb-title"></p>
+            <div class="row meta-row">
+              <label>
+                Year
+                <input class="year" type="number" min="1900" max="2099" />
+              </label>
+              <label>
+                Director
+                <input class="director" type="text" />
+              </label>
+              <span class="language"></span>
+              <span class="kor-flag"></span>
+            </div>
+            <div class="row meta-row">
+              <label>
+                Title in Korean
+                <input
+                  class="custom-korean-title"
+                  type="text"
+                  placeholder="(optional)"
+                />
+              </label>
+            </div>
+            <label class="candidate-picker-label">
+              TMDB candidate
+              <select class="candidate-picker"></select>
+            </label>
+            <details class="reasoning-disclosure">
+              <summary>LLM reasoning</summary>
+              <p class="reasoning"></p>
+            </details>
+            <p class="ids"></p>
+          </div>
         </div>
       </li>
     </template>
