@@ -106,7 +106,7 @@ System / instruction text, roughly:
 >
 > A very common case is that **a non-Korean movie is written in Korean phonetic transliteration** (e.g. `보헤미안 랩소디` = "Bohemian Rhapsody", `플라워킬링문` = "Killers of the Flower Moon", `에밀리아 페레스` = "Emilia Pérez"). For these, return the original English title in `title`. Do **not** put the Korean phonetic form in `korean_overlay`.
 >
-> If the line is a Korean *original*-language movie (e.g. `어쩔수가없다`, `기생충`), return it as written — TMDB search handles Korean originals natively.
+> For a Korean *original*-language movie (e.g. `어쩔수가없다`, `기생충`), return the canonical Korean title in `title`. Light normalization is fine — fix obvious typos, adjust whitespace, expand common abbreviations — but keep the result in Korean script. TMDB search handles Korean originals natively.
 >
 > `korean_overlay` is **only** for the explicit `English Title (한국어)` parenthetical pattern, e.g. `Adolescence (소년의 시간)` → `korean_overlay: "소년의 시간"`.
 >
