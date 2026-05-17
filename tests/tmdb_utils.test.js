@@ -121,7 +121,11 @@ test("Shoplifters (id=505192) — Japanese original, English tmdb_title", () => 
   const entry = buildMovieEntryFromTmdb(tmdb);
 
   // Director: TMDB returns name="Hirokazu Kore-eda" / original_name="是枝裕和".
-  // We must use `name`, not `original_name`, to match data-manager.py.
+  // We use `name` (the English/romanized form) for tmdb_director_name_1, not
+  // `original_name`, so the YAML's tmdb_director_name_* fields stay English-
+  // readable. The user-facing `director` field can be edited to the native
+  // form when the user prefers it (see processMemoLine's Korean-director
+  // map for the Korean case).
   // title combines TMDB title + original_title because they differ.
   assert.deepEqual(entry, {
     title: "Shoplifters (万引き家族)",
@@ -229,7 +233,7 @@ test("missing imdb_id throws", () => {
     release_date: "2020-01-01",
     poster_path: null,
     credits: { crew: [] },
-    imdb_id: "", // empty string treated as missing (matches data-manager.py:328)
+    imdb_id: "", // empty string is treated as missing — buildMovieEntryFromTmdb throws
   };
   assert.throws(() => buildMovieEntryFromTmdb(fake), /no imdb_id/);
 });

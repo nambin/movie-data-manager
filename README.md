@@ -1,25 +1,26 @@
 ## Movie Collection Web Editor
 
-A static, single-user web page for maintaining the movie collection without touching the Google Spreadsheet. Replaces the CSV-editing step in the [data-manager.py](data-manager.py) pipeline; produces a YAML file structurally compatible with [data/movies.yml](data/movies.yml) for direct commit into [nambin.github.io](https://github.com/nambin/nambin.github.io)'s `data/movies.yml`.
+A static, single-user web page for maintaining the movie collection. Produces a YAML file at [data/movies.yml](data/movies.yml) for direct commit into [nambin.github.io](https://github.com/nambin/nambin.github.io)'s `data/movies.yml`.
 
-The full specification lives in [web-app-prompt.md](web-app-prompt.md).
+The full specification lives in [prompt-web-app.md](prompt-web-app.md); the memo bulk-import architecture in [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md).
 
 ### Features
 
 - **Load** an existing YML via file picker.
 - **Add** a movie by pasting a TMDB movie URL (e.g. `https://www.themoviedb.org/movie/496243`).
-- **Bulk-import** by pasting an unstructured memo (one title per line, including Korean phonetic transliterations like `보헤미안 랩소디`). The memo is parsed by Gemini, candidates are fetched from TMDB and disambiguated by Gemini, then a review pane lets you approve each entry before committing. Local dev build only — see [Gemini API key](#gemini-api-key-memo-bulk-import) below.
+- **Bulk-import** by pasting an unstructured memo (one title per line, including Korean phonetic transliterations like `보헤미안 랩소디`). The memo is parsed by Gemini, candidates are fetched from TMDB and disambiguated by Gemini, then a review pane lets you approve each entry before committing. Local dev build only — see [API keys](#api-keys-env) below.
 - **Edit** per-entry: `year`, `director`, `custom_korean_title`, personal rating (Masterpiece / My Best / none), award names (10-option multi-select), `note`.
 - **Search** across title, director, language, year, awards, note.
-- **Download** as a sorted, canonical YAML file. The on-disk schema and field order match what [data-manager.py](data-manager.py) emits, so the round-trip is structurally lossless.
+- **Download** as a sorted, canonical YAML file. Schema and field order match the format documented in [prompt-web-app.md](prompt-web-app.md#data-model); the round-trip test asserts structural deep-equality.
 - **Persistence**: every edit is auto-saved to `localStorage`; an unsaved-changes indicator warns before page unload.
 
 ### How to Run
 
-`index.html` references the bundle at `assets/movies_editor.js`, so produce that once before serving:
+`index.html` references the bundle at `assets/movies_editor.js`, so produce that once before serving. Both builds require a `.env` file at the repo root (see the [API keys section](#api-keys-env) below):
 
 ```bash
 npm install     # one-time, pulls in js-yaml + esbuild
+# create .env with TMDB_API_KEY (and GEMINI_API_KEY for dev) — see below
 npm run build   # produces assets/movies_editor.js
 python -m http.server
 # open http://localhost:8000
@@ -37,24 +38,30 @@ To test the **memo bulk-import** feature locally, use `npm run build:dev` instea
 
 CORS note: TMDB's API allows browser requests, so adding via TMDB URL works from any static server. The auto-load of `data/movies.yml` requires HTTP (not `file://`); use `python -m http.server` rather than opening the HTML directly.
 
-### Gemini API key (memo bulk-import)
+### API keys (.env)
 
-The bulk-import flow makes per-line LLM calls to Google's Gemini API. The key is **inlined into the bundle at build time** via esbuild's `--define` flag — there is no runtime UI for entering a key, no `localStorage`, no `.env`-reading at page load. Two build variants exist:
+Both API keys (TMDB + Gemini) are **inlined into the bundle at build time** via esbuild's `--define` flag — there is no runtime UI for entering them, no `localStorage`, no `.env`-reading at page load. No key is stored in source; both are read from `.env` (or `process.env`) at build time.
 
-| Command | What it does | Key in bundle? | Safe to deploy? |
-| --- | --- | --- | --- |
-| `npm run build` | Production build. Passes `--define:__GEMINI_KEY__='""'` so the constant becomes an empty string literal (dead-code-eliminated by esbuild). | ❌ | ✅ |
-| `npm run build:dev` | Dev build. Reads `GEMINI_API_KEY` from `.env` (or `process.env`) and inlines it via `--define`. Adds a `/* DEV BUILD — DO NOT DEPLOY. */` banner at the top of the output. | ✅ | ❌ **NEVER** |
-
-Both write to the same `assets/movies_editor.js` path. **Habit: end every local session with `npm run build` so the working tree is always deployable.**
-
-**Setup** — put your key in `.env` at the repo root:
+**Setup** — create a `.env` file at the repo root:
 
 ```
+TMDB_API_KEY=...
 GEMINI_API_KEY=AIzaSy...
 ```
 
-`.env` is gitignored. The key is yours from [Google AI Studio](https://aistudio.google.com/app/apikey); the model used is `gemini-flash-lite-latest`.
+- `TMDB_API_KEY` — required for **both** builds. The deployed editor needs TMDB for the URL-paste add bar. Get one from [TMDB → Settings → API](https://www.themoviedb.org/settings/api).
+- `GEMINI_API_KEY` — required for `build:dev` only. The bulk-import (memo) flow makes per-line LLM calls to `gemini-flash-lite-latest`. Get one from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+`.env` is gitignored.
+
+**Two build variants:**
+
+| Command | TMDB key in bundle? | Gemini key in bundle? | Safe to deploy? |
+| --- | --- | --- | --- |
+| `npm run build` | ✅ (required from `.env`) | ❌ — defined as `""`, bulk-import UI hides itself | ✅ |
+| `npm run build:dev` | ✅ (required from `.env`) | ✅ (required from `.env`) — `/* DEV BUILD — DO NOT DEPLOY. */` banner prepended | ❌ **NEVER** |
+
+Both write to the same `assets/movies_editor.js` path. **Habit: end every local session with `npm run build` so the working tree is always deployable.**
 
 **Local testing** of the bulk-import feature:
 
@@ -73,12 +80,12 @@ npm run build   # NOT build:dev
 
 [lib/app.js](lib/app.js) calls `getGeminiKey()` at boot. If it returns `null` (the empty-string case from `npm run build`), the entire `<div class="memo-bar">` is hidden — the deployed editor on nambin.github.io shows only the existing toolbar and TMDB-URL add-bar.
 
-**The footgun, mitigated**: if you accidentally copy a `build:dev` output to nambin.github.io, the key leaks. Two defenses:
+**The footgun, mitigated**: if you accidentally copy a `build:dev` output to nambin.github.io, the Gemini key leaks. Two defenses:
 
 1. The dev bundle starts with `/* DEV BUILD — Gemini API key inlined from .env. DO NOT DEPLOY. */` — visible in the first 80 bytes. A simple `grep -q "DEV BUILD" assets/movies_editor.js && exit 1` step before any deploy catches it.
 2. The `build:dev` command's stdout ends with `KEY INLINED — DO NOT DEPLOY`.
 
-**For additional safety**, restrict the AI Studio key by HTTP referrer (to `nambin.github.io` and your local dev origin) and set a daily quota cap — both are one-click options in the AI Studio console. That way even an accidental leak has a bounded blast radius.
+**For additional safety**, restrict the AI Studio key by HTTP referrer (to `nambin.github.io` and your local dev origin) and set a daily quota cap — both are one-click options in the AI Studio console. That way even an accidental leak has a bounded blast radius. The TMDB key is less sensitive (rate-limited free tier) but the same referrer restriction can be applied.
 
 See [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md) for the full design of the memo bulk-import architecture (the three-call LLM pipeline, year-offset TMDB search, review pane).
 
@@ -96,7 +103,7 @@ The acceptance test (round-trip parity) loads the real [data/movies.yml](data/mo
 ### Deploying to nambin.github.io
 
 ```bash
-npm run build   # ← MUST be `build`, never `build:dev` (see Gemini API key section)
+npm run build   # ← MUST be `build`, never `build:dev` (see API keys section)
 ```
 
 That's it on this side. The deploy is a plain copy of two files — no edits required:
@@ -118,7 +125,7 @@ Pure data-correctness logic is isolated in [lib/](lib/) so it's testable in Node
 
 | Module | Purpose |
 | --- | --- |
-| [lib/utils.js](lib/utils.js) | Hangul detection, ISO 639 → English name, awards (real names + badge mapping + derivation), sort comparator matching [data-manager.py:531-541](data-manager.py#L531-L541), js-yaml dump options |
+| [lib/utils.js](lib/utils.js) | Hangul detection, ISO 639 → English name, awards (real names + badge mapping + derivation), sort comparator, js-yaml dump options |
 | [lib/tmdb_utils.js](lib/tmdb_utils.js) | TMDB Movie Details JSON → web-app entry |
 | [lib/canonicalize.js](lib/canonicalize.js) | Field-order enforcement, omit-when-empty, awards derivation |
 | [lib/app.js](lib/app.js) | Entry point: DOM, file I/O, TMDB fetching, localStorage. Bundled into `assets/movies_editor.js`. |

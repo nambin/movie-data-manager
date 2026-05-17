@@ -32,11 +32,31 @@
 //   fixture file to confirm the change is TMDB-side.
 // - Periodic refresh: not necessary; fixtures don't go stale on their own.
 
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { dirname } from "node:path";
 
-// Same hardcoded TMDB API key as lib/app.js:29. Already public in this repo.
-const TMDB_API_KEY = "f6d7fb04f4d4d6b07d2d750811e73a4c";
+// TMDB API key — required. Read from process.env.TMDB_API_KEY or the .env
+// file at the repo root (same convention as scripts/build.mjs). No source
+// fallback; the script exits with a clear error if missing.
+async function readEnvVar(name) {
+  if (process.env[name]) return process.env[name].trim();
+  let envText;
+  try {
+    envText = await readFile(".env", "utf8");
+  } catch {
+    return null;
+  }
+  const m = envText.match(new RegExp(`^${name}=(.+)$`, "m"));
+  return m ? m[1].trim() : null;
+}
+
+const TMDB_API_KEY = await readEnvVar("TMDB_API_KEY");
+if (!TMDB_API_KEY) {
+  console.error(
+    "capture-fixtures: TMDB_API_KEY not found. Set it in .env or as an environment variable."
+  );
+  process.exit(1);
+}
 const TMDB_BASE = "https://api.themoviedb.org/3";
 
 // Build a search URL the same way lib/memo_pipeline.js's tmdbSearch does

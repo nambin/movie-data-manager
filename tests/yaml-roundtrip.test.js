@@ -47,9 +47,10 @@ test("round-trip: load → canonicalize → sort → dump → parse → deep-equ
 });
 
 test("round-trip: input was already in sorted order (no shuffling)", () => {
-  // data-manager.py sorts on every write, so the on-disk file should
-  // already be sorted. If sortMovies disagrees with that order on real data,
-  // it indicates a sort-comparator bug.
+  // The web app sorts on every download (see lib/app.js's Download YML
+  // handler), so the on-disk file should already be sorted by the time it's
+  // committed. If sortMovies disagrees with that order on real data, it
+  // indicates a sort-comparator bug.
   const text = readFileSync(YML_PATH, "utf-8");
   const original = yaml.load(text);
   const sorted = sortMovies(original);

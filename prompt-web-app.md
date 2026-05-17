@@ -147,7 +147,7 @@ Boolean semantics: missing `masterpiece`/`my_best` keys are treated as `False`; 
 - Refuse duplicates and surface a clear error. Check by TMDB ID first (before fetching, so a re-paste of an already-added URL short-circuits without an API call), then by `imdb_id` after the fetch as defense in depth.
 - Error states to surface to the user: TMDB URL has no `/movie/<id>` match; TMDB API returns 404 / network error; TMDB response has no `imdb_id`.
 
-The TMDB API key is in [data-manager.py:35](data-manager.py#L35) (`f6d7fb04f4d4d6b07d2d750811e73a4c`). Embedding it client-side is acceptable for this personal tool, since it's already public in this repo and the README. TMDB's CORS policy permits browser requests.
+The TMDB API key is sourced from `.env` (`TMDB_API_KEY`) at build time and inlined into the bundle via esbuild's `--define` flag — see `scripts/build.mjs` and `lib/tmdb_utils.js`'s `getTmdbKey()`. Embedding it client-side is acceptable for this personal tool. TMDB's CORS policy permits browser requests.
 
 ### 3. Edit fields
 
