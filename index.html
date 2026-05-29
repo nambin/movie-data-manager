@@ -312,13 +312,6 @@
         border-radius: 8px;
       }
 
-      /* Beats the default `display: flex` above so the `hidden` attribute
-         (set in lib/app.js when no Gemini key is inlined at build time) can
-         actually hide the section. */
-      .memo-bar[hidden] {
-        display: none;
-      }
-
       #memo-input {
         width: 100%;
         min-height: 4.5rem;
@@ -351,6 +344,18 @@
       #process-memo-btn:disabled {
         opacity: 0.5;
         cursor: not-allowed;
+      }
+
+      .gemini-key-input {
+        flex: 1;
+        min-width: 100px;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+
+      .gemini-key-input[hidden] {
+        display: none;
       }
 
       /* ----- review pane ----- */
@@ -547,6 +552,14 @@
           <button id="process-memo-btn" type="button" disabled>
             Process memo
           </button>
+          <input
+            type="password"
+            id="gemini-key-input"
+            class="gemini-key-input"
+            placeholder="Your Gemini API key"
+            autocomplete="off"
+            hidden
+          />
           <span id="memo-status" class="status"></span>
         </div>
       </div>

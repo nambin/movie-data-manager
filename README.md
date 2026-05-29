@@ -8,7 +8,7 @@ The full specification lives in [prompt-web-app.md](prompt-web-app.md); the memo
 
 - **Load** an existing YML via file picker.
 - **Add** a movie by pasting a TMDB movie URL (e.g. `https://www.themoviedb.org/movie/496243`).
-- **Bulk-import** by pasting an unstructured memo (one title per line, including Korean phonetic transliterations like `보헤미안 랩소디`). The memo is parsed by Gemini, candidates are fetched from TMDB and disambiguated by Gemini, then a review pane lets you approve each entry before committing. Local dev build only — see [API keys](#api-keys-env) below.
+- **Bulk-import** by pasting an unstructured memo (one title per line, including Korean phonetic transliterations like `보헤미안 랩소디`). The memo is parsed by Gemini, candidates are fetched from TMDB and disambiguated by Gemini, then a review pane lets you approve each entry before committing. Works on the deployed site too — supply your own Gemini key in the memo bar — or use a `build:dev` bundle with the key inlined. See [API keys](#api-keys-env) below.
 - **Edit** per-entry: `year`, `director`, `custom_korean_title`, personal rating (Masterpiece / My Best / none), award names (10-option multi-select), `note`.
 - **Search** across title, director, language, year, awards, note.
 - **Download** as a sorted, canonical YAML file. Schema and field order match the format documented in [prompt-web-app.md](prompt-web-app.md#data-model); the round-trip test asserts structural deep-equality.
@@ -40,7 +40,7 @@ CORS note: TMDB's API allows browser requests, so adding via TMDB URL works from
 
 ### API keys (.env)
 
-Both API keys (TMDB + Gemini) are **inlined into the bundle at build time** via esbuild's `--define` flag — there is no runtime UI for entering them, no `localStorage`, no `.env`-reading at page load. No key is stored in source; both are read from `.env` (or `process.env`) at build time.
+The TMDB key is **inlined into the bundle at build time** via esbuild's `--define` flag — there is no runtime UI for entering it, no `.env`-reading at page load. The Gemini key is also inlined at build time for `build:dev`, but the deployed `build` bundle ships with no Gemini key: instead the memo bar exposes a runtime key input where each user supplies their own Gemini key (kept only in that browser's `localStorage`). No key is stored in source; build-time keys are read from `.env` (or `process.env`).
 
 **Setup** — create a `.env` file at the repo root:
 
@@ -50,7 +50,7 @@ GEMINI_API_KEY=AIzaSy...
 ```
 
 - `TMDB_API_KEY` — required for **both** builds. The deployed editor needs TMDB for the URL-paste add bar. Get one from [TMDB → Settings → API](https://www.themoviedb.org/settings/api).
-- `GEMINI_API_KEY` — required for `build:dev` only. The bulk-import (memo) flow makes per-line LLM calls to `gemini-flash-lite-latest`. Get one from [Google AI Studio](https://aistudio.google.com/app/apikey).
+- `GEMINI_API_KEY` — optional, for `build:dev` only (it inlines the key so the memo flow works without typing one). The bulk-import (memo) flow makes per-line LLM calls to `gemini-flash-lite-latest`. Get one from [Google AI Studio](https://aistudio.google.com/app/apikey). On the deployed `build`, users instead paste their own key into the memo bar's key input at runtime.
 
 `.env` is gitignored.
 
@@ -58,7 +58,7 @@ GEMINI_API_KEY=AIzaSy...
 
 | Command | TMDB key in bundle? | Gemini key in bundle? | Safe to deploy? |
 | --- | --- | --- | --- |
-| `npm run build` | ✅ (required from `.env`) | ❌ — defined as `""`, bulk-import UI hides itself | ✅ |
+| `npm run build` | ✅ (required from `.env`) | ❌ — defined as `""`; memo bar stays visible, user supplies their own key at runtime | ✅ |
 | `npm run build:dev` | ✅ (required from `.env`) | ✅ (required from `.env`) — `/* DEV BUILD — DO NOT DEPLOY. */` banner prepended | ❌ **NEVER** |
 
 Both write to the same `assets/movies_editor.js` path. **Habit: end every local session with `npm run build` so the working tree is always deployable.**
@@ -72,13 +72,13 @@ python -m http.server 8000
 # the memo textarea is visible and ready
 ```
 
-**Production deployment** has the bulk-import section automatically hidden:
+**Production deployment** ships the memo bar with a runtime key input:
 
 ```bash
 npm run build   # NOT build:dev
 ```
 
-[lib/app.js](lib/app.js) calls `getGeminiKey()` at boot. If it returns `null` (the empty-string case from `npm run build`), the entire `<div class="memo-bar">` is hidden — the deployed editor on nambin.github.io shows only the existing toolbar and TMDB-URL add-bar.
+[lib/app.js](lib/app.js) calls `getGeminiKey()` at boot. If it returns `null` (the empty-string case from `npm run build`), the `<div class="memo-bar">` stays visible, the runtime Gemini key input (`#gemini-key-input`) is revealed, and the **Process memo** button stays disabled until the user types a key (and a non-empty memo). The user's key is persisted to that browser's `localStorage` so it survives reloads, and is never sent anywhere except Google's Gemini API. When a key *is* inlined (`build:dev`), the runtime input stays hidden since it isn't needed.
 
 **The footgun, mitigated**: if you accidentally copy a `build:dev` output to nambin.github.io, the Gemini key leaks. Two defenses:
 

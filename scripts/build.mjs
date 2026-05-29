@@ -3,9 +3,11 @@
 //                    .env file at the repo root. Exits with a clear error
 //                    if missing. (TMDB is needed by URL-paste even on the
 //                    deployed site, so the prod bundle must carry the key.)
-//   __GEMINI_KEY__ — empty string. The bulk-import UI hides itself at runtime
-//                    when getGeminiKey() returns null, so the deployed site
-//                    has no memo feature — exactly what we want.
+//   __GEMINI_KEY__ — empty string. With no inlined key, the deployed site's
+//                    memo bulk-import UI stays visible but the Process memo
+//                    button is disabled until the user supplies their own
+//                    Gemini API key via the runtime key input. No key is
+//                    ever baked into the deployed bundle.
 //
 // Run: `npm run build` (from the repo root).
 //
