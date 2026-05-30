@@ -504,6 +504,20 @@
       #commit-all-btn:hover {
         background: #1b6;
       }
+
+      /* ----- mobile: shrink the sticky header so the movie list gets room ----- */
+      @media (max-width: 599px) {
+        /* Hide status/count chatter ("Showing top 10 of …", "Auto-loaded …"). */
+        #count {
+          display: none;
+        }
+
+        /* Hide the "Paste TMDB movie URL" row and "Add movie" button.
+           (This also hides #add-status, where the auto-loaded message lives.) */
+        .add-bar {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -511,7 +525,7 @@
       <h1>Movie Collection Editor</h1>
       <div class="toolbar">
         <label class="file-picker">
-          Load YML
+          Load
           <input type="file" id="file-input" accept=".yml,.yaml" />
         </label>
         <input
@@ -529,7 +543,7 @@
         </button>
         <span id="count"></span>
         <span id="dirty-indicator" hidden>● unsaved</span>
-        <button id="download-btn" type="button">Download YML</button>
+        <button id="download-btn" type="button">Download</button>
       </div>
 
       <div class="add-bar">
