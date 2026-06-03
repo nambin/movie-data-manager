@@ -120,9 +120,9 @@ test("processMemoLine: Korean phonetic → English (Bohemian Rhapsody) happy pat
   );
   assert.equal(tmdbSearches.length, 3);
   // Exactly one /movie/424694 fetch — the eager enrichment in
-  // enrichCandidatesForMatch covers it (424694 is at index 0 of the merged
-  // candidates, well within CANDIDATE_DETAILS_FETCH_LIMIT). No lazy fetch
-  // fires later because the matched candidate already carries _details.
+  // enrichCandidatesForMatch covers it (it fetches details for every
+  // candidate). No lazy fetch fires later because the matched candidate
+  // already carries _details.
   assert.equal(tmdbDetails.length, 1, "exactly one /movie/424694 fetch");
   assert.equal(geminiCalls.length, 2);
 });
@@ -177,10 +177,10 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
   });
 
   // Exact-match the candidates produced by the single no-year search (6
-  // results from TMDB). All 6 are within CANDIDATE_DETAILS_FETCH_LIMIT (=10),
-  // so all get enrichment attempts. Only id=424694 has a registered details
-  // fixture; the other five enrichment attempts fail-and-swallow → all the
-  // non-matched candidates end up with `directors: []` and no `_details`.
+  // results from TMDB). Every candidate gets a details-fetch attempt. Only
+  // id=424694 has a registered details fixture; the other five enrichment
+  // attempts fail-and-swallow → all the non-matched candidates end up with
+  // `directors: []` and no `_details`.
   const searchNoYearResults = loadFixture(
     "memo/search-bohemian-rhapsody-no-year"
   ).results;
@@ -222,8 +222,8 @@ test("processMemoLine: Bohemian Rhapsody with NO year — only one TMDB search f
       "https://image.tmdb.org/t/p/w200/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
   });
 
-  // 2 Gemini + 1 TMDB search (no offsets) + 6 details-fetch attempts (all 6
-  // merged candidates are within CANDIDATE_DETAILS_FETCH_LIMIT=10).
+  // 2 Gemini + 1 TMDB search (no offsets) + 6 details-fetch attempts (one per
+  // merged candidate).
   assert.equal(calls.length, 9);
   // Key assertion: ONE search call, not three.
   // (The year-offset expansion only runs when parsed.year is truthy.)
@@ -331,7 +331,7 @@ test("processMemoLine: Korean original (기생충) with Korean-director map hit"
   });
 
   // 2 Gemini (A + B) + 3 TMDB searches (year ± 1, only 2019 has results) +
-  // 1 details fetch (1 merged candidate within CANDIDATE_DETAILS_FETCH_LIMIT).
+  // 1 details fetch (the single merged candidate).
   assert.equal(calls.length, 6);
 });
 
@@ -353,9 +353,10 @@ test("processMemoLine: Korean original (기생충) with Korean-director map hit"
 //
 // If TMDB ever drops the imdb_id from id=1000837, this test fails with the
 // "Entry build failed: TMDB response has no imdb_id" message, surfacing
-// the regression. Reproducing the picked-wrong-candidate failure would
-// require either fixture-capturing those candidates' details OR adding a
-// filter step (drop enriched candidates with empty imdb_id) before Call B.
+// the regression. The picked-wrong-candidate failure is now prevented by the
+// filter in processMemoLine that drops enriched candidates with an empty
+// imdb_id before Call B — see the dedicated test "drops enriched candidates
+// without an imdb_id before Call B" below.
 // ---------------------------------------------------------------------------
 
 test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ainda Estou Aqui)", async () => {
@@ -379,10 +380,10 @@ test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ai
       "I'm Still Here|2026": "memo/search-im-still-here-2026",
     },
     tmdbDetailsFixtures: {
-      // Only the matched candidate is registered. The other four candidates
-      // within CANDIDATE_DETAILS_FETCH_LIMIT will hit the mock's "no fixture"
-      // branch and their details fetches will throw — enrichCandidatesForMatch
-      // swallows the throw and produces `{ ...c, directors: [] }`.
+      // Only the matched candidate is registered. The other candidates will
+      // hit the mock's "no fixture" branch and their details fetches will
+      // throw — enrichCandidatesForMatch swallows the throw and produces
+      // `{ ...c, directors: [] }`.
       1000837: "tmdb-ainda-estou-aqui",
     },
   });
@@ -406,11 +407,11 @@ test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ai
   });
 
   // Merged candidates in primary-year-first order. Primary (2025) returns 2
-  // results; year+1 (2026) returns 1; year-1 (2024) returns 6 — 9 total, all
-  // within CANDIDATE_DETAILS_FETCH_LIMIT (=10), so all get enrichment
-  // attempts. Only id=1000837 has a registered details fixture; the other
-  // 8 attempts fail-and-swallow → `directors: []` and no `_details`. The
-  // matched candidate is the only one carrying `_details`.
+  // results; year+1 (2026) returns 1; year-1 (2024) returns 6 — 9 total, and
+  // every one gets a details-fetch attempt. Only id=1000837 has a registered
+  // details fixture; the other 8 attempts fail-and-swallow → `directors: []`
+  // and no `_details`. The matched candidate is the only one carrying
+  // `_details`.
   const search2025Results = loadFixture("memo/search-im-still-here-2025").results;
   const search2026Results = loadFixture("memo/search-im-still-here-2026").results;
   const search2024Results = loadFixture("memo/search-im-still-here-2024").results;
@@ -459,9 +460,8 @@ test("processMemoLine: Korean phonetic with off-by-one year (I'm Still Here / Ai
   });
 
   // 2 Gemini (A + B) + 3 TMDB searches (year ± 1) + 9 details-fetch attempts
-  // (all 9 merged candidates within CANDIDATE_DETAILS_FETCH_LIMIT=10; only
-  // the 1000837 fetch succeeds, the other 8 throw due to no registered
-  // fixture).
+  // (one per merged candidate; only the 1000837 fetch succeeds, the other 8
+  // throw due to no registered fixture).
   assert.equal(calls.length, 14);
 });
 
@@ -552,4 +552,85 @@ test("processMemoLine: TMDB zero results across year ± 1 → status=no_match, C
   assert.equal(geminiCalls.length, 1, "only Call A should have fired");
   assert.equal(tmdbSearches.length, 3, "all three year offsets should be searched");
   assert.equal(tmdbDetails.length, 0, "no details fetch when no candidates");
+});
+
+// ---------------------------------------------------------------------------
+// Scenario 5 — A TMDB candidate whose details carry no imdb_id is dropped
+// before Call B. A candidate without an imdb_id can never become an entry
+// (buildMovieEntryFromTmdb requires one), so processMemoLine filters out the
+// enriched candidates with empty imdb_id — Call B only ever sees the saveable
+// one. This is the fix anticipated by the Scenario 2b comment.
+// ---------------------------------------------------------------------------
+
+test("processMemoLine: drops enriched candidates without an imdb_id before Call B", async () => {
+  const calls = installPipelineMocks({
+    geminiParseResult: {
+      is_movie: true,
+      title: "Real Film",
+      year: null,
+      director: null,
+      title_korean_overlay: null,
+    },
+    geminiMatchResult: {
+      matched_tmdb_id: 222,
+      confidence: "high",
+      reasoning: "the saveable candidate with an imdb_id",
+    },
+    tmdbSearchFixtures: {
+      // No year → a single search; results are [id 111 (no imdb), id 222 (ok)].
+      "Real Film|": "memo/search-imdb-filter",
+    },
+    tmdbDetailsFixtures: {
+      111: "memo/details-no-imdb-111", // imdb_id: null → must be dropped
+      222: "memo/details-with-imdb-222", // imdb_id present → kept
+    },
+  });
+
+  const result = await processMemoLine({
+    rawLine: "Real Film",
+    geminiKey: "TEST_GEMINI_KEY",
+    tmdbApiKey: "TEST_TMDB_KEY",
+    koreanDirectorMap: new Map(),
+  });
+
+  assert.equal(result.status, "ok");
+
+  // Both candidates were enriched (details fetched), but the imdb_id-less one
+  // (111) is filtered out — result.candidates holds only 222.
+  const searchResults = loadFixture("memo/search-imdb-filter").results;
+  const details222 = loadFixture("memo/details-with-imdb-222");
+  assert.deepStrictEqual(result.candidates, [
+    { ...searchResults[1], directors: ["Jane Doe"], _details: details222 },
+  ]);
+
+  // The dropped candidate (id 111) must never have been offered to Call B.
+  const candidateIds = result.candidates.map((c) => c.id);
+  assert.deepStrictEqual(candidateIds, [222]);
+
+  // Entry is built from the surviving candidate.
+  assert.deepStrictEqual(result.entry, {
+    title: "Real Film",
+    year: 2024,
+    director: "Jane Doe",
+    is_korean_director: false,
+    imdb_id: "tt2220000",
+    imdb_url: "https://www.imdb.com/title/tt2220000",
+    tmdb_url: "https://www.themoviedb.org/movie/222",
+    tmdb_title: null,
+    tmdb_original_title: "Real Film",
+    tmdb_original_language: "English",
+    tmdb_director_name_1: "Jane Doe",
+    tmdb_director_name_2: null,
+    tmdb_num_directors: 1,
+    tmdb_poster_url: "https://image.tmdb.org/t/p/w200/realfilm.jpg",
+  });
+
+  // 2 Gemini (A + B) + 1 TMDB search + 2 details fetches (both candidates are
+  // enriched BEFORE the filter runs). The matched candidate already carries
+  // _details, so no lazy re-fetch fires.
+  const tmdbDetails = calls.filter(
+    (c) => /\/movie\/\d+\?/.test(c.url) && !c.url.includes("/search/movie")
+  );
+  assert.equal(tmdbDetails.length, 2, "both candidates enriched before filtering");
+  assert.equal(calls.length, 5);
 });

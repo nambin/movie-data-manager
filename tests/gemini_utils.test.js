@@ -439,10 +439,11 @@ test("matchTmdbCandidate: has_imdb=yes/no/unknown branches by _details + imdb_id
   // Exercises all three branches of the has_imdb computation:
   //   - candidate with _details.imdb_id truthy   → has_imdb=yes
   //   - candidate with _details but no imdb_id   → has_imdb=no
-  //   - candidate without _details (rank beyond
-  //     CANDIDATE_DETAILS_FETCH_LIMIT in production) → has_imdb=unknown
-  // This is the cue Call B uses to filter out unreleased / uncatalogued
-  // entries that would crash buildMovieEntryFromTmdb downstream.
+  //   - candidate without _details (its details fetch failed in production)
+  //     → has_imdb=unknown
+  // This is a defensive cue in Call B's prompt. In practice processMemoLine
+  // now drops the has_imdb=no candidates before Call B (they would crash
+  // buildMovieEntryFromTmdb downstream), so Call B mainly sees yes/unknown.
   const calls = installFetchMock(
     geminiResponseFor({ matched_tmdb_id: 1, confidence: "high", reasoning: "ok" })
   );
