@@ -183,6 +183,12 @@ test("buildAwardsDocument: sorts deterministically and derives badges (incl. blu
   assert.equal(doc.by_imdb.tt_a.tmdb_id, 99);
   assert.equal(doc.by_imdb.tt_b.title, "B"); // no tmdbInfo → source title
 
+  // imdb_url is always derivable from the key; tmdb_url only when tmdb_id is known.
+  assert.equal(doc.by_imdb.tt_a.imdb_url, "https://www.imdb.com/title/tt_a");
+  assert.equal(doc.by_imdb.tt_a.tmdb_url, "https://www.themoviedb.org/movie/99");
+  assert.equal(doc.by_imdb.tt_b.tmdb_id, null); // no tmdbInfo for tt_b
+  assert.equal(doc.by_imdb.tt_b.tmdb_url, null); // → tmdb_url null
+
   // award_names sorted; badges derived (blue_dragon + venice, order-preserving).
   assert.deepEqual(doc.by_imdb.tt_a.award_names, [
     "Venice Leone d’oro",

@@ -135,6 +135,8 @@ by_imdb:
   tt28607951:
     tmdb_id: 1064213
     title: Anora
+    imdb_url: https://www.imdb.com/title/tt28607951
+    tmdb_url: https://www.themoviedb.org/movie/1064213
     award_names:
       - Cannes Palme d'Or
       - Oscar Best Picture
@@ -147,7 +149,8 @@ by_imdb:
 ```
 
 Notes:
-- `title` and `tmdb_id` are for human readability / verification; the editor re-derives canonical fields from TMDB itself. The load-bearing data for the web app is `imdb_id → award_names`.
+- `title`, `tmdb_id`, and the two URLs are for human readability / verification; the editor re-derives canonical fields from TMDB itself. The load-bearing data for the web app is `imdb_id → award_names`.
+- `imdb_url` is always present (derived from the `imdb_id` key, matching `movies.yml`'s form). `tmdb_id` / `tmdb_url` are `null` for the rare winner whose IMDb id resolves to no TMDB movie.
 - `wins[].year` is the **award/ceremony year** (Wikidata `P585`), not the film's release year — they can differ (a film released in 2024 wins Best Picture at the 2025 ceremony).
 
 ## GitHub Action — `.github/workflows/curate-awards.yml`
