@@ -23,12 +23,12 @@ The ten awards in scope (exact taxonomy names from [lib/utils.js](lib/utils.js) 
 - `César Award for Best Film` &nbsp;*(Wikipedia, see §2.2)*
 - `Japan Academy Prize` &nbsp;*(Picture of the Year — Wikipedia, see §2.2)*
 
-The first **seven** share one source (Wikidata, §2.1); the last **three** (Blue Dragon, César, Japan Academy) are too sparse in Wikidata and come from **English Wikipedia** winners tables (§2.2). The only `AWARD_NAMES` entry left uncurated is `IIFA Awards` (no usable structured source — see Non-goals).
+The first **seven** share one source (Wikidata, §2.1); the last **three** (Blue Dragon, César, Japan Academy) are too sparse in Wikidata and come from **English Wikipedia** winners tables (§2.2). These ten are the entire `AWARD_NAMES` taxonomy — every award the editor knows about is curated here, so `data/awards.yml` is the complete source of truth for awards.
 
 ## Non-goals
 
 - **Nominees are out of scope.** Only winners of the single top prize per festival/year. The data source encodes "won" distinctly from "nominated" (see below), so this is enforced at the query, not by guessing. This honors the existing rule in [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md) that nominee and winner must never be confused.
-- **No awards outside the ten.** Only `IIFA Awards` is **deferred** (the CLI does not touch it): it has no Wikidata "Best Film" entity, and its English-Wikipedia page is ~25 separate per-year tables (mostly Bollywood) — high parsing effort for films rarely in this collection. Revisit if the value justifies it. (César and Japan Academy *were* deferred for sparse Wikidata, but are now sourced from Wikipedia — see §2.2.)
+- **The ten awards are the whole taxonomy.** Every `AWARD_NAMES` entry is curated, so `awards.yml` is the *complete* source of truth — the reconcile CLI / editor overwrite a movie's awards from it entirely, leaving nothing behind. (`IIFA Awards` was previously in the taxonomy but is dropped: no Wikidata "Best Film" entity and a ~25-table Wikipedia page, for films rarely in this collection.)
 - **`data/movies.yml` is never modified.** `awards.yml` is a standalone sidecar. Merging into the editor is a documented future phase (§6), not built in the first cut.
 - **No new matching brain.** Reuse the existing TMDB/Gemini code in `lib/`. The deterministic IMDb path does ~99% of the work; the Gemini pipeline is a fallback only.
 - **No server.** A Node CLI run locally or in CI; output committed as a static data file, same hosting story as today.

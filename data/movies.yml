@@ -570,6 +570,7 @@
   award_names:
     - Cannes Palme d'Or
     - César Award for Best Film
+    - European Film Award for Best Film
   awards:
     - cannes
 - title: The Old Oak
@@ -1092,6 +1093,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/k9eLozCgCed5FGTSdHu0bBElAV8.jpg
   award_names:
     - Cannes Palme d'Or
+    - European Film Award for Best Film
   awards:
     - cannes
 - title: All Quiet on the Western Front
@@ -1920,6 +1922,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/aDcIt4NHURLKnAEu7gow51Yd00Q.jpg
   award_names:
+    - European Film Award for Best Film
     - Oscar Best International Film
   awards:
     - oscar
@@ -2058,6 +2061,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/eQy2Tgvmx0FkK8vMMqMW4aX5UXQ.jpg
+  award_names:
+    - European Film Award for Best Film
 - title: Promising Young Woman
   year: 2020
   director: Emerald Fennell
@@ -2416,8 +2421,6 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/4RE7TD5TqEXbPKyUHcn7CSeMlrJ.jpg
-  award_names:
-    - IIFA Awards
 - title: A Rainy Day in New York
   year: 2019
   director: Woody Allen
@@ -3086,6 +3089,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cwBq0onfmeilU5xgqNNjJAMPfpw.jpg
+  award_names:
+    - European Film Award for Best Film
 - title: In the Aisles
   year: 2018
   director: Thomas Stuber
@@ -3221,6 +3226,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/6rbS8oPIgUMhQgIX8oGVTtlNgLR.jpg
+  award_names:
+    - European Film Award for Best Film
 - title: 'Mamma Mia: Here We Go Again!'
   year: 2018
   director: Ol Parker
@@ -3251,8 +3258,6 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/fF2xXApETxZqyluokyJ1x4gIiTf.jpg
-  award_names:
-    - IIFA Awards
 - title: Us and Them (后来的我们, 먼 훗날 우리)
   year: 2018
   director: Liú Ruòyīng
@@ -3598,6 +3603,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/pefcv5VNspSK4Dt8doei5bJmmln.jpg
   award_names:
     - Cannes Palme d'Or
+    - European Film Award for Best Film
   awards:
     - cannes
 - title: On Body And Soul (우리는 같은 꿈을 꾼다)
@@ -4610,6 +4616,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/v3gf7T8hb8aYv05X2jHmxJQWPZr.jpg
+  award_names:
+    - European Film Award for Best Film
 - title: Your Name.
   year: 2016
   director: Makoto Shinkai
@@ -5641,6 +5649,7 @@
   masterpiece: true
   note: One answer to why someone should become a nun.
   award_names:
+    - European Film Award for Best Film
     - Oscar Best International Film
   awards:
     - oscar
@@ -5732,6 +5741,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/1cmOc3ZPkuCTOTqHEsRr3Pk81Um.jpg
   award_names:
+    - European Film Award for Best Film
     - Oscar Best International Film
   awards:
     - oscar
@@ -6057,6 +6067,7 @@
   award_names:
     - Cannes Palme d'Or
     - César Award for Best Film
+    - European Film Award for Best Film
     - Oscar Best International Film
   awards:
     - cannes
@@ -7114,6 +7125,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/54dlnGDexrwAFlDb8HWKfmmX4LB.jpg
   award_names:
     - Cannes Palme d'Or
+    - European Film Award for Best Film
   awards:
     - cannes
 - title: 전우치
@@ -7191,8 +7203,6 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/66A9MqXOyVFCssoloscw79z8Tew.jpg
-  award_names:
-    - IIFA Awards
 - title: District 9
   year: 2009
   director: Peter Jackson
@@ -7821,6 +7831,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/acEtvzFPeOQwbzRWncjRLenhnKV.jpg
   award_names:
     - Cannes Palme d'Or
+    - European Film Award for Best Film
   awards:
     - cannes
 - title: Lust, Caution
@@ -8242,6 +8253,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/cVUDMnskSc01rdbyH0tLATTJUdP.jpg
   custom_korean_title: 타인의 삶
   award_names:
+    - European Film Award for Best Film
     - Oscar Best International Film
   awards:
     - oscar
@@ -8692,6 +8704,8 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/RJQEPEj4CMMga7euR2EkmdAIog.jpg
   custom_korean_title: 히든
+  award_names:
+    - European Film Award for Best Film
 - title: The Island
   year: 2005
   director: Michael Bay
@@ -9606,6 +9620,8 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/fWDbQlOWOqjR5jZm98KjGyYmUOw.jpg
   custom_korean_title: 그녀에게
+  award_names:
+    - European Film Award for Best Film
 - title: Punch-Drunk Love
   year: 2002
   director: Paul Thomas Anderson
@@ -9653,6 +9669,7 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/nSxDa3M9aMvGVLoItzWTepQ5h5d.jpg
   award_names:
     - César Award for Best Film
+    - European Film Award for Best Film
 - title: The Son
   year: 2002
   director: Jean-Pierre Dardenne, Luc Dardenne
@@ -10077,6 +10094,7 @@
   note: I won't watch Trier's movies anymore.
   award_names:
     - Cannes Palme d'Or
+    - European Film Award for Best Film
   awards:
     - cannes
 - title: Yi Yi (하나 그리고 둘)
@@ -10940,6 +10958,7 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/mfnkSeeVOBVheuyn2lo4tfmOPQb.jpg
   award_names:
+    - European Film Award for Best Film
     - Oscar Best International Film
   awards:
     - oscar
@@ -12753,6 +12772,8 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/k7sk4yNdoXY7iwp1M9QTZuBDiJS.jpg
+  award_names:
+    - European Film Award for Best Film
 - title: A Short Film About Love
   year: 1988
   director: Krzysztof Kieślowski

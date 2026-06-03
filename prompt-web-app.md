@@ -65,7 +65,6 @@ There are two distinct concepts:
 - `Cannes Palme d'Or`
 - `César Award for Best Film`
 - `Hong Kong Film Awards`
-- `IIFA Awards`
 - `Japan Academy Prize`
 - `Oscar Best International Film`
 - `Oscar Best Picture`

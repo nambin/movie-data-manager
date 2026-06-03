@@ -104,7 +104,7 @@ The acceptance test (round-trip parity) loads the real [data/movies.yml](data/mo
 
 `data/awards.yml` is an auto-generated award lookup. A CLI collects the official winner lists for ten top prizes (Oscar Best Picture, Oscar Best International Film, Cannes Palme d'Or, Venice Leone d'oro, Berlin Goldener Bär, European Film Award for Best Film, Hong Kong Film Awards, 청룡영화제 최우수 작품상, César Award for Best Film, and Japan Academy Prize), resolves each winner to an IMDb/TMDB entry, and writes a lookup keyed by `imdb_id` → `award_names`. The web app can later read it to pre-fill awards when a movie is added, so they never have to be searched and matched by hand. The full design is in [prompt-award-curation.md](prompt-award-curation.md).
 
-Sources: **seven** awards come from **Wikidata** (SPARQL, `P166` "award received" = winner-only, mostly carrying an IMDb ID directly); **three** (Blue Dragon, César, Japan Academy) are too sparse in Wikidata and are parsed from their **English Wikipedia** winners tables. For the rare winner with no IMDb ID, the existing Gemini + TMDB memo pipeline ([lib/memo_pipeline.js](lib/memo_pipeline.js)) is used as a fallback. The only taxonomy award not curated is `IIFA Awards`.
+Sources: **seven** awards come from **Wikidata** (SPARQL, `P166` "award received" = winner-only, mostly carrying an IMDb ID directly); **three** (Blue Dragon, César, Japan Academy) are too sparse in Wikidata and are parsed from their **English Wikipedia** winners tables. For the rare winner with no IMDb ID, the existing Gemini + TMDB memo pipeline ([lib/memo_pipeline.js](lib/memo_pipeline.js)) is used as a fallback. These ten are the entire award taxonomy, so `awards.yml` is the complete source of truth for awards.
 
 To generate it from scratch:
 
@@ -121,7 +121,7 @@ The keys are read from `process.env` (the same `.env` the builds use — the CLI
 
 ### Reconciling `data/movies.yml` against `data/awards.yml`
 
-`data/awards.yml` is treated as the **ground truth for the ten curated awards** above. A second CLI compares the award data on each movie in `data/movies.yml` against it and rewrites `data/movies.yml` to match — adding any curated award the lookup has, removing any curated award it does **not** have. No network or API keys needed.
+`data/awards.yml` is the **complete source of truth for awards**. A second CLI overwrites each movie's `award_names` (matched by `imdb_id`) with exactly what `awards.yml` lists for that film — and **removes every award** from a movie that `awards.yml` doesn't list (including films absent from it entirely). It doesn't preserve any award on a movie that isn't in `awards.yml`. No network or API keys needed.
 
 ```bash
 npm run reconcile:awards              # writes data/movies.yml
