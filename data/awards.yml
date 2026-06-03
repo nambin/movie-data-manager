@@ -2859,6 +2859,18 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1993
+  tt0108192:
+    tmdb_id: 124315
+    title: Sopyonje
+    imdb_url: https://www.imdb.com/title/tt0108192
+    tmdb_url: https://www.themoviedb.org/movie/124315
+    award_names:
+      - 청룡영화제 최우수 작품상
+    awards:
+      - blue_dragon
+    wins:
+      - award_name: 청룡영화제 최우수 작품상
+        year: 1993
   tt0108394:
     tmdb_id: 108
     title: 'Three Colors: Blue'
@@ -3639,6 +3651,18 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 1969
+  tt0322753:
+    tmdb_id: 576815
+    title: The Extra Mortals
+    imdb_url: https://www.imdb.com/title/tt0322753
+    tmdb_url: https://www.themoviedb.org/movie/576815
+    award_names:
+      - 청룡영화제 최우수 작품상
+    awards:
+      - blue_dragon
+    wins:
+      - award_name: 청룡영화제 최우수 작품상
+        year: 1964
   tt0325916:
     tmdb_id: null
     title: When a Woman Breaks Her Jewel Box
@@ -3651,6 +3675,18 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 1971
+  tt0327914:
+    tmdb_id: 271767
+    title: Kinship
+    imdb_url: https://www.imdb.com/title/tt0327914
+    tmdb_url: https://www.themoviedb.org/movie/271767
+    award_names:
+      - 청룡영화제 최우수 작품상
+    awards:
+      - blue_dragon
+    wins:
+      - award_name: 청룡영화제 최우수 작품상
+        year: 1963
   tt0328354:
     tmdb_id: 271773
     title: Flame in Valley
@@ -3663,6 +3699,18 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 1967
+  tt0329237:
+    tmdb_id: 591590
+    title: Sorrow Even Up in Heaven
+    imdb_url: https://www.imdb.com/title/tt0329237
+    tmdb_url: https://www.themoviedb.org/movie/591590
+    award_names:
+      - 청룡영화제 최우수 작품상
+    awards:
+      - blue_dragon
+    wins:
+      - award_name: 청룡영화제 최우수 작품상
+        year: 1965
   tt0337889:
     tmdb_id: 211453
     title: Bolero
@@ -3890,6 +3938,18 @@ by_imdb:
       - berlin
     wins:
       - award_name: Berlin Goldener Bär
+        year: 2005
+  tt0451094:
+    tmdb_id: 4550
+    title: Lady Vengeance
+    imdb_url: https://www.imdb.com/title/tt0451094
+    tmdb_url: https://www.themoviedb.org/movie/4550
+    award_names:
+      - 청룡영화제 최우수 작품상
+    awards:
+      - blue_dragon
+    wins:
+      - award_name: 청룡영화제 최우수 작품상
         year: 2005
   tt0456396:
     tmdb_id: 11490
@@ -4662,10 +4722,14 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/123377
     award_names:
       - Venice Leone d’oro
+      - 청룡영화제 최우수 작품상
     awards:
       - venice
+      - blue_dragon
     wins:
       - award_name: Venice Leone d’oro
+        year: 2012
+      - award_name: 청룡영화제 최우수 작품상
         year: 2012
   tt2358891:
     tmdb_id: 179144
