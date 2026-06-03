@@ -100,6 +100,27 @@ npm test
 
 The acceptance test (round-trip parity) loads the real [data/movies.yml](data/movies.yml), runs every entry through the canonicalize → sort → dump → re-parse pipeline, and asserts deep equality with the original. See [tests/yaml-roundtrip.test.js](tests/yaml-roundtrip.test.js).
 
+### Generating `data/awards.yml`
+
+`data/awards.yml` is an auto-generated award lookup. A CLI collects the official winner lists for six top prizes (Oscar Best Picture, Oscar Best International Film, Cannes Palme d'Or, Venice Leone d'oro, Berlin Goldener Bär, and 청룡영화제 최우수 작품상), resolves each winner to an IMDb/TMDB entry, and writes a lookup keyed by `imdb_id` → `award_names`. The web app can later read it to pre-fill awards when a movie is added, so they never have to be searched and matched by hand. The full design is in [prompt-award-curation.md](prompt-award-curation.md).
+
+Sources: the five international awards come from **Wikidata** (SPARQL, `P166` "award received" = winner-only, ~99% carry an IMDb ID directly); the Korean **Blue Dragon** award is parsed from its **English Wikipedia** winners table (Wikidata barely covers it). For the rare winner with no IMDb ID, the existing Gemini + TMDB memo pipeline ([lib/memo_pipeline.js](lib/memo_pipeline.js)) is used as a fallback.
+
+To generate it from scratch:
+
+```bash
+npm install
+# .env at the repo root needs TMDB_API_KEY (required) and GEMINI_API_KEY (optional) — see API keys section
+npm run curate:awards   # writes data/awards.yml
+```
+
+- `TMDB_API_KEY` — **required**. Used to resolve each IMDb ID to a TMDB entry (`/find?external_source=imdb_id`).
+- `GEMINI_API_KEY` — **optional**. Only the no-IMDb fallback uses it. If it is absent, those few winners are logged and skipped (the run still succeeds); set it to resolve them too.
+
+The keys are read from `process.env` (the same `.env` the builds use — the CLI runs under plain Node, so the esbuild build-time inlining does not apply). The run is a full **idempotent** regenerate: `generated_at` is only re-stamped when the substantive `by_imdb` content actually changed, so a run with no new winners leaves the file byte-identical (empty `git diff`). It makes a few hundred TMDB lookups, so expect it to take a couple of minutes.
+
+**Automation.** [.github/workflows/curate-awards.yml](.github/workflows/curate-awards.yml) runs the CLI on a weekly cron (Friday 22:00 KST) and commits `data/awards.yml` only when it changed. It needs `TMDB_API_KEY` and `GEMINI_API_KEY` as repository secrets. Like `data/movies.yml`, the file is then synced to `nambin.github.io/data/awards.yml` (manually, or extend the workflow to push there).
+
 ### Deploying to nambin.github.io
 
 ```bash

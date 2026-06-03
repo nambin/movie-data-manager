@@ -1,0 +1,62 @@
+{
+  "head": { "vars": ["award", "film", "imdb", "year", "filmLabel"] },
+  "results": {
+    "bindings": [
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q179808" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424A" },
+        "imdb": { "type": "literal", "value": "tt6751668" },
+        "year": { "type": "literal", "value": "2019" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "Parasite" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q102427" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424A" },
+        "imdb": { "type": "literal", "value": "tt6751668" },
+        "year": { "type": "literal", "value": "2020" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "Parasite" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q102427" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424A" },
+        "imdb": { "type": "literal", "value": "tt6751668" },
+        "year": { "type": "literal", "value": "2020" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "Parasite" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q209459" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424V" },
+        "imdb": { "type": "literal", "value": "tt1111111" },
+        "year": { "type": "literal", "value": "2000" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "A Venice Winner" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q102427" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424P" },
+        "imdb": { "type": "literal", "value": "nm0000001" },
+        "year": { "type": "literal", "value": "1998" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "A Producer Row" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q154590" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424F" },
+        "year": { "type": "literal", "value": "1950" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "An Old Film Without IMDb" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q179808" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q9876543" },
+        "imdb": { "type": "literal", "value": "tt2222222" },
+        "year": { "type": "literal", "value": "1975" },
+        "filmLabel": { "type": "literal", "value": "Q9876543" }
+      },
+      {
+        "award": { "type": "uri", "value": "http://www.wikidata.org/entity/Q999999" },
+        "film": { "type": "uri", "value": "http://www.wikidata.org/entity/Q11424Z" },
+        "imdb": { "type": "literal", "value": "tt3333333" },
+        "year": { "type": "literal", "value": "2001" },
+        "filmLabel": { "xml:lang": "en", "type": "literal", "value": "Unknown Award Film" }
+      }
+    ]
+  }
+}

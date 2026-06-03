@@ -9,7 +9,8 @@
     "build": "node scripts/build.mjs",
     "build:dev": "node scripts/build-dev.mjs",
     "watch": "node scripts/build.mjs --watch",
-    "capture:fixtures": "node scripts/capture-fixtures.mjs"
+    "capture:fixtures": "node scripts/capture-fixtures.mjs",
+    "curate:awards": "node cli/curate-awards.mjs"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"

@@ -1,0 +1,15 @@
+{
+  "head": { "vars": ["article", "imdb"] },
+  "results": {
+    "bindings": [
+      {
+        "article": { "type": "uri", "value": "https://en.wikipedia.org/wiki/Parasite_(2019_film)" },
+        "imdb": { "type": "literal", "value": "tt6751668" }
+      },
+      {
+        "article": { "type": "uri", "value": "https://en.wikipedia.org/wiki/Mother_(2009_film)" },
+        "imdb": { "type": "literal", "value": "tt1216496" }
+      }
+    ]
+  }
+}
