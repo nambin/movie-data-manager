@@ -26,14 +26,11 @@ jobs:
           token: ${{ secrets.NAMBIN_IO_TOKEN }}
           path: site
 
-      # `tee -a run.log` captures everything for the failure email. The default
-      # bash shell runs with `set -eo pipefail`, so a non-zero npm/node exit
-      # still fails the step despite the pipe.
       - name: Install dependencies
-        run: npm ci 2>&1 | tee -a run.log
+        run: npm ci
 
       - name: Curate awards
-        run: node cli/curate-awards.mjs 2>&1 | tee -a run.log
+        run: node cli/curate-awards.mjs
         env:
           # Point the CLI at the site checkout's data/ (reads movies.yml,
           # writes awards.yml there).
@@ -87,34 +84,4 @@ jobs:
           to: nambin.heo@gmail.com
           subject: "Movie-manager Award curation updated"
           body: ${{ env.MAIL_BODY }}
-
-      # --- Email: any failure -------------------------------------------------
-      - name: Compose failure email
-        if: failure()
-        run: |
-          {
-            echo 'FAIL_BODY<<__EOF__'
-            echo "The award-curation workflow FAILED."
-            echo ''
-            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            echo ''
-            if [ -f run.log ]; then
-              echo '----- run.log (last 80 lines) -----'
-              tail -n 80 run.log
-            fi
-            echo '__EOF__'
-          } >> "$GITHUB_ENV"
-
-      - name: Email — failure
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: nambin.heo@gmail.com
-          password: ${{ secrets.MAIL_PASSWORD }}
-          from: nambin.heo@gmail.com
-          to: nambin.heo@gmail.com
-          subject: "Movie-manager Award curation FAILED"
-          body: ${{ env.FAIL_BODY }}
+        # No failure email — GitHub already emails on a failed workflow run.
