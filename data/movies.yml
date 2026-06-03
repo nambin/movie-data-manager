@@ -384,6 +384,25 @@
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vP7Yd6couiAaw9jgMd5cjMRj3hQ.jpg
   my_best: true
+- title: The Room Next Door
+  year: 2024
+  director: Pedro Almodóvar
+  country: US
+  is_korean_director: false
+  imdb_id: tt29439114
+  imdb_url: https://www.imdb.com/title/tt29439114
+  tmdb_url: https://www.themoviedb.org/movie/1088514
+  tmdb_title: The Room Next Door
+  tmdb_original_title: La habitación de al lado
+  tmdb_original_language: Spanish
+  tmdb_director_name_1: Pedro Almodóvar
+  tmdb_director_name_2: null
+  tmdb_num_directors: 1
+  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qMibLyArrlBJ87AoqQBeVaFeRXp.jpg
+  award_names:
+    - Venice Leone d’oro
+  awards:
+    - venice
 - title: 여행자의 필요 (A Traveler’s Needs)
   year: 2024
   director: 홍상수
@@ -429,25 +448,6 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/if8QiqCI7WAGImKcJCfzp6VTyKA.jpg
-- title: The Room Next Door
-  year: 2024
-  director: Pedro Almodóvar
-  country: US
-  is_korean_director: false
-  imdb_id: tt29439114
-  imdb_url: https://www.imdb.com/title/tt29439114
-  tmdb_url: https://www.themoviedb.org/movie/1088514
-  tmdb_title: The Room Next Door
-  tmdb_original_title: La habitación de al lado
-  tmdb_original_language: Spanish
-  tmdb_director_name_1: Pedro Almodóvar
-  tmdb_director_name_2: null
-  tmdb_num_directors: 1
-  tmdb_poster_url: https://image.tmdb.org/t/p/w200/qMibLyArrlBJ87AoqQBeVaFeRXp.jpg
-  award_names:
-    - Venice Leone d’oro
-  awards:
-    - venice
 - title: All We Imagine as Light
   year: 2024
   director: Payal Kapadia
@@ -14204,10 +14204,8 @@
   custom_korean_title: 금지된 장난
   award_names:
     - Venice Leone d’oro
-    - Oscar Best International Film
   awards:
     - venice
-    - oscar
 - title: Singin' in the Rain
   year: 1952
   director: Gene Kelly, Stanley Donen
@@ -14240,10 +14238,8 @@
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/vL7Xw04nFMHwnvXRFCmYYAzMUvY.jpg
   award_names:
     - Venice Leone d’oro
-    - Oscar Best International Film
   awards:
     - venice
-    - oscar
 - title: 晩春 (만춘)
   year: 1949
   director: Yasujirō Ozu
@@ -14291,10 +14287,6 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/abmxGiCV04NQj4jngbSQTGLgiC1.jpg
-  award_names:
-    - Oscar Best International Film
-  awards:
-    - oscar
 - title: The Red Shoes
   year: 1948
   director: Michael Powell and Emeric Pressburger
@@ -14341,10 +14333,6 @@
   tmdb_director_name_2: null
   tmdb_num_directors: 1
   tmdb_poster_url: https://image.tmdb.org/t/p/w200/jC9EwLJcGhYMSQAHu2LxkKN5v7O.jpg
-  award_names:
-    - Cannes Palme d'Or
-  awards:
-    - cannes
 - title: Casablanca
   year: 1942
   director: Michael Curtiz

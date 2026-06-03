@@ -28,7 +28,9 @@ import {
   curateAwards,
   AWARD_QID_TO_NAME,
   BLUE_DRAGON_AWARD_NAME,
+  MANUAL_AWARD_OVERRIDES,
 } from "../lib/awards_curation.js";
+import { AWARD_NAMES } from "../lib/utils.js";
 
 function fx(name) {
   const url = new URL(`./fixtures/awards/${name}`, import.meta.url);
@@ -408,6 +410,7 @@ test("curateAwards: combines Wikidata + Blue Dragon, runs fallback, looks up TMD
       runFallback: async (rec) =>
         rec.title === "Old Berlin" ? { imdb_id: "tt_fb", title: "Old Berlin", tmdb_id: 7 } : null,
       findOnTmdb: async (imdb) => ({ tmdb_id: `tmdb_${imdb}`, title: `Title ${imdb}` }),
+      overrides: [], // isolate from the built-in MANUAL_AWARD_OVERRIDES
     },
   });
 
@@ -421,4 +424,39 @@ test("curateAwards: combines Wikidata + Blue Dragon, runs fallback, looks up TMD
   assert.deepEqual(doc.by_imdb.tt6751668.awards, ["blue_dragon"]);
   assert.equal(doc.by_imdb.tt_intl.tmdb_id, "tmdb_tt_intl");
   assert.deepEqual(doc.by_imdb.tt_fb.award_names, ["Berlin Goldener Bär"]);
+});
+
+test("curateAwards: injects manual overrides for upstream gaps, deduped against sources", async () => {
+  const doc = await curateAwards({
+    tmdbApiKey: "T",
+    geminiKey: "G",
+    generatedAt: "2026-06-03",
+    deps: {
+      // A source that already reports the same win the override carries.
+      fetchInternational: async () => [
+        { award_name: "Cannes Palme d'Or", imdb_id: "tt_dup", year: 2020, title: "Dup" },
+      ],
+      fetchBlueDragon: async () => [],
+      resolveArticles: async () => new Map(),
+      runFallback: async () => null,
+      findOnTmdb: async (imdb) => ({ tmdb_id: `x_${imdb}`, title: imdb }),
+      overrides: [
+        { imdb_id: "tt_gap", award_name: "Venice Leone d’oro", year: 2019, title: "Gap" },
+        { imdb_id: "tt_dup", award_name: "Cannes Palme d'Or", year: 2020 }, // dup of source
+      ],
+    },
+  });
+
+  // The gap film is now present with its award + derived badge.
+  assert.deepEqual(doc.by_imdb.tt_gap.award_names, ["Venice Leone d’oro"]);
+  assert.deepEqual(doc.by_imdb.tt_gap.awards, ["venice"]);
+  // The override duplicating a source win does NOT create a second win.
+  assert.equal(doc.by_imdb.tt_dup.wins.length, 1);
+});
+
+test("MANUAL_AWARD_OVERRIDES: every entry is a tt-imdb id + exact taxonomy award name", () => {
+  for (const o of MANUAL_AWARD_OVERRIDES) {
+    assert.match(o.imdb_id, /^tt\d+$/, `bad imdb_id: ${o.imdb_id}`);
+    assert.ok(AWARD_NAMES.includes(o.award_name), `not a taxonomy award: ${o.award_name}`);
+  }
 });

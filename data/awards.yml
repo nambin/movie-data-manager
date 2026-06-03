@@ -5282,6 +5282,18 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 2024
+  tt7286456:
+    tmdb_id: 475557
+    title: Joker
+    imdb_url: https://www.imdb.com/title/tt7286456
+    tmdb_url: https://www.themoviedb.org/movie/475557
+    award_names:
+      - Venice Leone d’oro
+    awards:
+      - venice
+    wins:
+      - award_name: Venice Leone d’oro
+        year: 2019
   tt7322224:
     tmdb_id: 497828
     title: Triangle of Sadness
