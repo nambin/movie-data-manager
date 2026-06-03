@@ -6,34 +6,38 @@
 
 Today, awards are set **by hand, one movie at a time**: the user ticks the award checkboxes in the editor, which writes `award_names` (and the derived `awards` badges) onto an entry. Figuring out *which* movies won is manual research.
 
-Automate that research. A CLI collects the official winner lists for six top prizes, finds each winner's TMDB/IMDb entry, and writes a machine-readable **`data/awards.yml`** lookup keyed by IMDb ID. The web app can later read this file to **pre-fill `award_names` automatically** when a movie is added, so the user never again searches "did this win Cannes?" by hand.
+Automate that research. A CLI collects the official winner lists for ten top prizes, finds each winner's TMDB/IMDb entry, and writes a machine-readable **`data/awards.yml`** lookup keyed by IMDb ID. The web app can later read this file to **pre-fill `award_names` automatically** when a movie is added, so the user never again searches "did this win Cannes?" by hand.
 
 Goal in one line: **official winner lists → resolved to IMDb/TMDB → `data/awards.yml`**, regenerated monthly by a GitHub Actions cron.
 
-The six awards in scope (exact taxonomy names from [lib/utils.js](lib/utils.js) `AWARD_NAMES`):
+The ten awards in scope (exact taxonomy names from [lib/utils.js](lib/utils.js) `AWARD_NAMES`):
 
 - `Oscar Best Picture`
 - `Oscar Best International Film`
 - `Cannes Palme d'Or`
 - `Venice Leone d’oro` &nbsp;*(note: curly apostrophe `’` U+2019 — must match byte-for-byte)*
 - `Berlin Goldener Bär`
-- `청룡영화제 최우수 작품상` &nbsp;*(Blue Dragon Film Award for Best Film — sourced from Wikipedia, not Wikidata; see §2.2)*
+- `European Film Award for Best Film`
+- `Hong Kong Film Awards` &nbsp;*(mapped from the Wikidata "Best Film" category — see §2.1)*
+- `청룡영화제 최우수 작품상` &nbsp;*(Blue Dragon Film Award for Best Film — Wikipedia, see §2.2)*
+- `César Award for Best Film` &nbsp;*(Wikipedia, see §2.2)*
+- `Japan Academy Prize` &nbsp;*(Picture of the Year — Wikipedia, see §2.2)*
 
-The first five share one source (Wikidata); the Korean Blue Dragon award needs a different one — the structural split is explained in §2.
+The first **seven** share one source (Wikidata, §2.1); the last **three** (Blue Dragon, César, Japan Academy) are too sparse in Wikidata and come from **English Wikipedia** winners tables (§2.2). The only `AWARD_NAMES` entry left uncurated is `IIFA Awards` (no usable structured source — see Non-goals).
 
 ## Non-goals
 
 - **Nominees are out of scope.** Only winners of the single top prize per festival/year. The data source encodes "won" distinctly from "nominated" (see below), so this is enforced at the query, not by guessing. This honors the existing rule in [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md) that nominee and winner must never be confused.
-- **No awards outside the six.** The `AWARD_NAMES` taxonomy has more entries (César, Hong Kong, IIFA, Japan Academy); this CLI does not touch them.
+- **No awards outside the ten.** Only `IIFA Awards` is **deferred** (the CLI does not touch it): it has no Wikidata "Best Film" entity, and its English-Wikipedia page is ~25 separate per-year tables (mostly Bollywood) — high parsing effort for films rarely in this collection. Revisit if the value justifies it. (César and Japan Academy *were* deferred for sparse Wikidata, but are now sourced from Wikipedia — see §2.2.)
 - **`data/movies.yml` is never modified.** `awards.yml` is a standalone sidecar. Merging into the editor is a documented future phase (§6), not built in the first cut.
 - **No new matching brain.** Reuse the existing TMDB/Gemini code in `lib/`. The deterministic IMDb path does ~99% of the work; the Gemini pipeline is a fallback only.
 - **No server.** A Node CLI run locally or in CI; output committed as a static data file, same hosting story as today.
 
 ## Data sources
 
-The five international awards come from **Wikidata** (§2.1, near-complete coverage). The Korean **Blue Dragon** award is barely present in Wikidata (only 3 of ~45 winners carry the `P166` statement), so it uses the **English Wikipedia** winners table instead (§2.2). Both tracks converge into the same `by_imdb` output.
+Seven awards come from **Wikidata** (§2.1, near-complete coverage). Three more — **Blue Dragon**, **César**, **Japan Academy** — are barely present in Wikidata (Blue Dragon ~3 of 45 via `P166`; César ~26 of 51; Japan ~9 of 49), so they come from **English Wikipedia** winners tables instead (§2.2). All tracks converge into the same `by_imdb` output.
 
-### 2.1 Wikidata SPARQL — the five international awards
+### 2.1 Wikidata SPARQL — the seven Wikidata-sourced awards
 
 Winners come from **Wikidata** via its public SPARQL endpoint `https://query.wikidata.org/sparql`. Wikidata models "this film **won** award X" as the statement `film wdt:P166 <award>` ("award received"), which is distinct from `P1411` ("nominated for"). Querying `P166` therefore yields **winners only** — exactly the semantic we need.
 
@@ -51,8 +55,10 @@ Each winning film typically also carries:
 | `Cannes Palme d'Or` | `Q179808` | 157 | 155 |
 | `Venice Leone d’oro` | `Q209459` | 136 | 131 |
 | `Berlin Goldener Bär` | `Q154590` | 158 | 157 |
+| `European Film Award for Best Film` | `Q777921` | 37 | 37 (100%) |
+| `Hong Kong Film Awards` | `Q4722629` | 37 | 37 (100%) |
 
-> Coverage measured against live Wikidata: **752 winners total, 744 carry an IMDb ID**. The ~8 without one fall through to the Gemini fallback (§3). Wikidata is current — it already lists 2025/2026 ceremony winners.
+> Coverage measured against live Wikidata. The handful of winners without an IMDb ID fall through to the Gemini fallback (§3). Wikidata is current — it already lists recent (2024–2026) ceremony winners. `Hong Kong Film Awards` is mapped from the Wikidata **Best Film** category (`Q4722629`); the taxonomy name is generic but represents that top prize. `European Film Award for Best Film` is a new `AWARD_NAMES` entry; the other six already existed.
 
 The Wikidata award labels differ from our taxonomy (e.g. Wikidata says *"Academy Award for Best International Feature Film"*, we say `Oscar Best International Film`). The CLI maps **Q-ID → taxonomy name** explicitly via this table; never derive the name from the Wikidata label.
 
@@ -62,11 +68,11 @@ For the Oscars, the statuette is awarded to the **producers** as well as the fil
 
 #### The query
 
-One combined query covers all five awards. `?award` is bound back so each row knows which prize it belongs to; the `P166` statement node (`p:P166` / `ps:P166`) is used so the `pq:P585` year qualifier is reachable.
+One combined query covers all seven awards. `?award` is bound back so each row knows which prize it belongs to; the `P166` statement node (`p:P166` / `ps:P166`) is used so the `pq:P585` year qualifier is reachable.
 
 ```sparql
 SELECT ?award ?film ?imdb ?year WHERE {
-  VALUES ?award { wd:Q102427 wd:Q105304 wd:Q179808 wd:Q209459 wd:Q154590 }
+  VALUES ?award { wd:Q102427 wd:Q105304 wd:Q179808 wd:Q209459 wd:Q154590 wd:Q777921 wd:Q4722629 }
   ?film p:P166 ?stmt .
   ?stmt ps:P166 ?award .
   ?film wdt:P31/wdt:P279* wd:Q11424 .          # subject is a film (drops producers)
@@ -75,44 +81,47 @@ SELECT ?award ?film ?imdb ?year WHERE {
 }
 ```
 
-**Endpoint etiquette:** send a descriptive `User-Agent` header (Wikidata blocks generic agents) and `Accept: application/sparql-results+json`. The endpoint occasionally returns `upstream request timeout` — wrap the request in a small **retry with backoff** (e.g. 3 attempts). A film may appear in multiple rows (won more than one of the five, or has multiple `P585` values) — dedupe downstream by `(award, film)` and collect the year(s).
+**Endpoint etiquette:** send a descriptive `User-Agent` header (Wikidata blocks generic agents) and `Accept: application/sparql-results+json`. The endpoint occasionally returns `upstream request timeout` — wrap the request in a small **retry with backoff** (e.g. 3 attempts). A film may appear in multiple rows (won more than one of these awards, or has multiple `P585` values) — dedupe downstream by `(award, film)` and collect the year(s).
 
-### 2.2 English Wikipedia — Blue Dragon (`청룡영화제 최우수 작품상`)
+### 2.2 English Wikipedia — Blue Dragon, César, Japan Academy
 
-Wikidata is **not** a usable source here: a `P166 = wd:Q28758354` (*Blue Dragon Film Award for Best Film*) query returns only **3 of ~45 winners** (verified live), with no ceremony-edition modeling to recover the rest. The authoritative machine-readable list is the **English Wikipedia** winners table on the page **[Blue Dragon Film Award for Best Film](https://en.wikipedia.org/wiki/Blue_Dragon_Film_Award_for_Best_Film)** (one winner row per year since 1963, with a hiatus 1974–1989).
+Wikidata is too sparse for these three (Blue Dragon **3 of ~45** via `P166`; César **~26 of 51**, with scattered gaps including recent years; Japan Academy **~9 of 49**), so winners come from the **English Wikipedia** winners tables. Each award is a `WIKIPEDIA_AWARDS` entry (`{ name, page, parse, minWinners }`) in [lib/awards_curation.js](lib/awards_curation.js); the page is fetched via the MediaWiki API (`action=parse&prop=wikitext`).
 
-Fetch the table via the MediaWiki API — `https://en.wikipedia.org/w/api.php?action=parse&page=Blue Dragon Film Award for Best Film&prop=wikitext&format=json&redirects=1` — and parse each winner row. Each row cleanly provides:
+| Award | Page | Parser | Winners |
+|---|---|---|---|
+| `청룡영화제 최우수 작품상` | *Blue Dragon Film Award for Best Film* | `parseBlueDragonWikitext` | ~46 (1963–, hiatus 1974–89) |
+| `César Award for Best Film` | *César Award for Best Film* | `parseWinnersByYearHeader` | ~51 (1976–) |
+| `Japan Academy Prize` | *Japan Academy Film Prize for Picture of the Year* | `parseWinnersByYearHeader` | ~49 (1978–) |
 
-- **Year** (e.g. `1963 (1st)` → `1963`).
-- **Winner** — English title as a `[[wikilink]]` (e.g. `[[Parasite (2019 film)|Parasite]]`).
-- **Original title** — Korean (e.g. `혈맥`, `기생충`) — ideal for the Gemini+TMDB Korean-matching pipeline.
-- **Director(s)**.
+**Two parser strategies** (each returns `[{ year, article, title, … }]`, one per winner):
 
-Winner rows are the highlighted (`background:#FAEB86`) / `{{double dagger}}`-marked rows; the table is winner-only, one per year. **Resolution is two-track, mirroring §2.1's IMDb-first / Gemini-fallback split:**
+- **`parseBlueDragonWikitext`** — Blue Dragon's table marks the winner with `{{double dagger}}` / `background:#FAEB86`, mixes a winner-only old format with a winner+nominees new format, and uses both newline-`|` and inline-`||` cells. It needs the dedicated parser; it also yields the **Korean original title** for the fallback.
+- **`parseWinnersByYearHeader`** (César + Japan) — one rule covers both: *a row whose `!` header cell carries a 4-digit year is a winner; its first `[[wikilink]]` is the film.* Works for Japan's winners-only table and for César's winner+nominees tables (only the winner row carries the `! rowspan` year header; nominee rows have no `!`) across César's older per-cell-highlight and newer per-row-highlight formats.
 
-1. **Deterministic:** batch-resolve the English-article wikilinks to IMDb IDs with one Wikidata query —
-   `?article schema:about ?film . ?film wdt:P345 ?imdb .` over `VALUES ?article { <https://en.wikipedia.org/wiki/Parasite_(2019_film)> … }` (verified: `Parasite_(2019_film)` → `tt6751668`, `Mother_(2009_film)` → `tt1216496`). Then TMDB `/find` as in §2.1.
-2. **Fallback:** for winners whose article lacks an IMDb ID (or has no article), run the **Korean original title + year** through `processMemoLine` — the pipeline is specifically tuned for Korean titles → TMDB.
+**Resolution is two-track, mirroring §2.1's IMDb-first / Gemini-fallback split** (shared across all three awards):
 
-Parsing wikitext is more fragile than SPARQL JSON, so **assert the parsed winner count is in the expected range (~40+)** and log it; a sudden drop means the table markup changed and the parser needs attention. The award maps to the taxonomy name `청룡영화제 최우수 작품상` (badge `blue_dragon`).
+1. **Deterministic:** batch-resolve every winner's English-article wikilink to an IMDb ID with **one** Wikidata query — `?article schema:about ?film . ?film wdt:P345 ?imdb .` over a `VALUES { <…sitelink IRI…> … }` set. Because the combined set is ~150 articles, the SPARQL request is sent via **POST** (a GET URL would exceed the length limit → HTTP 414). Then TMDB `/find` as in §2.1.
+2. **Fallback:** for winners whose article lacks an IMDb ID (or has no article), run the title + year through `processMemoLine` (Korean original for Blue Dragon; English title otherwise).
+
+Parsing wikitext is more fragile than SPARQL JSON, so each `WIKIPEDIA_AWARDS` entry declares a `minWinners` floor and the CLI **logs a warning** when a parse falls below it — a sudden drop means the table markup changed and the parser needs attention. None of these three has a badge in `BADGE_KEY_BY_NAME`, so `deriveAwardBadges` emits no badge key for them (only Blue Dragon maps, to `blue_dragon`); they appear in `award_names` and the editor's read-only Awards row regardless.
 
 ## Pipeline — `cli/curate-awards.mjs`
 
 ESM, Node 20+, native `fetch` (matches `scripts/*.mjs`). Keys read from **`process.env`** — `TMDB_API_KEY` (required) and `GEMINI_API_KEY` (optional; only the fallback needs it). The esbuild build-time inlining (`getTmdbKey()` / `getGeminiKey()` reading `__TMDB_KEY__` / `__GEMINI_KEY__`) does **not** apply under plain Node, so pass keys explicitly into the lib functions, which already accept them as parameters.
 
-1. **Fetch winners.** Two sources (§2):
-   - **Wikidata (5 awards):** run the SPARQL query (with retry). Keep rows whose IMDb ID is `tt…` (or whose subject passed the film filter). Map each `?award` Q-ID → taxonomy `award_names` string. IMDb ID is known immediately for ~99%.
-   - **Wikipedia (Blue Dragon):** fetch + parse the winners table → rows of `{ year, english_article, korean_title }`. Batch-resolve the article wikilinks to IMDb via one Wikidata `schema:about`/`P345` query; rows that don't resolve keep `korean_title` + `year` for the fallback (step 4).
+1. **Fetch winners.** Sources (§2):
+   - **Wikidata (7 awards):** run the SPARQL query (with retry). Keep rows whose IMDb ID is `tt…` (or whose subject passed the film filter). Map each `?award` Q-ID → taxonomy `award_names` string. IMDb ID is known immediately for ~99%.
+   - **Wikipedia (Blue Dragon, César, Japan Academy):** for each `WIKIPEDIA_AWARDS` entry, fetch + parse its winners table → rows of `{ year, article, title }` (Blue Dragon also yields `korean`). Batch-resolve **all** article wikilinks across the three awards in **one** Wikidata `schema:about`/`P345` query (sent via POST — see §2.2); rows that don't resolve keep `title` + `year` for the fallback (step 4).
 
-2. **Group by IMDb ID.** Build `imdb_id → { title, award_names: Set, wins: [{ award_name, year }] }`. A film that won two of the five (e.g. Palme d'Or **and** Best Picture) gets both names and two `wins` rows.
+2. **Group by IMDb ID.** Build `imdb_id → { title, award_names: Set, wins: [{ award_name, year }] }`. A film that won two awards (e.g. Palme d'Or **and** Best Picture) gets both names and two `wins` rows.
 
 3. **Resolve TMDB (deterministic, the 99% path).** For each IMDb ID, call TMDB once:
    `GET https://api.themoviedb.org/3/find/{imdb_id}?external_source=imdb_id&api_key={TMDB_API_KEY}` → `movie_results[0]` gives `id` (TMDB id) and `title`. That is all the lookup file needs — the editor builds full entries itself via `buildMovieEntryFromTmdb` when the movie is actually added. (Verified: `tt28607951` → TMDB `1064213`, "Anora".)
 
-4. **Fallback (winners with no IMDb ID — the ~8 international + any unresolved Blue Dragon).** Reuse the existing Gemini pipeline:
-   `processMemoLine({ rawLine, geminiKey, tmdbApiKey, koreanDirectorMap })` from [lib/memo_pipeline.js](lib/memo_pipeline.js), where `rawLine` is `"<title> <year>"` — use the **Korean original title** for Blue Dragon rows (the pipeline's strength) and the Wikidata label for international ones. Build `koreanDirectorMap` from the existing collection via `buildKoreanDirectorMap(load('data/movies.yml'))` ([lib/utils.js](lib/utils.js)). On `status: "ok"`, take `entry.imdb_id` and the TMDB id from `entry.tmdb_url`. If `GEMINI_API_KEY` is absent or the pipeline returns `no_match`, **log the unresolved winner and continue** (don't fail the run).
+4. **Fallback (winners with no IMDb ID — a few international + any unresolved Wikipedia winners).** Reuse the existing Gemini pipeline:
+   `processMemoLine({ rawLine, geminiKey, tmdbApiKey, koreanDirectorMap })` from [lib/memo_pipeline.js](lib/memo_pipeline.js), where `rawLine` is `"<title> <year>"` — use the **Korean original title** for Blue Dragon rows (the pipeline's strength) and the English/Wikidata title otherwise. Build `koreanDirectorMap` from the existing collection via `buildKoreanDirectorMap(load('data/movies.yml'))` ([lib/utils.js](lib/utils.js)). On `status: "ok"`, take `entry.imdb_id` and the TMDB id from `entry.tmdb_url`. If `GEMINI_API_KEY` is absent or the pipeline returns `no_match`, **log the unresolved winner and continue** (don't fail the run).
 
-5. **Derive badges.** For each grouped entry, compute `awards` from `award_names` via `deriveAwardBadges(award_names)` ([lib/utils.js](lib/utils.js)). Because the `award_names` strings come from the table in §2 (matching `AWARD_NAMES` byte-for-byte, including the curly apostrophe), `BADGE_KEY_BY_NAME` resolves them correctly.
+5. **Derive badges.** For each grouped entry, compute `awards` from `award_names` via `deriveAwardBadges(award_names)` ([lib/utils.js](lib/utils.js)). Because the `award_names` strings come from the table in §2 (matching `AWARD_NAMES` byte-for-byte, including the curly apostrophe), `BADGE_KEY_BY_NAME` resolves them correctly. Four awards have **no badge mapping** — `European Film Award for Best Film`, `Hong Kong Film Awards`, `César Award for Best Film`, and `Japan Academy Prize` — so `deriveAwardBadges` skips them: they appear in `award_names` (and the editor's read-only Awards row) but contribute no badge key, so `awards:` can be empty for a film whose only wins are these.
 
 6. **Emit `data/awards.yml`.** Dump with `YAML_DUMP_OPTIONS` ([lib/utils.js](lib/utils.js)). Sort the `by_imdb` keys deterministically (e.g. lexicographically by IMDb ID) and the `award_names`/`wins` within each entry, so a month with no new winners produces a **byte-identical file → empty git diff**. The run is a full idempotent regenerate, not an incremental patch.
 
@@ -157,7 +166,7 @@ Notes:
 
 Follow the existing fixture pattern (`tests/fixtures/`, frozen JSON):
 
-- Frozen fixtures so tests run offline: a **Wikidata SPARQL JSON** response, a **Wikipedia `action=parse` wikitext** response for the Blue Dragon table, and a **TMDB `/find`** response.
-- Assert: grouping by IMDb ID (a film winning two awards collapses to one entry with two `award_names` + two `wins`); the **producer/`nm` filter** drops non-film rows; **Q-ID → taxonomy-name mapping** is exact (including `Venice Leone d’oro`'s curly apostrophe); `deriveAwardBadges` yields the right badges (incl. `청룡영화제 최우수 작품상` → `blue_dragon`); the dumped YAML matches the schema and is **stable across two runs** (idempotent).
-- **Blue Dragon table parse:** assert the winner-row count from the fixture is in the expected range and that one representative row extracts `{ year, english_article, korean_title }` correctly.
+- Frozen fixtures so tests run offline: a **Wikidata SPARQL JSON** response, a **Wikipedia `action=parse` wikitext** response per Wikipedia award (`bluedragon-`, `cesar-`, `japan-academy-wikitext.json`), and a **TMDB `/find`** response.
+- Assert: grouping by IMDb ID (a film winning two awards collapses to one entry with two `award_names` + two `wins`); the **producer/`nm` filter** drops non-film rows; **Q-ID → taxonomy-name mapping** is exact (including `Venice Leone d’oro`'s curly apostrophe); `deriveAwardBadges` yields the right badges (incl. `청룡영화제 최우수 작품상` → `blue_dragon`, and **no** badge for César/Japan/EFA/HK); the dumped YAML matches the schema and is **stable across two runs** (idempotent).
+- **Wikipedia table parsers:** for each fixture, assert the winner-row count is in range (one per year) and a representative row extracts `{ year, article, title }` correctly — `parseBlueDragonWikitext` (double-dagger / `||` formats, Korean original) and `parseWinnersByYearHeader` (César winner+nominees with the `!`-year-header rule; Japan winners-only).
 - A small mocked-fetch test for the Gemini fallback branch (no-IMDb winner → `processMemoLine` resolves `imdb_id`), mirroring `tests/_helpers/pipeline_mocks.js`.

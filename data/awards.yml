@@ -1695,6 +1695,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 1976
+  tt0073864:
+    tmdb_id: 3480
+    title: The Old Gun
+    imdb_url: https://www.imdb.com/title/tt0073864
+    tmdb_url: https://www.themoviedb.org/movie/3480
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1976
   tt0073948:
     tmdb_id: 61703
     title: Adoption
@@ -1719,6 +1730,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1976
+  tt0074916:
+    tmdb_id: 58925
+    title: Mr. Klein
+    imdb_url: https://www.imdb.com/title/tt0074916
+    tmdb_url: https://www.themoviedb.org/movie/58925
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1977
   tt0074972:
     tmdb_id: 42238
     title: Black and White in Color
@@ -1815,6 +1837,28 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1978
+  tt0076574:
+    tmdb_id: 54140
+    title: Providence
+    imdb_url: https://www.imdb.com/title/tt0076574
+    tmdb_url: https://www.themoviedb.org/movie/54140
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1978
+  tt0076935:
+    tmdb_id: 22557
+    title: The Yellow Handkerchief
+    imdb_url: https://www.imdb.com/title/tt0076935
+    tmdb_url: https://www.themoviedb.org/movie/22557
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1978
   tt0077138:
     tmdb_id: 31542
     title: The Tree of Wooden Clogs
@@ -1827,6 +1871,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1978
+  tt0077175:
+    tmdb_id: 78376
+    title: Other People's Money
+    imdb_url: https://www.imdb.com/title/tt0077175
+    tmdb_url: https://www.themoviedb.org/movie/78376
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1979
   tt0077416:
     tmdb_id: 11778
     title: The Deer Hunter
@@ -1915,6 +1970,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1979
+  tt0079182:
+    tmdb_id: 42170
+    title: Vengeance Is Mine
+    imdb_url: https://www.imdb.com/title/tt0079182
+    tmdb_url: https://www.themoviedb.org/movie/42170
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1980
   tt0079417:
     tmdb_id: 12102
     title: Kramer vs. Kramer
@@ -1951,6 +2017,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1987
+  tt0080009:
+    tmdb_id: 11121
+    title: Tess
+    imdb_url: https://www.imdb.com/title/tt0080009
+    tmdb_url: https://www.themoviedb.org/movie/11121
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1980
   tt0080388:
     tmdb_id: 23954
     title: Atlantic City
@@ -1963,6 +2040,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1980
+  tt0080610:
+    tmdb_id: 1716
+    title: The Last Metro
+    imdb_url: https://www.imdb.com/title/tt0080610
+    tmdb_url: https://www.themoviedb.org/movie/1716
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1981
   tt0080798:
     tmdb_id: 10889
     title: Gloria
@@ -2011,6 +2099,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1980
+  tt0081662:
+    tmdb_id: 110899
+    title: Zigeunerweisen
+    imdb_url: https://www.imdb.com/title/tt0081662
+    tmdb_url: https://www.themoviedb.org/movie/110899
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1981
   tt0082081:
     tmdb_id: 42142
     title: Marianne and Juliane
@@ -2059,6 +2158,28 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1981
+  tt0082428:
+    tmdb_id: 176213
+    title: Father and Son
+    imdb_url: https://www.imdb.com/title/tt0082428
+    tmdb_url: https://www.themoviedb.org/movie/176213
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0082484:
+    tmdb_id: 62204
+    title: Quest for Fire
+    imdb_url: https://www.imdb.com/title/tt0082484
+    tmdb_url: https://www.themoviedb.org/movie/62204
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1982
   tt0082508:
     tmdb_id: 49427
     title: Heartland
@@ -2071,6 +2192,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1980
+  tt0082601:
+    tmdb_id: 33341
+    title: Fall Guy
+    imdb_url: https://www.imdb.com/title/tt0082601
+    tmdb_url: https://www.themoviedb.org/movie/33341
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1983
   tt0082736:
     tmdb_id: 11911
     title: Mephisto
@@ -2083,6 +2215,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 1982
+  tt0083124:
+    tmdb_id: 115221
+    title: Station
+    imdb_url: https://www.imdb.com/title/tt0083124
+    tmdb_url: https://www.themoviedb.org/movie/115221
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1982
   tt0083582:
     tmdb_id: 163143
     title: Ascendancy
@@ -2094,6 +2237,17 @@ by_imdb:
       - berlin
     wins:
       - award_name: Berlin Goldener Bär
+        year: 1983
+  tt0083611:
+    tmdb_id: 86404
+    title: La Balance
+    imdb_url: https://www.imdb.com/title/tt0083611
+    tmdb_url: https://www.themoviedb.org/movie/86404
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
         year: 1983
   tt0083743:
     tmdb_id: 104435
@@ -2150,11 +2304,14 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/42113
     award_names:
       - Cannes Palme d'Or
+      - Japan Academy Prize
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
         year: 1983
+      - award_name: Japan Academy Prize
+        year: 1984
   tt0084654:
     tmdb_id: 2262
     title: Veronika Voss
@@ -2179,6 +2336,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1982
+  tt0084807:
+    tmdb_id: 72445
+    title: Boat People
+    imdb_url: https://www.imdb.com/title/tt0084807
+    tmdb_url: https://www.themoviedb.org/movie/72445
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0084874:
     tmdb_id: 81346
     title: Begin the Beguine
@@ -2203,6 +2371,28 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1982
+  tt0085144:
+    tmdb_id: 157236
+    title: Ah Ying
+    imdb_url: https://www.imdb.com/title/tt0085144
+    tmdb_url: https://www.themoviedb.org/movie/157236
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0085213:
+    tmdb_id: 60612
+    title: Le Bal
+    imdb_url: https://www.imdb.com/title/tt0085213
+    tmdb_url: https://www.themoviedb.org/movie/60612
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1984
   tt0086153:
     tmdb_id: 32689
     title: 'First Name: Carmen'
@@ -2275,6 +2465,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1984
+  tt0088002:
+    tmdb_id: 10260
+    title: My New Partner
+    imdb_url: https://www.imdb.com/title/tt0088002
+    tmdb_url: https://www.themoviedb.org/movie/10260
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1985
   tt0088009:
     tmdb_id: 42096
     title: A Year of the Quiet Sun
@@ -2287,6 +2488,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1984
+  tt0088126:
+    tmdb_id: 176217
+    title: Homecoming
+    imdb_url: https://www.imdb.com/title/tt0088126
+    tmdb_url: https://www.themoviedb.org/movie/176217
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0089169:
     tmdb_id: 163149
     title: The Woman and the Stranger
@@ -2311,6 +2523,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 1986
+  tt0089374:
+    tmdb_id: 9056
+    title: Police Story
+    imdb_url: https://www.imdb.com/title/tt0089374
+    tmdb_url: https://www.themoviedb.org/movie/9056
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0089746:
+    tmdb_id: 42095
+    title: The Funeral
+    imdb_url: https://www.imdb.com/title/tt0089746
+    tmdb_url: https://www.themoviedb.org/movie/42095
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1985
   tt0089748:
     tmdb_id: 21042
     title: When Father Was Away on Business
@@ -2347,6 +2581,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1985
+  tt0090206:
+    tmdb_id: 4180
+    title: Three Men and a Cradle
+    imdb_url: https://www.imdb.com/title/tt0090206
+    tmdb_url: https://www.themoviedb.org/movie/4180
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1986
   tt0090310:
     tmdb_id: 147747
     title: Wetherby
@@ -2419,16 +2664,41 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1986
+  tt0092090:
+    tmdb_id: 42029
+    title: Thérèse
+    imdb_url: https://www.imdb.com/title/tt0092090
+    tmdb_url: https://www.themoviedb.org/movie/42029
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1987
+  tt0092263:
+    tmdb_id: 11471
+    title: A Better Tomorrow
+    imdb_url: https://www.imdb.com/title/tt0092263
+    tmdb_url: https://www.themoviedb.org/movie/11471
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 1987
   tt0092593:
     tmdb_id: 1786
     title: Au Revoir les Enfants
     imdb_url: https://www.imdb.com/title/tt0092593
     tmdb_url: https://www.themoviedb.org/movie/1786
     award_names:
+      - César Award for Best Film
       - Venice Leone d’oro
     awards:
       - venice
     wins:
+      - award_name: César Award for Best Film
+        year: 1988
       - award_name: Venice Leone d’oro
         year: 1987
   tt0092603:
@@ -2455,6 +2725,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1988
+  tt0093258:
+    tmdb_id: 68883
+    title: Rouge
+    imdb_url: https://www.imdb.com/title/tt0093258
+    tmdb_url: https://www.themoviedb.org/movie/68883
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 1989
   tt0093389:
     tmdb_id: 746
     title: The Last Emperor
@@ -2466,6 +2747,28 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best Picture
+        year: 1988
+  tt0093426:
+    tmdb_id: 64015
+    title: An Autumn's Tale
+    imdb_url: https://www.imdb.com/title/tt0093426
+    tmdb_url: https://www.themoviedb.org/movie/64015
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 1988
+  tt0093502:
+    tmdb_id: 42011
+    title: A Taxing Woman
+    imdb_url: https://www.imdb.com/title/tt0093502
+    tmdb_url: https://www.themoviedb.org/movie/42011
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
         year: 1988
   tt0093713:
     tmdb_id: 11174
@@ -2495,6 +2798,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1987
+  tt0094828:
+    tmdb_id: 11709
+    title: Camille Claudel
+    imdb_url: https://www.imdb.com/title/tt0094828
+    tmdb_url: https://www.themoviedb.org/movie/11709
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1989
   tt0094841:
     tmdb_id: 148757
     title: The House of Smiles
@@ -2507,6 +2821,28 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1991
+  tt0095071:
+    tmdb_id: 123617
+    title: The Silk Road
+    imdb_url: https://www.imdb.com/title/tt0095071
+    tmdb_url: https://www.themoviedb.org/movie/123617
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1989
+  tt0095468:
+    tmdb_id: 10754
+    title: A Short Film About Killing
+    imdb_url: https://www.imdb.com/title/tt0095468
+    tmdb_url: https://www.themoviedb.org/movie/10754
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1988
   tt0095513:
     tmdb_id: 54990
     title: The Legend of the Holy Drinker
@@ -2547,6 +2883,17 @@ by_imdb:
         year: 1989
       - award_name: Oscar Best Picture
         year: 1989
+  tt0096288:
+    tmdb_id: 47795
+    title: Landscape in the Mist
+    imdb_url: https://www.imdb.com/title/tt0096288
+    tmdb_url: https://www.themoviedb.org/movie/47795
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1989
   tt0096908:
     tmdb_id: 49982
     title: A City of Sadness
@@ -2559,6 +2906,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1989
+  tt0096933:
+    tmdb_id: 4105
+    title: Black Rain
+    imdb_url: https://www.imdb.com/title/tt0096933
+    tmdb_url: https://www.themoviedb.org/movie/4105
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1990
   tt0097239:
     tmdb_id: 403
     title: Driving Miss Daisy
@@ -2570,6 +2928,28 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best Picture
+        year: 1990
+  tt0097344:
+    tmdb_id: 176875
+    title: Beyond the Sunset
+    imdb_url: https://www.imdb.com/title/tt0097344
+    tmdb_url: https://www.themoviedb.org/movie/176875
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0098520:
+    tmdb_id: 48524
+    title: Too Beautiful for You
+    imdb_url: https://www.imdb.com/title/tt0098520
+    tmdb_url: https://www.themoviedb.org/movie/48524
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
         year: 1990
   tt0098724:
     tmdb_id: 1412
@@ -2583,6 +2963,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1989
+  tt0099334:
+    tmdb_id: 11673
+    title: Cyrano de Bergerac
+    imdb_url: https://www.imdb.com/title/tt0099334
+    tmdb_url: https://www.themoviedb.org/movie/11673
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1991
   tt0099348:
     tmdb_id: 581
     title: Dances with Wolves
@@ -2607,6 +2998,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1990
+  tt0100389:
+    tmdb_id: 60067
+    title: Open Doors
+    imdb_url: https://www.imdb.com/title/tt0100389
+    tmdb_url: https://www.themoviedb.org/movie/60067
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1990
   tt0100470:
     tmdb_id: 41834
     title: Journey of Hope
@@ -2618,6 +3020,17 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best International Film
+        year: 1991
+  tt0100491:
+    tmdb_id: 59058
+    title: Riff-Raff
+    imdb_url: https://www.imdb.com/title/tt0100491
+    tmdb_url: https://www.themoviedb.org/movie/59058
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
         year: 1991
   tt0100519:
     tmdb_id: 18971
@@ -2643,6 +3056,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1990
+  tt0101258:
+    tmdb_id: 18311
+    title: Days of Being Wild
+    imdb_url: https://www.imdb.com/title/tt0101258
+    tmdb_url: https://www.themoviedb.org/movie/18311
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0101410:
     tmdb_id: 290
     title: Barton Fink
@@ -2655,6 +3079,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1991
+  tt0101490:
+    tmdb_id: 65321
+    title: To Be Number One
+    imdb_url: https://www.imdb.com/title/tt0101490
+    tmdb_url: https://www.themoviedb.org/movie/65321
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0101969:
     tmdb_id: 13697
     title: Grand Canyon
@@ -2691,6 +3126,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 1992
+  tt0102488:
+    tmdb_id: 225614
+    title: My Sons
+    imdb_url: https://www.imdb.com/title/tt0102488
+    tmdb_url: https://www.themoviedb.org/movie/225614
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1992
   tt0102926:
     tmdb_id: 274
     title: The Silence of the Lambs
@@ -2703,16 +3149,30 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 1992
+  tt0103110:
+    tmdb_id: 41804
+    title: All the Mornings of the World
+    imdb_url: https://www.imdb.com/title/tt0103110
+    tmdb_url: https://www.themoviedb.org/movie/41804
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1992
   tt0103176:
     tmdb_id: 36346
     title: Close to Eden
     imdb_url: https://www.imdb.com/title/tt0103176
     tmdb_url: https://www.themoviedb.org/movie/36346
     award_names:
+      - European Film Award for Best Film
       - Venice Leone d’oro
     awards:
       - venice
     wins:
+      - award_name: European Film Award for Best Film
+        year: 1993
       - award_name: Venice Leone d’oro
         year: 1991
   tt0103791:
@@ -2751,6 +3211,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 1993
+  tt0104663:
+    tmdb_id: 47714
+    title: The Stolen Children
+    imdb_url: https://www.imdb.com/title/tt0104663
+    tmdb_url: https://www.themoviedb.org/movie/47714
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1992
+  tt0105032:
+    tmdb_id: 41878
+    title: Savage Nights
+    imdb_url: https://www.imdb.com/title/tt0105032
+    tmdb_url: https://www.themoviedb.org/movie/41878
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1993
   tt0105075:
     tmdb_id: 271795
     title: Our Twisted Hero
@@ -2775,6 +3257,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: null
+  tt0105388:
+    tmdb_id: 51581
+    title: Sumo Do, Sumo Don't
+    imdb_url: https://www.imdb.com/title/tt0105388
+    tmdb_url: https://www.themoviedb.org/movie/51581
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1993
   tt0105695:
     tmdb_id: 33
     title: Unforgiven
@@ -2823,6 +3316,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1994
+  tt0107461:
+    tmdb_id: 157205
+    title: Cageman
+    imdb_url: https://www.imdb.com/title/tt0107461
+    tmdb_url: https://www.themoviedb.org/movie/157205
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0107822:
     tmdb_id: 713
     title: The Piano
@@ -2859,6 +3363,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1993
+  tt0108167:
+    tmdb_id: 61560
+    title: Smoking / No Smoking
+    imdb_url: https://www.imdb.com/title/tt0108167
+    tmdb_url: https://www.themoviedb.org/movie/61560
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1994
   tt0108192:
     tmdb_id: 124315
     title: Sopyonje
@@ -2907,6 +3422,28 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1994
+  tt0109424:
+    tmdb_id: 11104
+    title: Chungking Express
+    imdb_url: https://www.imdb.com/title/tt0109424
+    tmdb_url: https://www.themoviedb.org/movie/11104
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0109430:
+    tmdb_id: 224120
+    title: Crest of Betrayal
+    imdb_url: https://www.imdb.com/title/tt0109430
+    tmdb_url: https://www.themoviedb.org/movie/224120
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1995
   tt0109830:
     tmdb_id: 13
     title: Forrest Gump
@@ -2919,6 +3456,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 1995
+  tt0110299:
+    tmdb_id: 49133
+    title: Lamerica
+    imdb_url: https://www.imdb.com/title/tt0110299
+    tmdb_url: https://www.themoviedb.org/movie/49133
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1994
   tt0110882:
     tmdb_id: 19155
     title: Before the Rain
@@ -2943,6 +3491,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1994
+  tt0111019:
+    tmdb_id: 26933
+    title: Wild Reeds
+    imdb_url: https://www.imdb.com/title/tt0111019
+    tmdb_url: https://www.themoviedb.org/movie/26933
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1995
   tt0111348:
     tmdb_id: 143195
     title: The Taebaek Mountains
@@ -2967,6 +3526,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 1995
+  tt0111767:
+    tmdb_id: 72507
+    title: Summer Snow
+    imdb_url: https://www.imdb.com/title/tt0111767
+    tmdb_url: https://www.themoviedb.org/movie/72507
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 1996
+  tt0111770:
+    tmdb_id: 107682
+    title: C'est La Vie Mon Cheri
+    imdb_url: https://www.imdb.com/title/tt0111770
+    tmdb_url: https://www.themoviedb.org/movie/107682
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0112379:
     tmdb_id: 880
     title: Antonia's Line
@@ -3015,6 +3596,28 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1995
+  tt0113186:
+    tmdb_id: 88417
+    title: A Last Note
+    imdb_url: https://www.imdb.com/title/tt0113186
+    tmdb_url: https://www.themoviedb.org/movie/88417
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1996
+  tt0113247:
+    tmdb_id: 406
+    title: La Haine
+    imdb_url: https://www.imdb.com/title/tt0113247
+    tmdb_url: https://www.themoviedb.org/movie/406
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1996
   tt0114388:
     tmdb_id: 4584
     title: Sense and Sensibility
@@ -3027,6 +3630,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1996
+  tt0114671:
+    tmdb_id: 38884
+    title: Land and Freedom
+    imdb_url: https://www.imdb.com/title/tt0114671
+    tmdb_url: https://www.themoviedb.org/movie/38884
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1995
   tt0114787:
     tmdb_id: 11902
     title: Underground
@@ -3039,6 +3653,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1995
+  tt0115751:
+    tmdb_id: 145
+    title: Breaking the Waves
+    imdb_url: https://www.imdb.com/title/tt0115751
+    tmdb_url: https://www.themoviedb.org/movie/145
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1996
   tt0115855:
     tmdb_id: 257395
     title: Festival
@@ -3099,6 +3724,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1997
+  tt0117477:
+    tmdb_id: 12709
+    title: Ridicule
+    imdb_url: https://www.imdb.com/title/tt0117477
+    tmdb_url: https://www.themoviedb.org/movie/12709
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1997
   tt0117589:
     tmdb_id: 11159
     title: Secrets & Lies
@@ -3111,18 +3747,54 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1996
+  tt0117615:
+    tmdb_id: 11239
+    title: Shall We Dance?
+    imdb_url: https://www.imdb.com/title/tt0117615
+    tmdb_url: https://www.themoviedb.org/movie/11239
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1997
+  tt0117905:
+    tmdb_id: 37185
+    title: Comrades, Almost a Love Story
+    imdb_url: https://www.imdb.com/title/tt0117905
+    tmdb_url: https://www.themoviedb.org/movie/37185
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 1997
   tt0118799:
     tmdb_id: 637
     title: Life Is Beautiful
     imdb_url: https://www.imdb.com/title/tt0118799
     tmdb_url: https://www.themoviedb.org/movie/637
     award_names:
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: European Film Award for Best Film
+        year: 1998
       - award_name: Oscar Best International Film
         year: 1999
+  tt0119164:
+    tmdb_id: 9427
+    title: The Full Monty
+    imdb_url: https://www.imdb.com/title/tt0119164
+    tmdb_url: https://www.themoviedb.org/movie/9427
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 1997
   tt0119250:
     tmdb_id: 5910
     title: Fireworks
@@ -3146,6 +3818,28 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best International Film
+        year: 1998
+  tt0119698:
+    tmdb_id: 128
+    title: Princess Mononoke
+    imdb_url: https://www.imdb.com/title/tt0119698
+    tmdb_url: https://www.themoviedb.org/movie/128
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1998
+  tt0119828:
+    tmdb_id: 2817
+    title: Same Old Song
+    imdb_url: https://www.imdb.com/title/tt0119828
+    tmdb_url: https://www.themoviedb.org/movie/2817
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
         year: 1998
   tt0120265:
     tmdb_id: 30020
@@ -3183,6 +3877,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1997
+  tt0120449:
+    tmdb_id: 9840
+    title: The Dreamlife of Angels
+    imdb_url: https://www.imdb.com/title/tt0120449
+    tmdb_url: https://www.themoviedb.org/movie/9840
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 1999
   tt0120863:
     tmdb_id: 8741
     title: The Thin Red Line
@@ -3207,6 +3912,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 1995
+  tt0123328:
+    tmdb_id: 26005
+    title: Made in Hong Kong
+    imdb_url: https://www.imdb.com/title/tt0123328
+    tmdb_url: https://www.themoviedb.org/movie/26005
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0126838:
     tmdb_id: 95482
     title: Green Fish
@@ -3291,6 +4007,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1998
+  tt0157366:
+    tmdb_id: 44267
+    title: Beast Cops
+    imdb_url: https://www.imdb.com/title/tt0157366
+    tmdb_url: https://www.themoviedb.org/movie/44267
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0161860:
     tmdb_id: 1591
     title: Nowhere in Africa
@@ -3315,6 +4042,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 2004
+  tt0168450:
+    tmdb_id: 340077
+    title: Begging for Love
+    imdb_url: https://www.imdb.com/title/tt0168450
+    tmdb_url: https://www.themoviedb.org/movie/340077
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1999
   tt0168629:
     tmdb_id: 16
     title: Dancer in the Dark
@@ -3322,10 +4060,13 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/16
     award_names:
       - Cannes Palme d'Or
+      - European Film Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
+        year: 2000
+      - award_name: European Film Award for Best Film
         year: 2000
   tt0169547:
     tmdb_id: 14
@@ -3351,6 +4092,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 2001
+  tt0174330:
+    tmdb_id: 33491
+    title: Venus Beauty Institute
+    imdb_url: https://www.imdb.com/title/tt0174330
+    tmdb_url: https://www.themoviedb.org/movie/33491
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2000
+  tt0175527:
+    tmdb_id: 83419
+    title: 'Takeshi: Childhood Days'
+    imdb_url: https://www.imdb.com/title/tt0175527
+    tmdb_url: https://www.themoviedb.org/movie/83419
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1991
   tt0175880:
     tmdb_id: 334
     title: Magnolia
@@ -3363,28 +4126,56 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 2000
+  tt0181960:
+    tmdb_id: 15319
+    title: After the Rain
+    imdb_url: https://www.imdb.com/title/tt0181960
+    tmdb_url: https://www.themoviedb.org/movie/15319
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2001
   tt0185125:
     tmdb_id: 99
     title: All About My Mother
     imdb_url: https://www.imdb.com/title/tt0185125
     tmdb_url: https://www.themoviedb.org/movie/99
     award_names:
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: European Film Award for Best Film
+        year: 1999
       - award_name: Oscar Best International Film
         year: 2000
+  tt0189954:
+    tmdb_id: 169258
+    title: Ordinary Heroes
+    imdb_url: https://www.imdb.com/title/tt0189954
+    tmdb_url: https://www.themoviedb.org/movie/169258
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0190332:
     tmdb_id: 146
     title: Crouching Tiger, Hidden Dragon
     imdb_url: https://www.imdb.com/title/tt0190332
     tmdb_url: https://www.themoviedb.org/movie/146
     award_names:
+      - Hong Kong Film Awards
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: Hong Kong Film Awards
+        year: null
       - award_name: Oscar Best International Film
         year: 2001
   tt0191092:
@@ -3411,6 +4202,61 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 1999
+  tt0202364:
+    tmdb_id: 197139
+    title: A Class to Remember
+    imdb_url: https://www.imdb.com/title/tt0202364
+    tmdb_url: https://www.themoviedb.org/movie/197139
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1994
+  tt0202892:
+    tmdb_id: 340073
+    title: Gray Sunset
+    imdb_url: https://www.imdb.com/title/tt0202892
+    tmdb_url: https://www.themoviedb.org/movie/340073
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1986
+  tt0202932:
+    tmdb_id: 160268
+    title: The Incident
+    imdb_url: https://www.imdb.com/title/tt0202932
+    tmdb_url: https://www.themoviedb.org/movie/160268
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1979
+  tt0202967:
+    tmdb_id: 355601
+    title: House on Fire
+    imdb_url: https://www.imdb.com/title/tt0202967
+    tmdb_url: https://www.themoviedb.org/movie/355601
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 1987
+  tt0206216:
+    tmdb_id: 68837
+    title: Railroad Man
+    imdb_url: https://www.imdb.com/title/tt0206216
+    tmdb_url: https://www.themoviedb.org/movie/68837
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2000
   tt0208990:
     tmdb_id: 11447
     title: The Son's Room
@@ -3435,6 +4281,31 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 1999
+  tt0211915:
+    tmdb_id: 194
+    title: Amélie
+    imdb_url: https://www.imdb.com/title/tt0211915
+    tmdb_url: https://www.themoviedb.org/movie/194
+    award_names:
+      - César Award for Best Film
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2002
+      - award_name: European Film Award for Best Film
+        year: 2001
+  tt0216787:
+    tmdb_id: 10697
+    title: The Taste of Others
+    imdb_url: https://www.imdb.com/title/tt0216787
+    tmdb_url: https://www.themoviedb.org/movie/10697
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2001
   tt0223530:
     tmdb_id: 25660
     title: Nowhere to Hide
@@ -3466,10 +4337,13 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/129
     award_names:
       - Berlin Goldener Bär
+      - Japan Academy Prize
     awards:
       - berlin
     wins:
       - award_name: Berlin Goldener Bär
+        year: 2002
+      - award_name: Japan Academy Prize
         year: 2002
   tt0253474:
     tmdb_id: 423
@@ -3478,11 +4352,14 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/423
     award_names:
       - Cannes Palme d'Or
+      - César Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
         year: 2002
+      - award_name: César Award for Best Film
+        year: 2003
   tt0255094:
     tmdb_id: 13898
     title: The Circle
@@ -3567,6 +4444,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 2002
+  tt0286112:
+    tmdb_id: 11770
+    title: Shaolin Soccer
+    imdb_url: https://www.imdb.com/title/tt0286112
+    tmdb_url: https://www.themoviedb.org/movie/11770
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0287467:
+    tmdb_id: 64
+    title: Talk to Her
+    imdb_url: https://www.imdb.com/title/tt0287467
+    tmdb_url: https://www.themoviedb.org/movie/64
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2002
   tt0295192:
     tmdb_id: 95453
     title: One Fine Spring Day
@@ -3590,6 +4489,17 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best Picture
+        year: 2003
+  tt0301357:
+    tmdb_id: 338
+    title: Good Bye, Lenin!
+    imdb_url: https://www.imdb.com/title/tt0301357
+    tmdb_url: https://www.themoviedb.org/movie/338
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
         year: 2003
   tt0308882:
     tmdb_id: 662751
@@ -3729,12 +4639,37 @@ by_imdb:
     imdb_url: https://www.imdb.com/title/tt0338135
     tmdb_url: https://www.themoviedb.org/movie/11042
     award_names:
+      - César Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: César Award for Best Film
+        year: 2004
       - award_name: Oscar Best International Film
         year: 2004
+  tt0338564:
+    tmdb_id: 10775
+    title: Infernal Affairs
+    imdb_url: https://www.imdb.com/title/tt0338564
+    tmdb_url: https://www.themoviedb.org/movie/10775
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2003
+  tt0338977:
+    tmdb_id: 1549
+    title: Games of Love and Chance
+    imdb_url: https://www.imdb.com/title/tt0338977
+    tmdb_url: https://www.themoviedb.org/movie/1549
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2005
   tt0347048:
     tmdb_id: 363
     title: Head-On
@@ -3742,10 +4677,35 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/363
     award_names:
       - Berlin Goldener Bär
+      - European Film Award for Best Film
     awards:
       - berlin
     wins:
       - award_name: Berlin Goldener Bär
+        year: 2004
+      - award_name: European Film Award for Best Film
+        year: 2004
+  tt0351817:
+    tmdb_id: 12496
+    title: The Twilight Samurai
+    imdb_url: https://www.imdb.com/title/tt0351817
+    tmdb_url: https://www.themoviedb.org/movie/12496
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2003
+  tt0359692:
+    tmdb_id: 14455
+    title: When the Last Sword Is Drawn
+    imdb_url: https://www.imdb.com/title/tt0359692
+    tmdb_url: https://www.themoviedb.org/movie/14455
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
         year: 2004
   tt0361596:
     tmdb_id: 1777
@@ -3783,6 +4743,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 2005
+  tt0373074:
+    tmdb_id: 9470
+    title: Kung Fu Hustle
+    imdb_url: https://www.imdb.com/title/tt0373074
+    tmdb_url: https://www.themoviedb.org/movie/9470
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0374184:
+    tmdb_id: 32233
+    title: Running on Karma
+    imdb_url: https://www.imdb.com/title/tt0374184
+    tmdb_url: https://www.themoviedb.org/movie/32233
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt0374546:
     tmdb_id: 113
     title: Spring, Summer, Fall, Winter... and Spring
@@ -3855,6 +4837,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2004
+  tt0387898:
+    tmdb_id: 445
+    title: Caché
+    imdb_url: https://www.imdb.com/title/tt0387898
+    tmdb_url: https://www.themoviedb.org/movie/445
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2005
   tt0388795:
     tmdb_id: 142
     title: Brokeback Mountain
@@ -3885,10 +4878,13 @@ by_imdb:
     imdb_url: https://www.imdb.com/title/tt0405094
     tmdb_url: https://www.themoviedb.org/movie/582
     award_names:
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: European Film Award for Best Film
+        year: 2006
       - award_name: Oscar Best International Film
         year: 2007
   tt0405159:
@@ -3915,6 +4911,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 2007
+  tt0411270:
+    tmdb_id: 1553
+    title: The Beat That My Heart Skipped
+    imdb_url: https://www.imdb.com/title/tt0411270
+    tmdb_url: https://www.themoviedb.org/movie/1553
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2006
   tt0425756:
     tmdb_id: 162443
     title: Ascensor
@@ -3927,6 +4934,28 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 1978
+  tt0434008:
+    tmdb_id: 18747
+    title: Election
+    imdb_url: https://www.imdb.com/title/tt0434008
+    tmdb_url: https://www.themoviedb.org/movie/18747
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0442256:
+    tmdb_id: 318346
+    title: Half a Confession
+    imdb_url: https://www.imdb.com/title/tt0442256
+    tmdb_url: https://www.themoviedb.org/movie/318346
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2005
   tt0445776:
     tmdb_id: 79706
     title: U-Carmen eKhayelitsha
@@ -3963,6 +4992,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 2005
+  tt0459880:
+    tmdb_id: 3542
+    title: Lady Chatterley
+    imdb_url: https://www.imdb.com/title/tt0459880
+    tmdb_url: https://www.themoviedb.org/movie/3542
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2007
   tt0460989:
     tmdb_id: 1116
     title: The Wind That Shakes the Barley
@@ -4035,6 +5075,50 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 2011
+  tt0487419:
+    tmdb_id: 8280
+    title: The Secret of the Grain
+    imdb_url: https://www.imdb.com/title/tt0487419
+    tmdb_url: https://www.themoviedb.org/movie/8280
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2008
+  tt0488870:
+    tmdb_id: 13430
+    title: Always - Sunset on Third Street
+    imdb_url: https://www.imdb.com/title/tt0488870
+    tmdb_url: https://www.themoviedb.org/movie/13430
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2006
+  tt0768114:
+    tmdb_id: 11960
+    title: After This Our Exile
+    imdb_url: https://www.imdb.com/title/tt0768114
+    tmdb_url: https://www.themoviedb.org/movie/11960
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0768116:
+    tmdb_id: 38305
+    title: Hula Girls
+    imdb_url: https://www.imdb.com/title/tt0768116
+    tmdb_url: https://www.themoviedb.org/movie/38305
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2007
   tt0808357:
     tmdb_id: 4588
     title: Lust, Caution
@@ -4058,6 +5142,17 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best International Film
+        year: 2008
+  tt0820158:
+    tmdb_id: 40079
+    title: 'Tokyo Towers: Mom and Me, and Sometimes Dad'
+    imdb_url: https://www.imdb.com/title/tt0820158
+    tmdb_url: https://www.themoviedb.org/movie/40079
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
         year: 2008
   tt0859765:
     tmdb_id: 2346
@@ -4095,6 +5190,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 2010
+  tt0913968:
+    tmdb_id: 14392
+    title: The Warlords
+    imdb_url: https://www.imdb.com/title/tt0913968
+    tmdb_url: https://www.themoviedb.org/movie/14392
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt0929425:
+    tmdb_id: 8882
+    title: Gomorrah
+    imdb_url: https://www.imdb.com/title/tt0929425
+    tmdb_url: https://www.themoviedb.org/movie/8882
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2008
   tt0949564:
     tmdb_id: 2694
     title: Tuya's Marriage
@@ -4131,6 +5248,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 2023
+  tt10196398:
+    tmdb_id: 651881
+    title: Bye Bye Morons
+    imdb_url: https://www.imdb.com/title/tt10196398
+    tmdb_url: https://www.themoviedb.org/movie/651881
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2021
+  tt10199590:
+    tmdb_id: 586863
+    title: Les Misérables
+    imdb_url: https://www.imdb.com/title/tt10199590
+    tmdb_url: https://www.themoviedb.org/movie/586863
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2020
   tt1024648:
     tmdb_id: 68734
     title: Argo
@@ -4149,10 +5288,13 @@ by_imdb:
     imdb_url: https://www.imdb.com/title/tt10288566
     tmdb_url: https://www.themoviedb.org/movie/580175
     award_names:
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: European Film Award for Best Film
+        year: 2020
       - award_name: Oscar Best International Film
         year: 2021
   tt1032846:
@@ -4162,10 +5304,13 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/2009
     award_names:
       - Cannes Palme d'Or
+      - European Film Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
+        year: 2007
+      - award_name: European Film Award for Best Film
         year: 2007
   tt10366460:
     tmdb_id: 776503
@@ -4191,6 +5336,28 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2007
+  tt1048171:
+    tmdb_id: 14415
+    title: Séraphine
+    imdb_url: https://www.imdb.com/title/tt1048171
+    tmdb_url: https://www.themoviedb.org/movie/14415
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2009
+  tt10505316:
+    tmdb_id: 660000
+    title: Lost Illusions
+    imdb_url: https://www.imdb.com/title/tt10505316
+    tmdb_url: https://www.themoviedb.org/movie/660000
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2022
   tt1068646:
     tmdb_id: 8841
     title: The Class
@@ -4209,10 +5376,13 @@ by_imdb:
     imdb_url: https://www.imdb.com/title/tt1069238
     tmdb_url: https://www.themoviedb.org/movie/16804
     award_names:
+      - Japan Academy Prize
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: Japan Academy Prize
+        year: 2009
       - award_name: Oscar Best International Film
         year: 2009
   tt10944760:
@@ -4251,6 +5421,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2020
+  tt1139328:
+    tmdb_id: 11439
+    title: The Ghost Writer
+    imdb_url: https://www.imdb.com/title/tt1139328
+    tmdb_url: https://www.themoviedb.org/movie/11439
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2010
   tt1149362:
     tmdb_id: 37903
     title: The White Ribbon
@@ -4258,10 +5439,13 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/37903
     award_names:
       - Cannes Palme d'Or
+      - European Film Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
+        year: 2009
+      - award_name: European Film Award for Best Film
         year: 2009
   tt11697844:
     tmdb_id: 667935
@@ -4323,6 +5507,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2009
+  tt1220719:
+    tmdb_id: 14756
+    title: Ip Man
+    imdb_url: https://www.imdb.com/title/tt1220719
+    tmdb_url: https://www.themoviedb.org/movie/14756
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt1232162:
     tmdb_id: 18431
     title: Forever the Moment
@@ -4335,6 +5530,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2008
+  tt1235166:
+    tmdb_id: 21575
+    title: A Prophet
+    imdb_url: https://www.imdb.com/title/tt1235166
+    tmdb_url: https://www.themoviedb.org/movie/21575
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2010
   tt12477480:
     tmdb_id: 705996
     title: Decision to Leave
@@ -4347,6 +5553,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2022
+  tt12774954:
+    tmdb_id: 725691
+    title: Midnight Swan
+    imdb_url: https://www.imdb.com/title/tt12774954
+    tmdb_url: https://www.themoviedb.org/movie/725691
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2021
   tt1305806:
     tmdb_id: 25376
     title: The Secret in Their Eyes
@@ -4358,6 +5575,17 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best International Film
+        year: 2010
+  tt1337125:
+    tmdb_id: 206719
+    title: The Unbroken
+    imdb_url: https://www.imdb.com/title/tt1337125
+    tmdb_url: https://www.themoviedb.org/movie/206719
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
         year: 2010
   tt1340107:
     tmdb_id: 44716
@@ -4383,6 +5611,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 2021
+  tt1403130:
+    tmdb_id: 30596
+    title: Bodyguards and Assassins
+    imdb_url: https://www.imdb.com/title/tt1403130
+    tmdb_url: https://www.themoviedb.org/movie/30596
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2010
   tt14033502:
     tmdb_id: 790496
     title: Bad Luck Banging or Loony Porn
@@ -4401,10 +5640,13 @@ by_imdb:
     imdb_url: https://www.imdb.com/title/tt14039582
     tmdb_url: https://www.themoviedb.org/movie/758866
     award_names:
+      - Japan Academy Prize
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: Japan Academy Prize
+        year: 2022
       - award_name: Oscar Best International Film
         year: 2022
   tt1421051:
@@ -4443,6 +5685,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 2011
+  tt1462900:
+    tmdb_id: 44865
+    title: The Grandmaster
+    imdb_url: https://www.imdb.com/title/tt1462900
+    tmdb_url: https://www.themoviedb.org/movie/44865
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2014
   tt14810692:
     tmdb_id: 607844
     title: Escape from Mogadishu
@@ -4490,6 +5743,17 @@ by_imdb:
       - oscar
     wins:
       - award_name: Oscar Best Picture
+        year: 2011
+  tt1527186:
+    tmdb_id: 62215
+    title: Melancholia
+    imdb_url: https://www.imdb.com/title/tt1527186
+    tmdb_url: https://www.themoviedb.org/movie/62215
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
         year: 2011
   tt1527793:
     tmdb_id: 639988
@@ -4539,6 +5803,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 2010
+  tt1588337:
+    tmdb_id: 46332
+    title: Of Gods and Men
+    imdb_url: https://www.imdb.com/title/tt1588337
+    tmdb_url: https://www.themoviedb.org/movie/46332
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2011
   tt1588895:
     tmdb_id: 38368
     title: Uncle Boonmee Who Can Recall His Past Lives
@@ -4551,6 +5826,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 2010
+  tt1590089:
+    tmdb_id: 54186
+    title: Confessions
+    imdb_url: https://www.imdb.com/title/tt1590089
+    tmdb_url: https://www.themoviedb.org/movie/54186
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2011
   tt1602620:
     tmdb_id: 86837
     title: Amour
@@ -4558,6 +5844,8 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/86837
     award_names:
       - Cannes Palme d'Or
+      - César Award for Best Film
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - cannes
@@ -4565,20 +5853,49 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 2012
+      - award_name: César Award for Best Film
+        year: 2013
+      - award_name: European Film Award for Best Film
+        year: 2012
       - award_name: Oscar Best International Film
         year: 2013
+  tt1611823:
+    tmdb_id: 42380
+    title: Gallants
+    imdb_url: https://www.imdb.com/title/tt1611823
+    tmdb_url: https://www.themoviedb.org/movie/42380
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2011
   tt1655442:
     tmdb_id: 74643
     title: The Artist
     imdb_url: https://www.imdb.com/title/tt1655442
     tmdb_url: https://www.themoviedb.org/movie/74643
     award_names:
+      - César Award for Best Film
       - Oscar Best Picture
     awards:
       - oscar
     wins:
+      - award_name: César Award for Best Film
+        year: 2012
       - award_name: Oscar Best Picture
         year: 2012
+  tt16953666:
+    tmdb_id: 925102
+    title: The Night of the 12th
+    imdb_url: https://www.imdb.com/title/tt16953666
+    tmdb_url: https://www.themoviedb.org/movie/925102
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2023
   tt17009710:
     tmdb_id: 915935
     title: Anatomy of a Fall
@@ -4586,11 +5903,28 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/915935
     award_names:
       - Cannes Palme d'Or
+      - César Award for Best Film
+      - European Film Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
         year: 2023
+      - award_name: César Award for Best Film
+        year: 2024
+      - award_name: European Film Award for Best Film
+        year: 2023
+  tt1727825:
+    tmdb_id: 94054
+    title: Rebirth
+    imdb_url: https://www.imdb.com/title/tt1727825
+    tmdb_url: https://www.themoviedb.org/movie/94054
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2012
   tt1832382:
     tmdb_id: 60243
     title: A Separation
@@ -4643,6 +5977,31 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 2016
+  tt2008006:
+    tmdb_id: 91186
+    title: A Simple Life
+    imdb_url: https://www.imdb.com/title/tt2008006
+    tmdb_url: https://www.themoviedb.org/movie/91186
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2012
+  tt20221436:
+    tmdb_id: 974950
+    title: Emilia Pérez
+    imdb_url: https://www.imdb.com/title/tt20221436
+    tmdb_url: https://www.themoviedb.org/movie/974950
+    award_names:
+      - César Award for Best Film
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2025
+      - award_name: European Film Award for Best Film
+        year: 2024
   tt2024544:
     tmdb_id: 76203
     title: 12 Years a Slave
@@ -4655,6 +6014,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best Picture
         year: 2014
+  tt20251822:
+    tmdb_id: 869886
+    title: A Man
+    imdb_url: https://www.imdb.com/title/tt20251822
+    tmdb_url: https://www.themoviedb.org/movie/869886
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2023
   tt21374850:
     tmdb_id: 1004663
     title: All the Beauty and the Bloodshed
@@ -4667,6 +6037,17 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 2022
+  tt2142797:
+    tmdb_id: 175041
+    title: The Kirishima Thing
+    imdb_url: https://www.imdb.com/title/tt2142797
+    tmdb_url: https://www.themoviedb.org/movie/175041
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2013
   tt2177511:
     tmdb_id: 96821
     title: Caesar Must Die
@@ -4679,6 +6060,28 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 2012
+  tt2186715:
+    tmdb_id: 137409
+    title: Cold War
+    imdb_url: https://www.imdb.com/title/tt2186715
+    tmdb_url: https://www.themoviedb.org/movie/137409
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2013
+  tt21867610:
+    tmdb_id: 1005261
+    title: To My Nineteen-Year-Old Self
+    imdb_url: https://www.imdb.com/title/tt21867610
+    tmdb_url: https://www.themoviedb.org/movie/1005261
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2023
   tt2187115:
     tmdb_id: 160118
     title: Child's Pose
@@ -4731,18 +6134,65 @@ by_imdb:
         year: 2012
       - award_name: 청룡영화제 최우수 작품상
         year: 2012
+  tt2315200:
+    tmdb_id: 190880
+    title: Me, Myself and Mum
+    imdb_url: https://www.imdb.com/title/tt2315200
+    tmdb_url: https://www.themoviedb.org/movie/190880
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2014
+  tt2315226:
+    tmdb_id: 182827
+    title: The Great Passage
+    imdb_url: https://www.imdb.com/title/tt2315226
+    tmdb_url: https://www.themoviedb.org/movie/182827
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2014
+  tt23289160:
+    tmdb_id: 940721
+    title: Godzilla Minus One
+    imdb_url: https://www.imdb.com/title/tt23289160
+    tmdb_url: https://www.themoviedb.org/movie/940721
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2024
   tt2358891:
     tmdb_id: 179144
     title: The Great Beauty
     imdb_url: https://www.imdb.com/title/tt2358891
     tmdb_url: https://www.themoviedb.org/movie/179144
     award_names:
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: European Film Award for Best Film
+        year: 2013
       - award_name: Oscar Best International Film
         year: 2014
+  tt2404217:
+    tmdb_id: 248087
+    title: The Eternal Zero
+    imdb_url: https://www.imdb.com/title/tt2404217
+    tmdb_url: https://www.themoviedb.org/movie/248087
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2015
   tt2562232:
     tmdb_id: 194662
     title: Birdman or (The Unexpected Virtue of Ignorance)
@@ -4773,10 +6223,13 @@ by_imdb:
     imdb_url: https://www.imdb.com/title/tt2718492
     tmdb_url: https://www.themoviedb.org/movie/209274
     award_names:
+      - European Film Award for Best Film
       - Oscar Best International Film
     awards:
       - oscar
     wins:
+      - award_name: European Film Award for Best Film
+        year: 2014
       - award_name: Oscar Best International Film
         year: 2015
   tt2758880:
@@ -4915,6 +6368,39 @@ by_imdb:
     wins:
       - award_name: Venice Leone d’oro
         year: 2013
+  tt32277931:
+    tmdb_id: 1287819
+    title: A Samurai in Time
+    imdb_url: https://www.imdb.com/title/tt32277931
+    tmdb_url: https://www.themoviedb.org/movie/1287819
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2025
+  tt33030403:
+    tmdb_id: 1096642
+    title: The Ties That Bind Us
+    imdb_url: https://www.imdb.com/title/tt33030403
+    tmdb_url: https://www.themoviedb.org/movie/1096642
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2026
+  tt3312830:
+    tmdb_id: 310593
+    title: Youth
+    imdb_url: https://www.imdb.com/title/tt3312830
+    tmdb_url: https://www.themoviedb.org/movie/310593
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2015
   tt3404140:
     tmdb_id: 242452
     title: The Attorney
@@ -4927,6 +6413,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2014
+  tt3409392:
+    tmdb_id: 265228
+    title: Timbuktu
+    imdb_url: https://www.imdb.com/title/tt3409392
+    tmdb_url: https://www.themoviedb.org/movie/265228
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2015
   tt3469910:
     tmdb_id: 255756
     title: Black Coal, Thin Ice
@@ -4951,6 +6448,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 2015
+  tt35231039:
+    tmdb_id: 1379266
+    title: Kokuho
+    imdb_url: https://www.imdb.com/title/tt35231039
+    tmdb_url: https://www.themoviedb.org/movie/1379266
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2026
   tt35410859:
     tmdb_id: 1401459
     title: Fjord
@@ -4987,6 +6495,28 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 2016
+  tt3716530:
+    tmdb_id: 337674
+    title: Elle
+    imdb_url: https://www.imdb.com/title/tt3716530
+    tmdb_url: https://www.themoviedb.org/movie/337674
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2017
+  tt3756788:
+    tmdb_id: 315846
+    title: Our Little Sister
+    imdb_url: https://www.imdb.com/title/tt3756788
+    tmdb_url: https://www.themoviedb.org/movie/315846
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2016
   tt3779028:
     tmdb_id: 293413
     title: Inside Men
@@ -5011,6 +6541,17 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 2016
+  tt4048272:
+    tmdb_id: 374475
+    title: Toni Erdmann
+    imdb_url: https://www.imdb.com/title/tt4048272
+    tmdb_url: https://www.themoviedb.org/movie/374475
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2016
   tt4082068:
     tmdb_id: 314402
     title: Dheepan
@@ -5023,6 +6564,17 @@ by_imdb:
     wins:
       - award_name: Cannes Palme d'Or
         year: 2015
+  tt4262980:
+    tmdb_id: 315011
+    title: Shin Godzilla
+    imdb_url: https://www.imdb.com/title/tt4262980
+    tmdb_url: https://www.themoviedb.org/movie/315011
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
+        year: 2017
   tt4359416:
     tmdb_id: 320006
     title: Taxi
@@ -5035,6 +6587,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 2015
+  tt4466544:
+    tmdb_id: 336807
+    title: Fatima
+    imdb_url: https://www.imdb.com/title/tt4466544
+    tmdb_url: https://www.themoviedb.org/movie/336807
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2016
   tt4721400:
     tmdb_id: 352162
     title: From Afar
@@ -5078,11 +6641,25 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/401246
     award_names:
       - Cannes Palme d'Or
+      - European Film Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
         year: 2017
+      - award_name: European Film Award for Best Film
+        year: 2017
+  tt5083738:
+    tmdb_id: 375262
+    title: The Favourite
+    imdb_url: https://www.imdb.com/title/tt5083738
+    tmdb_url: https://www.themoviedb.org/movie/375262
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2019
   tt5168192:
     tmdb_id: 374473
     title: I, Daniel Blake
@@ -5119,6 +6696,17 @@ by_imdb:
     wins:
       - award_name: 청룡영화제 최우수 작품상
         year: 1991
+  tt5269560:
+    tmdb_id: 376916
+    title: Ten Years
+    imdb_url: https://www.imdb.com/title/tt5269560
+    tmdb_url: https://www.themoviedb.org/movie/376916
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2016
   tt5580390:
     tmdb_id: 399055
     title: The Shape of Water
@@ -5159,6 +6747,28 @@ by_imdb:
     wins:
       - award_name: Oscar Best International Film
         year: 2018
+  tt6002232:
+    tmdb_id: 451657
+    title: Custody
+    imdb_url: https://www.imdb.com/title/tt6002232
+    tmdb_url: https://www.themoviedb.org/movie/451657
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2019
+  tt6135348:
+    tmdb_id: 451945
+    title: BPM (Beats per Minute)
+    imdb_url: https://www.imdb.com/title/tt6135348
+    tmdb_url: https://www.themoviedb.org/movie/451945
+    award_names:
+      - César Award for Best Film
+    awards: []
+    wins:
+      - award_name: César Award for Best Film
+        year: 2018
   tt6155172:
     tmdb_id: 426426
     title: Roma
@@ -5174,6 +6784,17 @@ by_imdb:
       - award_name: Oscar Best International Film
         year: 2019
       - award_name: Venice Leone d’oro
+        year: 2018
+  tt6410564:
+    tmdb_id: 434775
+    title: The Third Murder
+    imdb_url: https://www.imdb.com/title/tt6410564
+    tmdb_url: https://www.themoviedb.org/movie/434775
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
         year: 2018
   tt6434210:
     tmdb_id: 664591
@@ -5198,6 +6819,17 @@ by_imdb:
       - blue_dragon
     wins:
       - award_name: 청룡영화제 최우수 작품상
+        year: 2018
+  tt6543652:
+    tmdb_id: 440298
+    title: Cold War
+    imdb_url: https://www.imdb.com/title/tt6543652
+    tmdb_url: https://www.themoviedb.org/movie/440298
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
         year: 2018
   tt6710474:
     tmdb_id: 545611
@@ -5270,6 +6902,17 @@ by_imdb:
     wins:
       - award_name: Berlin Goldener Bär
         year: 2019
+  tt7075594:
+    tmdb_id: 452400
+    title: Our Time Will Come
+    imdb_url: https://www.imdb.com/title/tt7075594
+    tmdb_url: https://www.themoviedb.org/movie/452400
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
   tt7160372:
     tmdb_id: 467244
     title: The Zone of Interest
@@ -5301,10 +6944,13 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/497828
     award_names:
       - Cannes Palme d'Or
+      - European Film Award for Best Film
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
+        year: 2022
+      - award_name: European Film Award for Best Film
         year: 2022
   tt8075192:
     tmdb_id: 505192
@@ -5313,11 +6959,47 @@ by_imdb:
     tmdb_url: https://www.themoviedb.org/movie/505192
     award_names:
       - Cannes Palme d'Or
+      - Japan Academy Prize
     awards:
       - cannes
     wins:
       - award_name: Cannes Palme d'Or
         year: 2018
+      - award_name: Japan Academy Prize
+        year: 2019
+  tt8165192:
+    tmdb_id: 513692
+    title: Raging Fire
+    imdb_url: https://www.imdb.com/title/tt8165192
+    tmdb_url: https://www.themoviedb.org/movie/513692
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: null
+  tt8633462:
+    tmdb_id: 728118
+    title: Quo Vadis, Aida?
+    imdb_url: https://www.imdb.com/title/tt8633462
+    tmdb_url: https://www.themoviedb.org/movie/728118
+    award_names:
+      - European Film Award for Best Film
+    awards: []
+    wins:
+      - award_name: European Film Award for Best Film
+        year: 2021
+  tt9586294:
+    tmdb_id: 575813
+    title: Better Days
+    imdb_url: https://www.imdb.com/title/tt9586294
+    tmdb_url: https://www.themoviedb.org/movie/575813
+    award_names:
+      - Hong Kong Film Awards
+    awards: []
+    wins:
+      - award_name: Hong Kong Film Awards
+        year: 2020
   tt9770150:
     tmdb_id: 581734
     title: Nomadland
@@ -5333,4 +7015,15 @@ by_imdb:
       - award_name: Oscar Best Picture
         year: 2021
       - award_name: Venice Leone d’oro
+        year: 2020
+  tt9778190:
+    tmdb_id: 611257
+    title: The Journalist
+    imdb_url: https://www.imdb.com/title/tt9778190
+    tmdb_url: https://www.themoviedb.org/movie/611257
+    award_names:
+      - Japan Academy Prize
+    awards: []
+    wins:
+      - award_name: Japan Academy Prize
         year: 2020

@@ -18,6 +18,8 @@ import {
   parseArticleImdbRows,
   buildArticleImdbQuery,
   parseBlueDragonWikitext,
+  parseWinnersByYearHeader,
+  WIKIPEDIA_AWARDS,
   groupByImdb,
   buildAwardsDocument,
   dumpAwardsYaml,
@@ -74,13 +76,15 @@ test("parseSparqlAwardRows: maps Q-IDs to exact taxonomy names, filters non-tt I
   assert.ok(!rows.some((r) => r.imdb_id === "tt3333333"));
 });
 
-test("AWARD_QID_TO_NAME covers exactly the five international awards", () => {
+test("AWARD_QID_TO_NAME covers exactly the seven Wikidata-sourced awards", () => {
   assert.deepEqual(Object.keys(AWARD_QID_TO_NAME).sort(), [
     "Q102427",
     "Q105304",
     "Q154590",
     "Q179808",
     "Q209459",
+    "Q4722629",
+    "Q777921",
   ]);
 });
 
@@ -137,6 +141,55 @@ test("parseBlueDragonWikitext: parses winners-only across both table formats", (
 
   // The "Table key" legend row (also carries {{double dagger}}) is excluded.
   assert.ok(!rows.some((r) => /Indicates the winner|name =/.test(r.title)));
+});
+
+// ---------------------------------------------------------------------------
+// parseWinnersByYearHeader — César + Japan Academy (real fixtures).
+// ---------------------------------------------------------------------------
+
+test("parseWinnersByYearHeader: César Best Film (winner+nominees, mixed formats)", () => {
+  const wikitext = fx("cesar-wikitext.json").parse.wikitext["*"];
+  const rows = parseWinnersByYearHeader(wikitext);
+
+  // One winner per ceremony, 1976→present; guard against parser drift.
+  assert.ok(rows.length >= 45, `expected >=45 winners, got ${rows.length}`);
+  assert.ok(rows.every((r) => Number.isInteger(r.year) && r.title));
+  assert.equal(new Set(rows.map((r) => r.year)).size, rows.length); // one per year
+
+  // Oldest row (per-cell highlight format) → English-title article + display.
+  assert.deepEqual(rows[0], {
+    year: 1976,
+    article: "Le vieux fusil",
+    title: "The Old Gun",
+  });
+
+  // A modern row (per-row highlight, colspan title) resolves the winner only.
+  const y2025 = rows.find((r) => r.year === 2025);
+  assert.equal(y2025.title, "Emilia Pérez");
+  // Nominees must NOT appear (e.g. 1976's "Cousin, Cousine" is a nominee).
+  assert.ok(!rows.some((r) => r.title === "Cousin, Cousine"));
+});
+
+test("parseWinnersByYearHeader: Japan Academy Picture of the Year (winners-only)", () => {
+  const wikitext = fx("japan-academy-wikitext.json").parse.wikitext["*"];
+  const rows = parseWinnersByYearHeader(wikitext);
+
+  assert.ok(rows.length >= 45, `expected >=45 winners, got ${rows.length}`);
+  assert.equal(new Set(rows.map((r) => r.year)).size, rows.length);
+  assert.deepEqual(rows[0], {
+    year: 1978,
+    article: "The Yellow Handkerchief (1977 film)",
+    title: "The Yellow Handkerchief",
+  });
+});
+
+test("WIKIPEDIA_AWARDS: each entry has a taxonomy name, page, and parser", () => {
+  assert.ok(WIKIPEDIA_AWARDS.length >= 3);
+  for (const a of WIKIPEDIA_AWARDS) {
+    assert.ok(AWARD_NAMES.includes(a.name), `not a taxonomy award: ${a.name}`);
+    assert.equal(typeof a.page, "string");
+    assert.equal(typeof a.parse, "function");
+  }
 });
 
 // ---------------------------------------------------------------------------
@@ -402,8 +455,9 @@ test("curateAwards: combines Wikidata + Blue Dragon, runs fallback, looks up TMD
         { award_name: "Cannes Palme d'Or", imdb_id: "tt_intl", year: 2024, title: "Intl Film" },
         { award_name: "Berlin Goldener Bär", imdb_id: null, year: 1950, title: "Old Berlin" },
       ],
-      // One Blue Dragon winner with a resolvable article.
-      fetchBlueDragon: async () => [
+      // One Wikipedia award (Blue Dragon) with one resolvable winner.
+      wikipediaAwards: [{ name: BLUE_DRAGON_AWARD_NAME, minWinners: 0 }],
+      fetchWikipediaAward: async () => [
         { year: 2019, article: "Parasite (2019 film)", title: "Parasite", korean: "기생충" },
       ],
       resolveArticles: async () => new Map([["Parasite (2019 film)", "tt6751668"]]),
@@ -436,7 +490,7 @@ test("curateAwards: injects manual overrides for upstream gaps, deduped against 
       fetchInternational: async () => [
         { award_name: "Cannes Palme d'Or", imdb_id: "tt_dup", year: 2020, title: "Dup" },
       ],
-      fetchBlueDragon: async () => [],
+      wikipediaAwards: [], // no Wikipedia awards in this test
       resolveArticles: async () => new Map(),
       runFallback: async () => null,
       findOnTmdb: async (imdb) => ({ tmdb_id: `x_${imdb}`, title: imdb }),
