@@ -17,7 +17,12 @@ import path from "node:path";
 import yaml from "js-yaml";
 
 import { buildKoreanDirectorMap, YAML_DUMP_OPTIONS } from "../lib/utils.js";
-import { curateAwards, dumpAwardsYaml } from "../lib/awards_curation.js";
+import {
+  curateAwards,
+  dumpAwardsYaml,
+  diffAwards,
+  formatChangeSummary,
+} from "../lib/awards_curation.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outPath = path.join(root, "data", "awards.yml");
@@ -72,20 +77,31 @@ const doc = await curateAwards({
   log: (m) => console.error(m),
 });
 
+// Load the existing file once — used both for the idempotency check and for
+// the change summary (what's newly populated since last run).
+let prevByImdb = {};
+try {
+  prevByImdb = yaml.load(readFileSync(outPath, "utf-8"))?.by_imdb ?? {};
+} catch {
+  /* no existing file — first run; everything is "added" */
+}
+
 // Idempotent write: compare only the substantive body (ignoring generated_at).
 const newBody = yaml.dump({ by_imdb: doc.by_imdb }, YAML_DUMP_OPTIONS);
-let existingBody = null;
-try {
-  const prev = yaml.load(readFileSync(outPath, "utf-8"));
-  existingBody = yaml.dump({ by_imdb: prev?.by_imdb ?? null }, YAML_DUMP_OPTIONS);
-} catch {
-  /* no existing file — first run */
-}
+const existingBody = yaml.dump({ by_imdb: prevByImdb }, YAML_DUMP_OPTIONS);
 
 const filmCount = Object.keys(doc.by_imdb).length;
 if (existingBody === newBody) {
   console.error(`No changes — ${filmCount} films, ${outPath} left as-is.`);
 } else {
   writeFileSync(outPath, dumpAwardsYaml(doc), "utf-8");
+
+  // Write a human-readable change summary (consumed by the workflow's email).
+  const diff = diffAwards(prevByImdb, doc.by_imdb);
+  const summary = formatChangeSummary(diff, { generatedAt });
+  console.error(summary);
+  if (process.env.AWARDS_SUMMARY_FILE) {
+    writeFileSync(process.env.AWARDS_SUMMARY_FILE, summary, "utf-8");
+  }
   console.error(`Wrote ${outPath} — ${filmCount} films.`);
 }

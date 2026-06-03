@@ -1,0 +1,107 @@
+name: Curate awards
+on:
+  schedule:
+    - cron: "0 4 * * 3"
+      timezone: "Asia/Seoul"   # native cron timezone (GitHub Actions, Mar 2026+)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+env:
+  TZ: "Asia/Seoul"             # job clock = KST, so generated_at is stamped in Seoul time
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+
+      # `tee -a run.log` captures everything for the failure email. The default
+      # bash shell runs with `set -eo pipefail`, so a non-zero npm/node exit
+      # still fails the step despite the pipe.
+      - name: Install dependencies
+        run: npm ci 2>&1 | tee -a run.log
+
+      - name: Curate awards
+        run: node cli/curate-awards.mjs 2>&1 | tee -a run.log
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # The CLI writes a human-readable "what's new" summary here when (and
+          # only when) data/awards.yml actually changed.
+          AWARDS_SUMMARY_FILE: awards-summary.txt
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if git diff --quiet -- data/awards.yml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/awards.yml
+          git commit -m "chore: refresh award curation"
+          git push
+
+      # --- Email: success WITH changes (silent when nothing changed) ----------
+      - name: Compose update email
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          {
+            echo 'MAIL_BODY<<__EOF__'
+            cat awards-summary.txt
+            echo ''
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo '__EOF__'
+          } >> "$GITHUB_ENV"
+
+      - name: Email — updated
+        if: steps.changes.outputs.changed == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: nambin.heo@gmail.com
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: nambin.heo@gmail.com
+          to: nambin.heo@gmail.com
+          subject: "Movie-manager Award curation updated"
+          body: ${{ env.MAIL_BODY }}
+
+      # --- Email: any failure -------------------------------------------------
+      - name: Compose failure email
+        if: failure()
+        run: |
+          {
+            echo 'FAIL_BODY<<__EOF__'
+            echo "The award-curation workflow FAILED."
+            echo ''
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo ''
+            if [ -f run.log ]; then
+              echo '----- run.log (last 80 lines) -----'
+              tail -n 80 run.log
+            fi
+            echo '__EOF__'
+          } >> "$GITHUB_ENV"
+
+      - name: Email — failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: nambin.heo@gmail.com
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: nambin.heo@gmail.com
+          to: nambin.heo@gmail.com
+          subject: "Movie-manager Award curation FAILED"
+          body: ${{ env.FAIL_BODY }}

@@ -119,8 +119,6 @@ npm run curate:awards   # writes data/awards.yml
 
 The keys are read from `process.env` (the same `.env` the builds use — the CLI runs under plain Node, so the esbuild build-time inlining does not apply). The run is a full **idempotent** regenerate: `generated_at` is only re-stamped when the substantive `by_imdb` content actually changed, so a run with no new winners leaves the file byte-identical (empty `git diff`). It makes a few hundred TMDB lookups, so expect it to take a couple of minutes.
 
-**Automation.** [.github/workflows/curate-awards.yml](.github/workflows/curate-awards.yml) runs the CLI on a weekly cron (Friday 22:00 KST) and commits `data/awards.yml` only when it changed. It needs `TMDB_API_KEY` and `GEMINI_API_KEY` as repository secrets. Like `data/movies.yml`, the file is then synced to `nambin.github.io/data/awards.yml` (manually, or extend the workflow to push there).
-
 ### Deploying to nambin.github.io
 
 ```bash
