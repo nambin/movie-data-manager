@@ -21,8 +21,14 @@ import { sortMovies, YAML_DUMP_OPTIONS } from "../lib/utils.js";
 import { reconcileMovies } from "../lib/awards_reconcile.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const moviesPath = path.join(root, "data", "movies.yml");
-const awardsPath = path.join(root, "data", "awards.yml");
+
+// The canonical data lives in the nambin.github.io repo. Default to the
+// side-by-side checkout (../nambin.github.io/data); override with DATA_DIR.
+const dataDir = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.resolve(root, "..", "nambin.github.io", "data");
+const moviesPath = path.join(dataDir, "movies.yml");
+const awardsPath = path.join(dataDir, "awards.yml");
 const dryRun = process.argv.includes("--dry-run");
 
 const movies = yaml.load(readFileSync(moviesPath, "utf-8"));

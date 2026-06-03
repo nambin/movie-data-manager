@@ -1,6 +1,8 @@
 ## Movie Collection Web Editor
 
-A static, single-user web page for maintaining the movie collection. Produces a YAML file at [data/movies.yml](data/movies.yml) for direct commit into [nambin.github.io](https://github.com/nambin/nambin.github.io)'s `data/movies.yml`.
+A static, single-user web page for maintaining the movie collection. Produces a `movies.yml` for direct commit into [nambin.github.io](https://github.com/nambin/nambin.github.io)'s `data/movies.yml`.
+
+> **Where the data lives.** The canonical `movies.yml` and `awards.yml` live in the **nambin.github.io** repo (`data/`) — that is the single source of truth and what the live site serves. This repo holds no copies. The CLIs and tests read/write those files via `DATA_DIR`, which defaults to the side-by-side checkout `../nambin.github.io/data`. The deployed editor loads them from its own origin; the local-dev editor falls back to fetching them from `https://nambin.github.io`.
 
 The full specification lives in [prompt-web-app.md](prompt-web-app.md); the memo bulk-import architecture in [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md).
 
@@ -98,7 +100,7 @@ npm install   # one-time, pulls in js-yaml
 npm test
 ```
 
-The acceptance test (round-trip parity) loads the real [data/movies.yml](data/movies.yml), runs every entry through the canonicalize → sort → dump → re-parse pipeline, and asserts deep equality with the original. See [tests/yaml-roundtrip.test.js](tests/yaml-roundtrip.test.js).
+The acceptance test (round-trip parity) loads the real `movies.yml` (from `DATA_DIR`, default `../nambin.github.io/data`), runs every entry through the canonicalize → sort → dump → re-parse pipeline, and asserts deep equality with the original. The file-backed tests skip when that checkout isn't present. See [tests/yaml-roundtrip.test.js](tests/yaml-roundtrip.test.js).
 
 ### Generating `data/awards.yml`
 
@@ -111,7 +113,7 @@ To generate it from scratch:
 ```bash
 npm install
 # .env at the repo root needs TMDB_API_KEY (required) and GEMINI_API_KEY (optional) — see API keys section
-npm run curate:awards   # writes data/awards.yml
+npm run curate:awards   # writes awards.yml into $DATA_DIR (default ../nambin.github.io/data)
 ```
 
 - `TMDB_API_KEY` — **required**. Used to resolve each IMDb ID to a TMDB entry (`/find?external_source=imdb_id`).
@@ -124,7 +126,7 @@ The keys are read from `process.env` (the same `.env` the builds use — the CLI
 `data/awards.yml` is the **complete source of truth for awards**. A second CLI overwrites each movie's `award_names` (matched by `imdb_id`) with exactly what `awards.yml` lists for that film — and **removes every award** from a movie that `awards.yml` doesn't list (including films absent from it entirely). It doesn't preserve any award on a movie that isn't in `awards.yml`. No network or API keys needed.
 
 ```bash
-npm run reconcile:awards              # writes data/movies.yml
+npm run reconcile:awards              # writes movies.yml in $DATA_DIR (default ../nambin.github.io/data)
 npm run reconcile:awards -- --dry-run # report the changes without writing
 ```
 
@@ -134,7 +136,7 @@ npm run reconcile:awards -- --dry-run # report the changes without writing
 npm run build   # ← MUST be `build`, never `build:dev` (see API keys section)
 ```
 
-That's it on this side. The deploy is a plain copy of two files — no edits required:
+That's it on this side. The deploy is a plain copy of two editor files — no edits required:
 
 | Source (this repo) | Destination (nambin.github.io) |
 | --- | --- |
@@ -145,7 +147,13 @@ That's it on this side. The deploy is a plain copy of two files — no edits req
 
 Commit and push both files in `nambin.github.io`. URL: `https://nambin.github.io/movies_editor.html`.
 
-**Auto-load of `data/movies.yml`:** on page load, the editor fetches `data/movies.yml` from the same origin. On github.io that's `nambin.github.io/data/movies.yml`; locally, `python -m http.server` in this repo serves `data/movies.yml` at the same relative path. If localStorage has unsaved local edits (`dirty=true`), the auto-load is skipped and a status message offers the file picker for explicit override. Pushing a new `data/movies.yml` to nambin.github.io is effectively a deploy of the latest movie list.
+**The data files are NOT copied** — `data/movies.yml` and `data/awards.yml` live in nambin.github.io and are the source of truth. To publish a new movie list, **commit the editor's downloaded `movies.yml` directly to `nambin.github.io/data/movies.yml`**. `awards.yml` is maintained automatically by the cron below.
+
+**Auto-load of `data/movies.yml`:** on page load, the editor fetches `data/movies.yml` from the same origin. On github.io that's `nambin.github.io/data/movies.yml`; locally (`python -m http.server` in this repo, which no longer carries the file), the editor falls back to fetching from `https://nambin.github.io`. If localStorage has unsaved local edits (`dirty=true`), the auto-load is skipped and a status message offers the file picker for explicit override. Pushing a new `data/movies.yml` to nambin.github.io is effectively a deploy of the latest movie list.
+
+### Award-curation cron
+
+[.github/workflows/curate-awards.yml](.github/workflows/curate-awards.yml) runs `curate:awards` weekly (Wed 04:00 KST) and on manual `workflow_dispatch`. It checks out **nambin.github.io** into `./site`, regenerates `site/data/awards.yml`, and — only when it changed — commits and pushes that file **to nambin.github.io** (then emails a summary). This requires a repo secret **`NAMBIN_IO_TOKEN`**: a credential with write access to `nambin/nambin.github.io` (a fine-grained PAT with `Contents: read/write`, or a deploy key). The default `GITHUB_TOKEN` can't push cross-repo, so this secret is mandatory for the push to succeed.
 
 ### Architecture
 

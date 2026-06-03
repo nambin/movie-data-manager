@@ -8,14 +8,24 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import yaml from "js-yaml";
 import { canonicalizeAll } from "../lib/canonicalize.js";
 import { sortMovies, YAML_DUMP_OPTIONS } from "../lib/utils.js";
 
-const YML_PATH = new URL("../data/movies.yml", import.meta.url);
+// movies.yml now lives in the nambin.github.io repo. Resolve it the same way
+// the CLIs do: DATA_DIR if set, else the side-by-side checkout. The file-backed
+// tests skip when that checkout isn't present (e.g. CI without the sibling repo).
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const dataDir = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.resolve(root, "..", "nambin.github.io", "data");
+const YML_PATH = path.join(dataDir, "movies.yml");
+const haveMovies = existsSync(YML_PATH);
 
-test("round-trip: load → canonicalize → sort → dump → parse → deep-equal", () => {
+test("round-trip: load → canonicalize → sort → dump → parse → deep-equal", { skip: !haveMovies && `movies.yml not found at ${YML_PATH}` }, () => {
   const text = readFileSync(YML_PATH, "utf-8");
   const original = yaml.load(text);
   assert.ok(Array.isArray(original));
@@ -46,7 +56,7 @@ test("round-trip: load → canonicalize → sort → dump → parse → deep-equ
   }
 });
 
-test("round-trip: input was already in sorted order (no shuffling)", () => {
+test("round-trip: input was already in sorted order (no shuffling)", { skip: !haveMovies && `movies.yml not found at ${YML_PATH}` }, () => {
   // The web app sorts on every download (see lib/app.js's Download YML
   // handler), so the on-disk file should already be sorted by the time it's
   // committed. If sortMovies disagrees with that order on real data, it

@@ -25,7 +25,14 @@ import {
 } from "../lib/awards_curation.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const outPath = path.join(root, "data", "awards.yml");
+
+// The canonical data now lives in the nambin.github.io repo, not here. Default
+// to the side-by-side checkout (../nambin.github.io/data); override with
+// DATA_DIR (the cron sets it to the cross-repo checkout's data/).
+const dataDir = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.resolve(root, "..", "nambin.github.io", "data");
+const outPath = path.join(dataDir, "awards.yml");
 
 // Key lookup mirrors scripts/build.mjs: prefer the environment (CI secrets),
 // fall back to the .env file at the repo root (local runs) so the same .env
@@ -58,7 +65,7 @@ if (!geminiKey) {
 // recover curated Korean spellings (best-effort — fine if movies.yml is absent).
 let koreanDirectorMap = new Map();
 try {
-  const movies = yaml.load(readFileSync(path.join(root, "data", "movies.yml"), "utf-8"));
+  const movies = yaml.load(readFileSync(path.join(dataDir, "movies.yml"), "utf-8"));
   koreanDirectorMap = buildKoreanDirectorMap(Array.isArray(movies) ? movies : []);
 } catch (e) {
   console.error(`(could not build Korean director map: ${e.message})`);

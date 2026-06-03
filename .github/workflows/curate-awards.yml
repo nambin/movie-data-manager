@@ -12,9 +12,19 @@ jobs:
   curate:
     runs-on: ubuntu-latest
     steps:
+      # This repo: curation code + lib + node deps.
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
+
+      # The canonical data lives in nambin.github.io, not here. Check it out
+      # into ./site (NAMBIN_IO_TOKEN = a write credential for that repo) so the
+      # CLI can read its movies.yml and write its awards.yml, then push there.
+      - uses: actions/checkout@v4
+        with:
+          repository: nambin/nambin.github.io
+          token: ${{ secrets.NAMBIN_IO_TOKEN }}
+          path: site
 
       # `tee -a run.log` captures everything for the failure email. The default
       # bash shell runs with `set -eo pipefail`, so a non-zero npm/node exit
@@ -25,16 +35,19 @@ jobs:
       - name: Curate awards
         run: node cli/curate-awards.mjs 2>&1 | tee -a run.log
         env:
+          # Point the CLI at the site checkout's data/ (reads movies.yml,
+          # writes awards.yml there).
+          DATA_DIR: site/data
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # The CLI writes a human-readable "what's new" summary here when (and
-          # only when) data/awards.yml actually changed.
+          # only when) awards.yml actually changed.
           AWARDS_SUMMARY_FILE: awards-summary.txt
 
       - name: Detect changes
         id: changes
         run: |
-          if git diff --quiet -- data/awards.yml; then
+          if git -C site diff --quiet -- data/awards.yml; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -43,11 +56,11 @@ jobs:
       - name: Commit and push
         if: steps.changes.outputs.changed == 'true'
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/awards.yml
-          git commit -m "chore: refresh award curation"
-          git push
+          git -C site config user.name  "github-actions[bot]"
+          git -C site config user.email "github-actions[bot]@users.noreply.github.com"
+          git -C site add data/awards.yml
+          git -C site commit -m "chore: refresh award curation"
+          git -C site push
 
       # --- Email: success WITH changes (silent when nothing changed) ----------
       - name: Compose update email
