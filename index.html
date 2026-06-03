@@ -249,7 +249,6 @@
       }
 
       .language,
-      .kor-flag,
       .ids {
         font-size: 0.85rem;
         color: #777;
@@ -259,10 +258,14 @@
         margin: 0.25rem 0 0 0;
       }
 
+      .ids a,
+      .ids span {
+        margin-right: 0.6rem;
+      }
+
       .ids a {
         color: #36a;
         text-decoration: none;
-        margin-right: 0.5rem;
       }
 
       .ids a:hover {
@@ -274,23 +277,17 @@
         color: #555;
       }
 
+      .awards[hidden] {
+        display: none;
+      }
+
       .awards-label {
         font-weight: 600;
         margin-right: 0.5rem;
       }
 
-      .awards-checkboxes label {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.25rem;
-        margin-right: 0.75rem;
-        font-size: 0.85rem;
+      .awards-list {
         color: #444;
-      }
-
-      .awards-checkboxes input[type="checkbox"] {
-        margin: 0;
       }
 
       .empty-state {
@@ -610,10 +607,6 @@
               >Year <input class="year" type="number" min="1900" max="2099" /></label
             >
             <label>Director <input class="director" type="text" /></label>
-            <span class="language"></span>
-            <span class="kor-flag"></span>
-          </div>
-          <div class="row meta-row">
             <label
               >Title in Korean
               <input class="custom-korean-title" type="text" placeholder="(optional)" />
@@ -627,9 +620,9 @@
               </select>
             </label>
           </div>
-          <div class="awards">
+          <div class="awards" hidden>
             <span class="awards-label">Awards:</span>
-            <span class="awards-checkboxes"></span>
+            <span class="awards-list"></span>
           </div>
           <label class="note-label">
             Note
@@ -666,19 +659,27 @@
                 Director
                 <input class="director" type="text" />
               </label>
-              <span class="language"></span>
-              <span class="kor-flag"></span>
-            </div>
-            <div class="row meta-row">
-              <label>
-                Title in Korean
+              <label
+                >Title in Korean
                 <input
                   class="custom-korean-title"
                   type="text"
                   placeholder="(optional)"
                 />
               </label>
+              <label>
+                Rating
+                <select class="rating">
+                  <option value="">(none)</option>
+                  <option value="my_best">My Best</option>
+                  <option value="masterpiece">Masterpiece</option>
+                </select>
+              </label>
             </div>
+            <label class="note-label">
+              Note
+              <textarea class="note" rows="2" placeholder="(optional)"></textarea>
+            </label>
             <label class="candidate-picker-label">
               TMDB candidate
               <select class="candidate-picker"></select>
