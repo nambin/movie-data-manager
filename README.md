@@ -119,6 +119,15 @@ npm run curate:awards   # writes data/awards.yml
 
 The keys are read from `process.env` (the same `.env` the builds use — the CLI runs under plain Node, so the esbuild build-time inlining does not apply). The run is a full **idempotent** regenerate: `generated_at` is only re-stamped when the substantive `by_imdb` content actually changed, so a run with no new winners leaves the file byte-identical (empty `git diff`). It makes a few hundred TMDB lookups, so expect it to take a couple of minutes.
 
+### Reconciling `data/movies.yml` against `data/awards.yml`
+
+`data/awards.yml` is treated as the **ground truth for the six curated awards** above. A second CLI compares the award data on each movie in `data/movies.yml` against it and rewrites `data/movies.yml` to match — adding any curated award the lookup has, removing any curated award it does **not** have. No network or API keys needed.
+
+```bash
+npm run reconcile:awards              # writes data/movies.yml
+npm run reconcile:awards -- --dry-run # report the changes without writing
+```
+
 ### Deploying to nambin.github.io
 
 ```bash

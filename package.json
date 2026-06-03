@@ -10,7 +10,8 @@
     "build:dev": "node scripts/build-dev.mjs",
     "watch": "node scripts/build.mjs --watch",
     "capture:fixtures": "node scripts/capture-fixtures.mjs",
-    "curate:awards": "node cli/curate-awards.mjs"
+    "curate:awards": "node cli/curate-awards.mjs",
+    "reconcile:awards": "node cli/reconcile-awards.mjs"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
