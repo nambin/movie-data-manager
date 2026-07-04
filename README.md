@@ -147,6 +147,10 @@ That's it on this side. The deploy is a plain copy of two editor files — no ed
 
 Commit and push both files in `nambin.github.io`. URL: `https://nambin.github.io/movies_editor.html`.
 
+### Android app
+
+A phone-native, curation-only client lives in [android/](android/) — same repo, its own Gradle project. It's a different front door onto the same `data/movies.yml` (memo-based add, search-based update, one-tap commit straight to GitHub) rather than a copy of this web app. Spec: [prompt-android-app.md](prompt-android-app.md). Build setup: [android/README.md](android/README.md).
+
 **The data files are NOT copied** — `data/movies.yml` and `data/awards.yml` live in nambin.github.io and are the source of truth. To publish a new movie list, **commit the editor's downloaded `movies.yml` directly to `nambin.github.io/data/movies.yml`**. `awards.yml` is maintained automatically by the cron below.
 
 **Auto-load of `data/movies.yml`:** on page load, the editor fetches `data/movies.yml` from the same origin. On github.io that's `nambin.github.io/data/movies.yml`; locally (`python -m http.server` in this repo, which no longer carries the file), the editor falls back to fetching from `https://nambin.github.io`. If localStorage has unsaved local edits (`dirty=true`), the auto-load is skipped and a status message offers the file picker for explicit override. Pushing a new `data/movies.yml` to nambin.github.io is effectively a deploy of the latest movie list.

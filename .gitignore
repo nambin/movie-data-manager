@@ -5,3 +5,16 @@ assets/
 
 # Local auth (per-user)
 .env
+
+# Android app (android/) — build outputs, local SDK path, and secrets.
+# See android/secrets.properties.example for what secrets.properties needs.
+android/secrets.properties
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/*.iml
+android/app/*.iml
+android/captures/
+android/.cxx/
