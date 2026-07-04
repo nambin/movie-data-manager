@@ -88,14 +88,14 @@ test("Gemini call: missing apiKey throws synchronously-rejected promise", async 
   );
 });
 
-test("Gemini call: hits the gemini-flash-lite-latest endpoint", async () => {
+test("Gemini call: hits the gemini-flash-latest endpoint by default", async () => {
   const calls = installFetchMock(
     geminiResponseFor({ is_movie: true, title: "Anora" })
   );
   await parseMemoLine("Anora 2024", "AIzaSyKEY");
   assert.match(
     calls[0].url,
-    /\/v1beta\/models\/gemini-flash-lite-latest:generateContent\?/
+    /\/v1beta\/models\/gemini-flash-latest:generateContent\?/
   );
 });
 
