@@ -169,9 +169,9 @@ Tapping Commit does **not** push to GitHub directly — it opens a **Review chan
      1. Canonicalize the full in-memory collection (port of `canonicalizeAll`/`canonicalizeEntry`, [lib/canonicalize.js](lib/canonicalize.js) — field order, omit-empty rules, re-derive `awards` from `award_names`, enforce `masterpiece` xor `my_best`).
      2. Sort it (port of `sortMovies`, [lib/utils.js](lib/utils.js) — year desc, masterpiece desc, my_best desc, `len(awards)` desc, director desc).
      3. Dump to YAML text matching the exact on-disk format (block-style sequences, unicode preserved, insertion-order keys, no flow style — see *YAML handling*).
-     4. Commit straight to GitHub via the **Contents API** (see *GitHub commit mechanism* below) — no local git, no working copy.
+     4. Commit straight to GitHub via the **Contents API** (see *GitHub commit mechanism* below, including the **diff-size safety cap** — an oversized mechanical diff aborts here before anything is pushed) — no local git, no working copy.
      5. On success: clear `newImdbIds`/`updatedImdbIds` and the pre-edit snapshots, reset the status line, return to Curation, toast/snackbar "Committed N new, M updated."
-     6. On failure (network, 409 conflict, auth): keep all in-memory state — including the full pending change set — untouched, and land back on the Review changes screen (not all the way back to Curation) so the user can immediately retry without re-confirming from scratch; surface the actual error (don't silently drop edits).
+     6. On failure (network, 409 conflict, auth, **or the diff-size cap tripping**): keep all in-memory state — including the full pending change set — untouched, and land back on the Review changes screen (not all the way back to Curation) so the user can immediately retry or investigate without re-confirming from scratch; surface the actual error (don't silently drop edits).
 
 This is the mechanism behind *"the app needs to show the YML entries that are edited or added to the user so that the user can confirm the action. It commits to GitHub only after the user confirms."*
 
@@ -193,10 +193,21 @@ PUT  /repos/nambin/nambin.github.io/contents/data/movies.yml
 
 Flow:
 
-1. `GET` the current file to obtain its `sha` (needed even though the app already has the content in memory — GitHub requires the blob `sha` of the version being replaced, as an optimistic-concurrency check).
-2. `PUT` the new content with that `sha`.
-3. **On 409 (sha mismatch — someone/something else committed in between, e.g. the weekly awards-curation Action)**: re-`GET` for the fresh `sha` and retry the `PUT` **once**. If it still conflicts, surface an explicit "someone else updated the file — please retry" error rather than looping or force-overwriting.
-4. Commit message: something like `curate: N new, M updated (via Android app)`.
+1. `GET` the current file to obtain its `sha` **and its content** (needed even though the app already has its own view of the collection in memory — GitHub requires the blob `sha` of the version being replaced, as an optimistic-concurrency check, and the fetched content is also the baseline for the diff-size safety cap below).
+2. **Diff-size safety cap** (see below) — run before the `PUT`, never after. Abort here if it trips.
+3. `PUT` the new content with that `sha`.
+4. **On 409 (sha mismatch — someone/something else committed in between, e.g. the weekly awards-curation Action)**: re-`GET` for the fresh `sha` **and content**, re-run the diff-size cap against that fresh content, then retry the `PUT` **once**. If it still conflicts, surface an explicit "someone else updated the file — please retry" error rather than looping or force-overwriting.
+5. Commit message: something like `curate: N new, M updated (via Android app)`.
+
+### Diff-size safety cap
+
+This is a deliberate blunt instrument against exactly one failure mode: a bug (a canonicalize/sort regression, a YAML-formatting difference, an accidental full re-fetch overwriting hand-curated fields) silently turning a "1 new, 1 update" session into a commit that rewrites most of the file. The Review changes screen guards against the *intended* changes being wrong; this guards against the *mechanical* diff being wrong in a way the entry-level review wouldn't surface (e.g. every line's trailing whitespace or key order shifting at once).
+
+- Right before the `PUT` (and again on the 409 retry, against the freshly re-`GET`ed content), compute a **line-level diff** between the `GET`-fetched current file content (base64-decoded) and the newly canonicalized/sorted/dumped YAML text about to be pushed — the same notion of "diff" `git diff --stat` reports, i.e. count of inserted lines + count of deleted lines from a standard line-based diff (Myers/LCS; any standard diff library on the JVM works, e.g. `java-diff-utils`).
+- **If inserted + deleted lines > 100** (`MAX_COMMIT_DIFF_LINES = 100`, a named constant in code — not a Setting; this is a code-level safety rail, not a per-session preference), **abort before making the `PUT` call.** No commit is created.
+- Surface a clear, specific error — e.g. *"This commit would change 734 lines (limit: 100) — aborted before pushing to GitHub."* — and land back on the **Review changes** screen with the full pending change set completely untouched (nothing cleared, nothing pushed), so the user can inspect what they were about to commit and figure out why the diff is so much larger than the `N new, M update` count implied.
+- **No in-app override or "commit anyway" button in v1.** This is intentionally a hard stop, matching the ask: if a legitimately large change is ever needed on purpose (e.g. a deliberate bulk edit), do it from the web editor or directly on GitHub.com instead — not from this app. Revisit only if the cap turns out to false-positive on ordinary use.
+- The threshold is checked **once per commit attempt, against the whole file's diff** — not per-entry and not against the `N new, M update` counters, since those count *logical* movie-level changes while this counts *physical* lines, and the two can diverge exactly when something's gone wrong (which is the point).
 
 ### Build-time configuration & the secrets
 
@@ -266,6 +277,8 @@ None of this is a new design; it's a straight port of already-working, already-t
 - Edit the same existing entry's Note *after* already editing its Rating (still pre-commit) → Review changes screen's diff for that entry shows **both** `Rating: …` and `Note: …` changes relative to the original pre-session values, not just the latest edit.
 - From Review changes, tap **Confirm & Commit** → GitHub shows a new commit on `main` touching only `data/movies.yml`, with exactly those two changes in the diff, in the correct sorted position, canonical field order/omission rules honored; app returns to Curation with `0 new, 0 update` and Commit disabled again.
 - Force a `sha` conflict (edit `data/movies.yml` on GitHub.com between load and commit) → confirming from the Review changes screen auto-retries once with a fresh `sha` and either succeeds or reports a clear conflict error while remaining on the Review changes screen — no data loss, no silent overwrite of the intervening change, and the user can retry without re-reviewing the diff from scratch.
+- Add one movie + edit one rating (a legitimate small session) → Confirm & Commit succeeds normally; the diff-size cap never even becomes visible for ordinary use (a couple of movie entries is nowhere near 100 lines).
+- Artificially force an oversized mechanical diff (e.g. in a debug build, feed the commit path a YAML dump with a deliberately different key order or re-sorted whole file, simulating a canonicalize/sort bug) → commit aborts before any GitHub API call is made, a specific "N lines changed, limit 100" error is shown, and the Review changes screen remains open with the full pending change set intact — nothing pushed, nothing lost.
 
 ## Decisions made
 
@@ -279,6 +292,7 @@ None of this is a new design; it's a straight port of already-working, already-t
 - **Award display:** text-only award names, no badge icons.
 - **Target device / SDK:** the user's own Samsung Galaxy S24 only — `minSdk` = `targetSdk` = `compileSdk` = the latest stable Android API level at build time (Android 14/API 34 as shipped, or whatever is current when the project is set up), with no legacy-device compatibility work. Revisit only if the app ever needs to run on an older/different device.
 - **"One flow in progress" UX:** a lightweight confirmation dialog — "Discard in-progress edit?" with **Discard** / **Cancel** — rather than silently blocking the new action.
+- **Diff-size safety cap:** a commit is refused outright — no `PUT` call made — if the line-level diff between the live GitHub file and the new YAML exceeds 100 changed lines (insertions + deletions). No in-app override; see *Diff-size safety cap*. This is a backstop against a formatting/logic bug silently producing a much bigger change than the reviewed `N new, M update` count implies, not a limit on legitimate curation volume.
 
 ## Open questions for review
 
