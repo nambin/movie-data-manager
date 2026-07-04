@@ -68,7 +68,7 @@ Persist Gemini settings with **Jetpack DataStore** (Preferences), not raw `Share
 
 On entering this screen (first time per app session is enough — no need to re-fetch on every visit unless the user pulls to refresh):
 
-1. Fetch `https://nambin.github.io/data/movies.yml` and `https://nambin.github.io/data/awards.yml` over plain HTTPS (same URLs the web app's `LIVE_DATA_ORIGIN` fallback already uses — no auth needed, both files are public).
+1. Fetch `https://nambin.github.io/data/movies.yml` and `https://nambin.github.io/data/awards.yml` over plain HTTPS (same URLs the web app's `LIVE_DATA_ORIGIN` fallback already uses — no auth needed, both files are public). No local caching — every cold start blocks on this fetch, which is the simplest way to guarantee the in-memory collection is always current, and there's exactly one user/one device so a cache's main upside (fast reopen) isn't worth the added moving parts.
 2. Parse both into memory (see *YAML handling* below).
 3. Build the `by_imdb` awards lookup and the romanized→Korean director map (port of `buildKoreanDirectorMap`, [lib/utils.js](lib/utils.js)) from the loaded collection.
 4. **Show no movie cards.** The screen's default state is search bar + "Add a movie" entry point + Commit button/status — an empty result area, not a list dump. This matches the phone use case: you came here to do one thing (add or find one movie), not browse 800 entries.
@@ -112,7 +112,7 @@ Regardless of whether the entry arrived via the memo/LLM flow or via search, the
 | Director | **Editable** text field. Always editable (not gated behind "only if Korean") — same as the web app — but the map-lookup pre-fills the Korean form automatically for known directors, so manual edits are mainly needed for first-time Korean directors, matching the stated intent. Editing recomputes `is_korean_director`. |
 | Rating | Dropdown: **(none)** / **My Best** / **Masterpiece** — mutually exclusive, same semantics as the web app. |
 | Note | Multi-line text box, trimmed, omitted from YAML when blank. |
-| Awards | Read-only row, populated from `awards.yml` by `imdb_id` — full names, comma-separated (or a small badge row using the same `BADGE_KEY_BY_NAME` icons `movies.html` uses, if bringing those icon assets over is easy; text-only is a fine v1). Hidden entirely when the film has none. Re-derived automatically when the candidate picker changes the underlying film. |
+| Awards | Read-only row, populated from `awards.yml` by `imdb_id` — full award names, comma-separated (text only; no badge icons — see *Decisions made*). Hidden entirely when the film has none. Re-derived automatically when the candidate picker changes the underlying film. |
 
 **Every field edit auto-saves to memory immediately** — no separate Save button, no "unsaved changes" state on this screen. Each change writes straight into the in-memory collection:
 
@@ -138,7 +138,7 @@ When the pipeline's picked candidate matches an existing entry:
 - If the detail view *did* open (because the top candidate was new) and the user then swaps the **candidate picker** to a different candidate that turns out to already be curated: annotate that option with an inline "(already curated)" hint in the dropdown, and selecting it swaps the whole screen into the same "already curated" message + edit-mode handoff described above, rather than silently turning the screen into a duplicate entry.
 - A duplicate attempt never touches the in-memory list, `newImdbIds`, or any pending-change state — it's a dead end for **adding**, not a silent backdoor into **updating** unless the user explicitly follows through on the "tap to edit" affordance.
 
-**One add/edit flow in progress at a time.** The check above only works because the in-memory `movies` list is always a true reflection of "everything saved so far this session" — which requires that at most one entry is ever "in flight" (built from the pipeline, or opened from search) but not yet saved. Enforce this in the UI: starting a new Add, or opening a search result, while another detail view already has unsaved changes should prompt to finish or discard that one first rather than silently stacking two pending edits.
+**One add/edit flow in progress at a time.** The check above only works because the in-memory `movies` list is always a true reflection of "everything saved so far this session" — which requires that at most one entry is ever "in flight" (built from the pipeline, or opened from search) but not yet saved. Enforce this in the UI: starting a new Add, or opening a search result, while another detail view already has unsaved changes shows a lightweight confirmation dialog — "Discard in-progress edit?" with **Discard** / **Cancel** — rather than silently stacking two pending edits or silently blocking the new action.
 
 **Defensive re-check at Commit.** As part of Confirm & Commit (before canonicalize/sort/dump/push), group the full in-memory collection by `imdb_id` and abort with a clear error if any key maps to more than one entry, instead of ever pushing a `data/movies.yml` with duplicate movies to GitHub. This should be unreachable given the checks above, but it's a cheap, final backstop — the same spirit as `canonicalizeEntry`'s defensive passthrough of unknown keys in [lib/canonicalize.js](lib/canonicalize.js).
 
@@ -244,7 +244,7 @@ None of this is a new design; it's a straight port of already-working, already-t
 - **SnakeYAML** for YAML load/dump (see above).
 - **androidx.browser (Custom Tabs)** for the poster → TMDB link.
 - **Jetpack DataStore (Preferences)** for the one persisted Setting (Gemini model tier).
-- **In-memory `ViewModel` state only** for the loaded collection + the session's `newImdbIds`/`updatedImdbIds`/pre-edit snapshots — no on-disk cache backing it. If Android kills the process mid-session before Commit, that session's uncommitted adds/edits are lost and must be redone; accepted as a fine v1 trade-off given how cheap re-adding a movie or re-editing a rating is, and it keeps this app free of the web app's `localStorage` dirty-state persistence machinery entirely. Revisit if losing a session in practice turns out to be more than a rare annoyance.
+- **In-memory `ViewModel` state only** for the loaded collection + the session's `newImdbIds`/`updatedImdbIds`/pre-edit snapshots — no on-disk cache anywhere in this app. Every cold start re-fetches `movies.yml`/`awards.yml` fresh (see *Boot behavior*), and if Android kills the process mid-session before Commit, that session's uncommitted adds/edits are lost and must be redone; accepted as a fine v1 trade-off given how cheap re-adding a movie or re-editing a rating is, and it keeps this app free of the web app's `localStorage` dirty-state persistence machinery entirely. Revisit if losing a session in practice turns out to be more than a rare annoyance.
 
 ## Acceptance test
 
@@ -257,7 +257,8 @@ None of this is a new design; it's a straight port of already-working, already-t
 - Curation → add a movie already in `data/movies.yml` (e.g. `Parasite 2019`) → "Already curated: Parasite (2019) — tap to open and edit instead." message, no new-entry detail view opens, `newImdbIds` unchanged; tapping the message opens the shared detail view in edit mode for the existing entry.
 - Curation → add a movie, save it, then immediately try to add the exact same title again in the same session (before committing) → same "already curated" message fires against the session-local addition, not just the boot-loaded collection.
 - Curation → open a new-entry detail view for a not-yet-duplicate candidate, then switch its candidate picker to a different option that IS already curated → the picker option is annotated "(already curated)" and selecting it swaps the whole screen to the "already curated" message + edit-mode handoff, instead of building a duplicate.
-- Start an Add, leave its detail view unsaved, then try to open a second Add or a search result → prompted to finish or discard the in-progress one first (not two pending edits stacked).
+- Start an Add, leave its detail view unsaved, then try to open a second Add or a search result → "Discard in-progress edit?" dialog appears (Discard / Cancel); choosing Cancel leaves the first edit untouched and open, choosing Discard clears it and proceeds to the new Add/search result.
+- Cold launch with airplane mode on → retryable full-screen error state (no cache to fall back to); toggling connectivity back on and retrying loads the collection normally.
 - Search by director-only (e.g. `봉준호`) → returns his films; tapping one opens the edit view with rating/note editable and Save reflected in the "update" counter.
 - Tap poster → Chrome Custom Tab opens the film's TMDB page (not an in-app WebView, not the system browser app-switch).
 - Add one new movie + edit one existing movie's rating → status line reads `1 new, 1 update` → tap Commit → **Review changes** screen shows one **NEW** card (poster/Title (Year)/director/rating/note/awards) and one **UPDATED** row showing only `Rating: (none) → …` (no other fields listed, since nothing else changed).
@@ -274,10 +275,11 @@ None of this is a new design; it's a straight port of already-working, already-t
 - **Candidate picker placement:** embedded at the top of the shared detail view itself, not a separate screen — swapping candidates re-fills the same card.
 - **Session-edit persistence:** in-memory only; a process death before Commit loses that session's uncommitted work, accepted as a fine v1 trade-off.
 - **Secret embedding:** both the GitHub PAT and the Gemini API key are hardcoded at build time (see *Build-time configuration & the secrets*), on the understanding that this APK is never distributed beyond the user's own devices.
+- **`movies.yml`/`awards.yml` freshness:** no disk cache — every cold start blocks on a fresh fetch of both files before Curation becomes usable. Simplest option, and the single-user/single-device posture means a cache's main benefit (fast reopen) isn't worth the extra state to manage — see *Boot behavior* above.
+- **Award display:** text-only award names, no badge icons.
+- **Target device / SDK:** the user's own Samsung Galaxy S24 only — `minSdk` = `targetSdk` = `compileSdk` = the latest stable Android API level at build time (Android 14/API 34 as shipped, or whatever is current when the project is set up), with no legacy-device compatibility work. Revisit only if the app ever needs to run on an older/different device.
+- **"One flow in progress" UX:** a lightweight confirmation dialog — "Discard in-progress edit?" with **Discard** / **Cancel** — rather than silently blocking the new action.
 
 ## Open questions for review
 
-1. **Should the app cache `movies.yml`/`awards.yml` to disk for instant reopen**, refreshing in the background, or always block on a fresh network fetch on first Curation visit per session? Draft assumes the latter (simpler, and the collection is the single source of truth for duplicate-detection so staleness is a real correctness risk, not just a UX nicety).
-2. **Award badge icons.** Text-only award names (v1, simplest) vs. porting the small badge icon set from [movies.html](../nambin.github.io/movies.html) — nice-to-have, not load-bearing for the curation workflow.
-3. **Min/target Android SDK.** Not yet specified anywhere in this doc. Since the app only ever runs on the user's own device(s), what's the oldest Android version it realistically needs to support? This picks the `minSdk` in `build.gradle` and determines which Compose/Material3/Custom-Tabs APIs are safely available.
-4. **UX for "one add/edit flow in progress at a time."** When the user tries to start a second Add or open a search result while a detail view already has unsaved changes (see *Duplicate prevention & sort invariants*): silently block the new action, or show a lightweight "Discard in-progress edit?" confirmation dialog? Draft leans toward the confirmation dialog (cheap to add, avoids silently swallowing a tap) but this hasn't been explicitly decided.
+None outstanding — see *Decisions made* above. Re-open any of these if implementation surfaces a reason to revisit.
