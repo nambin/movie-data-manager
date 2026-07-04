@@ -236,16 +236,80 @@ Every field, the sort order, the YAML dump conventions, and the awards taxonomy 
 
 ## Ported logic — JS module → Android equivalent
 
-None of this is a new design; it's a straight port of already-working, already-tested logic into Kotlin so behavior stays identical across both clients.
+None of this is a new design; it's a straight port of already-working, already-tested logic into Kotlin so behavior stays identical across both clients. See *Code organization* below for exactly where each Kotlin file lives and the naming convention that keeps the two sides directly comparable.
 
-| Web app source | Android port covers |
-| --- | --- |
-| [lib/utils.js](lib/utils.js) | `AWARD_NAMES`, `BADGE_KEY_BY_NAME`, `deriveAwardBadges`, `isKoreanLanguage`, `buildKoreanDirectorMap`, `getLanguageName` (+ the `cn`→Cantonese override), `sortMovies` |
-| [lib/tmdb_utils.js](lib/tmdb_utils.js) | `buildMovieEntryFromTmdb` (title composition, field order, `country` omitted for new entries) |
-| [lib/gemini_utils.js](lib/gemini_utils.js) | Call A / Call B system prompts and JSON response schemas, verbatim — reuse the exact prompt text so match quality doesn't drift between clients |
-| [lib/memo_pipeline.js](lib/memo_pipeline.js) | `processMemoLine` orchestration: TMDB year±1 windowed search, candidate enrichment (`/movie/{id}?append_to_response=credits`), the `imdb_id`-required candidate filter, Korean-director map resolution (Call C stays disabled) |
-| [lib/canonicalize.js](lib/canonicalize.js) | `canonicalizeEntry`/`canonicalizeAll` — field order, omit-empty, masterpiece/my_best exclusivity |
-| [lib/awards_reconcile.js](lib/awards_reconcile.js) | `reconcileAwardNames`/`applyAwardsToEntry`-equivalent — overwrite `award_names` from `awards.yml`'s `by_imdb`, drop `awards` so canonicalize re-derives it |
+| Web app source | Android file | Port covers |
+| --- | --- | --- |
+| [lib/utils.js](lib/utils.js) | `android/app/src/main/java/.../core/Utils.kt` | `AWARD_NAMES`, `BADGE_KEY_BY_NAME`, `deriveAwardBadges`, `isKoreanLanguage`, `buildKoreanDirectorMap`, `getLanguageName` (+ the `cn`→Cantonese override), `sortMovies` |
+| [lib/tmdb_utils.js](lib/tmdb_utils.js) | `core/TmdbUtils.kt` | `buildMovieEntryFromTmdb` (title composition, field order, `country` omitted for new entries) |
+| [lib/gemini_utils.js](lib/gemini_utils.js) | `core/GeminiUtils.kt` | Call A / Call B system prompts and JSON response schemas, verbatim — reuse the exact prompt text so match quality doesn't drift between clients |
+| [lib/memo_pipeline.js](lib/memo_pipeline.js) | `core/MemoPipeline.kt` | `processMemoLine` orchestration: TMDB year±1 windowed search, candidate enrichment (`/movie/{id}?append_to_response=credits`), the `imdb_id`-required candidate filter, Korean-director map resolution (Call C stays disabled) |
+| [lib/canonicalize.js](lib/canonicalize.js) | `core/Canonicalize.kt` | `canonicalizeEntry`/`canonicalizeAll` — field order, omit-empty, masterpiece/my_best exclusivity |
+| [lib/awards_reconcile.js](lib/awards_reconcile.js) | `core/AwardsReconcile.kt` | `reconcileAwardNames`/`applyAwardsToEntry`-equivalent — overwrite `award_names` from `awards.yml`'s `by_imdb`, drop `awards` so canonicalize re-derives it |
+
+`lib/app.js` (the web app's DOM/UI glue) and `lib/awards_curation.js` (the offline award-curation CLI's Wikidata/Wikipedia scraping, only ever run by `cli/curate-awards.mjs` — see [prompt-award-curation.md](prompt-award-curation.md)) have **no** Android counterpart: the first is web-only UI wiring with nothing portable in it, the second belongs to a batch job that runs in GitHub Actions regardless of which client eventually reads its output.
+
+## Code organization
+
+**Repo placement:** the Android app lives in **this same repository**, in a new top-level `android/` directory — a standard Gradle project root — sitting alongside the existing `lib/`, `cli/`, `scripts/`, and `tests/`. Nothing about the existing web app moves or changes.
+
+```
+movie-data-manager/
+├─ lib/                         ← existing, untouched (web app + CLI shared logic)
+├─ cli/                         ← existing, untouched
+├─ scripts/                     ← existing, untouched
+├─ tests/                       ← existing, untouched
+├─ index.html, package.json,    ← existing, untouched
+│  prompt-*.md, ...
+│
+└─ android/                     ← NEW — Gradle project root for the Android app
+   ├─ settings.gradle.kts
+   ├─ gradle.properties         ← gitignored; GitHub PAT + Gemini key (see *Build-time configuration*)
+   └─ app/
+      ├─ build.gradle.kts       ← buildConfigField wiring for the hardcoded secrets
+      └─ src/
+         ├─ main/
+         │  ├─ AndroidManifest.xml
+         │  └─ java/com/nambin/moviecuration/
+         │     ├─ core/                  ← mirrors lib/*.js, one file per module (see table above)
+         │     │  ├─ Utils.kt
+         │     │  ├─ TmdbUtils.kt
+         │     │  ├─ GeminiUtils.kt
+         │     │  ├─ MemoPipeline.kt
+         │     │  ├─ Canonicalize.kt
+         │     │  └─ AwardsReconcile.kt
+         │     ├─ github/                ← NEW — no JS equivalent (the web app never commits to GitHub)
+         │     │  ├─ GitHubContentsClient.kt   (GET/PUT against the Contents API, sha handling, 409 retry)
+         │     │  └─ DiffSizeGuard.kt          (the 100-line safety cap)
+         │     ├─ data/                  ← NEW — Android-side state the web app keeps as globals/localStorage in app.js
+         │     │  ├─ MovieRepository.kt        (boot fetch, in-memory collection, dedup checks)
+         │     │  ├─ CurationSession.kt        (newImdbIds / updatedImdbIds / pre-edit snapshots)
+         │     │  └─ YamlCodec.kt              (SnakeYAML config mirroring utils.js's YAML_DUMP_OPTIONS/YAML_LOAD_OPTIONS/YAML_SCHEMA)
+         │     ├─ settings/
+         │     │  └─ GeminiModelSetting.kt     (DataStore-backed model-tier preference)
+         │     ├─ ui/                    ← NEW — Compose screens, no JS equivalent
+         │     │  ├─ MovieCurationApp.kt       (drawer + nav host, 3 destinations)
+         │     │  ├─ movies/MoviesScreen.kt    (WebView)
+         │     │  ├─ settings/SettingsScreen.kt
+         │     │  └─ curation/
+         │     │     ├─ CurationScreen.kt      (Add box + Search box)
+         │     │     ├─ DetailScreen.kt        (shared add/edit view, incl. candidate picker)
+         │     │     └─ ReviewChangesScreen.kt (diff list + Confirm & Commit)
+         │     └─ MainActivity.kt
+         └─ test/
+            └─ java/com/nambin/moviecuration/core/
+               ├─ UtilsTest.kt            ← mirrors tests/utils.test.js (exact test names where the behavior matches)
+               ├─ TmdbUtilsTest.kt
+               ├─ MemoPipelineTest.kt
+               ├─ CanonicalizeTest.kt
+               └─ AwardsReconcileTest.kt
+```
+
+Two things make the correspondence easy to eyeball, which was the actual goal:
+
+- **One JS module → one Kotlin file, same base name.** `tmdb_utils.js` → `TmdbUtils.kt`, `memo_pipeline.js` → `MemoPipeline.kt`, and so on — the only difference is JS's `snake_case.js` convention becoming Kotlin's conventional `PascalCase.kt`, so the mapping is mechanical (capitalize each underscore-separated word, drop the underscores) rather than a naming judgment call per file.
+- **All of it lives under one `core/` package**, deliberately named to echo `lib/` — anyone comparing the two codebases goes `lib/` ↔ `core/`, file by file, and everything *outside* that pairing (`github/`, `data/`, `settings/`, `ui/`) is visibly Android-only, new surface area with nothing in the web app to compare against.
+- **Tests mirror the same pairing**: `tests/*.test.js` ↔ `core/*Test.kt`, and where a JS test asserts a specific input/output pair (e.g. a fixture-driven case in `tests/fixtures/`), the Kotlin test should assert the *same* input/output pair — copy the JSON fixtures into `android/app/src/test/resources/fixtures/` verbatim rather than inventing new ones, so a behavior difference between the two clients shows up as a failing port test, not a silent drift.
 
 ## Suggested tech stack
 
@@ -292,6 +356,7 @@ None of this is a new design; it's a straight port of already-working, already-t
 - **Award display:** text-only award names, no badge icons.
 - **Target device / SDK:** the user's own Samsung Galaxy S24 only — `minSdk` = `targetSdk` = `compileSdk` = the latest stable Android API level at build time (Android 14/API 34 as shipped, or whatever is current when the project is set up), with no legacy-device compatibility work. Revisit only if the app ever needs to run on an older/different device.
 - **"One flow in progress" UX:** a lightweight confirmation dialog — "Discard in-progress edit?" with **Discard** / **Cancel** — rather than silently blocking the new action.
+- **Repo placement & code organization:** the Android app lives in this same repo under a new top-level `android/` directory (not a separate repo); its `core/` package mirrors `lib/`'s modules one-to-one by file name (`tmdb_utils.js` ↔ `TmdbUtils.kt`, etc.) so the two clients' shared logic is directly comparable — see *Code organization*.
 - **Diff-size safety cap:** a commit is refused outright — no `PUT` call made — if the line-level diff between the live GitHub file and the new YAML exceeds 100 changed lines (insertions + deletions). No in-app override; see *Diff-size safety cap*. This is a backstop against a formatting/logic bug silently producing a much bigger change than the reviewed `N new, M update` count implies, not a limit on legitimate curation volume.
 
 ## Open questions for review
