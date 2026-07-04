@@ -355,6 +355,13 @@
         display: none;
       }
 
+      #gemini-model-select {
+        padding: 0.4rem 0.2rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: white;
+      }
+
       /* ----- review pane ----- */
 
       #review-pane {
@@ -563,6 +570,11 @@
           <button id="process-memo-btn" type="button" disabled>
             Process memo
           </button>
+          <select id="gemini-model-select" title="Gemini model used for memo parsing">
+            <option value="flash-lite">Flash-Lite</option>
+            <option value="flash" selected>Flash</option>
+            <option value="pro">Pro</option>
+          </select>
           <input
             type="password"
             id="gemini-key-input"
