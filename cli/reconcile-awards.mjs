@@ -17,7 +17,11 @@ import path from "node:path";
 import yaml from "js-yaml";
 
 import { canonicalizeAll } from "../lib/canonicalize.js";
-import { sortMovies, YAML_DUMP_OPTIONS } from "../lib/utils.js";
+import {
+  sortMovies,
+  YAML_DUMP_OPTIONS,
+  YAML_LOAD_OPTIONS,
+} from "../lib/utils.js";
 import { reconcileMovies } from "../lib/awards_reconcile.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -31,14 +35,16 @@ const moviesPath = path.join(dataDir, "movies.yml");
 const awardsPath = path.join(dataDir, "awards.yml");
 const dryRun = process.argv.includes("--dry-run");
 
-const movies = yaml.load(readFileSync(moviesPath, "utf-8"));
+const movies = yaml.load(readFileSync(moviesPath, "utf-8"), YAML_LOAD_OPTIONS);
 if (!Array.isArray(movies)) {
   console.error("data/movies.yml did not parse to a list.");
   process.exit(1);
 }
 let byImdb;
 try {
-  byImdb = yaml.load(readFileSync(awardsPath, "utf-8"))?.by_imdb ?? {};
+  byImdb =
+    yaml.load(readFileSync(awardsPath, "utf-8"), YAML_LOAD_OPTIONS)?.by_imdb ??
+    {};
 } catch (e) {
   console.error(`Could not read data/awards.yml: ${e.message}`);
   process.exit(1);

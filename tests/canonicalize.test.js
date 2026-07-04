@@ -66,9 +66,10 @@ test("canonicalize: trims whitespace on director", () => {
   assert.equal(out.director, "Park Chan-wook");
 });
 
-test("canonicalize: optional fields appear in this order: custom_korean_title, masterpiece|my_best, note, award_names, awards", () => {
+test("canonicalize: optional fields appear in this order: date_committed, custom_korean_title, masterpiece|my_best, note, award_names, awards", () => {
   const out = canonicalizeEntry(
     legacyEntry({
+      date_committed: "2026-05-10",
       custom_korean_title: "기생충",
       masterpiece: true,
       note: "great",
@@ -79,6 +80,7 @@ test("canonicalize: optional fields appear in this order: custom_korean_title, m
   // Strip main keys to inspect the optional tail.
   const tail = keys.slice(15);
   assert.deepEqual(tail, [
+    "date_committed",
     "custom_korean_title",
     "masterpiece",
     "note",
@@ -88,9 +90,20 @@ test("canonicalize: optional fields appear in this order: custom_korean_title, m
   assert.deepEqual(out.awards, ["cannes"]);
 });
 
+test("canonicalize: preserves date_committed verbatim", () => {
+  const out = canonicalizeEntry(legacyEntry({ date_committed: "2026-06-26" }));
+  assert.equal(out.date_committed, "2026-06-26");
+});
+
+test("canonicalize: omits date_committed when not present (pre-2026 / not backfilled entries)", () => {
+  const out = canonicalizeEntry(legacyEntry());
+  assert.equal("date_committed" in out, false);
+});
+
 test("canonicalize: omits empty optional fields", () => {
   const out = canonicalizeEntry(
     legacyEntry({
+      date_committed: "",
       custom_korean_title: "",
       masterpiece: false,
       my_best: false,
@@ -100,6 +113,7 @@ test("canonicalize: omits empty optional fields", () => {
   );
   // None of the optional keys should appear.
   for (const k of [
+    "date_committed",
     "custom_korean_title",
     "masterpiece",
     "my_best",

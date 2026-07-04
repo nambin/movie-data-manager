@@ -16,7 +16,11 @@ import path from "node:path";
 
 import yaml from "js-yaml";
 
-import { buildKoreanDirectorMap, YAML_DUMP_OPTIONS } from "../lib/utils.js";
+import {
+  buildKoreanDirectorMap,
+  YAML_DUMP_OPTIONS,
+  YAML_LOAD_OPTIONS,
+} from "../lib/utils.js";
 import {
   curateAwards,
   dumpAwardsYaml,
@@ -65,7 +69,10 @@ if (!geminiKey) {
 // recover curated Korean spellings (best-effort — fine if movies.yml is absent).
 let koreanDirectorMap = new Map();
 try {
-  const movies = yaml.load(readFileSync(path.join(dataDir, "movies.yml"), "utf-8"));
+  const movies = yaml.load(
+    readFileSync(path.join(dataDir, "movies.yml"), "utf-8"),
+    YAML_LOAD_OPTIONS
+  );
   koreanDirectorMap = buildKoreanDirectorMap(Array.isArray(movies) ? movies : []);
 } catch (e) {
   console.error(`(could not build Korean director map: ${e.message})`);
@@ -88,7 +95,8 @@ const doc = await curateAwards({
 // the change summary (what's newly populated since last run).
 let prevByImdb = {};
 try {
-  prevByImdb = yaml.load(readFileSync(outPath, "utf-8"))?.by_imdb ?? {};
+  prevByImdb =
+    yaml.load(readFileSync(outPath, "utf-8"), YAML_LOAD_OPTIONS)?.by_imdb ?? {};
 } catch {
   /* no existing file — first run; everything is "added" */
 }

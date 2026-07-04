@@ -13,7 +13,11 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import yaml from "js-yaml";
 import { canonicalizeAll } from "../lib/canonicalize.js";
-import { sortMovies, YAML_DUMP_OPTIONS } from "../lib/utils.js";
+import {
+  sortMovies,
+  YAML_DUMP_OPTIONS,
+  YAML_LOAD_OPTIONS,
+} from "../lib/utils.js";
 
 // movies.yml now lives in the nambin.github.io repo. Resolve it the same way
 // the CLIs do: DATA_DIR if set, else the side-by-side checkout. The file-backed
@@ -27,13 +31,13 @@ const haveMovies = existsSync(YML_PATH);
 
 test("round-trip: load → canonicalize → sort → dump → parse → deep-equal", { skip: !haveMovies && `movies.yml not found at ${YML_PATH}` }, () => {
   const text = readFileSync(YML_PATH, "utf-8");
-  const original = yaml.load(text);
+  const original = yaml.load(text, YAML_LOAD_OPTIONS);
   assert.ok(Array.isArray(original));
   assert.ok(original.length > 800, `expected hundreds of movies, got ${original.length}`);
 
   const processed = sortMovies(canonicalizeAll(original));
   const dumped = yaml.dump(processed, YAML_DUMP_OPTIONS);
-  const reparsed = yaml.load(dumped);
+  const reparsed = yaml.load(dumped, YAML_LOAD_OPTIONS);
 
   assert.equal(reparsed.length, original.length);
 
@@ -62,7 +66,7 @@ test("round-trip: input was already in sorted order (no shuffling)", { skip: !ha
   // committed. If sortMovies disagrees with that order on real data, it
   // indicates a sort-comparator bug.
   const text = readFileSync(YML_PATH, "utf-8");
-  const original = yaml.load(text);
+  const original = yaml.load(text, YAML_LOAD_OPTIONS);
   const sorted = sortMovies(original);
   for (let i = 0; i < original.length; i++) {
     assert.equal(
@@ -73,6 +77,23 @@ test("round-trip: input was already in sorted order (no shuffling)", { skip: !ha
         `sort: ${sorted[i].title} ${sorted[i].year})`
     );
   }
+});
+
+test("YAML_SCHEMA: plain YYYY-MM-DD scalars stay strings, not Date objects (date_committed regression)", () => {
+  // DEFAULT_SCHEMA would parse an unquoted `2026-01-04` into a JS Date on
+  // load, then dump it back as a full ISO string with a time component
+  // (`2026-01-04T00:00:00.000Z`) — silently corrupting `date_committed` (and
+  // `generated_at` in awards.yml) on the next load→dump round trip.
+  const loaded = yaml.load("date_committed: 2026-01-04\ntitle: X\n", YAML_LOAD_OPTIONS);
+  assert.equal(typeof loaded.date_committed, "string");
+  assert.equal(loaded.date_committed, "2026-01-04");
+
+  const dumped = yaml.dump(loaded, YAML_DUMP_OPTIONS);
+  assert.ok(
+    dumped.includes("date_committed: 2026-01-04\n"),
+    `expected plain unquoted date, got: ${dumped}`
+  );
+  assert.ok(!dumped.includes("T00:00:00"), `date got timestamp-ified: ${dumped}`);
 });
 
 test("yaml dump options: produces block-style sequences (no [flow] form)", () => {
