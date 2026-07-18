@@ -248,6 +248,18 @@
         width: 100%;
       }
 
+      /* Groups the meta-row, awards, and Note. fit-content sizes the group to
+         the meta-row's one-line width, so the Note textarea's right edge
+         aligns with the Title in Korean input instead of stretching the full
+         card width; max-width lets narrow screens wrap exactly as before. */
+      .fields {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        width: fit-content;
+        max-width: 100%;
+      }
+
       .language,
       .ids {
         font-size: 0.85rem;
@@ -621,32 +633,34 @@
             <button class="delete" type="button" title="Delete">×</button>
           </div>
           <p class="tmdb-title"></p>
-          <div class="row meta-row">
-            <label
-              >Year <input class="year" type="number" min="1900" max="2099" /></label
-            >
-            <label>Director <input class="director" type="text" /></label>
-            <label>
-              Rating
-              <select class="rating">
-                <option value="">(none)</option>
-                <option value="my_best">My Best</option>
-                <option value="masterpiece">Masterpiece</option>
-              </select>
-            </label>
-            <label
-              >Title in Korean
-              <input class="custom-korean-title" type="text" placeholder="(optional)" />
+          <div class="fields">
+            <div class="row meta-row">
+              <label
+                >Year <input class="year" type="number" min="1900" max="2099" /></label
+              >
+              <label>Director <input class="director" type="text" /></label>
+              <label>
+                Rating
+                <select class="rating">
+                  <option value="">(none)</option>
+                  <option value="my_best">My Best</option>
+                  <option value="masterpiece">Masterpiece</option>
+                </select>
+              </label>
+              <label
+                >Title in Korean
+                <input class="custom-korean-title" type="text" placeholder="(optional)" />
+              </label>
+            </div>
+            <div class="awards" hidden>
+              <span class="awards-label">Awards:</span>
+              <span class="awards-list"></span>
+            </div>
+            <label class="note-label">
+              Note
+              <textarea class="note" rows="2" placeholder="(optional)"></textarea>
             </label>
           </div>
-          <div class="awards" hidden>
-            <span class="awards-label">Awards:</span>
-            <span class="awards-list"></span>
-          </div>
-          <label class="note-label">
-            Note
-            <textarea class="note" rows="2" placeholder="(optional)"></textarea>
-          </label>
           <p class="ids"></p>
         </div>
       </li>
@@ -675,40 +689,42 @@
           <div class="info">
             <h3 class="title"></h3>
             <p class="tmdb-title"></p>
-            <div class="row meta-row">
-              <label>
-                Year
-                <input class="year" type="number" min="1900" max="2099" />
-              </label>
-              <label>
-                Director
-                <input class="director" type="text" />
-              </label>
-              <label>
-                Rating
-                <select class="rating">
-                  <option value="">(none)</option>
-                  <option value="my_best">My Best</option>
-                  <option value="masterpiece">Masterpiece</option>
-                </select>
-              </label>
-              <label
-                >Title in Korean
-                <input
-                  class="custom-korean-title"
-                  type="text"
-                  placeholder="(optional)"
-                />
+            <div class="fields">
+              <div class="row meta-row">
+                <label>
+                  Year
+                  <input class="year" type="number" min="1900" max="2099" />
+                </label>
+                <label>
+                  Director
+                  <input class="director" type="text" />
+                </label>
+                <label>
+                  Rating
+                  <select class="rating">
+                    <option value="">(none)</option>
+                    <option value="my_best">My Best</option>
+                    <option value="masterpiece">Masterpiece</option>
+                  </select>
+                </label>
+                <label
+                  >Title in Korean
+                  <input
+                    class="custom-korean-title"
+                    type="text"
+                    placeholder="(optional)"
+                  />
+                </label>
+              </div>
+              <div class="awards" hidden>
+                <span class="awards-label">Awards:</span>
+                <span class="awards-list"></span>
+              </div>
+              <label class="note-label">
+                Note
+                <textarea class="note" rows="2" placeholder="(optional)"></textarea>
               </label>
             </div>
-            <div class="awards" hidden>
-              <span class="awards-label">Awards:</span>
-              <span class="awards-list"></span>
-            </div>
-            <label class="note-label">
-              Note
-              <textarea class="note" rows="2" placeholder="(optional)"></textarea>
-            </label>
             <label class="candidate-picker-label">
               TMDB candidate
               <select class="candidate-picker"></select>
