@@ -1,9 +1,7 @@
 package com.nambin.moviecuration.ui.settings
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -31,14 +29,12 @@ fun SettingsScreen() {
     var expanded by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
-        Text("Gemini model", style = MaterialTheme.typography.titleMedium)
-        Spacer(Modifier.height(4.dp))
         ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = it }) {
             OutlinedTextField(
                 value = modelTier.label,
                 onValueChange = {},
                 readOnly = true,
-                label = { Text("Model tier") },
+                label = { Text("Gemini model tier") },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable).fillMaxWidth(),
             )

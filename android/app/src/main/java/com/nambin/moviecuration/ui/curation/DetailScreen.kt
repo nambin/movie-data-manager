@@ -90,7 +90,7 @@ fun DetailScreen(
             }
         }
 
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(16.dp))
         Text(displayTitle(entry), style = MaterialTheme.typography.titleLarge)
 
         Spacer(Modifier.height(16.dp))
@@ -132,7 +132,7 @@ fun DetailScreen(
         if (awardNames.isNotEmpty()) {
             Spacer(Modifier.height(16.dp))
             Text("Awards", style = MaterialTheme.typography.labelMedium)
-            Text(awardNames.joinToString(", "))
+            awardNames.forEach { Text(it) }
         }
 
         Spacer(Modifier.height(24.dp))
@@ -157,7 +157,6 @@ private fun CandidatePicker(
     }
 
     Column {
-        Text("Candidate", style = MaterialTheme.typography.labelMedium)
         ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = it }) {
             val selected = candidates.find { it.id == selectedCandidateId }
             OutlinedTextField(

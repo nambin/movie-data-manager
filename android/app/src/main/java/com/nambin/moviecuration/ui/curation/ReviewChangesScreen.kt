@@ -113,7 +113,10 @@ private fun PendingChangeCard(change: PendingChange, onClick: () -> Unit, onRemo
                     if (!director.isNullOrBlank()) Text("Director: $director")
                     Text("Rating: $rating")
                     if (!note.isNullOrBlank()) Text("Note: $note")
-                    if (awards.isNotEmpty()) Text("Awards: ${awards.joinToString(", ")}")
+                    if (awards.isNotEmpty()) {
+                        Text("Awards:")
+                        awards.forEach { Text(it) }
+                    }
                 }
             }
         } else {
