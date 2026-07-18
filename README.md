@@ -52,7 +52,7 @@ GEMINI_API_KEY=AIzaSy...
 ```
 
 - `TMDB_API_KEY` — required for **both** builds. The deployed editor needs TMDB for the URL-paste add bar. Get one from [TMDB → Settings → API](https://www.themoviedb.org/settings/api).
-- `GEMINI_API_KEY` — optional, for `build:dev` only (it inlines the key so the memo flow works without typing one). The bulk-import (memo) flow makes per-line LLM calls to `gemini-flash-lite-latest`. Get one from [Google AI Studio](https://aistudio.google.com/app/apikey). On the deployed `build`, users instead paste their own key into the memo bar's key input at runtime.
+- `GEMINI_API_KEY` — optional, for `build:dev` only (it inlines the key so the memo flow works without typing one). The bulk-import (memo) flow makes per-line LLM calls to Gemini (default model `gemini-flash-latest` — see `DEFAULT_GEMINI_MODEL` in [lib/gemini_utils.js](lib/gemini_utils.js)). Get one from [Google AI Studio](https://aistudio.google.com/app/apikey). On the deployed `build`, users instead paste their own key into the memo bar's key input at runtime.
 
 `.env` is gitignored.
 
@@ -93,7 +93,7 @@ See [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md) for the full design
 
 ### How to Test
 
-Tests cover every data-correctness module. Fixtures are real TMDB JSON responses fetched once from the example URLs in [README.md](README.md) (Parasite, Oppenheimer, Shoplifters, The Witches) and stored under [tests/fixtures/](tests/fixtures/).
+Tests cover every data-correctness module. Fixtures are real TMDB JSON responses fetched once and stored under [tests/fixtures/](tests/fixtures/) (Parasite, Oppenheimer, Shoplifters, The Witches, Police Story, Infernal Affairs, Bohemian Rhapsody, I'm Still Here — plus memo-pipeline search responses and awards fixtures under `memo/` and `awards/`).
 
 ```bash
 npm install   # one-time, pulls in js-yaml
@@ -147,6 +147,10 @@ That's it on this side. The deploy is a plain copy of two editor files — no ed
 
 Commit and push both files in `nambin.github.io`. URL: `https://nambin.github.io/movies_editor.html`.
 
+**The data files are NOT copied** — `data/movies.yml` and `data/awards.yml` live in nambin.github.io and are the source of truth. To publish a new movie list, **commit the editor's downloaded `movies.yml` directly to `nambin.github.io/data/movies.yml`**. `awards.yml` is maintained automatically by the cron below.
+
+**Auto-load of `data/movies.yml`:** on page load, the editor fetches `data/movies.yml` from the same origin. On github.io that's `nambin.github.io/data/movies.yml`; locally (`python -m http.server` in this repo, which no longer carries the file), the editor falls back to fetching from `https://nambin.github.io`. If localStorage has unsaved local edits (`dirty=true`), the auto-load is skipped and a status message offers the file picker for explicit override. Pushing a new `data/movies.yml` to nambin.github.io is effectively a deploy of the latest movie list.
+
 ### Public movie list (movies.html)
 
 [lib/movies_page.js](lib/movies_page.js) renders the movie list on `nambin.github.io/movies.html` client-side: it fetches `data/movies.yml` straight from `raw.githubusercontent.com/nambin/nambin.github.io/main/data/movies.yml` (falling back to the same-origin `/data/movies.yml` if that's unreachable), parses it with js-yaml, and builds the movie cards in the DOM. This replaced the old Jekyll `{% for movie in site.data.movies %}` build-time loop, whose output only updates when a GitHub Pages build succeeds — raw.githubusercontent.com serves straight from the git blob and reflects a new commit instantly, regardless of Pages build/deploy health.
@@ -170,10 +174,6 @@ Commit and push the file in `nambin.github.io`. `movies.html` there already refe
 
 A phone-native, curation-only client lives in [android/](android/) — same repo, its own Gradle project. It's a different front door onto the same `data/movies.yml` (memo-based add, search-based update, one-tap commit straight to GitHub) rather than a copy of this web app. Spec: [prompt-android-app.md](prompt-android-app.md). Build setup: [android/README.md](android/README.md).
 
-**The data files are NOT copied** — `data/movies.yml` and `data/awards.yml` live in nambin.github.io and are the source of truth. To publish a new movie list, **commit the editor's downloaded `movies.yml` directly to `nambin.github.io/data/movies.yml`**. `awards.yml` is maintained automatically by the cron below.
-
-**Auto-load of `data/movies.yml`:** on page load, the editor fetches `data/movies.yml` from the same origin. On github.io that's `nambin.github.io/data/movies.yml`; locally (`python -m http.server` in this repo, which no longer carries the file), the editor falls back to fetching from `https://nambin.github.io`. If localStorage has unsaved local edits (`dirty=true`), the auto-load is skipped and a status message offers the file picker for explicit override. Pushing a new `data/movies.yml` to nambin.github.io is effectively a deploy of the latest movie list.
-
 ### Award-curation cron
 
 [.github/workflows/curate-awards.yml](.github/workflows/curate-awards.yml) runs `curate:awards` weekly (Wed 04:00 KST) and on manual `workflow_dispatch`. It checks out **nambin.github.io** into `./site`, regenerates `site/data/awards.yml`, and — only when it changed — commits and pushes that file **to nambin.github.io** (then emails a summary). This requires a repo secret **`NAMBIN_IO_TOKEN`**: a credential with write access to `nambin/nambin.github.io` (a fine-grained PAT with `Contents: read/write`, or a deploy key). The default `GITHUB_TOKEN` can't push cross-repo, so this secret is mandatory for the push to succeed.
@@ -195,7 +195,7 @@ Pure data-correctness logic is isolated in [lib/](lib/) so it's testable in Node
 
 - **`country` is dropped for newly-added movies.** Unused by the site, redundant with `tmdb_original_language`. Legacy entries loaded from YML keep theirs verbatim.
 - **`title` is auto-composed from TMDB `title` + `original_title` and not editable.** When the two differ, the title is `"<tmdb title> (<original title>)"` (e.g. `Parasite (기생충)`); when they're equal or one is missing, the single form is used. This recreates the parenthetical pattern of the legacy CSV titles directly from TMDB. Korean overlays beyond what TMDB provides go through `custom_korean_title`.
-- **`award_names` is the source of truth; `awards` is derived.** The 10-option picker writes the full real names (e.g. `Cannes Palme d'Or`); the badge-key list is recomputed on save via the `_FILM_AWARDS`-equivalent mapping in [lib/awards.js](lib/awards.js).
+- **`award_names` is the source of truth; `awards` is derived.** The 10-option picker writes the full real names (e.g. `Cannes Palme d'Or`); the badge-key list is recomputed on save via the `_FILM_AWARDS`-equivalent mapping in [lib/utils.js](lib/utils.js).
 - **Acceptance test is structural, not byte-identical.** PyYAML and js-yaml may disagree on cosmetic quoting (single vs double quotes, when to quote a string containing `:`), so the round-trip asserts deep-equal in-memory equivalence rather than file-byte equality.
 
 ### Updating fixtures

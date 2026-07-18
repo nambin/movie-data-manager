@@ -1,6 +1,6 @@
 # Movie Curation Android App — Implementation Prompt
 
-> Companion to [prompt-web-app.md](prompt-web-app.md) (data model, YAML round-trip rules, sort order, field semantics), [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md) (memo-driven LLM pipeline), and [prompt-award-curation.md](prompt-award-curation.md) (`data/awards.yml` schema and taxonomy). This draft does **not** change any of those — it specifies a **native Android app** that is a curation-only front door onto the same `data/movies.yml`, reading `data/awards.yml` as read-only ground truth, and committing directly to GitHub instead of producing a browser download.
+> Companion to [prompt-web-app.md](prompt-web-app.md) (data model, YAML round-trip rules, sort order, field semantics), [prompt-web-app-with-llm.md](prompt-web-app-with-llm.md) (memo-driven LLM pipeline), and [prompt-award-curation.md](prompt-award-curation.md) (`data/awards.yml` schema and taxonomy). This spec does **not** change any of those — it specifies a **native Android app** that is a curation-only front door onto the same `data/movies.yml`, reading `data/awards.yml` as read-only ground truth, and committing directly to GitHub instead of producing a browser download.
 
 ## Goal
 
@@ -27,7 +27,7 @@ A left-hand navigation drawer (`ModalNavigationDrawer`, per the Compose decision
 - **Curation**
 - **Settings**
 
-The drawer is **collapsed by default** and opens via a hamburger icon (☰, three horizontal lines) in the top app bar — standard `ActionBarDrawerToggle` / `TopAppBar` navigation-icon pattern. **Curation** is the default destination shown when the app launches (not Movies, not whatever screen was open last).
+The drawer is **collapsed by default** and opens via a hamburger icon (☰, three horizontal lines) in the top app bar — standard `ActionBarDrawerToggle` / `TopAppBar` navigation-icon pattern, with one deliberate deviation: **opening is hamburger-only**. The edge-swipe-to-open gesture is disabled (`gesturesEnabled` only while the drawer is open) because it steals horizontal scrolls, worst inside the Movies WebView; swipe and scrim-tap still close an open drawer. **Curation** is the default destination shown when the app launches (not Movies, not whatever screen was open last).
 
 ### "Movies" destination
 
@@ -39,7 +39,7 @@ https://nambin.github.io/movies.html?recent=true
 
 - Enable JavaScript and DOM storage (the site page uses both).
 - Wire `WebView.canGoBack()`/`goBack()` to the system back gesture/button while this screen is active, so in-page navigation (if any) doesn't immediately exit the tab.
-- **The WebView instance is retained across tab switches** — created on the first visit to Movies and kept for the activity's lifetime, so leaving for Curation/Settings and coming back resumes the exact page state (applied filters, scroll position, in-page history) with no reload. A fresh page load happens only when the app itself restarts.
+- **The WebView instance is retained across tab switches** — created on the first visit to Movies and kept for the activity's lifetime, so leaving for Curation/Settings and coming back resumes the exact page state (applied filters, scroll position, in-page history) with no reload. A fresh page load happens only when the activity itself is recreated (app restart, or a configuration change such as rotation).
 - No pull-to-refresh or custom chrome needed beyond a loading spinner — this is a thin viewport onto the existing public page, not a feature this app re-implements.
 
 ### "Settings" destination
@@ -68,7 +68,7 @@ Persist Gemini settings with **Jetpack DataStore** (Preferences), not raw `Share
 
 On entering this screen (first time per app session is enough — no need to re-fetch on every visit):
 
-1. Fetch `https://nambin.github.io/data/movies.yml` and `https://nambin.github.io/data/awards.yml` over plain HTTPS (same URLs the web app's `LIVE_DATA_ORIGIN` fallback already uses — no auth needed, both files are public). No local caching — every cold start blocks on this fetch, which is the simplest way to guarantee the in-memory collection is always current, and there's exactly one user/one device so a cache's main upside (fast reopen) isn't worth the added moving parts.
+1. Fetch `https://nambin.github.io/data/movies.yml` and `https://nambin.github.io/data/awards.yml` over plain HTTPS (same URLs the web app's `LIVE_DATA_ORIGIN` fallback already uses — no auth needed, both files are public). No local caching — every cold start blocks on this fetch, which is the simplest way to guarantee the in-memory collection is always current, and there's exactly one user/one device so a cache's main upside (fast reopen) isn't worth the added moving parts. Each fetch appends a cache-busting `?_=<timestamp>` query parameter so a stale CDN/proxy copy can't quietly defeat that freshness guarantee.
 2. Parse both into memory (see *YAML handling* below).
 3. Build the `by_imdb` awards lookup and the romanized→Korean director map (port of `buildKoreanDirectorMap`, [lib/utils.js](lib/utils.js)) from the loaded collection.
 4. **Show no movie cards.** The screen's default state is search bar + "Add a movie" entry point + Commit button/status — an empty result area, not a list dump. This matches the phone use case: you came here to do one thing (add or find one movie), not browse 800 entries.
@@ -88,12 +88,12 @@ The Curation screen shows **both** entry points together, always — an "Add a m
   1. **Call A (Gemini)** — parse the line into `{ is_movie, title, year?, director?, title_korean_overlay? }`.
   2. If `is_movie: false` → show "That doesn't look like a movie title — try rephrasing."
   3. **TMDB search** — `primary_release_year` ± 1 windowed search when a year was parsed, merged/deduped, same as [lib/memo_pipeline.js](lib/memo_pipeline.js).
-  4. If zero candidates → show "No match found on TMDB for 'title'." with a way to edit and retry (e.g. re-typing with a year or a more specific title).
+  4. If zero candidates → show "No match found on TMDB for 'title'." — where *title* is Call A's **parsed** title, not the raw memo line (the two differ when e.g. a Korean transliteration resolved to an English title before the search ran) — with a way to edit and retry (e.g. re-typing with a year or a more specific title).
   5. **Call B (Gemini)** — match the raw line against the candidate list.
   6. Build the entry via a Kotlin port of `buildMovieEntryFromTmdb` ([lib/tmdb_utils.js](lib/tmdb_utils.js)) — **for every candidate with a confirmed `imdb_id`, not just Call B's pick**. Call B's suggestion isn't special: it's just the default starting selection, and the user is always free to pick a different candidate afterward, so `processMemoLine` builds a ready-to-show entry for each one up front (a pure, already-fetched-data transform — no extra network cost) rather than treating the picked candidate specially and building the rest lazily on demand. `MemoPipelineResult.Ok` carries the full candidate list, a `candidate id -> entry` map, and a `selectedCandidateId` that defaults to Call B's pick when it returned one *and* it's actually among the candidates offered (else the top search result). `MemoPipelineResult.NoMatch` is reserved for a true dead end (no candidates with a confirmed `imdb_id` at all).
   7. Resolve `director`: romanized→Korean map hit → else leave the TMDB romanization (Call C — LLM Korean-name translation — stays **disabled**, matching the web app's current shipped behavior, not the original three-call design doc; see [lib/memo_pipeline.js:132](lib/memo_pipeline.js#L132) comment).
-  8. Overwrite `award_names`/`awards` from the loaded `awards.yml` ground truth (port of `applyAwardsToEntry`/`reconcileAwardNames`, [lib/awards_reconcile.js](lib/awards_reconcile.js)).
-  9. Duplicate check against the in-memory collection — see *Duplicate prevention & sort invariants* below for the exact check and the message shown to the user.
+  8. Duplicate check against the in-memory collection — see *Duplicate prevention & sort invariants* below for the exact check and the message shown to the user.
+  9. On passing the gate, the entry is inserted, and **at insertion** its `award_names`/`awards` are overwritten from the loaded `awards.yml` ground truth (port of `applyAwardsToEntry`/`reconcileAwardNames`, [lib/awards_reconcile.js](lib/awards_reconcile.js)).
 - On success (no duplicate found), hand off to the **shared detail view** (below), pre-filled from the built entry, in "new" mode. **The candidate picker lives on this same screen** — see below — so there is no separate intermediate "pick a candidate" step between the memo input and the detail view.
 
 #### Updating an already-curated movie (search)
@@ -108,7 +108,7 @@ Regardless of whether the entry arrived via the memo/LLM flow or via search, the
 
 | Element | Behavior |
 | --- | --- |
-| Candidate picker *(Add flow only, shown at the top of the screen when TMDB search returned more than one plausible candidate)* | A dropdown of the search's candidates (title, year, director). Defaults to Call B's pick when it returned one and it's actually among the candidates offered; defaults to the top search result otherwise. Changing the selection **re-fills every field below on this same screen** (poster, Title (Year), director, awards) from the newly picked candidate — mirrors the web app's review card, where swapping the candidate rebinds the same card instead of navigating anywhere. Since every candidate's entry was already built up front (see *Ported logic*), swapping is instant and synchronous — no re-fetch, no loading state. Selecting an **already-curated** option (annotated "(already curated)") does not build a duplicate: the view switches to the *existing* entry with an in-view notice, and the fields below edit that existing entry as normal updates; selecting back to a not-yet-curated option resumes new-entry mode. This directly satisfies *"when multiple candidates are found, it needs to show a dropdown menu for users to be able to select the right one"* without a separate screen for it. Absent when an entry is opened from Search or from the Review screen. |
+| Candidate picker *(Add flow only, shown at the top of the screen when TMDB search returned more than one plausible candidate)* | A dropdown of the search's candidates (title, year, director). Defaults to Call B's pick when it returned one and it's actually among the candidates offered; defaults to the top search result otherwise. Changing the selection **re-fills every TMDB-derived field below on this same screen** (poster, Title (Year), director, awards) from the newly picked candidate — mirrors the web app's review card, where swapping the candidate rebinds the same card instead of navigating anywhere. The user's candidate-independent edits — rating, note, `custom_korean_title`, and the original `date_committed` stamp — **carry over** onto the swapped-in entry, so switching candidates never throws away what was already typed. Since every candidate's entry was already built up front (see *Ported logic*), swapping is instant and synchronous — no re-fetch, no loading state. Selecting an **already-curated** option (annotated "(already curated)") does not build a duplicate: the view switches to the *existing* entry with an in-view notice, and the fields below edit that existing entry as normal updates; selecting back to a not-yet-curated option resumes new-entry mode. This directly satisfies *"when multiple candidates are found, it needs to show a dropdown menu for users to be able to select the right one"* without a separate screen for it. Absent when an entry is opened from Search or from the Review screen. |
 | Poster thumbnail | From `tmdb_poster_url`. Tapping opens `tmdb_url` (falling back to `imdb_url`) in a **Chrome Custom Tab** (`androidx.browser.customtabs`), not an in-app WebView — matches "goes to the corresponding TMDB webpage via CCT." |
 | `Title (Year)` | Read-only, e.g. `Parasite (2019)`. Composed as `tmdb_title` preferred, falling back to `tmdb_original_title`, + year — a deliberate divergence from the public movies page (whose card heading is `tmdb_original_title`, with `tmdb_title` as a subtitle). |
 | Director | **Editable** text field. Always editable (not gated behind "only if Korean") — same as the web app — but the map-lookup pre-fills the Korean form automatically for known directors, so manual edits are mainly needed for first-time Korean directors, matching the stated intent. Editing recomputes `is_korean_director`. |
@@ -170,7 +170,7 @@ This is the mechanism behind *"the app needs to show the YML entries that are ed
 
 ##### Tracking pre-edit snapshots
 
-Rendering the "what changed" diff for an existing entry needs both the **before** and **after** state — the in-memory collection alone only holds the current (after) state once an edit is saved. So: the moment an existing entry's detail view is opened for editing, deep-copy the entry as it stood *before any change in this session* and keep that snapshot keyed by `imdb_id`, alongside `updatedImdbIds`. Only the entry's *first* edit since the last commit captures the snapshot — a second, third, etc. edit to an already-dirty entry keeps comparing against that same original snapshot, so the Review screen always shows the full cumulative diff since the last successful commit, not just the most recent edit. Snapshots are cleared together with `updatedImdbIds` on a successful commit (and are naturally irrelevant if the user cancels, since nothing was pushed).
+Rendering the "what changed" diff for an existing entry needs both the **before** and **after** state — the in-memory collection alone only holds the current (after) state once an edit is saved. So: the moment an existing entry's detail view is opened for editing, copy the entry as it stood *before any change in this session* (a shallow map copy suffices — every field this app edits is a scalar) and keep that snapshot keyed by `imdb_id`, alongside `updatedImdbIds`. Only the entry's *first* edit since the last commit captures the snapshot — a second, third, etc. edit to an already-dirty entry keeps comparing against that same original snapshot, so the Review screen always shows the full cumulative diff since the last successful commit, not just the most recent edit. Snapshots are cleared together with `updatedImdbIds` on a successful commit (and are naturally irrelevant if the user cancels, since nothing was pushed).
 
 ## GitHub commit mechanism
 
@@ -260,6 +260,7 @@ Conventions that keep the two clients directly comparable:
 - **kotlinx.serialization** or Moshi for the JSON bodies (Gemini structured-output schemas, TMDB responses, GitHub Contents API payloads).
 - **SnakeYAML** for YAML load/dump (see above).
 - **androidx.browser (Custom Tabs)** for the poster → TMDB link.
+- **Coil** (`coil-compose`) for loading poster thumbnails.
 - **Jetpack DataStore (Preferences)** for the one persisted Setting (Gemini model tier).
 - **In-memory `ViewModel` state only** for the loaded collection + the session's `newImdbIds`/`updatedImdbIds`/pre-edit snapshots — no on-disk cache anywhere in this app. Every cold start re-fetches `movies.yml`/`awards.yml` fresh (see *Boot behavior*), and if Android kills the process mid-session before Commit, that session's uncommitted adds/edits are lost and must be redone; accepted as a fine v1 trade-off given how cheap re-adding a movie or re-editing a rating is, and it keeps this app free of the web app's `localStorage` dirty-state persistence machinery entirely. Revisit if losing a session in practice turns out to be more than a rare annoyance.
 
@@ -281,7 +282,7 @@ The behavioral invariants — duplicate detection (against both the boot-loaded 
 - **UI toolkit:** Kotlin + Jetpack Compose (not Views) — this app's screens are Compose's sweet spot, and there's no existing Views codebase pulling the other way.
 - **Save behavior:** auto-save-on-change in the shared detail view; no separate Save button, no unsaved-changes state.
 - **Curation home layout:** the Add box and the Search box are both always visible on one screen — no Add/Update tab toggle.
-- **Candidate picker placement:** embedded at the top of the shared detail view itself, not a separate screen — swapping candidates re-fills the same card.
+- **Candidate picker placement:** embedded at the top of the shared detail view itself, not a separate screen — swapping candidates re-fills the same card's TMDB-derived fields, while user edits (rating, note, `custom_korean_title`) carry over.
 - **Session-edit persistence:** in-memory only; a process death before Commit loses that session's uncommitted work, accepted as a fine v1 trade-off.
 - **Secret embedding:** both the GitHub PAT and the Gemini API key are hardcoded at build time (see *Build-time configuration & the secrets*), on the understanding that this APK is never distributed beyond the user's own devices.
 - **`movies.yml`/`awards.yml` freshness:** no disk cache — every cold start blocks on a fresh fetch of both files before Curation becomes usable. Simplest option, and the single-user/single-device posture means a cache's main benefit (fast reopen) isn't worth the extra state to manage — see *Boot behavior* above.
@@ -293,4 +294,4 @@ The behavioral invariants — duplicate detection (against both the boot-loaded 
 
 ## Open questions for review
 
-None outstanding — see *Decisions made* above. Re-open any of these if implementation surfaces a reason to revisit.
+None outstanding — see *Decisions made* above. The app is implemented and in use; re-open any of these only if real usage surfaces a reason to revisit.

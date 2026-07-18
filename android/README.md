@@ -11,7 +11,7 @@ diff-size safety cap). This README is just the "how to build it" complement.
 android/
 ├─ app/src/main/java/com/nambin/moviecuration/
 │  ├─ core/       ← 1:1 Kotlin port of ../lib/*.js (see the table in prompt-android-app.md)
-│  ├─ data/       ← MovieRepository, CurationSession, YamlCodec — no JS equivalent
+│  ├─ data/       ← MovieRepository, CurationSession, CurationEditor, YamlCodec — no JS equivalent
 │  ├─ github/     ← GitHubContentsClient, DiffSizeGuard — no JS equivalent
 │  ├─ settings/   ← GeminiModelSetting (DataStore)
 │  └─ ui/         ← Compose screens: Movies (WebView), Settings, Curation (+Detail, +ReviewChanges)
@@ -41,9 +41,9 @@ android/
    it can't be generated offline), Android Studio will either regenerate it
    automatically on sync or prompt you to; alternatively, if you have a
    system Gradle install, run `gradle wrapper` once from this directory.
-   If Android Studio's sync suggests a newer AGP/Gradle pairing than what's
-   pinned here, accept it — the versions in `build.gradle.kts` were picked
-   without a local build to verify against (see "Known gaps" below).
+   The pinned toolchain (AGP 9.2.1 / Kotlin 2.2.10 / Gradle 9.4.1 via the
+   wrapper) is verified by real local builds; if Android Studio's sync
+   suggests a newer pairing, accepting it is fine.
 
 3. **Run.** Target is a single physical device — a Samsung Galaxy S24 running
    Android 16. `minSdk`/`targetSdk`/`compileSdk` are all pinned to **36**
@@ -60,8 +60,9 @@ android/
 mirror `../tests/*.test.js` file-for-file where the equivalent module
 exists; several reuse the exact same TMDB fixture JSON from
 `../tests/fixtures/`, copied into `app/src/test/resources/fixtures/`.
-`MemoPipelineTest`, `GeminiUtilsTest`, `MovieRepositoryTest`, and
-`GitHubContentsClientTest` drive their real network-facing code against a
+`MemoPipelineTest`, `GeminiUtilsTest`, `MovieRepositoryTest`,
+`CurationEditorTest`, and `GitHubContentsClientTest` drive their real
+network-facing code against a
 local `MockWebServer` (via `okhttp3.mockwebserver`) rather than mocking the
 classes themselves — `GeminiUtils.kt`/`MemoPipeline.kt` hardcode the
 Gemini/TMDB hosts, so requests are redirected to the mock server with an
@@ -69,10 +70,13 @@ OkHttp interceptor; `MovieRepository`/`GitHubContentsClient` instead take
 the target URL as an optional constructor parameter (defaulting to
 production) for the same purpose.
 
-## Known gaps / things to double-check on first run
+## Verified on device
 
-- **SnakeYAML output fidelity, at the byte level.** `YamlCodecTest` confirms
-  structural round-tripping (including the date_committed timestamp fix),
-  but a byte-level diff against a real fetched `data/movies.yml` hasn't been
-  done. Worth checking early — round-trip a real copy through
-  `YamlCodec.dumpMovies` / `loadMovies` and diff against the original.
+The app is built, installed, and in real use — the
+`curate: N new, M updated (via Android app)` commits on nambin.github.io
+are authored by it. YAML output fidelity (the one "double-check on first
+run" item this section used to carry) is handled in `YamlCodec`: the
+`date_committed` date-scalar fix plus a post-dump re-indent of the two
+nested list fields (`award_names`/`awards`) to match the on-disk js-yaml
+format, so a session's commit diff stays limited to the intended edits —
+enforced at commit time by `DiffSizeGuard`'s 200-line cap.
