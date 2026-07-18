@@ -51,6 +51,7 @@ fun CurationScreen(
             busy = state.commitBusy,
             error = state.commitError,
             onOpenEntry = viewModel::openEntryFromReview,
+            onRemoveChange = viewModel::removePendingChange,
             onCancel = viewModel::closeReviewChanges,
             onConfirm = viewModel::confirmCommit,
         )
@@ -64,6 +65,7 @@ fun CurationScreen(
             onDirectorChange = viewModel::updateDirector,
             onRatingChange = viewModel::updateRating,
             onNoteChange = viewModel::updateNote,
+            onDiscard = viewModel::discardActiveNewEntry,
             onClose = viewModel::closeDetail,
         )
         else -> CurationHome(state, viewModel)
@@ -132,6 +134,9 @@ private fun CurationHome(state: CurationUiState, viewModel: CurationViewModel) {
                 modifier = Modifier.padding(top = 4.dp),
             )
         }
+        // Only the single-candidate duplicate lands here — an ambiguous
+        // (multi-candidate) duplicate goes straight to the detail view with
+        // the picker instead. See the duplicate-prevention gate in the spec.
         state.duplicateEntry?.let { dup ->
             TextButton(onClick = viewModel::openDuplicateForEdit) {
                 Text("Already curated: ${displayTitle(dup)} — tap to open and edit instead.")

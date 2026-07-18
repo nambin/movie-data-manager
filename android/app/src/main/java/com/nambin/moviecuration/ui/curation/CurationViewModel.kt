@@ -178,8 +178,41 @@ class CurationViewModel(
         // doesn't show up flagged as "already curated" against itself.
         val alreadyCuratedIds = editor.alreadyCuratedCandidateIds(candidates)
         when (val outcome = editor.addNew(entry)) {
-            is AddOutcome.Duplicate -> _uiState.update {
-                it.copy(addBusy = false, addStatus = null, duplicateEntry = outcome.existing, candidates = emptyList(), entriesByCandidateId = emptyMap())
+            is AddOutcome.Duplicate -> {
+                if (candidates.size > 1) {
+                    // Ambiguous title: the duplicate may just be the wrong
+                    // pick, so go straight to the detail view with the full
+                    // picker — showing the *existing* entry (in-view notice;
+                    // edits apply to it directly) rather than dead-ending.
+                    val existingId = outcome.existing["imdb_id"] as? String
+                    if (existingId != null) editor.ensureSnapshot(existingId, outcome.existing)
+                    _uiState.update {
+                        it.copy(
+                            addBusy = false,
+                            addStatus = null,
+                            duplicateEntry = null,
+                            activeEntry = outcome.existing,
+                            activeIsNew = false,
+                            activeImdbId = existingId,
+                            candidates = candidates,
+                            entriesByCandidateId = entriesByCandidateId,
+                            selectedCandidateId = selectedId,
+                            alreadyCuratedCandidateIds = alreadyCuratedIds,
+                        )
+                    }
+                } else {
+                    // Single candidate: the classic dead-end message with the
+                    // tap-to-edit handoff — there's nothing else to pick.
+                    _uiState.update {
+                        it.copy(
+                            addBusy = false,
+                            addStatus = null,
+                            duplicateEntry = outcome.existing,
+                            candidates = emptyList(),
+                            entriesByCandidateId = emptyMap(),
+                        )
+                    }
+                }
             }
             is AddOutcome.Added -> _uiState.update {
                 it.copy(
@@ -206,7 +239,7 @@ class CurationViewModel(
     }
 
     // -----------------------------------------------------------------------
-    // Candidate picker (new-entry mode only)
+    // Candidate picker (Add flow only)
     // -----------------------------------------------------------------------
 
     // Every candidate's entry was already built up front by MemoPipeline (see
@@ -216,26 +249,47 @@ class CurationViewModel(
     fun selectCandidate(candidateId: Int) {
         val state = _uiState.value
         val current = state.activeEntry ?: return
-        if (!state.activeIsNew) return
         if (candidateId == state.selectedCandidateId) return
         val newEntry = state.entriesByCandidateId[candidateId] ?: return
 
-        when (val outcome = editor.swapCandidate(current, newEntry)) {
-            is AddOutcome.Duplicate -> _uiState.update {
-                it.copy(
-                    activeEntry = null, activeIsNew = false, activeImdbId = null,
-                    duplicateEntry = outcome.existing, candidates = emptyList(), entriesByCandidateId = emptyMap(),
-                    newCount = editor.newCount, updateCount = editor.updateCount,
-                )
-            }
+        val outcome = if (state.activeIsNew) {
+            // Swap retires the in-flight entry and carries the user's edits
+            // over when the target is insertable.
+            editor.swapCandidate(current, newEntry)
+        } else {
+            // Currently showing an already-curated entry — nothing in-flight
+            // to retire, and edits made to it are legitimate updates that
+            // stay. addNew doubles as the resolver: Added inserts the new
+            // pick, Duplicate hands back the target's existing entry.
+            editor.addNew(newEntry)
+        }
+        when (outcome) {
             is AddOutcome.Added -> _uiState.update {
                 it.copy(
                     activeEntry = outcome.entry,
+                    activeIsNew = true,
                     activeImdbId = outcome.imdbId,
                     selectedCandidateId = candidateId,
                     newCount = editor.newCount,
                     updateCount = editor.updateCount,
                 )
+            }
+            is AddOutcome.Duplicate -> {
+                // The picked candidate is already curated: keep the picker
+                // and show the *existing* entry in this same view — the
+                // in-view notice explains that edits apply to it directly.
+                val existingId = outcome.existing["imdb_id"] as? String
+                if (existingId != null) editor.ensureSnapshot(existingId, outcome.existing)
+                _uiState.update {
+                    it.copy(
+                        activeEntry = outcome.existing,
+                        activeIsNew = false,
+                        activeImdbId = existingId,
+                        selectedCandidateId = candidateId,
+                        newCount = editor.newCount,
+                        updateCount = editor.updateCount,
+                    )
+                }
             }
         }
     }
@@ -290,6 +344,36 @@ class CurationViewModel(
         }
     }
 
+    /**
+     * Aborts an in-flight add: retires the uncommitted entry (removed from
+     * the collection, un-marked as new) and leaves the detail view — the
+     * escape hatch for "none of the candidates is the movie I meant." See
+     * the Discard row in prompt-android-app.md's "Shared detail view".
+     */
+    fun discardActiveNewEntry() {
+        val state = _uiState.value
+        val entry = state.activeEntry ?: return
+        if (!state.activeIsNew) return
+        editor.discardNew(entry)
+        val returnToReview = state.openedFromReview
+        _uiState.update {
+            it.copy(
+                activeEntry = null,
+                activeIsNew = false,
+                activeImdbId = null,
+                candidates = emptyList(),
+                entriesByCandidateId = emptyMap(),
+                selectedCandidateId = null,
+                alreadyCuratedCandidateIds = emptySet(),
+                openedFromReview = false,
+                newCount = editor.newCount,
+                updateCount = editor.updateCount,
+            )
+        }
+        // Return to the Review batch only if something is still pending.
+        if (returnToReview && editor.newCount + editor.updateCount > 0) openReviewChanges()
+    }
+
     fun closeDetail() {
         val returnToReview = _uiState.value.openedFromReview
         _uiState.update {
@@ -334,6 +418,24 @@ class CurationViewModel(
 
     fun closeReviewChanges() {
         _uiState.update { it.copy(reviewChanges = null, commitError = null) }
+    }
+
+    /**
+     * Removes one pending change from the Review batch: a NEW row discards
+     * the addition entirely; an UPDATED row reverts the entry to its
+     * pre-edit snapshot. An emptied batch returns to Curation home (there
+     * is nothing left to confirm).
+     */
+    fun removePendingChange(change: PendingChange) {
+        if (change.isNew) editor.discardNew(change.entry) else editor.revertUpdate(change.imdbId)
+        val remaining = editor.buildReviewChanges()
+        _uiState.update {
+            it.copy(
+                reviewChanges = if (remaining.isEmpty()) null else remaining,
+                newCount = editor.newCount,
+                updateCount = editor.updateCount,
+            )
+        }
     }
 
     fun confirmCommit() {

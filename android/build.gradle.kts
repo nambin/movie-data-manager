@@ -4,8 +4,8 @@
 // (pre-8.7) don't recognize API 36. This pairing (AGP 8.13.2 / Kotlin 2.0.21 /
 // Gradle 8.13) builds and passes the full unit suite locally.
 plugins {
-    id("com.android.application") version "8.13.2" apply false
-    id("org.jetbrains.kotlin.android") version "2.0.21" apply false
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21" apply false
+    id("com.android.application") version "9.2.1" apply false
+    id("org.jetbrains.kotlin.android") version "2.2.10" apply false
+    id("org.jetbrains.kotlin.plugin.compose") version "2.2.10" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21" apply false
 }

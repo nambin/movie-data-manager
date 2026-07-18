@@ -119,9 +119,7 @@ class CurationEditor(
         // replaces, never accumulates) *before* the duplicate check, so a
         // swap into an "already curated" candidate can't strand the old
         // candidate's entry as an uncommitted phantom "new" addition.
-        val oldImdbId = current["imdb_id"] as? String
-        repository.remove(current)
-        if (oldImdbId != null) session.unmarkNew(oldImdbId)
+        discardNew(current)
 
         val duplicate = repository.findDuplicate(candidateEntry)
         if (duplicate != null) return AddOutcome.Duplicate(duplicate)
@@ -131,6 +129,34 @@ class CurationEditor(
         val newImdbId = requireNotNull(candidateEntry["imdb_id"] as? String) { "swapCandidate: entry has no imdb_id" }
         session.markNew(newImdbId)
         return AddOutcome.Added(candidateEntry, newImdbId)
+    }
+
+    /**
+     * Retires an uncommitted new entry: removes it from the collection and
+     * un-marks it as new, as if the add never happened (the same movie is
+     * immediately re-addable). Only ever applies to this session's own
+     * uncommitted additions — committed entries are never deleted by this
+     * app (see prompt-android-app.md's Non-goals).
+     */
+    fun discardNew(entry: MovieEntry) {
+        repository.remove(entry)
+        (entry["imdb_id"] as? String)?.let { session.unmarkNew(it) }
+    }
+
+    /**
+     * Reverts an updated (non-new) entry back to its pre-edit snapshot,
+     * mutating it in place — the entry object's identity must be preserved
+     * because UI state holds the same reference. refreshUpdatedStatus then
+     * sees an empty diff and un-marks the entry. No-op when there's no
+     * snapshot (nothing was ever edited).
+     */
+    fun revertUpdate(imdbId: String) {
+        val entry = repository.findByImdbId(imdbId) ?: return
+        val snapshot = session.snapshotFor(imdbId) ?: return
+        entry.clear()
+        entry.putAll(snapshot)
+        session.refreshUpdatedStatus(imdbId, entry)
+        if (entry["director"] != null) repository.rebuildKoreanDirectorMap()
     }
 
     /** Call before an existing (non-new) entry becomes editable — no-op for new entries or repeat calls. */

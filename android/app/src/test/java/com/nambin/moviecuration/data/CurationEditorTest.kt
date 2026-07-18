@@ -122,6 +122,49 @@ class CurationEditorTest {
         assertEquals(1, editor.newCount) // only `alreadyCurated` remains marked new
     }
 
+    // -- discardNew / revertUpdate ------------------------------------------------
+
+    @Test
+    fun `discardNew retires an uncommitted addition and makes it re-addable`() {
+        val e = entry("tt1")
+        editor.addNew(e)
+
+        editor.discardNew(e)
+
+        assertFalse(e in repository.movies)
+        assertEquals(0, editor.newCount)
+        assertTrue(editor.buildReviewChanges().isEmpty())
+        assertTrue(editor.addNew(entry("tt1")) is AddOutcome.Added)
+    }
+
+    @Test
+    fun `revertUpdate restores the snapshot in place and un-marks the entry`() {
+        val e = entry("tt1", "director" to "Bong Joon Ho")
+        repository.add(e)
+        editor.updateDirector("tt1", "Park Chan-wook")
+        editor.updateNote("tt1", "rewatch")
+        assertEquals(1, editor.updateCount)
+
+        editor.revertUpdate("tt1")
+
+        assertEquals(0, editor.updateCount)
+        assertSame(e, repository.findByImdbId("tt1")) // same object, reverted in place
+        assertEquals("Bong Joon Ho", e["director"])
+        assertFalse(e.containsKey("note"))
+        assertTrue(editor.buildReviewChanges().isEmpty())
+    }
+
+    @Test
+    fun `revertUpdate is a no-op when the entry was never edited`() {
+        val e = entry("tt1", "director" to "Bong Joon Ho")
+        repository.add(e)
+
+        editor.revertUpdate("tt1") // no snapshot exists
+
+        assertEquals(0, editor.updateCount)
+        assertEquals("Bong Joon Ho", e["director"])
+    }
+
     // -- alreadyCuratedCandidateIds -----------------------------------------------
 
     @Test

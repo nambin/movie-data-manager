@@ -48,6 +48,10 @@ fun MovieCurationApp() {
     MaterialTheme {
         ModalNavigationDrawer(
             drawerState = drawerState,
+            // Only while the drawer is open: edge-swipe-to-open steals
+            // horizontal scrolls (worst in the Movies WebView), so opening is
+            // hamburger-only — but swipe/scrim-tap still close an open drawer.
+            gesturesEnabled = drawerState.isOpen,
             drawerContent = {
                 ModalDrawerSheet {
                     Spacer(modifier = Modifier.height(12.dp))

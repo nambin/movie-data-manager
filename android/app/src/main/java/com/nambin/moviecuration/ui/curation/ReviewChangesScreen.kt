@@ -4,6 +4,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,6 +28,7 @@ fun ReviewChangesScreen(
     busy: Boolean,
     error: String?,
     onOpenEntry: (PendingChange) -> Unit,
+    onRemoveChange: (PendingChange) -> Unit,
     onCancel: () -> Unit,
     onConfirm: () -> Unit,
 ) {
@@ -42,7 +45,11 @@ fun ReviewChangesScreen(
 
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(changes, key = { it.imdbId }) { change ->
-                PendingChangeCard(change, onClick = { onOpenEntry(change) })
+                PendingChangeCard(
+                    change,
+                    onClick = { onOpenEntry(change) },
+                    onRemove = { onRemoveChange(change) },
+                )
                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
             }
         }
@@ -62,7 +69,7 @@ fun ReviewChangesScreen(
 }
 
 @Composable
-private fun PendingChangeCard(change: PendingChange, onClick: () -> Unit) {
+private fun PendingChangeCard(change: PendingChange, onClick: () -> Unit, onRemove: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -74,7 +81,16 @@ private fun PendingChangeCard(change: PendingChange, onClick: () -> Unit) {
                 label = { Text(if (change.isNew) "NEW" else "UPDATED") },
             )
             Spacer(Modifier.width(8.dp))
-            Text(displayTitle(change.entry), style = MaterialTheme.typography.titleMedium)
+            Text(
+                displayTitle(change.entry),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f),
+            )
+            // NEW → discard the pending addition; UPDATED → revert to the
+            // pre-edit snapshot. See "Review changes screen" in the spec.
+            IconButton(onClick = onRemove) {
+                Icon(Icons.Filled.Close, contentDescription = "Remove change")
+            }
         }
 
         if (change.isNew) {

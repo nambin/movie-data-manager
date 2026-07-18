@@ -34,6 +34,7 @@ fun DetailScreen(
     onDirectorChange: (String) -> Unit,
     onRatingChange: (String) -> Unit,
     onNoteChange: (String) -> Unit,
+    onDiscard: () -> Unit,
     onClose: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -49,12 +50,29 @@ fun DetailScreen(
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
             }
             Text(if (isNew) "New movie" else "Edit movie", style = MaterialTheme.typography.titleMedium)
+            if (isNew) {
+                // Abort this add outright — retires the uncommitted entry.
+                // New entries only: committed entries are never deleted here.
+                Spacer(Modifier.weight(1f))
+                TextButton(onClick = onDiscard) { Text("Cancel") }
+            }
         }
 
         Spacer(Modifier.height(8.dp))
 
         if (candidates.size > 1) {
             CandidatePicker(candidates, selectedCandidateId, alreadyCuratedCandidateIds, onSelectCandidate)
+            Spacer(Modifier.height(16.dp))
+        }
+
+        // Add flow with the picker showing an already-curated selection: the
+        // fields below display and edit the *existing* entry — say so.
+        if (!isNew && candidates.isNotEmpty()) {
+            Text(
+                "Already curated — edits below update the existing entry.",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodyMedium,
+            )
             Spacer(Modifier.height(16.dp))
         }
 
