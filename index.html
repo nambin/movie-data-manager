@@ -442,7 +442,14 @@
         white-space: nowrap;
       }
 
-      .review-approve {
+      .review-checkboxes {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+
+      .review-approve,
+      .review-recent {
         display: inline-flex;
         flex-direction: row;
         gap: 0.3rem;
@@ -650,10 +657,16 @@
         <div class="review-card-header">
           <span class="review-status-badge"></span>
           <span class="review-raw-line"></span>
-          <label class="review-approve" hidden>
-            <input type="checkbox" class="approve-cb" checked />
-            <span>Approve</span>
-          </label>
+          <div class="review-checkboxes" hidden>
+            <label class="review-approve">
+              <input type="checkbox" class="approve-cb" checked />
+              <span>Approve</span>
+            </label>
+            <label class="review-recent">
+              <input type="checkbox" class="recent-cb" checked />
+              <span>Recent</span>
+            </label>
+          </div>
         </div>
         <div class="review-body" hidden>
           <a class="poster-link" target="_blank" rel="noopener">

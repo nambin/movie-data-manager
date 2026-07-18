@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple placeholder glyph: a filmstrip-ish clapperboard mark. Swap for
+         real app art whenever — nothing else in the app depends on this. -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,40 L78,40 L78,78 L30,78 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,28 L36,28 L44,40 L36,40 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M46,28 L54,28 L62,40 L54,40 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M64,28 L72,28 L80,40 L72,40 Z" />
+</vector>

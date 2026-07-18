@@ -147,6 +147,25 @@ That's it on this side. The deploy is a plain copy of two editor files — no ed
 
 Commit and push both files in `nambin.github.io`. URL: `https://nambin.github.io/movies_editor.html`.
 
+### Public movie list (movies.html)
+
+[lib/movies_page.js](lib/movies_page.js) renders the movie list on `nambin.github.io/movies.html` client-side: it fetches `data/movies.yml` straight from `raw.githubusercontent.com/nambin/nambin.github.io/main/data/movies.yml` (falling back to the same-origin `/data/movies.yml` if that's unreachable), parses it with js-yaml, and builds the movie cards in the DOM. This replaced the old Jekyll `{% for movie in site.data.movies %}` build-time loop, whose output only updates when a GitHub Pages build succeeds — raw.githubusercontent.com serves straight from the git blob and reflects a new commit instantly, regardless of Pages build/deploy health.
+
+Unlike the editor bundle, this one needs **no API keys** — it only reads and renders YAML.
+
+```bash
+npm run build:movies-page         # produces assets/movies_page.js
+npm run watch:movies-page         # rebuild on save, unminified, for active development
+```
+
+**Deploying:** copy the built file into nambin.github.io — no edits needed there unless the card markup/attributes themselves change (they must keep matching what [nambin.github.io's `includes/movies.js`](https://github.com/nambin/nambin.github.io/blob/main/includes/movies.js) filter/search logic expects):
+
+| Source (this repo) | Destination (nambin.github.io) |
+| --- | --- |
+| `assets/movies_page.js` | `assets/movies_page.js` |
+
+Commit and push the file in `nambin.github.io`. `movies.html` there already references it via `<script type="module" src="/assets/movies_page.js">`.
+
 ### Android app
 
 A phone-native, curation-only client lives in [android/](android/) — same repo, its own Gradle project. It's a different front door onto the same `data/movies.yml` (memo-based add, search-based update, one-tap commit straight to GitHub) rather than a copy of this web app. Spec: [prompt-android-app.md](prompt-android-app.md). Build setup: [android/README.md](android/README.md).
@@ -170,6 +189,7 @@ Pure data-correctness logic is isolated in [lib/](lib/) so it's testable in Node
 | [lib/canonicalize.js](lib/canonicalize.js) | Field-order enforcement, omit-when-empty, awards derivation |
 | [lib/app.js](lib/app.js) | Entry point: DOM, file I/O, TMDB fetching, localStorage. Bundled into `assets/movies_editor.js`. |
 | [index.html](index.html) | Layout, card template, inline CSS. References the bundled JS. |
+| [lib/movies_page.js](lib/movies_page.js) | Entry point for the public movie list: fetches + parses `movies.yml`, renders cards. Bundled into `assets/movies_page.js`, deployed to `nambin.github.io/movies.html`. |
 
 ### Notable design decisions
 

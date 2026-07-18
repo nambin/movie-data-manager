@@ -12,11 +12,10 @@ Goal in one line: **a pocket-sized, curation-only client for `data/movies.yml`**
 
 - **No TMDB-URL add path.** The one existing way to add a movie in this app is the memo/LLM flow (one title at a time). No URL paste box, no "Add movie" button.
 - **No manual load/download.** The app always auto-loads `data/movies.yml` + `data/awards.yml` from the live site at session start; there is no file picker and no "save file" affordance. Committing *is* the save.
-- **No awards editing.** Same posture as the existing web app: `award_names`/`awards` are owned entirely by `data/awards.yml` (curated out-of-band by `cli/curate-awards.mjs`, see [prompt-award-curation.md](prompt-award-curation.md)) and are display-only here. The app never writes them by hand.
+- **No awards editing.** Same posture as the existing web app: `award_names`/`awards` are owned entirely by `data/awards.yml` (curated out-of-band by `cli/curate-awards.mjs`, see [prompt-award-curation.md](prompt-award-curation.md)) and are display-only here — `data/awards.yml` is read-only ground truth this app never writes.
 - **No delete.** The web app has a delete button; this draft does not carry it over (curation on a phone is add/update, not pruning). Revisit if it turns out to be needed.
 - **No offline-first sync / conflict UI beyond a single retry.** This is a personal, single-user tool talking to a repo only this user pushes to. A lost race is handled by re-fetching and retrying once, not a merge UI.
 - **No bulk/multi-line memo paste.** The web app's memo box accepts many lines at once with a review pane of N cards; this app takes **one title at a time**, reflecting how curation actually happens on a phone. The underlying per-line pipeline (Call A parse → TMDB search → Call B match) is identical, just invoked for a single line.
-- **`data/awards.yml` is never written by this app** — read-only ground truth, same as the web app.
 
 ## App structure
 
@@ -50,7 +49,7 @@ User-editable — the **only** thing on this screen:
 | --- | --- | --- |
 | Gemini model tier | Dropdown: **Flash Lite** / **Flash** / **Pro** | Maps to the same model IDs the web app already uses in [lib/gemini_utils.js](lib/gemini_utils.js) — `gemini-flash-lite-latest` / `gemini-flash-latest` / `gemini-pro-latest`. Default: **Flash** (matches `DEFAULT_GEMINI_MODEL` today). |
 
-**Not** user-editable — hardcoded at build time (see *Build-time configuration* below) and either omitted from this screen entirely or shown as read-only lines for reassurance:
+**Not** user-editable — hardcoded at build time (see *Build-time configuration* below) and omitted from this screen entirely:
 
 - Gemini API key
 - TMDB API key
@@ -66,7 +65,7 @@ Persist Gemini settings with **Jetpack DataStore** (Preferences), not raw `Share
 
 #### Boot behavior
 
-On entering this screen (first time per app session is enough — no need to re-fetch on every visit unless the user pulls to refresh):
+On entering this screen (first time per app session is enough — no need to re-fetch on every visit):
 
 1. Fetch `https://nambin.github.io/data/movies.yml` and `https://nambin.github.io/data/awards.yml` over plain HTTPS (same URLs the web app's `LIVE_DATA_ORIGIN` fallback already uses — no auth needed, both files are public). No local caching — every cold start blocks on this fetch, which is the simplest way to guarantee the in-memory collection is always current, and there's exactly one user/one device so a cache's main upside (fast reopen) isn't worth the added moving parts.
 2. Parse both into memory (see *YAML handling* below).
@@ -88,7 +87,7 @@ The Curation screen shows **both** entry points together, always — an "Add a m
   3. **TMDB search** — `primary_release_year` ± 1 windowed search when a year was parsed, merged/deduped, same as [lib/memo_pipeline.js](lib/memo_pipeline.js).
   4. If zero candidates → show "No match found on TMDB for 'title'." with a way to edit and retry (e.g. re-typing with a year or a more specific title).
   5. **Call B (Gemini)** — match the raw line against the candidate list.
-  6. Build the entry from Call B's picked candidate (or, on `matched_tmdb_id: null`, from the top search result as a placeholder) via a Kotlin port of `buildMovieEntryFromTmdb` ([lib/tmdb_utils.js](lib/tmdb_utils.js)).
+  6. Build the entry via a Kotlin port of `buildMovieEntryFromTmdb` ([lib/tmdb_utils.js](lib/tmdb_utils.js)) — **for every candidate with a confirmed `imdb_id`, not just Call B's pick**. Call B's suggestion isn't special: it's just the default starting selection, and the user is always free to pick a different candidate afterward, so `processMemoLine` builds a ready-to-show entry for each one up front (a pure, already-fetched-data transform — no extra network cost) rather than treating the picked candidate specially and building the rest lazily on demand. `MemoPipelineResult.Ok` carries the full candidate list, a `candidate id -> entry` map, and a `selectedCandidateId` that defaults to Call B's pick when it returned one *and* it's actually among the candidates offered (else the top search result). `MemoPipelineResult.NoMatch` is reserved for a true dead end (no candidates with a confirmed `imdb_id` at all).
   7. Resolve `director`: romanized→Korean map hit → else leave the TMDB romanization (Call C — LLM Korean-name translation — stays **disabled**, matching the web app's current shipped behavior, not the original three-call design doc; see [lib/memo_pipeline.js:132](lib/memo_pipeline.js#L132) comment).
   8. Overwrite `award_names`/`awards` from the loaded `awards.yml` ground truth (port of `applyAwardsToEntry`/`reconcileAwardNames`, [lib/awards_reconcile.js](lib/awards_reconcile.js)).
   9. Duplicate check against the in-memory collection — see *Duplicate prevention & sort invariants* below for the exact check and the message shown to the user.
@@ -106,9 +105,9 @@ Regardless of whether the entry arrived via the memo/LLM flow or via search, the
 
 | Element | Behavior |
 | --- | --- |
-| Candidate picker *(new-entry mode only, shown at the top of the screen when TMDB search returned more than one plausible candidate)* | A dropdown of the search's candidates (title, year, director). Defaults to Call B's pick when it returned one; defaults to the top search result when Call B returned `matched_tmdb_id: null`. Changing the selection **re-fills every field below on this same screen** (poster, Title (Year), director, awards) from the newly picked candidate — mirrors the web app's review card, where swapping the candidate rebinds the same card instead of navigating anywhere. This directly satisfies *"when multiple candidates are found, it needs to show a dropdown menu for users to be able to select the right one"* without a separate screen for it. Absent entirely in "edit" mode (an already-curated entry has no candidates to pick between). |
+| Candidate picker *(new-entry mode only, shown at the top of the screen when TMDB search returned more than one plausible candidate)* | A dropdown of the search's candidates (title, year, director). Defaults to Call B's pick when it returned one and it's actually among the candidates offered; defaults to the top search result otherwise. Changing the selection **re-fills every field below on this same screen** (poster, Title (Year), director, awards) from the newly picked candidate — mirrors the web app's review card, where swapping the candidate rebinds the same card instead of navigating anywhere. Since every candidate's entry was already built up front (see *Ported logic*), swapping is instant and synchronous — no re-fetch, no loading state. This directly satisfies *"when multiple candidates are found, it needs to show a dropdown menu for users to be able to select the right one"* without a separate screen for it. Absent entirely in "edit" mode (an already-curated entry has no candidates to pick between). |
 | Poster thumbnail | From `tmdb_poster_url`. Tapping opens `tmdb_url` (falling back to `imdb_url`) in a **Chrome Custom Tab** (`androidx.browser.customtabs`), not an in-app WebView — matches "goes to the corresponding TMDB webpage via CCT." |
-| `Title (Year)` | Read-only, e.g. `Parasite (2019)`. Composed the same way the web app displays it (`tmdb_original_title` preferred, falling back to `title`) + year. |
+| `Title (Year)` | Read-only, e.g. `Parasite (2019)`. Composed as `tmdb_title` preferred, falling back to `tmdb_original_title`, + year — a deliberate divergence from the public movies page (whose card heading is `tmdb_original_title`, with `tmdb_title` as a subtitle). |
 | Director | **Editable** text field. Always editable (not gated behind "only if Korean") — same as the web app — but the map-lookup pre-fills the Korean form automatically for known directors, so manual edits are mainly needed for first-time Korean directors, matching the stated intent. Editing recomputes `is_korean_director`. |
 | Rating | Dropdown: **(none)** / **My Best** / **Masterpiece** — mutually exclusive, same semantics as the web app. |
 | Note | Multi-line text box, trimmed, omitted from YAML when blank. |
@@ -116,33 +115,22 @@ Regardless of whether the entry arrived via the memo/LLM flow or via search, the
 
 **Every field edit auto-saves to memory immediately** — no separate Save button, no "unsaved changes" state on this screen. Each change writes straight into the in-memory collection:
 
-- **New entry** → the first auto-save appends it to the in-memory list and marks its `imdb_id` in a `newImdbIds` set (session-scoped); subsequent edits on the same screen (including swapping the candidate picker) just keep mutating that same appended entry. Stamp `date_committed` with today's date (Asia/Seoul, matching `todayDateString()` in [lib/app.js](lib/app.js)) at the moment it's first appended.
+- **New entry** → appended to the in-memory list and marked in a `newImdbIds` set (session-scoped) the moment its detail view opens; field edits then mutate that same appended entry in place. (Swapping the candidate picker instead *replaces* it — see *Duplicate prevention* below.) Stamp `date_committed` with today's date (Asia/Seoul, matching `todayDateString()` in [lib/app.js](lib/app.js)) at the moment it's appended.
 - **Existing entry being edited** → mutates in place; the first auto-save that actually changes a value marks its `imdb_id` in an `updatedImdbIds` set (session-scoped) and captures the pre-edit snapshot (see *Tracking pre-edit snapshots* below) — merely opening and leaving a detail view with no changes never marks it as updated.
 
 #### Duplicate prevention & sort invariants
 
-This app is the only other place besides the web editor that writes to `data/movies.yml`, so it has to uphold the same two guarantees the web app already relies on: **no duplicate movies, ever**, and **the file is always in canonical sort order on write.**
+Two guarantees, same as the web editor: **no duplicate movies, ever** — in `data/movies.yml` or in the in-memory collection headed there — and **the file is in canonical sort order on every write**.
 
-**Detecting an already-curated movie during Add.** The memo/LLM pipeline's duplicate check (step 11 above) runs against the **full in-memory `movies` list**, which already contains both everything loaded from `data/movies.yml` at boot *and* every entry added-and-saved earlier in the same session (those are appended to that same list immediately on Save — see above). So "I already added this one five minutes ago" and "this was already in the published collection" are the same check, not two code paths to keep in sync. Checked in this order, mirroring the web app's existing add-by-URL duplicate check ([lib/app.js](lib/app.js)):
+Duplicates are prevented by one structural fact plus one gate:
 
-1. **By `imdb_id`** — the primary, always-reliable key.
-2. **By `tmdb_url`** — defense in depth, kept for parity with the existing web app check even though it's the less likely path to actually trigger.
+- **There is exactly one in-memory `movies` list** — everything loaded at boot plus every entry added this session (a new entry joins the list the moment its detail view opens). So a single check covers both "already in the published collection" and "I already added this one five minutes ago."
+- **The gate: nothing joins the list without a duplicate check.** Whether the entry comes from the memo pipeline or from swapping the candidate picker, it's first looked up by `imdb_id` (then `tmdb_url`, mirroring the web app's add-by-URL check in [lib/app.js](lib/app.js)). On a hit, nothing is inserted — instead: **"Already curated: *Parasite (2019)* — tap to open and edit instead."**, which opens the existing entry in edit mode. Candidate-picker options that are already curated are annotated "(already curated)" up front.
+- **Swapping the candidate picker replaces the in-flight entry** — the previous candidate's entry is removed from the list (and un-marked as new) before the newly picked one goes through the gate — so a swap can never strand a leftover entry or create a duplicate.
+- **Only one add/edit is ever in flight**: Curation home (Add + Search) and the detail view are mutually exclusive screens, so there is no path to starting a second flow while one is open.
+- **Defensive re-check at Commit**: before canonicalize/sort/dump/push, group the whole collection by `imdb_id` and abort with a clear error on any duplicate — unreachable given the gate, kept as a cheap final backstop.
 
-When the pipeline's picked candidate matches an existing entry:
-
-- The detail view for a **new** entry never opens in the first place. Instead, show a status message in the Add flow, e.g.:
-
-  > **Already curated:** *Parasite (2019)* — tap to open and edit instead.
-
-  Tapping it navigates straight into the shared detail view in **edit** mode for the existing entry, so a duplicate attempt lands the user somewhere useful (fix the rating, add a note) rather than at a dead end.
-- If the detail view *did* open (because the top candidate was new) and the user then swaps the **candidate picker** to a different candidate that turns out to already be curated: annotate that option with an inline "(already curated)" hint in the dropdown, and selecting it swaps the whole screen into the same "already curated" message + edit-mode handoff described above, rather than silently turning the screen into a duplicate entry.
-- A duplicate attempt never touches the in-memory list, `newImdbIds`, or any pending-change state — it's a dead end for **adding**, not a silent backdoor into **updating** unless the user explicitly follows through on the "tap to edit" affordance.
-
-**One add/edit flow in progress at a time.** The check above only works because the in-memory `movies` list is always a true reflection of "everything saved so far this session" — which requires that at most one entry is ever "in flight" (built from the pipeline, or opened from search) but not yet saved. Enforce this in the UI: the Curation home content (Add box + Search box) and the shared detail view are mutually exclusive — the home content is only ever shown when no detail view is open, so there is no path to starting a second Add or opening a search result while one is already open, and nothing to silently stack. This is a stricter guarantee than a discard-confirmation dialog would give (there is no way to even attempt starting a second flow, not just a warning before doing so) and fits the auto-save model below: because every field edit auto-saves immediately, an "in-progress" entry is never actually unsaved — it is already reflected in the in-memory collection (and still reachable via Search) the moment its detail view opens. So a "Discard" action would have nothing to discard; the only thing it could do is delete the entry outright, and delete is out of scope (see *Non-goals*).
-
-**Defensive re-check at Commit.** As part of Confirm & Commit (before canonicalize/sort/dump/push), group the full in-memory collection by `imdb_id` and abort with a clear error if any key maps to more than one entry, instead of ever pushing a `data/movies.yml` with duplicate movies to GitHub. This should be unreachable given the checks above, but it's a cheap, final backstop — the same spirit as `canonicalizeEntry`'s defensive passthrough of unknown keys in [lib/canonicalize.js](lib/canonicalize.js).
-
-**Sort order is enforced on every commit, for the whole file, not just the session's changes.** Confirm & Commit already runs the *entire* in-memory collection — every previously-committed entry plus every session addition/edit — through `sortMovies` ([lib/utils.js](lib/utils.js)) before dumping to YAML (see *Commit* below). It is a whole-collection re-sort every time, never an insert-in-place for just what changed this session, so the on-disk file stays in canonical order (`year` desc, `masterpiece` desc, `my_best` desc, `len(awards)` desc, `director` desc) regardless of where a new entry logically belongs or whether an edit (e.g. a rating change) moved an existing entry's position. This is identical to the web app's own download behavior — nothing new to design here, just a reminder that the Android port must not skip it as a shortcut.
+**Sort order:** Confirm & Commit runs the *entire* collection through `sortMovies` ([lib/utils.js](lib/utils.js)) before every dump — a whole-file re-sort (`year` desc, `masterpiece` desc, `my_best` desc, `len(awards)` desc, `director` desc), never an insert-in-place — so the on-disk file stays canonically ordered regardless of what a new entry or a rating change moved. Identical to the web app's download behavior; the Android port must not skip it as a shortcut.
 
 #### Commit
 
@@ -204,14 +192,14 @@ Flow:
 This is a deliberate blunt instrument against exactly one failure mode: a bug (a canonicalize/sort regression, a YAML-formatting difference, an accidental full re-fetch overwriting hand-curated fields) silently turning a "1 new, 1 update" session into a commit that rewrites most of the file. The Review changes screen guards against the *intended* changes being wrong; this guards against the *mechanical* diff being wrong in a way the entry-level review wouldn't surface (e.g. every line's trailing whitespace or key order shifting at once).
 
 - Right before the `PUT` (and again on the 409 retry, against the freshly re-`GET`ed content), compute a **line-level diff** between the `GET`-fetched current file content (base64-decoded) and the newly canonicalized/sorted/dumped YAML text about to be pushed — the same notion of "diff" `git diff --stat` reports, i.e. count of inserted lines + count of deleted lines from a standard line-based diff (Myers/LCS; any standard diff library on the JVM works, e.g. `java-diff-utils`).
-- **If inserted + deleted lines > 100** (`MAX_COMMIT_DIFF_LINES = 100`, a named constant in code — not a Setting; this is a code-level safety rail, not a per-session preference), **abort before making the `PUT` call.** No commit is created.
-- Surface a clear, specific error — e.g. *"This commit would change 734 lines (limit: 100) — aborted before pushing to GitHub."* — and land back on the **Review changes** screen with the full pending change set completely untouched (nothing cleared, nothing pushed), so the user can inspect what they were about to commit and figure out why the diff is so much larger than the `N new, M update` count implied.
+- **If inserted + deleted lines > 200** (`MAX_COMMIT_DIFF_LINES = 200`, a named constant in code — not a Setting; this is a code-level safety rail, not a per-session preference), **abort before making the `PUT` call.** No commit is created. The threshold is 200, not lower, because a rating edit relocates its entry within the sorted file and a line diff counts a moved entry twice (~2× entry size, 30+ lines per rating edit) — the cap must leave room for a legitimate rating-heavy session, while a real formatting/sort bug rewrites thousands of lines and still trips it by a huge margin.
+- Surface a clear, specific error — e.g. *"This commit would change 734 lines (limit: 200) — aborted before pushing to GitHub."* — and land back on the **Review changes** screen with the full pending change set completely untouched (nothing cleared, nothing pushed), so the user can inspect what they were about to commit and figure out why the diff is so much larger than the `N new, M update` count implied.
 - **No in-app override or "commit anyway" button in v1.** This is intentionally a hard stop, matching the ask: if a legitimately large change is ever needed on purpose (e.g. a deliberate bulk edit), do it from the web editor or directly on GitHub.com instead — not from this app. Revisit only if the cap turns out to false-positive on ordinary use.
 - The threshold is checked **once per commit attempt, against the whole file's diff** — not per-entry and not against the `N new, M update` counters, since those count *logical* movie-level changes while this counts *physical* lines, and the two can diverge exactly when something's gone wrong (which is the point).
 
 ### Build-time configuration & the secrets
 
-The repo owner/name/branch, a **GitHub Personal Access Token**, and the **Gemini API key** are all compiled into the app via Gradle `buildConfigField`s sourced from a gitignored `local.properties`/`.env`-equivalent — the exact same posture this codebase already uses for the TMDB and (dev-build) Gemini keys: *"Embedding it client-side is acceptable for this personal, single-user tool."* (See [lib/tmdb_utils.js:15-24](lib/tmdb_utils.js#L15-L24) and the README's API-keys section for the precedent this mirrors.) Unlike the web app's `build` vs. `build:dev` split — which exists *because* the production bundle is served publicly on GitHub Pages and would leak a Gemini key to any visitor's view-source — this app has exactly one build variant and one installer, so there is no "safe build"/"unsafe build" distinction to preserve here.
+The repo owner/name/branch, a **GitHub Personal Access Token**, and the **Gemini API key** are all compiled into the app via Gradle `buildConfigField`s sourced from the gitignored `android/secrets.properties` — the exact same posture this codebase already uses for the TMDB and (dev-build) Gemini keys: *"Embedding it client-side is acceptable for this personal, single-user tool."* (See [lib/tmdb_utils.js:15-24](lib/tmdb_utils.js#L15-L24) and the README's API-keys section for the precedent this mirrors.) Unlike the web app's `build` vs. `build:dev` split — which exists *because* the production bundle is served publicly on GitHub Pages and would leak a Gemini key to any visitor's view-source — this app has exactly one build variant and one installer, so there is no "safe build"/"unsafe build" distinction to preserve here.
 
 Two things make these secrets worth flagging explicitly rather than waving through on precedent alone:
 
@@ -236,80 +224,29 @@ Every field, the sort order, the YAML dump conventions, and the awards taxonomy 
 
 ## Ported logic — JS module → Android equivalent
 
-None of this is a new design; it's a straight port of already-working, already-tested logic into Kotlin so behavior stays identical across both clients. See *Code organization* below for exactly where each Kotlin file lives and the naming convention that keeps the two sides directly comparable.
+None of this is a new design: each `lib/*.js` module is a straight behavior port into a same-named Kotlin file under `core/` — `utils.js` → `Utils.kt`, `tmdb_utils.js` → `TmdbUtils.kt`, `gemini_utils.js` → `GeminiUtils.kt` (Call A/B prompts reused verbatim so match quality doesn't drift between clients), `memo_pipeline.js` → `MemoPipeline.kt`, `canonicalize.js` → `Canonicalize.kt`, `awards_reconcile.js` → `AwardsReconcile.kt`. What each port covers is documented in the Kotlin files themselves. Two deliberate deviations:
 
-| Web app source | Android file | Port covers |
-| --- | --- | --- |
-| [lib/utils.js](lib/utils.js) | `android/app/src/main/java/.../core/Utils.kt` | `BADGE_KEY_BY_NAME`, `deriveAwardBadges`, `isKoreanLanguage`, `buildKoreanDirectorMap`, `getLanguageName` (+ the `cn`→Cantonese override), `sortMovies`. **Not** ported: `AWARD_NAMES` (the full award-picker option list) — this app never shows an award-editing UI (awards are read-only, sourced entirely from `data/awards.yml`), so the option list itself is unneeded; only the badge-key mapping is. |
-| [lib/tmdb_utils.js](lib/tmdb_utils.js) | `core/TmdbUtils.kt` | `buildMovieEntryFromTmdb` (title composition, field order, `country` omitted for new entries) |
-| [lib/gemini_utils.js](lib/gemini_utils.js) | `core/GeminiUtils.kt` | Call A / Call B system prompts and JSON response schemas, verbatim — reuse the exact prompt text so match quality doesn't drift between clients |
-| [lib/memo_pipeline.js](lib/memo_pipeline.js) | `core/MemoPipeline.kt` | `processMemoLine` orchestration: TMDB year±1 windowed search, candidate enrichment (`/movie/{id}?append_to_response=credits`), the `imdb_id`-required candidate filter, Korean-director map resolution (Call C stays disabled) |
-| [lib/canonicalize.js](lib/canonicalize.js) | `core/Canonicalize.kt` | `canonicalizeEntry`/`canonicalizeAll` — field order, omit-empty, masterpiece/my_best exclusivity |
-| [lib/awards_reconcile.js](lib/awards_reconcile.js) | `core/AwardsReconcile.kt` | `reconcileAwardNames`/`applyAwardsToEntry`-equivalent — overwrite `award_names` from `awards.yml`'s `by_imdb`, drop `awards` so canonicalize re-derives it |
+- **`AWARD_NAMES` is not ported** — this app has no award-editing UI (awards are read-only from `data/awards.yml`), so only the badge-key mapping is needed.
+- **Stricter candidate filter than the JS reference:** a candidate whose details fetch merely *failed* is discarded outright, the same as a confirmed-absent `imdb_id` — a candidate must have a positively confirmed `imdb_id` before it's ever offered to Call B or the candidate picker (the JS version keeps it as `has_imdb=unknown`, neutral for Call B). Deliberate, Android-only divergence, not an oversight.
 
-`lib/app.js` (the web app's DOM/UI glue) and `lib/awards_curation.js` (the offline award-curation CLI's Wikidata/Wikipedia scraping, only ever run by `cli/curate-awards.mjs` — see [prompt-award-curation.md](prompt-award-curation.md)) have **no** Android counterpart: the first is web-only UI wiring with nothing portable in it, the second belongs to a batch job that runs in GitHub Actions regardless of which client eventually reads its output.
+`lib/app.js` (web-only DOM/UI glue) and `lib/awards_curation.js` (the offline award-curation batch job run by `cli/curate-awards.mjs`) have **no** Android counterpart.
 
 ## Code organization
 
-**Repo placement:** the Android app lives in **this same repository**, in a new top-level `android/` directory — a standard Gradle project root — sitting alongside the existing `lib/`, `cli/`, `scripts/`, and `tests/`. Nothing about the existing web app moves or changes.
+**Repo placement:** the Android app lives in **this same repository**, in a top-level `android/` directory — a standard Gradle project root alongside the existing `lib/`, `cli/`, `scripts/`, and `tests/`. Nothing about the existing web app moves or changes. Secrets live in the gitignored `android/secrets.properties`, wired into `BuildConfig` by `app/build.gradle.kts`.
 
-```
-movie-data-manager/
-├─ lib/                         ← existing, untouched (web app + CLI shared logic)
-├─ cli/                         ← existing, untouched
-├─ scripts/                     ← existing, untouched
-├─ tests/                       ← existing, untouched
-├─ index.html, package.json,    ← existing, untouched
-│  prompt-*.md, ...
-│
-└─ android/                     ← NEW — Gradle project root for the Android app
-   ├─ settings.gradle.kts
-   ├─ gradle.properties         ← gitignored; GitHub PAT + Gemini key (see *Build-time configuration*)
-   └─ app/
-      ├─ build.gradle.kts       ← buildConfigField wiring for the hardcoded secrets
-      └─ src/
-         ├─ main/
-         │  ├─ AndroidManifest.xml
-         │  └─ java/com/nambin/moviecuration/
-         │     ├─ core/                  ← mirrors lib/*.js, one file per module (see table above)
-         │     │  ├─ Utils.kt
-         │     │  ├─ TmdbUtils.kt
-         │     │  ├─ GeminiUtils.kt
-         │     │  ├─ MemoPipeline.kt
-         │     │  ├─ Canonicalize.kt
-         │     │  └─ AwardsReconcile.kt
-         │     ├─ github/                ← NEW — no JS equivalent (the web app never commits to GitHub)
-         │     │  ├─ GitHubContentsClient.kt   (GET/PUT against the Contents API, sha handling, 409 retry)
-         │     │  └─ DiffSizeGuard.kt          (the 100-line safety cap)
-         │     ├─ data/                  ← NEW — Android-side state the web app keeps as globals/localStorage in app.js
-         │     │  ├─ MovieRepository.kt        (boot fetch, in-memory collection, dedup checks)
-         │     │  ├─ CurationSession.kt        (newImdbIds / updatedImdbIds / pre-edit snapshots)
-         │     │  └─ YamlCodec.kt              (SnakeYAML config mirroring utils.js's YAML_DUMP_OPTIONS/YAML_LOAD_OPTIONS/YAML_SCHEMA)
-         │     ├─ settings/
-         │     │  └─ GeminiModelSetting.kt     (DataStore-backed model-tier preference)
-         │     ├─ ui/                    ← NEW — Compose screens, no JS equivalent
-         │     │  ├─ MovieCurationApp.kt       (drawer + nav host, 3 destinations)
-         │     │  ├─ movies/MoviesScreen.kt    (WebView)
-         │     │  ├─ settings/SettingsScreen.kt
-         │     │  └─ curation/
-         │     │     ├─ CurationScreen.kt      (Add box + Search box)
-         │     │     ├─ DetailScreen.kt        (shared add/edit view, incl. candidate picker)
-         │     │     └─ ReviewChangesScreen.kt (diff list + Confirm & Commit)
-         │     └─ MainActivity.kt
-         └─ test/
-            └─ java/com/nambin/moviecuration/core/
-               ├─ UtilsTest.kt            ← mirrors tests/utils.test.js (exact test names where the behavior matches)
-               ├─ TmdbUtilsTest.kt
-               ├─ MemoPipelineTest.kt
-               ├─ CanonicalizeTest.kt
-               └─ AwardsReconcileTest.kt
-```
+Packages under `android/app/src/main/java/com/nambin/moviecuration/`:
 
-Two things make the correspondence easy to eyeball, which was the actual goal:
+- **`core/`** — mirrors `lib/*.js`, one file per module (see *Ported logic* above).
+- **`github/`** — Android-only: `GitHubContentsClient` (Contents API GET/PUT, sha handling, 409 retry) and `DiffSizeGuard` (the 200-line cap).
+- **`data/`** — Android-only state the web app keeps as globals/localStorage: `MovieRepository` (boot fetch, in-memory collection, dedup checks), `CurationSession` (new/updated tracking + pre-edit snapshots), `CurationEditor` (the business-logic layer choreographing repository + session + core functions; the ViewModel delegates all mutations to it), `YamlCodec` (SnakeYAML config).
+- **`settings/`** — the DataStore-backed model-tier preference.
+- **`ui/`** — Compose screens: drawer/nav host, Movies WebView, Settings, and `ui/curation/` (CurationScreen + CurationViewModel, shared DetailScreen, ReviewChangesScreen).
 
-- **One JS module → one Kotlin file, same base name.** `tmdb_utils.js` → `TmdbUtils.kt`, `memo_pipeline.js` → `MemoPipeline.kt`, and so on — the only difference is JS's `snake_case.js` convention becoming Kotlin's conventional `PascalCase.kt`, so the mapping is mechanical (capitalize each underscore-separated word, drop the underscores) rather than a naming judgment call per file.
-- **All of it lives under one `core/` package**, deliberately named to echo `lib/` — anyone comparing the two codebases goes `lib/` ↔ `core/`, file by file, and everything *outside* that pairing (`github/`, `data/`, `settings/`, `ui/`) is visibly Android-only, new surface area with nothing in the web app to compare against.
-- **Tests mirror the same pairing**: `tests/*.test.js` ↔ `core/*Test.kt`, and where a JS test asserts a specific input/output pair (e.g. a fixture-driven case in `tests/fixtures/`), the Kotlin test should assert the *same* input/output pair — copy the JSON fixtures into `android/app/src/test/resources/fixtures/` verbatim rather than inventing new ones, so a behavior difference between the two clients shows up as a failing port test, not a silent drift.
+Conventions that keep the two clients directly comparable:
+
+- **One JS module → one Kotlin file, same base name** (`tmdb_utils.js` → `TmdbUtils.kt`) — the mapping is mechanical, not a naming judgment call per file. Anyone comparing the two codebases goes `lib/` ↔ `core/`, file by file; everything outside `core/` is visibly Android-only surface area.
+- **Tests mirror the same pairing**: `tests/*.test.js` ↔ `core/*Test.kt`, with JSON fixtures copied verbatim into `android/app/src/test/resources/fixtures/` so a behavior difference between the two clients shows up as a failing port test, not silent drift. The Android-only `data/` and `github/` classes carry their own JUnit tests.
 
 ## Suggested tech stack
 
@@ -323,26 +260,14 @@ Two things make the correspondence easy to eyeball, which was the actual goal:
 
 ## Acceptance test
 
-- Cold launch → drawer closed, Curation visible by default, no movie cards shown, Commit disabled (0 new, 0 update).
-- Tap ☰ → drawer opens over/beside Curation; tap Movies → drawer closes, WebView loads `https://nambin.github.io/movies.html?recent=true`.
-- Settings → switch model tier to Flash Lite → relaunch app → choice persisted, and the next memo add visibly uses it (e.g. checked via a debug log line naming the model in the Gemini request).
-- Curation → type a well-known, unambiguous English title (e.g. `Parasite 2019`) → resolves to one candidate automatically, detail view shows poster/Title (Year)/director/rating/note/awards (`오스카 최우수 작품상`-style entries should show `Oscar Best Picture`, `Cannes Palme d'Or`).
-- Curation → type a title with multiple plausible TMDB hits (a common word, e.g. `Anora` with no year) → the shared detail view opens directly with a candidate picker at the top (no separate intermediate screen); switching the picker's selection re-fills poster/Title (Year)/director/awards on that same screen.
-- Curation → type gibberish / a non-movie phrase → "not found" / "not a movie" message, no detail view.
-- Curation → add a movie already in `data/movies.yml` (e.g. `Parasite 2019`) → "Already curated: Parasite (2019) — tap to open and edit instead." message, no new-entry detail view opens, `newImdbIds` unchanged; tapping the message opens the shared detail view in edit mode for the existing entry.
-- Curation → add a movie, save it, then immediately try to add the exact same title again in the same session (before committing) → same "already curated" message fires against the session-local addition, not just the boot-loaded collection.
-- Curation → open a new-entry detail view for a not-yet-duplicate candidate, then switch its candidate picker to a different option that IS already curated → the picker option is annotated "(already curated)" and selecting it swaps the whole screen to the "already curated" message + edit-mode handoff, instead of building a duplicate.
-- Start an Add, then try to reach a second Add box or the Search box while its detail view is still open → there is no way to: Curation's home content (Add box + Search box) isn't shown while a detail view is open, so the only path to starting something new is to close the current detail view first (via its back arrow) and return to Curation home.
-- Cold launch with airplane mode on → retryable full-screen error state (no cache to fall back to); toggling connectivity back on and retrying loads the collection normally.
-- Search by director-only (e.g. `봉준호`) → returns his films; tapping one opens the edit view with rating/note editable and Save reflected in the "update" counter.
-- Tap poster → Chrome Custom Tab opens the film's TMDB page (not an in-app WebView, not the system browser app-switch).
-- Add one new movie + edit one existing movie's rating → status line reads `1 new, 1 update` → tap Commit → **Review changes** screen shows one **NEW** card (poster/Title (Year)/director/rating/note/awards) and one **UPDATED** row showing only `Rating: (none) → …` (no other fields listed, since nothing else changed).
-- On the Review changes screen, tap **Cancel** → back on Curation, status line still reads `1 new, 1 update`, no GitHub commit created, both pending changes still editable.
-- Edit the same existing entry's Note *after* already editing its Rating (still pre-commit) → Review changes screen's diff for that entry shows **both** `Rating: …` and `Note: …` changes relative to the original pre-session values, not just the latest edit.
-- From Review changes, tap **Confirm & Commit** → GitHub shows a new commit on `main` touching only `data/movies.yml`, with exactly those two changes in the diff, in the correct sorted position, canonical field order/omission rules honored; app returns to Curation with `0 new, 0 update` and Commit disabled again.
-- Force a `sha` conflict (edit `data/movies.yml` on GitHub.com between load and commit) → confirming from the Review changes screen auto-retries once with a fresh `sha` and either succeeds or reports a clear conflict error while remaining on the Review changes screen — no data loss, no silent overwrite of the intervening change, and the user can retry without re-reviewing the diff from scratch.
-- Add one movie + edit one rating (a legitimate small session) → Confirm & Commit succeeds normally; the diff-size cap never even becomes visible for ordinary use (a couple of movie entries is nowhere near 100 lines).
-- Artificially force an oversized mechanical diff (e.g. in a debug build, feed the commit path a YAML dump with a deliberately different key order or re-sorted whole file, simulating a canonicalize/sort bug) → commit aborts before any GitHub API call is made, a specific "N lines changed, limit 100" error is shown, and the Review changes screen remains open with the full pending change set intact — nothing pushed, nothing lost.
+The behavioral invariants — duplicate detection (against both the boot-loaded collection and session-local additions), cumulative diffs across multiple edits to one entry, revert-un-marks-update, the sha-conflict single retry, the diff-cap abort, and the canonicalize/sort/YAML round-trip — are covered by the unit suite under `android/app/src/test/`. What still warrants a manual pass on the device:
+
+- Cold launch → drawer closed, Curation shown by default, no movie cards, Commit disabled at `0 new, 0 update`. Cold launch in airplane mode instead → retryable full-screen error; restore connectivity and Retry loads normally.
+- Tap ☰ → Movies loads the WebView on `movies.html?recent=true`. Settings → switch the model tier → survives a relaunch, and the next memo add names the chosen model in its debug log line.
+- Add an unambiguous title (`Parasite 2019`) end-to-end → detail view with poster/Title (Year)/director/rating/note/awards. Add an ambiguous one — any not-yet-curated title with multiple plausible TMDB hits, e.g. a remake-heavy name typed without a year (a *named* example would rot as the collection grows) → candidate picker at the top of the same detail view; swapping re-fills the screen in place, and "(already curated)" options hand off to edit mode. Gibberish → "not a movie" message, no detail view.
+- Add an already-curated title → "Already curated — tap to open and edit instead", and the tap lands in edit mode for the existing entry.
+- Search by director (`봉준호`) → his films; tapping one opens the edit view and changes reflect in the update counter. Tap a poster → Chrome Custom Tab on the film's TMDB page.
+- One new movie + one rating edit → `1 new, 1 update` → Commit → **Review changes** shows one **NEW** card and one **UPDATED** row with only the rating diff. **Cancel** preserves everything; **Confirm & Commit** → GitHub shows a commit on `main` touching only `data/movies.yml` with exactly those changes in sorted position, and the app returns to `0 new, 0 update`.
 
 ## Decisions made
 
@@ -355,9 +280,9 @@ Two things make the correspondence easy to eyeball, which was the actual goal:
 - **`movies.yml`/`awards.yml` freshness:** no disk cache — every cold start blocks on a fresh fetch of both files before Curation becomes usable. Simplest option, and the single-user/single-device posture means a cache's main benefit (fast reopen) isn't worth the extra state to manage — see *Boot behavior* above.
 - **Award display:** text-only award names, no badge icons.
 - **Target device / SDK:** the user's own Samsung Galaxy S24 only — `minSdk` = `targetSdk` = `compileSdk` = the Android version actually running on that device at build time (**Android 16 / API 36**, confirmed on-device), with no legacy-device compatibility work. Revisit only if the app ever needs to run on an older/different device.
-- **"One flow in progress" UX:** structural, not a confirmation dialog — Curation home (Add box + Search box) is only ever shown when no detail view is open, so a second Add/Search attempt has no path to reach in the first place. Simpler than a discard dialog and loses nothing: auto-save means an "in-progress" entry is already reflected in the in-memory collection (and searchable) the moment its detail view opens, so there's no unsaved state a dialog would need to warn about discarding.
+- **"One flow in progress" UX:** structural, not a confirmation dialog — Curation home (Add box + Search box) is only ever shown when no detail view is open, so a second Add/Search attempt has no path to reach in the first place. Simpler than a discard dialog and loses nothing: auto-save means an "in-progress" entry is already reflected in the in-memory collection the moment its detail view opens, so there's no unsaved state a dialog would need to warn about discarding.
 - **Repo placement & code organization:** the Android app lives in this same repo under a new top-level `android/` directory (not a separate repo); its `core/` package mirrors `lib/`'s modules one-to-one by file name (`tmdb_utils.js` ↔ `TmdbUtils.kt`, etc.) so the two clients' shared logic is directly comparable — see *Code organization*.
-- **Diff-size safety cap:** a commit is refused outright — no `PUT` call made — if the line-level diff between the live GitHub file and the new YAML exceeds 100 changed lines (insertions + deletions). No in-app override; see *Diff-size safety cap*. This is a backstop against a formatting/logic bug silently producing a much bigger change than the reviewed `N new, M update` count implies, not a limit on legitimate curation volume.
+- **Diff-size safety cap:** a commit is refused outright — no `PUT` call made — if the line-level diff between the live GitHub file and the new YAML exceeds 200 changed lines (insertions + deletions). No in-app override; see *Diff-size safety cap*. This is a backstop against a formatting/logic bug silently producing a much bigger change than the reviewed `N new, M update` count implies, not a limit on legitimate curation volume.
 
 ## Open questions for review
 

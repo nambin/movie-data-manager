@@ -1,0 +1,6 @@
+<resources>
+    <!-- Compose (Material3) owns the actual theming in MovieCurationApp.kt;
+         this is only the minimal pre-Compose window theme Android needs
+         before the first composition. -->
+    <style name="Theme.MovieCuration" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

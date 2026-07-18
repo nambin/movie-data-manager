@@ -1,0 +1,43 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1551447,
+      "title": "Pretend I'm Still Here",
+      "original_language": "en",
+      "original_title": "Pretend I'm Still Here",
+      "overview": "Haunted by the disappearance of a close friend, Mike turns to filmmaking to make sense of the past. But as production unfolds, Mike realises he might just be chasing an ending that doesn't exist.",
+      "popularity": 0.0261,
+      "poster_path": "/6an8r5Moq56Z8XB0Jgaao69HPFT.jpg",
+      "release_date": "2025-09-29",
+      "softcore": false,
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        16
+      ],
+      "id": 1632888,
+      "title": "I’m Still Here: A Dog’s Purpose Forever",
+      "original_language": "en",
+      "original_title": "I’m Still Here: A Dog’s Purpose Forever",
+      "overview": "A poetically artistic rendering of Michon’s spiritual, uplifting book by the same name, reminding us that when our dogs die they never leave us.",
+      "popularity": 0.0214,
+      "poster_path": null,
+      "release_date": "2025-10-26",
+      "softcore": false,
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}

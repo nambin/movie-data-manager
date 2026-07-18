@@ -1,0 +1,122 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/j9uruwRe9qM8RnP758dF7ISB8Bj.jpg",
+      "genre_ids": [
+        18,
+        36
+      ],
+      "id": 1000837,
+      "title": "I'm Still Here",
+      "original_language": "pt",
+      "original_title": "Ainda Estou Aqui",
+      "overview": "A woman married to a former politician during the 1971 military dictatorship in Brazil is forced to reinvent herself and chart a new course for her family after a violent and arbitrary act.",
+      "popularity": 4.4597,
+      "poster_path": "/gZnsMbhCvhzAQlKaVpeFRHYjGyb.jpg",
+      "release_date": "2024-09-19",
+      "softcore": false,
+      "video": false,
+      "vote_average": 7.9,
+      "vote_count": 1058
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 1330018,
+      "title": "I'm Still Here",
+      "original_language": "en",
+      "original_title": "I'm Still Here",
+      "overview": "Between 1947 and 1967, Black-owned homes in Birmingham, Alabama, were bombed over 50 times. \"I'm Still Here\" is about three people who lived this history as children and elected to stay in Birmingham to try and turn the city's struggles with civil rights into a symbol for hope.",
+      "popularity": 0.0338,
+      "poster_path": "/6OGmSX1cwIpHCTqENkp19kT2mtB.jpg",
+      "release_date": "2024-08-19",
+      "softcore": false,
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1ji9bYQqqFrTvaC2lcHm4ZxyzdA.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1292373,
+      "title": "I'm Still Here",
+      "original_language": "en",
+      "original_title": "I'm Still Here",
+      "overview": "Estranged sisters Amber and Mila return to their mother's house to look through boxes of old memories.",
+      "popularity": 0.0214,
+      "poster_path": "/w1RDBduPsGbgGn6m4GK9DC7lgvh.jpg",
+      "release_date": "2024-05-17",
+      "softcore": false,
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1446556,
+      "title": "I'm still here",
+      "original_language": "en",
+      "original_title": "I'm still here",
+      "overview": "A Boy wakes up and sees a demon hand. He blinks and he is somewhere else. He gets up, walks through a door and is now outside. A demon is behind him as he turns around and falls and wakes up. He doesn't realize he's still in a dream",
+      "popularity": 0.0193,
+      "poster_path": "/qOXXjb3sB6k3REkMJ6ZHmOfqpbe.jpg",
+      "release_date": "2024-06-02",
+      "softcore": false,
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/knoOzTe2OJA0qMAimBPMdRCIEQ7.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1393307,
+      "title": "Looks Like I'm Still Here",
+      "original_language": "en",
+      "original_title": "Looks Like I'm Still Here",
+      "overview": "A young man stumbles through a cascade of tainted memories in an attempt to rise above his self sabotaging ways.",
+      "popularity": 0.0882,
+      "poster_path": "/zkiXedgHUEBRbwYubXLnnYrZ8NQ.jpg",
+      "release_date": "2024-11-26",
+      "softcore": false,
+      "video": false,
+      "vote_average": 10,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        27,
+        53,
+        9648
+      ],
+      "id": 1380619,
+      "title": "Todavía estoy a tu lado",
+      "original_language": "es",
+      "original_title": "Todavía estoy a tu lado",
+      "overview": "Short film that narrates the suffering and traumas of Marcela Farias, a young woman who was locked up by her mother for 15 years, after being released.",
+      "popularity": 0,
+      "poster_path": "/h49BfvPm1YuGxGcmnDDK7EB6IgJ.jpg",
+      "release_date": "2024-08-15",
+      "softcore": false,
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 6
+}
