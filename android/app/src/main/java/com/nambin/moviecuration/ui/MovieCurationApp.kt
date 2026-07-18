@@ -8,8 +8,10 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,6 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nambin.moviecuration.ui.curation.CurationScreen
 import com.nambin.moviecuration.ui.movies.MoviesScreen
+import com.nambin.moviecuration.ui.movies.MoviesWebViewHolder
 import com.nambin.moviecuration.ui.settings.SettingsScreen
 import kotlinx.coroutines.launch
 
@@ -41,6 +44,12 @@ fun MovieCurationApp() {
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+
+    // The Movies tab's WebView, created on the first visit and then retained
+    // here (the root survives destination switches) so returning to Movies
+    // resumes the page instead of reloading it — see MoviesWebViewHolder.
+    val context = LocalContext.current
+    val moviesWebViewHolder = remember { lazy { MoviesWebViewHolder(context) } }
 
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: START_DESTINATION
@@ -92,7 +101,7 @@ fun MovieCurationApp() {
                     startDestination = START_DESTINATION,
                     modifier = Modifier.padding(padding),
                 ) {
-                    composable("movies") { MoviesScreen() }
+                    composable("movies") { MoviesScreen(moviesWebViewHolder.value) }
                     composable("curation") { CurationScreen() }
                     composable("settings") { SettingsScreen() }
                 }

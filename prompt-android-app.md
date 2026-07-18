@@ -39,6 +39,7 @@ https://nambin.github.io/movies.html?recent=true
 
 - Enable JavaScript and DOM storage (the site page uses both).
 - Wire `WebView.canGoBack()`/`goBack()` to the system back gesture/button while this screen is active, so in-page navigation (if any) doesn't immediately exit the tab.
+- **The WebView instance is retained across tab switches** — created on the first visit to Movies and kept for the activity's lifetime, so leaving for Curation/Settings and coming back resumes the exact page state (applied filters, scroll position, in-page history) with no reload. A fresh page load happens only when the app itself restarts.
 - No pull-to-refresh or custom chrome needed beyond a loading spinner — this is a thin viewport onto the existing public page, not a feature this app re-implements.
 
 ### "Settings" destination
@@ -77,6 +78,8 @@ If the fetch fails (offline, GitHub Pages hiccup), show a retryable error state;
 #### Screen layout
 
 The Curation screen shows **both** entry points together, always — an "Add a movie" input and a "Search to update" input stacked on one screen, no tab/mode toggle between them. Typing in one doesn't hide or disable the other; a user free-associating between "add this new one" and "fix that old rating" shouldn't have to switch modes to do both in one sitting.
+
+**System back mirrors the in-view Cancel when one exists, else the back arrow.** On a *new* entry's detail view (which has a Cancel), the device back button/gesture acts as that Cancel — the in-flight addition is retired, exactly as if the button were tapped. On an existing entry's detail view (no Cancel) it does what the back arrow does — close, returning to Review changes when opened from there. On the Review changes screen it acts as Cancel (back to Curation home with the batch preserved), and is inert while a commit is in flight. Only from Curation home does system back leave the app.
 
 #### Adding a new movie (memo-based, single title)
 

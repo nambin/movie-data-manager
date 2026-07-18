@@ -132,7 +132,14 @@ fun DetailScreen(
         if (awardNames.isNotEmpty()) {
             Spacer(Modifier.height(16.dp))
             Text("Awards", style = MaterialTheme.typography.labelMedium)
-            awardNames.forEach { Text(it) }
+            // Secondary styling: reference info, not editable content.
+            awardNames.forEach {
+                Text(
+                    "• $it",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
 
         Spacer(Modifier.height(24.dp))

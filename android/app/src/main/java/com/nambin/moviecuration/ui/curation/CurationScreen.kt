@@ -1,6 +1,7 @@
 package com.nambin.moviecuration.ui.curation
 
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -50,30 +51,44 @@ fun CurationScreen(
     when {
         state.loading -> LoadingView()
         state.loadError != null -> ErrorView(state.loadError!!, onRetry = viewModel::boot)
-        state.reviewChanges != null -> ReviewChangesScreen(
-            changes = state.reviewChanges!!,
-            newCount = state.newCount,
-            updateCount = state.updateCount,
-            busy = state.commitBusy,
-            error = state.commitError,
-            onOpenEntry = viewModel::openEntryFromReview,
-            onRemoveChange = viewModel::removePendingChange,
-            onCancel = viewModel::closeReviewChanges,
-            onConfirm = viewModel::confirmCommit,
-        )
-        state.activeEntry != null -> DetailScreen(
-            entry = state.activeEntry!!,
-            isNew = state.activeIsNew,
-            candidates = state.candidates,
-            selectedCandidateId = state.selectedCandidateId,
-            alreadyCuratedCandidateIds = state.alreadyCuratedCandidateIds,
-            onSelectCandidate = viewModel::selectCandidate,
-            onDirectorChange = viewModel::updateDirector,
-            onRatingChange = viewModel::updateRating,
-            onNoteChange = viewModel::updateNote,
-            onDiscard = viewModel::discardActiveNewEntry,
-            onClose = viewModel::closeDetail,
-        )
+        state.reviewChanges != null -> {
+            // System back = Cancel: home with the batch preserved. Inert
+            // while a commit is in flight, like the disabled Cancel button.
+            BackHandler(enabled = !state.commitBusy) { viewModel.closeReviewChanges() }
+            ReviewChangesScreen(
+                changes = state.reviewChanges!!,
+                newCount = state.newCount,
+                updateCount = state.updateCount,
+                busy = state.commitBusy,
+                error = state.commitError,
+                onOpenEntry = viewModel::openEntryFromReview,
+                onRemoveChange = viewModel::removePendingChange,
+                onCancel = viewModel::closeReviewChanges,
+                onConfirm = viewModel::confirmCommit,
+            )
+        }
+        state.activeEntry != null -> {
+            // System back = the view's Cancel when one exists (a new entry:
+            // the in-flight add is discarded), else its back arrow (an
+            // existing entry: close, returning to Review changes when the
+            // entry was opened from there).
+            BackHandler {
+                if (state.activeIsNew) viewModel.discardActiveNewEntry() else viewModel.closeDetail()
+            }
+            DetailScreen(
+                entry = state.activeEntry!!,
+                isNew = state.activeIsNew,
+                candidates = state.candidates,
+                selectedCandidateId = state.selectedCandidateId,
+                alreadyCuratedCandidateIds = state.alreadyCuratedCandidateIds,
+                onSelectCandidate = viewModel::selectCandidate,
+                onDirectorChange = viewModel::updateDirector,
+                onRatingChange = viewModel::updateRating,
+                onNoteChange = viewModel::updateNote,
+                onDiscard = viewModel::discardActiveNewEntry,
+                onClose = viewModel::closeDetail,
+            )
+        }
         else -> CurationHome(state, viewModel)
     }
 }
