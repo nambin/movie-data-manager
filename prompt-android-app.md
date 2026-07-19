@@ -84,7 +84,7 @@ The Curation screen shows **both** entry points together, always — an "Add a m
 - First line: **`N movies loaded`** — the total number of entries at load time.
 - Then up to **7 rows**, one per director, for the directors with the most movies in the collection. Each row shows the latest film's poster thumbnail, the director's name, the latest movie's title, and a **`+M`** count:
   - The director is the entry's `director` field verbatim (entries are grouped by that exact string, so the Korean form counts as one director).
-  - The latest movie is that director's most recent film — the first of theirs in the canonical sort order (`year` desc with the usual tie-breakers) — displayed with the same title convention as search results (`tmdb_title` preferred, falling back to `tmdb_original_title`), title only, no year.
+  - The latest movie is that director's most recent film — the first of theirs in the canonical sort order (`year` desc with the usual tie-breakers) — displayed with the same title convention as search results (`tmdb_title` preferred, falling back to `tmdb_original_title`, with the release year appended).
   - `M` is that director's movie count minus one; the `+M` count is omitted when M is 0.
   - Ties in the top-7 selection are broken by canonical collection order (the director appearing earlier wins).
 - **Each row has two tap actions**:

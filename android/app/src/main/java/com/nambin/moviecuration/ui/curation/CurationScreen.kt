@@ -20,6 +20,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +32,15 @@ import com.nambin.moviecuration.MovieCurationApplication
 import com.nambin.moviecuration.core.MovieEntry
 import com.nambin.moviecuration.data.CollectionStats
 import com.nambin.moviecuration.data.DirectorStat
+
+// Lifted from movies.html so the app's lists read like the public site:
+// movie titles are slate `#2c3e50` (`.movie-info h2 a`), director names the
+// bold blue `#3498db` of `.director-filter-link` — apt, since the site's blue
+// director link filters by director just like the app's director tap. The
+// `+M` pill borrows the site's `#eef7ff` filter-chip background.
+private val WebMovieTitleColor = Color(0xFF2C3E50)
+private val WebDirectorColor = Color(0xFF3498DB)
+private val WebChipBackground = Color(0xFFEEF7FF)
 
 /**
  * The Curation destination — the app's main screen. Dispatches between the
@@ -279,30 +289,24 @@ private fun DirectorStatRow(
         modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        val posterUrl = stat.latestEntry["tmdb_poster_url"] as? String
-        val posterModifier = Modifier
-            .size(width = 48.dp, height = 72.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .clickable { onMovieClick(stat.latestEntry) }
-        if (posterUrl != null) {
-            AsyncImage(model = posterUrl, contentDescription = "Poster", modifier = posterModifier)
-        } else {
-            // Same footprint as a poster, so rows stay aligned without one.
-            Box(posterModifier.background(MaterialTheme.colorScheme.surfaceVariant))
-        }
+        PosterThumb(
+            posterUrl = stat.latestEntry["tmdb_poster_url"] as? String,
+            onClick = { onMovieClick(stat.latestEntry) },
+        )
         Spacer(Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 stat.director,
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold,
+                color = WebDirectorColor,
                 modifier = Modifier.clickable { onDirectorClick(stat.director) },
             )
             Spacer(Modifier.height(2.dp))
             Text(
-                displayTitleNoYear(stat.latestEntry),
+                displayTitle(stat.latestEntry),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary,
+                color = WebMovieTitleColor,
                 modifier = Modifier.clickable { onMovieClick(stat.latestEntry) },
             )
         }
@@ -310,7 +314,8 @@ private fun DirectorStatRow(
             Spacer(Modifier.width(8.dp))
             Surface(
                 shape = CircleShape,
-                color = MaterialTheme.colorScheme.secondaryContainer,
+                color = WebChipBackground,
+                contentColor = WebDirectorColor,
                 // Same action as tapping the director's name — the count is
                 // about their filmography, so it leads to the same list.
                 modifier = Modifier.clip(CircleShape).clickable { onDirectorClick(stat.director) },
@@ -318,6 +323,7 @@ private fun DirectorStatRow(
                 Text(
                     "+${stat.moreCount}",
                     style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
                 )
             }
@@ -325,29 +331,54 @@ private fun DirectorStatRow(
     }
 }
 
+/**
+ * The poster treatment shared by stats rows and search results — one size
+ * and corner shape so the two lists read as the same system. Entries
+ * without a poster get a same-footprint placeholder, keeping text columns
+ * aligned across rows.
+ */
+@Composable
+private fun PosterThumb(posterUrl: String?, onClick: (() -> Unit)? = null) {
+    var thumbModifier = Modifier
+        .size(width = 48.dp, height = 72.dp)
+        .clip(RoundedCornerShape(8.dp))
+    if (onClick != null) thumbModifier = thumbModifier.clickable(onClick = onClick)
+    if (posterUrl != null) {
+        AsyncImage(model = posterUrl, contentDescription = "Poster", modifier = thumbModifier)
+    } else {
+        Box(thumbModifier.background(MaterialTheme.colorScheme.surfaceVariant))
+    }
+}
+
+// Styled to mirror a stats row with the lines flipped (movie first, since the
+// movie is what was searched for): same poster treatment, same accent-colored
+// movie text, same semibold director text.
 @Composable
 private fun SearchResultRow(entry: MovieEntry, onClick: () -> Unit) {
     val director = entry["director"] as? String
-    val posterUrl = entry["tmdb_poster_url"] as? String
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(vertical = 8.dp),
+            .padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (posterUrl != null) {
-            AsyncImage(
-                model = posterUrl,
-                contentDescription = "Poster",
-                modifier = Modifier.size(width = 40.dp, height = 60.dp),
-            )
-            Spacer(Modifier.width(12.dp))
-        }
+        PosterThumb(entry["tmdb_poster_url"] as? String)
+        Spacer(Modifier.width(12.dp))
         Column {
-            Text(displayTitle(entry), style = MaterialTheme.typography.bodyLarge)
+            Text(
+                displayTitle(entry),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                color = WebMovieTitleColor,
+            )
             if (!director.isNullOrBlank()) {
-                Text(director, style = MaterialTheme.typography.bodySmall)
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    director,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = WebDirectorColor,
+                )
             }
         }
     }
