@@ -71,13 +71,27 @@ On entering this screen (first time per app session is enough — no need to re-
 1. Fetch `https://nambin.github.io/data/movies.yml` and `https://nambin.github.io/data/awards.yml` over plain HTTPS (same URLs the web app's `LIVE_DATA_ORIGIN` fallback already uses — no auth needed, both files are public). No local caching — every cold start blocks on this fetch, which is the simplest way to guarantee the in-memory collection is always current, and there's exactly one user/one device so a cache's main upside (fast reopen) isn't worth the added moving parts. Each fetch appends a cache-busting `?_=<timestamp>` query parameter so a stale CDN/proxy copy can't quietly defeat that freshness guarantee.
 2. Parse both into memory (see *YAML handling* below).
 3. Build the `by_imdb` awards lookup and the romanized→Korean director map (port of `buildKoreanDirectorMap`, [lib/utils.js](lib/utils.js)) from the loaded collection.
-4. **Show no movie cards.** The screen's default state is search bar + "Add a movie" entry point + Commit button/status — an empty result area, not a list dump. This matches the phone use case: you came here to do one thing (add or find one movie), not browse 800 entries.
+4. **Show no movie cards.** The screen's default state is search bar + "Add a movie" entry point + a small **collection stats block** (see *Screen layout*) + Commit button/status — not a list dump. This matches the phone use case: you came here to do one thing (add or find one movie), not browse 800 entries.
 
 If the fetch fails (offline, GitHub Pages hiccup), show a retryable error state; Curation is unusable without the loaded collection (both for duplicate-detection and for the search/update flow), so don't silently proceed with an empty in-memory list.
 
 #### Screen layout
 
 The Curation screen shows **both** entry points together, always — an "Add a movie" input and a "Search to update" input stacked on one screen, no tab/mode toggle between them. Typing in one doesn't hide or disable the other; a user free-associating between "add this new one" and "fix that old rating" shouldn't have to switch modes to do both in one sitting.
+
+**Collection stats fill the default view.** When the search box is empty, the otherwise-blank results area shows a small stats block. It is **computed once, at boot, from the collection as loaded** — a static snapshot, deliberately not recomputed during the session: movies added/edited in the app may make it slightly stale until the next app start, an accepted trade-off that keeps the code simple (no recomputation hooks on every mutation).
+
+- First line: **`N movies loaded`** — the total number of entries at load time.
+- Then up to **7 rows**, one per director, for the directors with the most movies in the collection. Each row shows the latest film's poster thumbnail, the director's name, the latest movie's title, and a **`+M`** count:
+  - The director is the entry's `director` field verbatim (entries are grouped by that exact string, so the Korean form counts as one director).
+  - The latest movie is that director's most recent film — the first of theirs in the canonical sort order (`year` desc with the usual tie-breakers) — displayed with the same title convention as search results (`tmdb_title` preferred, falling back to `tmdb_original_title`), title only, no year.
+  - `M` is that director's movie count minus one; the `+M` count is omitted when M is 0.
+  - Ties in the top-7 selection are broken by canonical collection order (the director appearing earlier wins).
+- **Each row has two tap actions**:
+  - Tapping the director's name or the `+M` count puts that exact director text into the search box — from there it behaves exactly like a typed query (results replace the stats block, ✕ clears back).
+  - Tapping the poster or movie title opens that film's entry in the shared detail view in **edit** mode — the same handoff as tapping a search result.
+
+Typing a search query replaces the stats block with live results; clearing the query brings it back.
 
 **System back mirrors the in-view Cancel when one exists, else the back arrow.** On a *new* entry's detail view (which has a Cancel), the device back button/gesture acts as that Cancel — the in-flight addition is retired, exactly as if the button were tapped. On an existing entry's detail view (no Cancel) it does what the back arrow does — close, returning to Review changes when opened from there. On the Review changes screen it acts as Cancel (back to Curation home with the batch preserved), and is inert while a commit is in flight. Only from Curation home does system back leave the app.
 
@@ -268,7 +282,7 @@ Conventions that keep the two clients directly comparable:
 
 The behavioral invariants — duplicate detection (against both the boot-loaded collection and session-local additions), cumulative diffs across multiple edits to one entry, revert-un-marks-update, the sha-conflict single retry, the diff-cap abort, and the canonicalize/sort/YAML round-trip — are covered by the unit suite under `android/app/src/test/`. What still warrants a manual pass on the device:
 
-- Cold launch → drawer closed, Curation shown by default, no movie cards, Commit disabled at `0 new, 0 update`. Cold launch in airplane mode instead → retryable full-screen error; restore connectivity and Retry loads normally.
+- Cold launch → drawer closed, Curation shown by default, no movie cards, Commit disabled at `0 new, 0 update`; the empty-search area shows `N movies loaded` (N in the hundreds) plus up to 7 director rows (poster thumbnail, director, latest movie, `+M` count). Typing a search query replaces the stats with results; clearing restores them (same static values — the block is a boot-time snapshot). Tapping a director name fills the search box with that exact text and shows their films; tapping a movie poster/title opens its detail view in edit mode. Cold launch in airplane mode instead → retryable full-screen error; restore connectivity and Retry loads normally.
 - Tap ☰ → Movies loads the WebView on `movies.html?recent=true`. Settings → switch the model tier → survives a relaunch, and the next memo add names the chosen model in its debug log line.
 - Add an unambiguous title (`Parasite 2019`) end-to-end → detail view with poster/Title (Year)/director/rating/note/awards. Add an ambiguous one — any not-yet-curated title with multiple plausible TMDB hits, e.g. a remake-heavy name typed without a year (a *named* example would rot as the collection grows) → candidate picker at the top of the same detail view; swapping re-fills the screen in place, and "(already curated)" options hand off to edit mode. Gibberish → "not a movie" message, no detail view.
 - Add an already-curated title → "Already curated — tap to open and edit instead", and the tap lands in edit mode for the existing entry.

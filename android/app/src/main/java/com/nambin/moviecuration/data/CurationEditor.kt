@@ -59,6 +59,48 @@ data class PendingChange(
 )
 
 /**
+ * One director line of the boot-time stats block: [director] is the entry's
+ * `director` field verbatim, [latestEntry] that director's most recent film
+ * (their first in canonical sort order — a live reference into the
+ * collection, so tapping the line edits the same object the update flow
+ * does), and [moreCount] the director's film count minus that one (the
+ * ", M more" suffix, omitted at 0).
+ */
+data class DirectorStat(val director: String, val latestEntry: MovieEntry, val moreCount: Int)
+
+/**
+ * The stats block Curation home shows while the search box is empty —
+ * computed once per boot from the collection as loaded, deliberately never
+ * recomputed during the session (see prompt-android-app.md's "Collection
+ * stats fill the default view"): a static snapshot that may go slightly
+ * stale as the session adds/edits movies, an accepted trade-off that keeps
+ * the code free of recomputation hooks.
+ */
+data class CollectionStats(val totalMovies: Int, val topDirectors: List<DirectorStat>)
+
+/** Number of director lines in the stats block. */
+private const val STATS_TOP_DIRECTORS = 7
+
+/**
+ * Pure computation behind [CurationEditor.collectionStats]: entries are
+ * grouped by the exact `director` string (blank/missing directors count
+ * toward the total but form no line) and ranked by film count, ties broken
+ * by canonical collection order — the director appearing earlier wins.
+ */
+fun computeCollectionStats(movies: List<MovieEntry>): CollectionStats {
+    val byDirector = sortMovies(movies)
+        .filter { !(it["director"] as? String).isNullOrBlank() }
+        .groupBy { it["director"] as String }
+    // groupBy preserves first-encounter (= canonical) order and
+    // sortedByDescending is stable, so equal-count ties keep that order.
+    val top = byDirector.entries
+        .sortedByDescending { it.value.size }
+        .take(STATS_TOP_DIRECTORS)
+        .map { (director, films) -> DirectorStat(director, films.first(), films.size - 1) }
+    return CollectionStats(totalMovies = movies.size, topDirectors = top)
+}
+
+/**
  * Owns the choreography between [MovieRepository], [CurationSession], and the
  * pure `core` package functions for one Curation session, so callers (the
  * ViewModel) only need to translate UI events into calls here and map the
@@ -73,7 +115,14 @@ class CurationEditor(
     val updateCount: Int get() = session.updateCount
     val koreanDirectorMap: Map<String, String> get() = repository.koreanDirectorMap
 
-    suspend fun loadFromServer() = repository.loadFromServer()
+    /** Boot-time stats snapshot — set only by [loadFromServer], never by session mutations (see [CollectionStats]). */
+    var collectionStats: CollectionStats = CollectionStats(0, emptyList())
+        private set
+
+    suspend fun loadFromServer() {
+        repository.loadFromServer()
+        collectionStats = computeCollectionStats(repository.movies)
+    }
 
     fun search(query: String): List<MovieEntry> = repository.search(query)
 

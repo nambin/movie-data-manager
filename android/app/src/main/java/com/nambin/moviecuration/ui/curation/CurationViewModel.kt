@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.nambin.moviecuration.MovieCurationApplication
 import com.nambin.moviecuration.core.*
 import com.nambin.moviecuration.data.AddOutcome
+import com.nambin.moviecuration.data.CollectionStats
 import com.nambin.moviecuration.data.CommitAttemptOutcome
 import com.nambin.moviecuration.data.CurationEditor
 import com.nambin.moviecuration.data.PendingChange
@@ -23,6 +24,11 @@ data class CurationUiState(
     val loading: Boolean = true,
     // Non-null when that boot fetch failed — shows the error view with a Retry button.
     val loadError: String? = null,
+    // Boot-time collection stats, shown while the search box is empty — a static
+    // snapshot copied from CurationEditor once per (re)boot, never recomputed
+    // during the session. The empty default is never visible: home only renders
+    // after a successful boot has filled it.
+    val collectionStats: CollectionStats = CollectionStats(0, emptyList()),
 
     // Session change counts, mirrored from CurationEditor after every mutation —
     // drive the "N new, M update" label and the Commit button's enablement.
@@ -109,7 +115,7 @@ class CurationViewModel(
         viewModelScope.launch {
             try {
                 editor.loadFromServer()
-                _uiState.update { it.copy(loading = false, loadError = null) }
+                _uiState.update { it.copy(loading = false, loadError = null, collectionStats = editor.collectionStats) }
             } catch (e: Exception) {
                 _uiState.update { it.copy(loading = false, loadError = e.message ?: "Failed to load data/movies.yml") }
             }

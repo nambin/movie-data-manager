@@ -2,26 +2,35 @@ package com.nambin.moviecuration.ui.curation
 
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.nambin.moviecuration.MovieCurationApplication
 import com.nambin.moviecuration.core.MovieEntry
+import com.nambin.moviecuration.data.CollectionStats
+import com.nambin.moviecuration.data.DirectorStat
 
 /**
  * The Curation destination — the app's main screen. Dispatches between the
@@ -197,9 +206,20 @@ private fun CurationHome(state: CurationUiState, viewModel: CurationViewModel) {
             modifier = Modifier.fillMaxWidth(),
         )
         Spacer(Modifier.height(8.dp))
-        LazyColumn(modifier = Modifier.weight(1f)) {
-            items(state.searchResults, key = { it["imdb_id"] as? String ?: it.hashCode().toString() }) { entry ->
-                SearchResultRow(entry, onClick = { viewModel.openSearchResult(entry) })
+        if (state.searchQuery.isEmpty()) {
+            // The otherwise-blank results area shows the boot-time stats
+            // snapshot; typing a query replaces it with live results below.
+            CollectionStatsBlock(
+                stats = state.collectionStats,
+                onDirectorClick = viewModel::updateSearchQuery,
+                onMovieClick = viewModel::openSearchResult,
+                modifier = Modifier.weight(1f),
+            )
+        } else {
+            LazyColumn(modifier = Modifier.weight(1f)) {
+                items(state.searchResults, key = { it["imdb_id"] as? String ?: it.hashCode().toString() }) { entry ->
+                    SearchResultRow(entry, onClick = { viewModel.openSearchResult(entry) })
+                }
             }
         }
 
@@ -217,6 +237,90 @@ private fun CurationHome(state: CurationUiState, viewModel: CurationViewModel) {
             }
             Spacer(Modifier.width(12.dp))
             Text("${state.newCount} new, ${state.updateCount} update")
+        }
+    }
+}
+
+/**
+ * The boot-time stats snapshot filling the results area while the search box
+ * is empty: "N movies loaded" plus up to 7 top-director poster rows, each with two
+ * tap targets — the director (fills the search box with that exact text) and
+ * their latest film (opens it in the shared detail view, same handoff as a
+ * search result). See prompt-android-app.md's "Collection stats fill the
+ * default view".
+ */
+@Composable
+private fun CollectionStatsBlock(
+    stats: CollectionStats,
+    onDirectorClick: (String) -> Unit,
+    onMovieClick: (MovieEntry) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier.padding(top = 12.dp).verticalScroll(rememberScrollState())) {
+        Text(
+            "${stats.totalMovies} movies loaded",
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(Modifier.height(8.dp))
+        stats.topDirectors.forEach { stat ->
+            DirectorStatRow(stat, onDirectorClick, onMovieClick)
+        }
+    }
+}
+
+@Composable
+private fun DirectorStatRow(
+    stat: DirectorStat,
+    onDirectorClick: (String) -> Unit,
+    onMovieClick: (MovieEntry) -> Unit,
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        val posterUrl = stat.latestEntry["tmdb_poster_url"] as? String
+        val posterModifier = Modifier
+            .size(width = 48.dp, height = 72.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .clickable { onMovieClick(stat.latestEntry) }
+        if (posterUrl != null) {
+            AsyncImage(model = posterUrl, contentDescription = "Poster", modifier = posterModifier)
+        } else {
+            // Same footprint as a poster, so rows stay aligned without one.
+            Box(posterModifier.background(MaterialTheme.colorScheme.surfaceVariant))
+        }
+        Spacer(Modifier.width(12.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                stat.director,
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.clickable { onDirectorClick(stat.director) },
+            )
+            Spacer(Modifier.height(2.dp))
+            Text(
+                displayTitleNoYear(stat.latestEntry),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.clickable { onMovieClick(stat.latestEntry) },
+            )
+        }
+        if (stat.moreCount > 0) {
+            Spacer(Modifier.width(8.dp))
+            Surface(
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                // Same action as tapping the director's name — the count is
+                // about their filmography, so it leads to the same list.
+                modifier = Modifier.clip(CircleShape).clickable { onDirectorClick(stat.director) },
+            ) {
+                Text(
+                    "+${stat.moreCount}",
+                    style = MaterialTheme.typography.labelMedium,
+                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                )
+            }
         }
     }
 }

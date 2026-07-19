@@ -295,4 +295,116 @@ class CurationEditorTest {
         assertTrue(outcome is CommitAttemptOutcome.DuplicateImdbIds)
         assertEquals(listOf("tt1"), (outcome as CommitAttemptOutcome.DuplicateImdbIds).imdbIds)
     }
+
+    // -- computeCollectionStats ---------------------------------------------------
+
+    private fun film(imdbId: String, director: String?, year: Int): MovieEntry {
+        val e = movieEntryOf("imdb_id" to imdbId, "tmdb_title" to "T-$imdbId", "year" to year)
+        if (director != null) e["director"] = director
+        return e
+    }
+
+    @Test
+    fun `computeCollectionStats counts every entry and ranks directors by film count`() {
+        val stats = computeCollectionStats(
+            listOf(
+                film("tt1", "Bong", 2020), film("tt2", "Bong", 2010), film("tt3", "Bong", 2000),
+                film("tt4", "Park", 2022), film("tt5", "Park", 2012),
+                film("tt6", "Kim", 2021),
+            ),
+        )
+
+        assertEquals(6, stats.totalMovies)
+        // Bong's 3 films outrank Park's 2 even though Park's latest is newer.
+        assertEquals(listOf("Bong", "Park", "Kim"), stats.topDirectors.map { it.director })
+        assertEquals(listOf(2, 1, 0), stats.topDirectors.map { it.moreCount })
+    }
+
+    @Test
+    fun `computeCollectionStats picks the canonically-first film as latest, regardless of input order`() {
+        val older = film("tt1", "Bong", 2003)
+        val newest = film("tt2", "Bong", 2019)
+        val middle = film("tt3", "Bong", 2013)
+
+        val stats = computeCollectionStats(listOf(older, newest, middle))
+
+        // Same live object, not a copy — the UI opens it for editing directly.
+        assertSame(newest, stats.topDirectors.single().latestEntry)
+    }
+
+    @Test
+    fun `computeCollectionStats caps the list at seven directors`() {
+        val movies = (1..8).map { film("tt$it", "d$it", 2026 - it) }
+
+        val stats = computeCollectionStats(movies)
+
+        assertEquals(8, stats.totalMovies)
+        assertEquals((1..7).map { "d$it" }, stats.topDirectors.map { it.director })
+    }
+
+    @Test
+    fun `computeCollectionStats breaks count ties by canonical collection order`() {
+        val stats = computeCollectionStats(
+            listOf(
+                film("tt1", "Park", 2020), film("tt2", "Park", 2010),
+                film("tt3", "Lee", 2022), film("tt4", "Lee", 2001),
+            ),
+        )
+
+        // Both have 2 films; Lee's 2022 film puts Lee first in canonical order.
+        assertEquals(listOf("Lee", "Park"), stats.topDirectors.map { it.director })
+    }
+
+    @Test
+    fun `computeCollectionStats counts director-less entries in the total but gives them no line`() {
+        val stats = computeCollectionStats(
+            listOf(film("tt1", "Bong", 2020), film("tt2", null, 2019), film("tt3", "", 2018)),
+        )
+
+        assertEquals(3, stats.totalMovies)
+        assertEquals(listOf("Bong"), stats.topDirectors.map { it.director })
+    }
+
+    @Test
+    fun `loadFromServer computes the boot-time stats snapshot`() = runTest {
+        val moviesYaml = """
+            - title: Parasite
+              year: 2019
+              director: 봉준호
+              imdb_id: tt6751668
+            - title: Memories of Murder
+              year: 2003
+              director: 봉준호
+              imdb_id: tt0353969
+            - title: Oldboy
+              year: 2003
+              director: 박찬욱
+              imdb_id: tt0364569
+        """.trimIndent()
+        server.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse = when {
+                request.path!!.startsWith("/movies.yml") -> MockResponse().setBody(moviesYaml)
+                request.path!!.startsWith("/awards.yml") -> MockResponse().setBody("by_imdb: {}")
+                else -> MockResponse().setResponseCode(404)
+            }
+        }
+        val statsEditor = CurationEditor(
+            repository = MovieRepository(
+                client = OkHttpClient(),
+                moviesUrl = server.url("/movies.yml").toString(),
+                awardsUrl = server.url("/awards.yml").toString(),
+            ),
+            gitHubClient = GitHubContentsClient(
+                client = OkHttpClient(), owner = "nambin", repo = "nambin.github.io", branch = "main",
+                token = "test-token", apiBaseUrl = server.url("/").toString().removeSuffix("/"),
+            ),
+        )
+
+        statsEditor.loadFromServer()
+
+        assertEquals(3, statsEditor.collectionStats.totalMovies)
+        assertEquals(listOf("봉준호", "박찬욱"), statsEditor.collectionStats.topDirectors.map { it.director })
+        assertEquals("Parasite", statsEditor.collectionStats.topDirectors[0].latestEntry["title"])
+        assertEquals(1, statsEditor.collectionStats.topDirectors[0].moreCount)
+    }
 }
