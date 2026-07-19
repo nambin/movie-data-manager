@@ -253,7 +253,7 @@ private fun CurationHome(state: CurationUiState, viewModel: CurationViewModel) {
 
 /**
  * The boot-time stats snapshot filling the results area while the search box
- * is empty: "N movies loaded" plus up to 7 top-director poster rows, each with two
+ * is empty: "N movies loaded" plus up to 10 top-director poster rows, each with two
  * tap targets — the director (fills the search box with that exact text) and
  * their latest film (opens it in the shared detail view, same handoff as a
  * search result). See prompt-android-app.md's "Collection stats fill the

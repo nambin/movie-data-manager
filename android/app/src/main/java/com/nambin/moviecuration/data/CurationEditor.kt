@@ -79,7 +79,7 @@ data class DirectorStat(val director: String, val latestEntry: MovieEntry, val m
 data class CollectionStats(val totalMovies: Int, val topDirectors: List<DirectorStat>)
 
 /** Number of director lines in the stats block. */
-private const val STATS_TOP_DIRECTORS = 7
+private const val STATS_TOP_DIRECTORS = 10
 
 /**
  * Pure computation behind [CurationEditor.collectionStats]: entries are

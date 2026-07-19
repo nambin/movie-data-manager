@@ -333,13 +333,13 @@ class CurationEditorTest {
     }
 
     @Test
-    fun `computeCollectionStats caps the list at seven directors`() {
-        val movies = (1..8).map { film("tt$it", "d$it", 2026 - it) }
+    fun `computeCollectionStats caps the list at ten directors`() {
+        val movies = (1..11).map { film("tt$it", "d$it", 2026 - it) }
 
         val stats = computeCollectionStats(movies)
 
-        assertEquals(8, stats.totalMovies)
-        assertEquals((1..7).map { "d$it" }, stats.topDirectors.map { it.director })
+        assertEquals(11, stats.totalMovies)
+        assertEquals((1..10).map { "d$it" }, stats.topDirectors.map { it.director })
     }
 
     @Test

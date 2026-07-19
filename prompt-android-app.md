@@ -82,11 +82,11 @@ The Curation screen shows **both** entry points together, always — an "Add a m
 **Collection stats fill the default view.** When the search box is empty, the otherwise-blank results area shows a small stats block. It is **computed once, at boot, from the collection as loaded** — a static snapshot, deliberately not recomputed during the session: movies added/edited in the app may make it slightly stale until the next app start, an accepted trade-off that keeps the code simple (no recomputation hooks on every mutation).
 
 - First line: **`N movies loaded`** — the total number of entries at load time.
-- Then up to **7 rows**, one per director, for the directors with the most movies in the collection. Each row shows the latest film's poster thumbnail, the director's name, the latest movie's title, and a **`+M`** count:
+- Then up to **10 rows**, one per director, for the directors with the most movies in the collection. Each row shows the latest film's poster thumbnail, the director's name, the latest movie's title, and a **`+M`** count:
   - The director is the entry's `director` field verbatim (entries are grouped by that exact string, so the Korean form counts as one director).
   - The latest movie is that director's most recent film — the first of theirs in the canonical sort order (`year` desc with the usual tie-breakers) — displayed with the same title convention as search results (Korean title preferred — see the detail view's `Title (Year)` row — with the release year appended).
   - `M` is that director's movie count minus one; the `+M` count is omitted when M is 0.
-  - Ties in the top-7 selection are broken by canonical collection order (the director appearing earlier wins).
+  - Ties in the top-10 selection are broken by canonical collection order (the director appearing earlier wins).
 - **Each row has two tap actions**:
   - Tapping the director's name or the `+M` count puts that exact director text into the search box — from there it behaves exactly like a typed query (results replace the stats block, ✕ clears back).
   - Tapping the poster or movie title opens that film's entry in the shared detail view in **edit** mode — the same handoff as tapping a search result.
