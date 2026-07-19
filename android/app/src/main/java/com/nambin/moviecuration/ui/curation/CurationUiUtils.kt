@@ -5,11 +5,17 @@ import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import com.nambin.moviecuration.core.MovieEntry
 
+/**
+ * Prefers the Korean form for Korean-language films (`tmdb_original_title`),
+ * falling back to `tmdb_title` then `tmdb_original_title`. Deliberately never
+ * consults `custom_korean_title` for display.
+ */
 fun displayTitle(entry: MovieEntry): String {
-    val title = (entry["tmdb_title"] as? String)
-        ?.takeIf { it.isNotBlank() }
-        ?: (entry["tmdb_original_title"] as? String)
-        ?.takeIf { it.isNotBlank() }
+    val koreanTitle = (entry["tmdb_original_title"] as? String)
+        ?.takeIf { it.isNotBlank() && entry["tmdb_original_language"] == "Korean" }
+    val title = koreanTitle
+        ?: (entry["tmdb_title"] as? String)?.takeIf { it.isNotBlank() }
+        ?: (entry["tmdb_original_title"] as? String)?.takeIf { it.isNotBlank() }
         ?: "(untitled)"
     val year = entry["year"]
     return if (year != null) "$title ($year)" else title
