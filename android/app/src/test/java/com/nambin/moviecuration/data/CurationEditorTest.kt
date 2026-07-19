@@ -88,7 +88,7 @@ class CurationEditorTest {
     fun `swapCandidate carries over user edits and replaces the entry`() {
         val current = entry("tt1")
         editor.addNew(current)
-        current["custom_korean_title"] = "기생충"
+        current["custom_korean_title"] = "기생충" // never app-populated: must NOT carry over
         current["note"] = "great film"
         current["masterpiece"] = true
         current["date_committed"] = "2026-01-01"
@@ -100,7 +100,7 @@ class CurationEditorTest {
         assertEquals("tt2", (outcome as AddOutcome.Added).imdbId)
         assertFalse(current in repository.movies)
         assertTrue(candidate in repository.movies)
-        assertEquals("기생충", candidate["custom_korean_title"])
+        assertEquals(null, candidate["custom_korean_title"])
         assertEquals("great film", candidate["note"])
         assertEquals(true, candidate["masterpiece"])
         assertEquals("2026-01-01", candidate["date_committed"])

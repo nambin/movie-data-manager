@@ -237,16 +237,15 @@ suspend fun processMemoLine(
     }
 
     // Build candidate entries up front, so that the picker can show them all.
-    val custom_korean_title_overlay = parseMemoLineResponse.title_korean_overlay?.trim()
     val entriesByCandidateId: Map<Int, MovieEntry> = pickerCandidates.mapNotNull { candidate ->
         val entry = try {
             buildMovieEntryFromTmdb(candidate.details!!) // pickerCandidates guarantees non-null details
         } catch (e: Exception) {
             return@mapNotNull null
         }
-        // title_korean_overlay -> custom_korean_title (a property of the memo
-        // line itself, not of any one candidate, so applied uniformly here).
-        if (!custom_korean_title_overlay.isNullOrEmpty()) entry["custom_korean_title"] = custom_korean_title_overlay
+        // Unlike the web pipeline, Call A's title_korean_overlay is deliberately
+        // ignored — this app never writes custom_korean_title (search still
+        // matches it; canonicalize still round-trips existing values).
         // Korean director resolution: map hit -> else leave the TMDB romanization.
         resolveKoreanDirectorFromMap(entry, koreanDirectorMap)
         candidate.id to entry

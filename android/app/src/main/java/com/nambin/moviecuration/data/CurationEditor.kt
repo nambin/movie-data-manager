@@ -156,7 +156,6 @@ class CurationEditor(
      * [candidateEntry] in its place.
      */
     fun swapCandidate(current: MovieEntry, candidateEntry: MovieEntry): AddOutcome {
-        (current["custom_korean_title"] as? String)?.let { candidateEntry["custom_korean_title"] = it }
         (current["note"] as? String)?.let { candidateEntry["note"] = it }
         when {
             current["masterpiece"] == true -> candidateEntry["masterpiece"] = true
