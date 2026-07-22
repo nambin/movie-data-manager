@@ -150,18 +150,15 @@ class CurationEditor(
     }
 
     /**
-     * Swaps the in-flight [current] candidate entry for [candidateEntry],
-     * carrying over any fields the user already edited (candidate-independent
-     * of which TMDB match is picked) before retiring [current] and inserting
-     * [candidateEntry] in its place.
+     * Swaps the in-flight [current] candidate entry for [candidateEntry] —
+     * never carries anything over. Any Director/Rating/Note staged for
+     * [current] is discarded with it; [candidateEntry] loads as a clean
+     * slate (its own TMDB-derived fields only), consistent with "update on
+     * confirmation" — nothing is committed until Accept, so there's nothing
+     * meaningfully "yours" to preserve across a swap.
      */
     fun swapCandidate(current: MovieEntry, candidateEntry: MovieEntry): AddOutcome {
-        (current["note"] as? String)?.let { candidateEntry["note"] = it }
-        when {
-            current["masterpiece"] == true -> candidateEntry["masterpiece"] = true
-            current["my_best"] == true -> candidateEntry["my_best"] = true
-        }
-        candidateEntry["date_committed"] = (current["date_committed"] as? String) ?: todayDateStringSeoul()
+        candidateEntry.putIfAbsent("date_committed", todayDateStringSeoul())
 
         // Retire the previous in-flight candidate (candidate swap always
         // replaces, never accumulates) *before* the duplicate check, so a

@@ -352,9 +352,9 @@ class CurationViewModel(
 
     /**
      * Aborts an in-flight add: retires the uncommitted entry (removed from
-     * the collection, un-marked as new) and leaves the detail view — the
-     * escape hatch for "none of the candidates is the movie I meant." See
-     * the Discard row in prompt-android-app.md's "Shared detail view".
+     * the collection, un-marked as new) and leaves the detail view — what
+     * the back arrow (and system back) does for a new entry. See
+     * prompt-android-app.md's "Shared detail view".
      */
     fun discardActiveNewEntry() {
         val state = _uiState.value
@@ -398,20 +398,22 @@ class CurationViewModel(
     }
 
     // -----------------------------------------------------------------------
-    // Field edits — every change auto-saves immediately (see Decisions made)
+    // Field edits — staged in the view, applied only on Accept (see Decisions made)
     // -----------------------------------------------------------------------
 
-    fun updateDirector(value: String) = editActiveField { imdbId -> editor.updateDirector(imdbId, value) }
-
-    /** [rating] is one of "masterpiece", "my_best", or "" for (none). */
-    fun updateRating(rating: String) = editActiveField { imdbId -> editor.updateRating(imdbId, rating) }
-
-    fun updateNote(value: String) = editActiveField { imdbId -> editor.updateNote(imdbId, value) }
-
-    private fun editActiveField(edit: (imdbId: String) -> Boolean) {
+    /**
+     * Commits the staged Director/Rating/Note onto the active entry in one
+     * step, then leaves the detail view exactly like [closeDetail]. For a new
+     * entry this finalizes the add; for an existing entry each `editor.updateX`
+     * call already no-ops when its value didn't actually change.
+     */
+    fun acceptActiveEntry(director: String, rating: String, note: String) {
         val imdbId = _uiState.value.activeImdbId ?: return
-        if (!edit(imdbId)) return
+        editor.updateDirector(imdbId, director)
+        editor.updateRating(imdbId, rating)
+        editor.updateNote(imdbId, note)
         _uiState.update { it.copy(newCount = editor.newCount, updateCount = editor.updateCount) }
+        closeDetail()
     }
 
     // -----------------------------------------------------------------------

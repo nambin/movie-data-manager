@@ -85,10 +85,10 @@ class CurationEditorTest {
     // -- swapCandidate ----------------------------------------------------------
 
     @Test
-    fun `swapCandidate carries over user edits and replaces the entry`() {
+    fun `swapCandidate discards everything staged for the previous candidate — the new one is a clean slate`() {
         val current = entry("tt1")
         editor.addNew(current)
-        current["custom_korean_title"] = "기생충" // never app-populated: must NOT carry over
+        current["custom_korean_title"] = "기생충"
         current["note"] = "great film"
         current["masterpiece"] = true
         current["date_committed"] = "2026-01-01"
@@ -101,9 +101,9 @@ class CurationEditorTest {
         assertFalse(current in repository.movies)
         assertTrue(candidate in repository.movies)
         assertEquals(null, candidate["custom_korean_title"])
-        assertEquals("great film", candidate["note"])
-        assertEquals(true, candidate["masterpiece"])
-        assertEquals("2026-01-01", candidate["date_committed"])
+        assertEquals(null, candidate["note"])
+        assertEquals(null, candidate["masterpiece"])
+        assertNotNull(candidate["date_committed"]) // stamped fresh — not carried from `current`
         assertEquals(1, editor.newCount) // old retired, new marked — net unchanged
     }
 

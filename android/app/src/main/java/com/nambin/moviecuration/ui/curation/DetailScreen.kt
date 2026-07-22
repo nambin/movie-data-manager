@@ -31,13 +31,29 @@ fun DetailScreen(
     selectedCandidateId: Int?,
     alreadyCuratedCandidateIds: Set<Int>,
     onSelectCandidate: (Int) -> Unit,
-    onDirectorChange: (String) -> Unit,
-    onRatingChange: (String) -> Unit,
-    onNoteChange: (String) -> Unit,
-    onDiscard: () -> Unit,
-    onClose: () -> Unit,
+    onBack: () -> Unit,
+    onAccept: (director: String, rating: String, note: String) -> Unit,
 ) {
     val context = LocalContext.current
+
+    // Staged locally — nothing is written to `entry`/the session until Accept
+    // is tapped. Re-initialized whenever the underlying entry changes (a
+    // fresh open, or the candidate picker swapping to a different film),
+    // which is also what makes a candidate swap a clean slate: these reset
+    // to the new entry's own fields, discarding whatever was staged before.
+    var directorField by remember(entry["imdb_id"], selectedCandidateId) {
+        mutableStateOf(entry["director"] as? String ?: "")
+    }
+    var ratingValue by remember(entry["imdb_id"], selectedCandidateId) {
+        mutableStateOf(Rating.of(entry).value)
+    }
+    var noteField by remember(entry["imdb_id"], selectedCandidateId) {
+        mutableStateOf(entry["note"] as? String ?: "")
+    }
+    val hasChanges = directorField.trim() != (entry["director"] as? String ?: "") ||
+        ratingValue != Rating.of(entry).value ||
+        noteField.trim() != (entry["note"] as? String ?: "")
+    val acceptEnabled = isNew || hasChanges
 
     Column(
         modifier = Modifier
@@ -46,16 +62,18 @@ fun DetailScreen(
             .padding(16.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-            IconButton(onClick = onClose) {
+            IconButton(onClick = onBack) {
                 Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
             }
-            Text(if (isNew) "New movie" else "Edit movie", style = MaterialTheme.typography.titleMedium)
-            if (isNew) {
-                // Abort this add outright — retires the uncommitted entry.
-                // New entries only: committed entries are never deleted here.
-                Spacer(Modifier.weight(1f))
-                TextButton(onClick = onDiscard) { Text("Cancel") }
-            }
+            Text(
+                if (isNew) "New movie" else "Edit movie",
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f),
+            )
+            Button(
+                onClick = { onAccept(directorField, ratingValue, noteField) },
+                enabled = acceptEnabled,
+            ) { Text("Accept") }
         }
 
         Spacer(Modifier.height(8.dp))
@@ -94,33 +112,21 @@ fun DetailScreen(
         Text(displayTitle(entry), style = MaterialTheme.typography.titleLarge)
 
         Spacer(Modifier.height(16.dp))
-        var directorField by remember(entry["imdb_id"], selectedCandidateId) {
-            mutableStateOf(entry["director"] as? String ?: "")
-        }
         OutlinedTextField(
             value = directorField,
-            onValueChange = {
-                directorField = it
-                onDirectorChange(it)
-            },
+            onValueChange = { directorField = it },
             label = { Text("Director") },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
         )
 
         Spacer(Modifier.height(16.dp))
-        RatingDropdown(entry, selectedCandidateId, onRatingChange)
+        RatingDropdown(value = ratingValue, onValueChange = { ratingValue = it })
 
         Spacer(Modifier.height(16.dp))
-        var noteField by remember(entry["imdb_id"], selectedCandidateId) {
-            mutableStateOf(entry["note"] as? String ?: "")
-        }
         OutlinedTextField(
             value = noteField,
-            onValueChange = {
-                noteField = it
-                onNoteChange(it)
-            },
+            onValueChange = { noteField = it },
             label = { Text("Note") },
             modifier = Modifier
                 .fillMaxWidth()
@@ -188,17 +194,11 @@ private fun CandidatePicker(
     }
 }
 
-// `entry` is a mutable map the ViewModel updates in place, and `CurationUiState`
-// often re-emits with every OTHER field unchanged (same object reference,
-// same counts) after an edit — StateFlow's equality-based conflation then
-// skips the emission entirely, so this composable would never re-read the
-// map on a second rating change. Mirrors the same local-`remember` pattern
-// already used for Director/Note above instead of reading `entry` directly.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun RatingDropdown(entry: MovieEntry, selectedCandidateId: Int?, onRatingChange: (String) -> Unit) {
+private fun RatingDropdown(value: String, onValueChange: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
-    var current by remember(entry["imdb_id"], selectedCandidateId) { mutableStateOf(Rating.of(entry)) }
+    val current = Rating.fromValue(value)
 
     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = it }) {
         OutlinedTextField(
@@ -215,8 +215,7 @@ private fun RatingDropdown(entry: MovieEntry, selectedCandidateId: Int?, onRatin
                     text = { Text(rating.label) },
                     onClick = {
                         expanded = false
-                        current = rating
-                        onRatingChange(rating.value)
+                        onValueChange(rating.value)
                     },
                 )
             }

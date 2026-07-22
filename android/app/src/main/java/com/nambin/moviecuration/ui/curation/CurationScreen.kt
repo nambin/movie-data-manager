@@ -87,13 +87,11 @@ fun CurationScreen(
             )
         }
         state.activeEntry != null -> {
-            // System back = the view's Cancel when one exists (a new entry:
-            // the in-flight add is discarded), else its back arrow (an
-            // existing entry: close, returning to Review changes when the
-            // entry was opened from there).
-            BackHandler {
-                if (state.activeIsNew) viewModel.discardActiveNewEntry() else viewModel.closeDetail()
-            }
+            // The back arrow (and system back, mirrored here) discards a new
+            // entry outright, or just closes an existing one — nothing was
+            // auto-saved, so closing an existing entry has nothing to revert.
+            val onBack = { if (state.activeIsNew) viewModel.discardActiveNewEntry() else viewModel.closeDetail() }
+            BackHandler(onBack = onBack)
             DetailScreen(
                 entry = state.activeEntry!!,
                 isNew = state.activeIsNew,
@@ -101,11 +99,8 @@ fun CurationScreen(
                 selectedCandidateId = state.selectedCandidateId,
                 alreadyCuratedCandidateIds = state.alreadyCuratedCandidateIds,
                 onSelectCandidate = viewModel::selectCandidate,
-                onDirectorChange = viewModel::updateDirector,
-                onRatingChange = viewModel::updateRating,
-                onNoteChange = viewModel::updateNote,
-                onDiscard = viewModel::discardActiveNewEntry,
-                onClose = viewModel::closeDetail,
+                onBack = onBack,
+                onAccept = viewModel::acceptActiveEntry,
             )
         }
         else -> CurationHome(state, viewModel)
