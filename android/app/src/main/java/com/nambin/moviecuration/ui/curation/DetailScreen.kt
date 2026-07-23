@@ -32,7 +32,7 @@ fun DetailScreen(
     alreadyCuratedCandidateIds: Set<Int>,
     onSelectCandidate: (Int) -> Unit,
     onBack: () -> Unit,
-    onAccept: (director: String, rating: String, note: String) -> Unit,
+    onAccept: (director: String, rating: String, note: String, recent: Boolean) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -50,6 +50,9 @@ fun DetailScreen(
     var noteField by remember(entry["imdb_id"], selectedCandidateId) {
         mutableStateOf(entry["note"] as? String ?: "")
     }
+    // New-entry only (see the Recent checkbox below) — always defaults to
+    // checked, same clean-slate reset as the fields above.
+    var recentChecked by remember(entry["imdb_id"], selectedCandidateId) { mutableStateOf(true) }
     val hasChanges = directorField.trim() != (entry["director"] as? String ?: "") ||
         ratingValue != Rating.of(entry).value ||
         noteField.trim() != (entry["note"] as? String ?: "")
@@ -71,7 +74,7 @@ fun DetailScreen(
                 modifier = Modifier.weight(1f),
             )
             Button(
-                onClick = { onAccept(directorField, ratingValue, noteField) },
+                onClick = { onAccept(directorField, ratingValue, noteField, recentChecked) },
                 enabled = acceptEnabled,
             ) { Text("Accept") }
         }
@@ -132,6 +135,17 @@ fun DetailScreen(
                 .fillMaxWidth()
                 .heightIn(min = 96.dp),
         )
+
+        if (isNew) {
+            Spacer(Modifier.height(16.dp))
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable { recentChecked = !recentChecked },
+            ) {
+                Checkbox(checked = recentChecked, onCheckedChange = { recentChecked = it })
+                Text("Recent")
+            }
+        }
 
         @Suppress("UNCHECKED_CAST")
         val awardNames = (entry["award_names"] as? List<String>).orEmpty()

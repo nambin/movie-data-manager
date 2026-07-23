@@ -4,6 +4,7 @@ import com.nambin.moviecuration.core.MovieEntry
 import com.nambin.moviecuration.core.TmdbCandidate
 import com.nambin.moviecuration.core.TmdbMovieDetails
 import com.nambin.moviecuration.core.movieEntryOf
+import com.nambin.moviecuration.core.todayDateStringSeoul
 import com.nambin.moviecuration.github.GitHubContentsClient
 import kotlinx.coroutines.test.runTest
 import okhttp3.OkHttpClient
@@ -103,8 +104,49 @@ class CurationEditorTest {
         assertEquals(null, candidate["custom_korean_title"])
         assertEquals(null, candidate["note"])
         assertEquals(null, candidate["masterpiece"])
-        assertNotNull(candidate["date_committed"]) // stamped fresh — not carried from `current`
+        assertNull(candidate["date_committed"]) // not stamped until Accept — see applyRecency
         assertEquals(1, editor.newCount) // old retired, new marked — net unchanged
+    }
+
+    @Test
+    fun `addNew does not stamp date_committed`() {
+        val e = entry("tt1")
+        editor.addNew(e)
+        assertNull(e["date_committed"]) // stamped at Accept, via applyRecency
+    }
+
+    // -- applyRecency -------------------------------------------------------------
+
+    @Test
+    fun `applyRecency stamps date_committed with today's date when recent`() {
+        val e = entry("tt1")
+        editor.addNew(e)
+
+        editor.applyRecency("tt1", recent = true)
+
+        assertEquals(todayDateStringSeoul(), e["date_committed"])
+    }
+
+    @Test
+    fun `applyRecency leaves date_committed unset when not recent`() {
+        val e = entry("tt1")
+        editor.addNew(e)
+
+        editor.applyRecency("tt1", recent = false)
+
+        assertNull(e["date_committed"])
+    }
+
+    @Test
+    fun `applyRecency can clear a previously-stamped date_committed`() {
+        val e = entry("tt1")
+        editor.addNew(e)
+        editor.applyRecency("tt1", recent = true)
+        assertNotNull(e["date_committed"])
+
+        editor.applyRecency("tt1", recent = false)
+
+        assertNull(e["date_committed"])
     }
 
     @Test

@@ -142,7 +142,6 @@ class CurationEditor(
         if (duplicate != null) return AddOutcome.Duplicate(duplicate)
 
         applyAwardsToEntry(entry, repository.awardsByImdb)
-        entry.putIfAbsent("date_committed", todayDateStringSeoul())
         repository.add(entry)
         val imdbId = requireNotNull(entry["imdb_id"] as? String) { "addNew: entry has no imdb_id" }
         session.markNew(imdbId)
@@ -158,8 +157,6 @@ class CurationEditor(
      * meaningfully "yours" to preserve across a swap.
      */
     fun swapCandidate(current: MovieEntry, candidateEntry: MovieEntry): AddOutcome {
-        candidateEntry.putIfAbsent("date_committed", todayDateStringSeoul())
-
         // Retire the previous in-flight candidate (candidate swap always
         // replaces, never accumulates) *before* the duplicate check, so a
         // swap into an "already curated" candidate can't strand the old
@@ -206,6 +203,17 @@ class CurationEditor(
 
     /** Call before an existing (non-new) entry becomes editable — no-op for new entries or repeat calls. */
     fun ensureSnapshot(imdbId: String, entry: MovieEntry) = session.ensureSnapshot(imdbId, entry)
+
+    /**
+     * New-entry only: stamps `date_committed` with today's date when [recent],
+     * otherwise leaves it unset — mirrors the web app's Recent checkbox
+     * (lib/app.js's commitAllBtn handler: `if (r.recent) entry.date_committed = todayDateString();`).
+     * Applied once, at Accept.
+     */
+    fun applyRecency(imdbId: String, recent: Boolean) {
+        val entry = repository.findByImdbId(imdbId) ?: return
+        if (recent) entry["date_committed"] = todayDateStringSeoul() else entry.remove("date_committed")
+    }
 
     fun updateDirector(imdbId: String, value: String): Boolean = editField(imdbId) { entry ->
         val v = value.trim()

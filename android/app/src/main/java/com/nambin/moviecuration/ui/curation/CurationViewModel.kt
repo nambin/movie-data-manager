@@ -402,16 +402,20 @@ class CurationViewModel(
     // -----------------------------------------------------------------------
 
     /**
-     * Commits the staged Director/Rating/Note onto the active entry in one
-     * step, then leaves the detail view exactly like [closeDetail]. For a new
-     * entry this finalizes the add; for an existing entry each `editor.updateX`
-     * call already no-ops when its value didn't actually change.
+     * Commits the staged Director/Rating/Note (and, for a new entry, the
+     * Recent checkbox) onto the active entry in one step, then leaves the
+     * detail view exactly like [closeDetail]. For a new entry this finalizes
+     * the add; for an existing entry each `editor.updateX` call already
+     * no-ops when its value didn't actually change, and [recent] is ignored
+     * (an existing entry's `date_committed` was already decided at its real
+     * add time).
      */
-    fun acceptActiveEntry(director: String, rating: String, note: String) {
+    fun acceptActiveEntry(director: String, rating: String, note: String, recent: Boolean) {
         val imdbId = _uiState.value.activeImdbId ?: return
         editor.updateDirector(imdbId, director)
         editor.updateRating(imdbId, rating)
         editor.updateNote(imdbId, note)
+        if (_uiState.value.activeIsNew) editor.applyRecency(imdbId, recent)
         _uiState.update { it.copy(newCount = editor.newCount, updateCount = editor.updateCount) }
         closeDetail()
     }
