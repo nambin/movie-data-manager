@@ -48,7 +48,7 @@ User-editable — the **only** thing on this screen:
 
 | Setting | Control | Notes |
 | --- | --- | --- |
-| Gemini model tier | Dropdown: **Flash Lite** / **Flash** / **Pro** | Maps to the same model IDs the web app already uses in [lib/gemini_utils.js](lib/gemini_utils.js) — `gemini-flash-lite-latest` / `gemini-flash-latest` / `gemini-pro-latest`. Default: **Flash** (matches `DEFAULT_GEMINI_MODEL` today). |
+| Gemini model tier | Dropdown: **Flash Lite** / **Flash** / **Pro** | Maps to the same model IDs the web app already uses in [lib/gemini_utils.js](lib/gemini_utils.js) — `gemini-flash-lite-latest` / `gemini-flash-latest` / `gemini-pro-latest`. Default: **Flash Lite** (matches `DEFAULT_GEMINI_MODEL` today). |
 
 **Not** user-editable — hardcoded at build time (see *Build-time configuration* below) and omitted from this screen entirely:
 
@@ -134,7 +134,7 @@ Regardless of whether the entry arrived via the memo/LLM flow or via search, the
 
 **Field edits are staged in the view and applied only when Accept is tapped** — there is no per-keystroke auto-save.
 
-- **New entry** → still appended to the in-memory list and marked in a `newImdbIds` set (session-scoped) the moment its detail view opens, independent of any field edit. (Swapping the candidate picker instead *replaces* it, as a clean slate — see *Duplicate prevention* below and the candidate picker row above.) `date_committed` is **not** stamped at this point — that decision waits for Accept too, driven by the Recent checkbox (see above). Tapping **Accept** applies whatever Director/Rating/Note is currently in the fields, and stamps or omits `date_committed` per Recent, then returns to Curation home (or the Review screen, when opened from there).
+- **New entry** → still appended to the in-memory list and marked in a `newImdbIds` set (session-scoped) the moment its detail view opens, independent of any field edit. (Swapping the candidate picker instead *replaces* it, as a clean slate — see *Duplicate prevention* below and the candidate picker row above.) Stamp `date_committed` with today's date (Asia/Seoul, matching `todayDateString()` in [lib/app.js](lib/app.js)) at the moment it's appended — this is what makes Recent default checked (the checkbox reads it back, the same way Director/Rating/Note read their own fields). Tapping **Accept** applies whatever Director/Rating/Note is currently in the fields to that same appended entry, and either leaves `date_committed` as stamped (Recent checked) or clears it (unchecked), then returns to Curation home (or the Review screen, when opened from there).
 - **Existing entry being edited** → nothing is written until **Accept** is tapped. Tapping it applies the changed fields in place; the first field that actually changes marks the entry's `imdb_id` in an `updatedImdbIds` set (session-scoped) and captures the pre-edit snapshot (see *Tracking pre-edit snapshots* below) — merely opening and leaving a detail view with no Accept never marks it as updated.
 - **Leaving without Accept** — the back arrow (and the system back button/gesture, which mirrors it) discards whatever is staged. For a new entry, this retires the in-flight addition outright — removed from the in-memory collection, un-marked as new, immediately re-addable; this is the one cancel affordance for new entries now (the separate Cancel button is retired). For an existing entry, nothing was ever written, so there's nothing to revert — leaving is just leaving.
 

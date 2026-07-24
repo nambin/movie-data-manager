@@ -50,9 +50,14 @@ fun DetailScreen(
     var noteField by remember(entry["imdb_id"], selectedCandidateId) {
         mutableStateOf(entry["note"] as? String ?: "")
     }
-    // New-entry only (see the Recent checkbox below) — always defaults to
-    // checked, same clean-slate reset as the fields above.
-    var recentChecked by remember(entry["imdb_id"], selectedCandidateId) { mutableStateOf(true) }
+    // New-entry only (see the Recent checkbox below). Reads the entry's
+    // actual date_committed the same way Director/Rating/Note read theirs —
+    // addNew/swapCandidate stamp it eagerly by default, so a fresh entry
+    // shows checked, while reopening one Accept already cleared (e.g. from
+    // Review changes) correctly shows unchecked instead of resetting to true.
+    var recentChecked by remember(entry["imdb_id"], selectedCandidateId) {
+        mutableStateOf(entry["date_committed"] != null)
+    }
     val hasChanges = directorField.trim() != (entry["director"] as? String ?: "") ||
         ratingValue != Rating.of(entry).value ||
         noteField.trim() != (entry["note"] as? String ?: "")

@@ -104,15 +104,17 @@ class CurationEditorTest {
         assertEquals(null, candidate["custom_korean_title"])
         assertEquals(null, candidate["note"])
         assertEquals(null, candidate["masterpiece"])
-        assertNull(candidate["date_committed"]) // not stamped until Accept — see applyRecency
+        assertEquals(todayDateStringSeoul(), candidate["date_committed"]) // stamped fresh — not carried from `current`'s "2026-01-01"
         assertEquals(1, editor.newCount) // old retired, new marked — net unchanged
     }
 
     @Test
-    fun `addNew does not stamp date_committed`() {
+    fun `addNew stamps date_committed with today's date by default`() {
         val e = entry("tt1")
         editor.addNew(e)
-        assertNull(e["date_committed"]) // stamped at Accept, via applyRecency
+        // Matches the Recent checkbox's default-checked state — DetailScreen
+        // reads this back to initialize/redisplay the checkbox.
+        assertEquals(todayDateStringSeoul(), e["date_committed"])
     }
 
     // -- applyRecency -------------------------------------------------------------

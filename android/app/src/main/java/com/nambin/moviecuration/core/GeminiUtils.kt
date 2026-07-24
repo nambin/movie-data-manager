@@ -27,7 +27,7 @@ enum class GeminiModelTier(val label: String, val modelId: String) {
     PRO("Pro", "gemini-pro-latest"),
 }
 
-val DEFAULT_GEMINI_MODEL = GeminiModelTier.FLASH
+val DEFAULT_GEMINI_MODEL = GeminiModelTier.FLASH_LITE
 
 private fun geminiEndpoint(model: GeminiModelTier): String =
     "https://generativelanguage.googleapis.com/v1beta/models/${model.modelId}:generateContent"

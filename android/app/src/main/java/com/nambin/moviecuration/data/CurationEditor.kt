@@ -142,6 +142,11 @@ class CurationEditor(
         if (duplicate != null) return AddOutcome.Duplicate(duplicate)
 
         applyAwardsToEntry(entry, repository.awardsByImdb)
+        // Stamped eagerly so a fresh entry's default state matches the Recent
+        // checkbox's default-checked state (DetailScreen reads this back to
+        // initialize/redisplay the checkbox, including on reopen from Review
+        // changes) — applyRecency clears it at Accept if the user unchecks it.
+        entry.putIfAbsent("date_committed", todayDateStringSeoul())
         repository.add(entry)
         val imdbId = requireNotNull(entry["imdb_id"] as? String) { "addNew: entry has no imdb_id" }
         session.markNew(imdbId)
@@ -157,6 +162,10 @@ class CurationEditor(
      * meaningfully "yours" to preserve across a swap.
      */
     fun swapCandidate(current: MovieEntry, candidateEntry: MovieEntry): AddOutcome {
+        // Same eager stamp as addNew — a clean slate defaults to Recent-checked
+        // too, not carried over from `current` (see the class doc above).
+        candidateEntry.putIfAbsent("date_committed", todayDateStringSeoul())
+
         // Retire the previous in-flight candidate (candidate swap always
         // replaces, never accumulates) *before* the duplicate check, so a
         // swap into an "already curated" candidate can't strand the old
