@@ -66,6 +66,10 @@ fun DetailScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .imePadding() // reserve space for the keyboard — enableEdgeToEdge() means the
+            // system no longer resizes the window for it, so without this the Note field
+            // (and anything below it) ends up hidden behind the keyboard instead of scrolled
+            // into view.
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
     ) {
