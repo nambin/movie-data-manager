@@ -168,7 +168,7 @@ Tapping Commit does **not** push to GitHub directly — it opens a **Review chan
 
 1. Build the change set: every entry tagged in `newImdbIds` (in full) plus every entry tagged in `updatedImdbIds`, each paired with the pre-edit snapshot captured when its editing began (see *Tracking pre-edit snapshots* below).
 2. List every changed entry, one row/card each:
-   - **New entries** — a compact read-only card (poster thumbnail, `Title (Year)`, director, rating, note, awards — the same fields the detail view shows), labeled **NEW**.
+   - **New entries** — a compact read-only card (poster thumbnail, `Title (Year)`, director, rating, note, Recent — the same editable fields the detail view shows; awards are omitted here since they're read-only in the detail view too), labeled **NEW**.
    - **Updated entries** — a **field-level diff**: only the fields that actually changed, each rendered as `Field: old → new`, e.g. `Rating: (none) → Masterpiece`, `Note: "" → "rewatch candidate"`, `Director: Bong Joon Ho → 봉준호`. Unchanged fields are omitted — this is a diff, not a full re-render of the entry. Labeled **UPDATED**.
    - Tapping any row jumps back into the shared detail view to adjust that entry further before committing, without losing the rest of the pending batch.
    - Each row also has a **Remove** action: a **NEW** row discards the pending addition entirely (the same retire as the detail view's back arrow); an **UPDATED** row reverts the entry to its pre-edit snapshot, emptying its diff and dropping it out of the update count. Removing the last row returns to Curation home (there is nothing left to confirm).

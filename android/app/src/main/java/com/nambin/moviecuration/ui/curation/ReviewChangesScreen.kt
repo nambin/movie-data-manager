@@ -98,8 +98,8 @@ private fun PendingChangeCard(change: PendingChange, onClick: () -> Unit, onRemo
             val director = change.entry["director"] as? String
             val note = change.entry["note"] as? String
             val rating = ratingLabel(change.entry)
-            @Suppress("UNCHECKED_CAST")
-            val awards = (change.entry["award_names"] as? List<String>).orEmpty()
+            // Same signal DetailScreen's Recent checkbox reads/writes.
+            val recent = change.entry["date_committed"] != null
             Row(modifier = Modifier.padding(top = 4.dp)) {
                 if (posterUrl != null) {
                     AsyncImage(
@@ -113,10 +113,7 @@ private fun PendingChangeCard(change: PendingChange, onClick: () -> Unit, onRemo
                     if (!director.isNullOrBlank()) Text("Director: $director")
                     Text("Rating: $rating")
                     if (!note.isNullOrBlank()) Text("Note: $note")
-                    if (awards.isNotEmpty()) {
-                        Text("Awards:")
-                        awards.forEach { Text(it) }
-                    }
+                    Text("Recent: ${if (recent) "Yes" else "No"}")
                 }
             }
         } else {
