@@ -7,6 +7,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -56,6 +59,10 @@ fun CurationScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+
+    // Which page of the default view's pager (0 = director stats, 1 =
+    // recent movies) is active.
+    var defaultViewPage by rememberSaveable { mutableStateOf(0) }
 
     // Spec says "toast/snackbar" for the commit-success message — a Toast is
     // the simplest fit here since Curation isn't otherwise wrapped in its own
@@ -103,7 +110,7 @@ fun CurationScreen(
                 onAccept = viewModel::acceptActiveEntry,
             )
         }
-        else -> CurationHome(state, viewModel)
+        else -> CurationHome(state, viewModel, defaultViewPage) { defaultViewPage = it }
     }
 }
 
@@ -128,7 +135,12 @@ private fun ErrorView(message: String, onRetry: () -> Unit) {
 }
 
 @Composable
-private fun CurationHome(state: CurationUiState, viewModel: CurationViewModel) {
+private fun CurationHome(
+    state: CurationUiState,
+    viewModel: CurationViewModel,
+    defaultViewPage: Int,
+    onDefaultViewPageChange: (Int) -> Unit,
+) {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         // ---- Add a movie (memo-based, single title) ----
         var memoText by remember { mutableStateOf("") }
@@ -212,14 +224,33 @@ private fun CurationHome(state: CurationUiState, viewModel: CurationViewModel) {
         )
         Spacer(Modifier.height(8.dp))
         if (state.searchQuery.isEmpty()) {
-            // The otherwise-blank results area shows the boot-time stats
-            // snapshot; typing a query replaces it with live results below.
-            CollectionStatsBlock(
-                stats = state.collectionStats,
-                onDirectorClick = viewModel::updateSearchQuery,
-                onMovieClick = viewModel::openSearchResult,
-                modifier = Modifier.weight(1f),
-            )
+            // The otherwise-blank results area is a two-page swipeable pager:
+            // page 0 is the boot-time director-stats snapshot, page 1 the 10
+            // most recently curated movies. rememberPagerState is still torn
+            // down and recreated every time this branch re-enters
+            // composition (e.g. after a search), but it's re-seeded from
+            // defaultViewPage — hoisted above CurationHome in CurationScreen
+            // — instead of always restarting at page 0, so the active page
+            // survives both a search round trip and a detail-view round
+            // trip. Typing a query replaces the whole pager with live
+            // results below.
+            val pagerState = rememberPagerState(initialPage = defaultViewPage, pageCount = { 2 })
+            LaunchedEffect(pagerState) {
+                snapshotFlow { pagerState.currentPage }.collect(onDefaultViewPageChange)
+            }
+            HorizontalPager(state = pagerState, modifier = Modifier.weight(1f)) { page ->
+                when (page) {
+                    0 -> CollectionStatsBlock(
+                        stats = state.collectionStats,
+                        onDirectorClick = viewModel::updateSearchQuery,
+                        onMovieClick = viewModel::openSearchResult,
+                    )
+                    else -> RecentMoviesBlock(
+                        movies = state.recentMovies,
+                        onMovieClick = viewModel::openSearchResult,
+                    )
+                }
+            }
         } else {
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(state.searchResults, key = { it["imdb_id"] as? String ?: it.hashCode().toString() }) { entry ->
@@ -375,6 +406,25 @@ private fun SearchResultRow(entry: MovieEntry, onClick: () -> Unit) {
                     color = WebDirectorColor,
                 )
             }
+        }
+    }
+}
+
+/**
+ * Page 1 of the default view's pager: the 10 most recently curated movies
+ * (state.recentMovies — already sorted/capped by computeRecentMovies),
+ * reusing SearchResultRow verbatim so both swipeable pages' rows read like
+ * the same list search results already use.
+ */
+@Composable
+private fun RecentMoviesBlock(
+    movies: List<MovieEntry>,
+    onMovieClick: (MovieEntry) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    LazyColumn(modifier = modifier.fillMaxSize().padding(top = 12.dp)) {
+        items(movies, key = { it["imdb_id"] as? String ?: it.hashCode().toString() }) { entry ->
+            SearchResultRow(entry, onClick = { onMovieClick(entry) })
         }
     }
 }

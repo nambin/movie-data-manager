@@ -29,6 +29,10 @@ data class CurationUiState(
     // during the session. The empty default is never visible: home only renders
     // after a successful boot has filled it.
     val collectionStats: CollectionStats = CollectionStats(0, emptyList()),
+    // Boot-time snapshot of the 10 most recently curated movies (by
+    // date_committed), shown on the default view's second swipe page —
+    // same once-per-boot lifecycle as collectionStats.
+    val recentMovies: List<MovieEntry> = emptyList(),
 
     // Session change counts, mirrored from CurationEditor after every mutation —
     // drive the "N new, M update" label and the Commit button's enablement.
@@ -115,7 +119,14 @@ class CurationViewModel(
         viewModelScope.launch {
             try {
                 editor.loadFromServer()
-                _uiState.update { it.copy(loading = false, loadError = null, collectionStats = editor.collectionStats) }
+                _uiState.update {
+                    it.copy(
+                        loading = false,
+                        loadError = null,
+                        collectionStats = editor.collectionStats,
+                        recentMovies = editor.recentMovies,
+                    )
+                }
             } catch (e: Exception) {
                 _uiState.update { it.copy(loading = false, loadError = e.message ?: "Failed to load data/movies.yml") }
             }

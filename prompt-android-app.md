@@ -79,7 +79,9 @@ If the fetch fails (offline, GitHub Pages hiccup), show a retryable error state;
 
 The Curation screen shows **both** entry points together, always — an "Add a movie" input and a "Search to update" input stacked on one screen, no tab/mode toggle between them. Typing in one doesn't hide or disable the other; a user free-associating between "add this new one" and "fix that old rating" shouldn't have to switch modes to do both in one sitting.
 
-**Collection stats fill the default view.** When the search box is empty, the otherwise-blank results area shows a small stats block. It is **computed once, at boot, from the collection as loaded** — a static snapshot, deliberately not recomputed during the session: movies added/edited in the app may make it slightly stale until the next app start, an accepted trade-off that keeps the code simple (no recomputation hooks on every mutation).
+**Collection stats fill the default view — two swipeable pages.** When the search box is empty, the otherwise-blank results area is a horizontally swipeable pager with two pages and no page-indicator dots. Both pages are **computed once, at boot, from the collection as loaded** — static snapshots, deliberately not recomputed during the session: movies added/edited in the app may make either page slightly stale until the next app start, an accepted trade-off that keeps the code simple (no recomputation hooks on every mutation). The app boots on page 0; the active page otherwise "sticks" for the rest of the session — it survives a search round-trip (typing a query, then clearing it) and a detail-view round-trip (tapping a movie, then coming back) alike, only resetting to page 0 on the next cold start.
+
+**Page 0 — director stats** (the boot/return default):
 
 - First line: **`N movies loaded`** — the total number of entries at load time.
 - Then up to **10 rows**, one per director, for the directors with the most movies in the collection. Each row shows the latest film's poster thumbnail, the director's name, the latest movie's title, and a **`+M`** count:
@@ -88,10 +90,12 @@ The Curation screen shows **both** entry points together, always — an "Add a m
   - `M` is that director's movie count minus one; the `+M` count is omitted when M is 0.
   - Ties in the top-10 selection are broken by canonical collection order (the director appearing earlier wins).
 - **Each row has two tap actions**:
-  - Tapping the director's name or the `+M` count puts that exact director text into the search box — from there it behaves exactly like a typed query (results replace the stats block, ✕ clears back).
+  - Tapping the director's name or the `+M` count puts that exact director text into the search box — from there it behaves exactly like a typed query (results replace the pager, ✕ clears back).
   - Tapping the poster or movie title opens that film's entry in the shared detail view in **edit** mode — the same handoff as tapping a search result.
 
-Typing a search query replaces the stats block with live results; clearing the query brings it back.
+**Page 1 — 10 most recently curated movies**, reached by swiping right-to-left (the standard forward-swipe gesture; swipe left-to-right to return to page 0). Rows are the 10 entries with the most recent `date_committed` (the `YYYY-MM-DD` stamp set when a curator adds a movie and checks "Recent" — see *Adding a new movie*, below), most recent first, ties broken by the same canonical collection order as page 0. Entries without `date_committed` (most legacy entries, which predate the Recent checkbox) are simply excluded — not shown with a placeholder date. Rows use the same poster + title + director layout as search results, and tapping one opens it in the shared detail view in edit mode, same handoff as page 0.
+
+Typing a search query replaces the pager with live results; clearing the query brings it back on page 0.
 
 **System back mirrors the in-view Cancel when one exists, else the back arrow.** On a *new* entry's detail view (which has a Cancel), the device back button/gesture acts as that Cancel — the in-flight addition is retired, exactly as if the button were tapped. On an existing entry's detail view (no Cancel) it does what the back arrow does — close, returning to Review changes when opened from there. On the Review changes screen it acts as Cancel (back to Curation home with the batch preserved), and is inert while a commit is in flight. Only from Curation home does system back leave the app.
 

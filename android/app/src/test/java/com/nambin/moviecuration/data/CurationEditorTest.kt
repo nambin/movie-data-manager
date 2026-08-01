@@ -451,4 +451,100 @@ class CurationEditorTest {
         assertEquals("Parasite", statsEditor.collectionStats.topDirectors[0].latestEntry["title"])
         assertEquals(1, statsEditor.collectionStats.topDirectors[0].moreCount)
     }
+
+    // -- computeRecentMovies --------------------------------------------------------
+
+    private fun filmWithDate(imdbId: String, dateCommitted: String?, year: Int = 2000): MovieEntry {
+        val e = film(imdbId, "Director-$imdbId", year)
+        if (dateCommitted != null) e["date_committed"] = dateCommitted
+        return e
+    }
+
+    @Test
+    fun `computeRecentMovies sorts by date_committed descending`() {
+        val oldest = filmWithDate("tt1", "2025-12-01")
+        val newest = filmWithDate("tt2", "2026-03-01")
+        val middle = filmWithDate("tt3", "2026-01-01")
+
+        val recent = computeRecentMovies(listOf(oldest, newest, middle))
+
+        assertEquals(listOf("tt2", "tt3", "tt1"), recent.map { it["imdb_id"] })
+    }
+
+    @Test
+    fun `computeRecentMovies excludes entries with missing or blank date_committed`() {
+        val dated = filmWithDate("tt1", "2026-01-01")
+        val missing = filmWithDate("tt2", null)
+        val blank = filmWithDate("tt3", "")
+
+        val recent = computeRecentMovies(listOf(dated, missing, blank))
+
+        assertEquals(listOf("tt1"), recent.map { it["imdb_id"] })
+    }
+
+    @Test
+    fun `computeRecentMovies caps the list at ten`() {
+        val movies = (1..11).map { filmWithDate("tt$it", "2026-01-%02d".format(it)) }
+
+        val recent = computeRecentMovies(movies)
+
+        assertEquals(10, recent.size)
+        // 2026-01-11 is the most recent date, descending down to 2026-01-02.
+        assertEquals((11 downTo 2).map { "tt$it" }, recent.map { it["imdb_id"] })
+    }
+
+    @Test
+    fun `computeRecentMovies breaks same-day ties by canonical sortMovies order`() {
+        val olderYear = filmWithDate("tt1", "2026-01-01", year = 2010)
+        val newerYear = filmWithDate("tt2", "2026-01-01", year = 2020)
+
+        val recent = computeRecentMovies(listOf(olderYear, newerYear))
+
+        // Same date_committed: sortMovies' descending-year order wins the tie.
+        assertEquals(listOf("tt2", "tt1"), recent.map { it["imdb_id"] })
+    }
+
+    @Test
+    fun `loadFromServer computes the boot-time recent-movies snapshot`() = runTest {
+        val moviesYaml = """
+            - title: Parasite
+              year: 2019
+              director: 봉준호
+              imdb_id: tt6751668
+              date_committed: 2026-01-05
+            - title: Memories of Murder
+              year: 2003
+              director: 봉준호
+              imdb_id: tt0353969
+            - title: Oldboy
+              year: 2003
+              director: 박찬욱
+              imdb_id: tt0364569
+              date_committed: 2026-02-01
+        """.trimIndent()
+        server.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse = when {
+                request.path!!.startsWith("/movies.yml") -> MockResponse().setBody(moviesYaml)
+                request.path!!.startsWith("/awards.yml") -> MockResponse().setBody("by_imdb: {}")
+                else -> MockResponse().setResponseCode(404)
+            }
+        }
+        val statsEditor = CurationEditor(
+            repository = MovieRepository(
+                client = OkHttpClient(),
+                moviesUrl = server.url("/movies.yml").toString(),
+                awardsUrl = server.url("/awards.yml").toString(),
+            ),
+            gitHubClient = GitHubContentsClient(
+                client = OkHttpClient(), owner = "nambin", repo = "nambin.github.io", branch = "main",
+                token = "test-token", apiBaseUrl = server.url("/").toString().removeSuffix("/"),
+            ),
+        )
+
+        statsEditor.loadFromServer()
+
+        // Oldboy's later date_committed puts it ahead of Parasite; the dateless
+        // Memories of Murder entry is excluded entirely.
+        assertEquals(listOf("Oldboy", "Parasite"), statsEditor.recentMovies.map { it["title"] })
+    }
 }

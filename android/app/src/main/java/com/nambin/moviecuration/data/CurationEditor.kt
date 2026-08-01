@@ -9,6 +9,7 @@ import com.nambin.moviecuration.core.sortMovies
 import com.nambin.moviecuration.core.todayDateStringSeoul
 import com.nambin.moviecuration.github.CommitOutcome
 import com.nambin.moviecuration.github.GitHubContentsClient
+import java.time.LocalDate
 
 /**
  * Result of [CurationEditor.addNew] / [CurationEditor.swapCandidate].
@@ -100,6 +101,15 @@ fun computeCollectionStats(movies: List<MovieEntry>): CollectionStats {
     return CollectionStats(totalMovies = movies.size, topDirectors = top)
 }
 
+/** Number of rows in the Recent Movies page. */
+private const val STATS_RECENT_MOVIES = 10
+
+fun computeRecentMovies(movies: List<MovieEntry>): List<MovieEntry> =
+    sortMovies(movies)
+        .filter { !(it["date_committed"] as? String).isNullOrBlank() }
+        .sortedByDescending { LocalDate.parse(it["date_committed"] as String) }
+        .take(STATS_RECENT_MOVIES)
+
 /**
  * Owns the choreography between [MovieRepository], [CurationSession], and the
  * pure `core` package functions for one Curation session, so callers (the
@@ -119,9 +129,14 @@ class CurationEditor(
     var collectionStats: CollectionStats = CollectionStats(0, emptyList())
         private set
 
+    /** Boot-time recent-movies snapshot — same once-per-boot lifecycle as [collectionStats]. */
+    var recentMovies: List<MovieEntry> = emptyList()
+        private set
+
     suspend fun loadFromServer() {
         repository.loadFromServer()
         collectionStats = computeCollectionStats(repository.movies)
+        recentMovies = computeRecentMovies(repository.movies)
     }
 
     fun search(query: String): List<MovieEntry> = repository.search(query)
