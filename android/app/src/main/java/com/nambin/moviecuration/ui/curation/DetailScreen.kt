@@ -41,13 +41,13 @@ fun DetailScreen(
     // fresh open, or the candidate picker swapping to a different film),
     // which is also what makes a candidate swap a clean slate: these reset
     // to the new entry's own fields, discarding whatever was staged before.
-    var directorField by remember(entry["imdb_id"], selectedCandidateId) {
+    var directorField by remember(entry["imdb_id"] ?: entry["tmdb_url"], selectedCandidateId) {
         mutableStateOf(entry["director"] as? String ?: "")
     }
-    var ratingValue by remember(entry["imdb_id"], selectedCandidateId) {
+    var ratingValue by remember(entry["imdb_id"] ?: entry["tmdb_url"], selectedCandidateId) {
         mutableStateOf(Rating.of(entry).value)
     }
-    var noteField by remember(entry["imdb_id"], selectedCandidateId) {
+    var noteField by remember(entry["imdb_id"] ?: entry["tmdb_url"], selectedCandidateId) {
         mutableStateOf(entry["note"] as? String ?: "")
     }
     // New-entry only (see the Recent checkbox below). Reads the entry's
@@ -55,7 +55,7 @@ fun DetailScreen(
     // addNew/swapCandidate stamp it eagerly by default, so a fresh entry
     // shows checked, while reopening one Accept already cleared (e.g. from
     // Review changes) correctly shows unchecked instead of resetting to true.
-    var recentChecked by remember(entry["imdb_id"], selectedCandidateId) {
+    var recentChecked by remember(entry["imdb_id"] ?: entry["tmdb_url"], selectedCandidateId) {
         mutableStateOf(entry["date_committed"] != null)
     }
     val hasChanges = directorField.trim() != (entry["director"] as? String ?: "") ||

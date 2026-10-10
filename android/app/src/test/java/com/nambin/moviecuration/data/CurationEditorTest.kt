@@ -340,6 +340,59 @@ class CurationEditorTest {
         assertEquals(listOf("tt1"), (outcome as CommitAttemptOutcome.DuplicateImdbIds).imdbIds)
     }
 
+    @Test
+    fun `commit aborts with DuplicateTmdbUrls when the repository has a collision on tmdb_url`() = runTest {
+        val e1 = movieEntryOf("imdb_id" to null, "tmdb_url" to "https://www.themoviedb.org/movie/123", "title" to "M1")
+        val e2 = movieEntryOf("imdb_id" to null, "tmdb_url" to "https://www.themoviedb.org/movie/123", "title" to "M2")
+        repository.add(e1)
+        repository.add(e2)
+
+        val outcome = editor.commit()
+
+        assertTrue(outcome is CommitAttemptOutcome.DuplicateTmdbUrls)
+        assertEquals(listOf("https://www.themoviedb.org/movie/123"), (outcome as CommitAttemptOutcome.DuplicateTmdbUrls).tmdbUrls)
+    }
+
+    @Test
+    fun `addNew, update, and commit with null imdb_id using tmdb_url as key`() = runTest {
+        val tmdbUrl = "https://www.themoviedb.org/movie/1617774"
+        val e = movieEntryOf(
+            "title" to "Yellow Letters",
+            "year" to 2026,
+            "director" to "Ilker Catak",
+            "imdb_id" to null,
+            "imdb_url" to null,
+            "tmdb_url" to tmdbUrl,
+        )
+        val outcome = editor.addNew(e)
+        assertTrue(outcome is AddOutcome.Added)
+        assertEquals(tmdbUrl, (outcome as AddOutcome.Added).imdbId)
+        assertEquals(1, editor.newCount)
+
+        // edit field
+        editor.updateDirector(tmdbUrl, "İlker Çatak")
+        assertEquals("İlker Çatak", e["director"])
+
+        // review changes
+        val changes = editor.buildReviewChanges()
+        assertEquals(1, changes.size)
+        assertEquals(tmdbUrl, changes[0].imdbId)
+
+        server.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse = when {
+                request.method == "GET" -> MockResponse().setBody(
+                    """{"sha":"base-sha","content":"${b64("[]\n")}"}""",
+                )
+                request.method == "PUT" -> MockResponse().setBody("""{"commit":{"sha":"new-sha"}}""")
+                else -> MockResponse().setResponseCode(404)
+            }
+        }
+
+        val commitOutcome = editor.commit()
+        assertTrue(commitOutcome is CommitAttemptOutcome.Success)
+        assertEquals(0, editor.newCount)
+    }
+
     // -- computeCollectionStats ---------------------------------------------------
 
     private fun film(imdbId: String, director: String?, year: Int): MovieEntry {

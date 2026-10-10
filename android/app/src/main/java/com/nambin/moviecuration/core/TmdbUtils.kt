@@ -69,12 +69,6 @@ data class TmdbCandidate(
 
 /** TMDB Movie Details JSON -> movie entry. Keys are in the canonical YAML field order. */
 fun buildMovieEntryFromTmdb(tmdb: TmdbMovieDetails): MovieEntry {
-    if (tmdb.imdb_id.isNullOrEmpty()) {
-        throw IllegalArgumentException(
-            "buildMovieEntryFromTmdb: TMDB response has no imdb_id (TMDB id=${tmdb.id})"
-        )
-    }
-
     val directors = (tmdb.credits?.crew ?: emptyList()).filter { it.job == "Director" }
     val tmdbDirectorName1 = directors.getOrNull(0)?.name
     val tmdbDirectorName2 = directors.getOrNull(1)?.name
@@ -94,13 +88,16 @@ fun buildMovieEntryFromTmdb(tmdb: TmdbMovieDetails): MovieEntry {
         else -> "$tmdbTitle ($tmdbOriginalTitle)"
     }
 
+    val imdbId = tmdb.imdb_id?.takeIf { it.isNotBlank() }
+    val imdbUrl = imdbId?.let { "https://www.imdb.com/title/$it" }
+
     return movieEntryOf(
         "title" to title,
         "year" to year,
         "director" to director,
         "is_korean_director" to isKoreanLanguage(director),
-        "imdb_id" to tmdb.imdb_id,
-        "imdb_url" to "https://www.imdb.com/title/${tmdb.imdb_id}",
+        "imdb_id" to imdbId,
+        "imdb_url" to imdbUrl,
         "tmdb_url" to "https://www.themoviedb.org/movie/${tmdb.id}",
         "tmdb_title" to if (tmdbTitle != tmdbOriginalTitle) tmdbTitle else null,
         "tmdb_original_title" to tmdbOriginalTitle,

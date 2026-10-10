@@ -201,7 +201,8 @@ class CurationViewModel(
                     // pick, so go straight to the detail view with the full
                     // picker — showing the *existing* entry (in-view notice;
                     // edits apply to it directly) rather than dead-ending.
-                    val existingId = outcome.existing["imdb_id"] as? String
+                    val existingId = (outcome.existing["imdb_id"] as? String)?.takeIf { it.isNotBlank() }
+                        ?: (outcome.existing["tmdb_url"] as? String)
                     if (existingId != null) editor.ensureSnapshot(existingId, outcome.existing)
                     _uiState.update {
                         it.copy(
@@ -295,7 +296,8 @@ class CurationViewModel(
                 // The picked candidate is already curated: keep the picker
                 // and show the *existing* entry in this same view — the
                 // in-view notice explains that edits apply to it directly.
-                val existingId = outcome.existing["imdb_id"] as? String
+                val existingId = (outcome.existing["imdb_id"] as? String)?.takeIf { it.isNotBlank() }
+                    ?: (outcome.existing["tmdb_url"] as? String)
                 if (existingId != null) editor.ensureSnapshot(existingId, outcome.existing)
                 _uiState.update {
                     it.copy(
@@ -324,13 +326,15 @@ class CurationViewModel(
     }
 
     private fun openExistingForEdit(entry: MovieEntry) {
-        val imdbId = entry["imdb_id"] as? String ?: return
-        editor.ensureSnapshot(imdbId, entry)
+        val id = (entry["imdb_id"] as? String)?.takeIf { it.isNotBlank() }
+            ?: (entry["tmdb_url"] as? String)?.takeIf { it.isNotBlank() }
+            ?: return
+        editor.ensureSnapshot(id, entry)
         _uiState.update {
             it.copy(
                 activeEntry = entry,
                 activeIsNew = false,
-                activeImdbId = imdbId,
+                activeImdbId = id,
                 candidates = emptyList(),
                 entriesByCandidateId = emptyMap(),
                 selectedCandidateId = null,
@@ -478,6 +482,12 @@ class CurationViewModel(
                     it.copy(
                         commitBusy = false,
                         commitError = "Duplicate imdb_id(s) detected — aborted before committing: ${outcome.imdbIds.joinToString()}",
+                    )
+                }
+                is CommitAttemptOutcome.DuplicateTmdbUrls -> _uiState.update {
+                    it.copy(
+                        commitBusy = false,
+                        commitError = "Duplicate tmdb_url(s) detected — aborted before committing: ${outcome.tmdbUrls.joinToString()}",
                     )
                 }
                 is CommitAttemptOutcome.DiffTooLarge -> _uiState.update {

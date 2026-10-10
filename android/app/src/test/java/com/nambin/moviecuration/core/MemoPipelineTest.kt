@@ -384,16 +384,10 @@ class MemoPipelineTest {
         )
     }
 
-    // Ported from tests/memo_pipeline.test.js's "drops enriched candidates
-    // without an imdb_id before Call B" — a candidate whose details carry no
-    // imdb_id can never become an entry, so it must never reach the matcher
-    // or the caller-visible candidate list. Stricter than the JS reference
-    // on one point, though: a candidate whose details fetch merely *failed*
-    // (imdb_id unknown, not confirmed absent) is excluded here too, not kept
-    // per JS's "unknown is neutral" three-state design — see the deliberate
-    // divergence noted in prompt-android-app.md's "Ported logic" section.
+    // Candidates without an imdb_id are matchable and kept in the candidate list
+    // (with imdb_id = null in their built entry).
     @Test
-    fun `processMemoLine drops enriched candidates without an imdb_id before Call B`() = runTest {
+    fun `processMemoLine keeps enriched candidates without an imdb_id`() = runTest {
         val searchResults = loadFixtureText("memo/search-imdb-filter")
         val details111 = loadFixtureText("memo/details-no-imdb-111")
         val details222 = loadFixtureText("memo/details-with-imdb-222")
@@ -425,12 +419,13 @@ class MemoPipelineTest {
 
         val result = processMemoLine("Real Film", "test-key", "test-key", emptyMap(), GeminiModelTier.FLASH, client)
 
-        // The imdb_id-less candidate (111) must never reach the caller-visible list.
+        // The candidate without imdb_id (111) is kept alongside candidate 222.
         assertEquals(
             OkSummary(
                 selectedCandidateId = 222,
                 confidence = "high",
                 entriesByCandidateId = mapOf(
+                    111 to EntrySummary(title = "Real Film (Promo Reel)", director = "", isKoreanDirector = false, year = 2024, imdbId = null),
                     222 to EntrySummary(title = "Real Film", director = "Jane Doe", isKoreanDirector = false, year = 2024, imdbId = "tt2220000"),
                 ),
             ),

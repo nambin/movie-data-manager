@@ -100,6 +100,11 @@ class MovieRepository(
         return movies.find { it["tmdb_url"] == tmdbUrl }
     }
 
+    fun findById(id: String?): MovieEntry? {
+        if (id.isNullOrEmpty()) return null
+        return findByImdbId(id) ?: findByTmdbUrl(id)
+    }
+
     /** Duplicate check by imdb_id first, then tmdb_url — mirrors the web app's add-by-URL check. */
     fun findDuplicate(entry: MovieEntry): MovieEntry? =
         findByImdbId(entry["imdb_id"] as? String) ?: findByTmdbUrl(entry["tmdb_url"] as? String)

@@ -46,6 +46,7 @@ sealed class AddOutcome {
 sealed class CommitAttemptOutcome {
     data class Success(val summary: String) : CommitAttemptOutcome()
     data class DuplicateImdbIds(val imdbIds: List<String>) : CommitAttemptOutcome()
+    data class DuplicateTmdbUrls(val tmdbUrls: List<String>) : CommitAttemptOutcome()
     data class DiffTooLarge(val changedLines: Int, val limit: Int) : CommitAttemptOutcome()
     data object Conflict : CommitAttemptOutcome()
     data class Failure(val message: String) : CommitAttemptOutcome()
@@ -142,15 +143,24 @@ class CurationEditor(
     fun search(query: String): List<MovieEntry> = repository.search(query)
 
     /**
-     * imdb_ids (by TMDB candidate id) that are already curated — for the
-     * picker's "(already curated)" hint. Must be called BEFORE [addNew]
-     * inserts the picked entry, otherwise the just-picked movie would show up
-     * flagged as already curated against itself.
+     * Candidate IDs (by TMDB candidate id) that are already curated — for the
+     * picker's "(already curated)" hint. Checks both imdb_id and tmdb_url.
+     * Must be called BEFORE [addNew] inserts the picked entry, otherwise the
+     * just-picked movie would show up flagged as already curated against itself.
      */
     fun alreadyCuratedCandidateIds(candidates: List<TmdbCandidate>): Set<Int> =
-        candidates.filter { c -> c.details?.imdb_id?.let { repository.findByImdbId(it) != null } == true }
+        candidates.filter { c ->
+            val byImdb = c.details?.imdb_id?.let { repository.findByImdbId(it) != null } ?: false
+            val byTmdb = repository.findByTmdbUrl("https://www.themoviedb.org/movie/${c.id}") != null
+            byImdb || byTmdb
+        }
             .map { it.id }
             .toSet()
+
+    private fun movieKey(entry: MovieEntry): String =
+        (entry["imdb_id"] as? String)?.takeIf { it.isNotBlank() }
+            ?: (entry["tmdb_url"] as? String)?.takeIf { it.isNotBlank() }
+            ?: throw IllegalArgumentException("MovieEntry has neither imdb_id nor tmdb_url")
 
     fun addNew(entry: MovieEntry): AddOutcome {
         val duplicate = repository.findDuplicate(entry)
@@ -163,9 +173,9 @@ class CurationEditor(
         // changes) — applyRecency clears it at Accept if the user unchecks it.
         entry.putIfAbsent("date_committed", todayDateStringSeoul())
         repository.add(entry)
-        val imdbId = requireNotNull(entry["imdb_id"] as? String) { "addNew: entry has no imdb_id" }
-        session.markNew(imdbId)
-        return AddOutcome.Added(entry, imdbId)
+        val id = movieKey(entry)
+        session.markNew(id)
+        return AddOutcome.Added(entry, id)
     }
 
     /**
@@ -192,9 +202,9 @@ class CurationEditor(
 
         applyAwardsToEntry(candidateEntry, repository.awardsByImdb)
         repository.add(candidateEntry)
-        val newImdbId = requireNotNull(candidateEntry["imdb_id"] as? String) { "swapCandidate: entry has no imdb_id" }
-        session.markNew(newImdbId)
-        return AddOutcome.Added(candidateEntry, newImdbId)
+        val newId = movieKey(candidateEntry)
+        session.markNew(newId)
+        return AddOutcome.Added(candidateEntry, newId)
     }
 
     /**
@@ -206,7 +216,8 @@ class CurationEditor(
      */
     fun discardNew(entry: MovieEntry) {
         repository.remove(entry)
-        (entry["imdb_id"] as? String)?.let { session.unmarkNew(it) }
+        val id = (entry["imdb_id"] as? String)?.takeIf { it.isNotBlank() } ?: (entry["tmdb_url"] as? String)
+        id?.let { session.unmarkNew(it) }
     }
 
     /**
@@ -216,17 +227,17 @@ class CurationEditor(
      * sees an empty diff and un-marks the entry. No-op when there's no
      * snapshot (nothing was ever edited).
      */
-    fun revertUpdate(imdbId: String) {
-        val entry = repository.findByImdbId(imdbId) ?: return
-        val snapshot = session.snapshotFor(imdbId) ?: return
+    fun revertUpdate(id: String) {
+        val entry = repository.findById(id) ?: return
+        val snapshot = session.snapshotFor(id) ?: return
         entry.clear()
         entry.putAll(snapshot)
-        session.refreshUpdatedStatus(imdbId, entry)
+        session.refreshUpdatedStatus(id, entry)
         if (entry["director"] != null) repository.rebuildKoreanDirectorMap()
     }
 
     /** Call before an existing (non-new) entry becomes editable — no-op for new entries or repeat calls. */
-    fun ensureSnapshot(imdbId: String, entry: MovieEntry) = session.ensureSnapshot(imdbId, entry)
+    fun ensureSnapshot(id: String, entry: MovieEntry) = session.ensureSnapshot(id, entry)
 
     /**
      * New-entry only: stamps `date_committed` with today's date when [recent],
@@ -234,12 +245,12 @@ class CurationEditor(
      * (lib/app.js's commitAllBtn handler: `if (r.recent) entry.date_committed = todayDateString();`).
      * Applied once, at Accept.
      */
-    fun applyRecency(imdbId: String, recent: Boolean) {
-        val entry = repository.findByImdbId(imdbId) ?: return
+    fun applyRecency(id: String, recent: Boolean) {
+        val entry = repository.findById(id) ?: return
         if (recent) entry["date_committed"] = todayDateStringSeoul() else entry.remove("date_committed")
     }
 
-    fun updateDirector(imdbId: String, value: String): Boolean = editField(imdbId) { entry ->
+    fun updateDirector(id: String, value: String): Boolean = editField(id) { entry ->
         val v = value.trim()
         if (entry["director"] as? String != v) {
             entry["director"] = v
@@ -251,14 +262,14 @@ class CurationEditor(
     }
 
     /** [rating] is one of "masterpiece", "my_best", or "" for (none). */
-    fun updateRating(imdbId: String, rating: String): Boolean = editField(imdbId) { entry ->
+    fun updateRating(id: String, rating: String): Boolean = editField(id) { entry ->
         val target = Rating.fromValue(rating)
         val changed = Rating.of(entry) != target
         if (changed) target.applyTo(entry)
         changed
     }
 
-    fun updateNote(imdbId: String, value: String): Boolean = editField(imdbId) { entry ->
+    fun updateNote(id: String, value: String): Boolean = editField(id) { entry ->
         val v = value.trim()
         if ((entry["note"] as? String ?: "") != v) {
             if (v.isNotEmpty()) entry["note"] = v else entry.remove("note")
@@ -268,12 +279,12 @@ class CurationEditor(
         }
     }
 
-    private fun editField(imdbId: String, mutate: (MovieEntry) -> Boolean): Boolean {
-        val entry = repository.findByImdbId(imdbId) ?: return false
-        session.ensureSnapshot(imdbId, entry) // no-op for new entries or repeat calls
+    private fun editField(id: String, mutate: (MovieEntry) -> Boolean): Boolean {
+        val entry = repository.findById(id) ?: return false
+        session.ensureSnapshot(id, entry) // no-op for new entries or repeat calls
         val changed = mutate(entry)
         if (!changed) return false
-        session.refreshUpdatedStatus(imdbId, entry) // no-op for new entries
+        session.refreshUpdatedStatus(id, entry) // no-op for new entries
         // Rebuild regardless of new-vs-existing: the web app always rebuilds this
         // map fresh from the live movies list immediately before each add, so a
         // director correction made to an existing (searched) entry this session
@@ -285,29 +296,38 @@ class CurationEditor(
 
     fun buildReviewChanges(): List<PendingChange> {
         val changes = mutableListOf<PendingChange>()
-        for (imdbId in session.newImdbIds) {
-            val entry = repository.findByImdbId(imdbId) ?: continue
-            changes.add(PendingChange(imdbId, isNew = true, entry = entry))
+        for (id in session.newIds) {
+            val entry = repository.findById(id) ?: continue
+            changes.add(PendingChange(id, isNew = true, entry = entry))
         }
-        for (imdbId in session.updatedImdbIds) {
-            val entry = repository.findByImdbId(imdbId) ?: continue
-            val before = session.snapshotFor(imdbId) ?: continue
+        for (id in session.updatedIds) {
+            val entry = repository.findById(id) ?: continue
+            val before = session.snapshotFor(id) ?: continue
             val diffs = diffEntry(before, entry)
             if (diffs.isEmpty()) continue
-            changes.add(PendingChange(imdbId, isNew = false, entry = entry, diffs = diffs))
+            changes.add(PendingChange(id, isNew = false, entry = entry, diffs = diffs))
         }
         return changes
     }
 
     suspend fun commit(): CommitAttemptOutcome {
-        // Defensive re-check: never push a file with duplicate imdb_ids.
-        val dupGroups = repository.movies
-            .mapNotNull { it["imdb_id"] as? String }
+        // Defensive re-check: never push a file with duplicate imdb_ids or tmdb_urls.
+        val dupImdbGroups = repository.movies
+            .mapNotNull { (it["imdb_id"] as? String)?.takeIf { id -> id.isNotBlank() } }
             .groupingBy { it }
             .eachCount()
             .filterValues { it > 1 }
-        if (dupGroups.isNotEmpty()) {
-            return CommitAttemptOutcome.DuplicateImdbIds(dupGroups.keys.toList())
+        if (dupImdbGroups.isNotEmpty()) {
+            return CommitAttemptOutcome.DuplicateImdbIds(dupImdbGroups.keys.toList())
+        }
+
+        val dupTmdbGroups = repository.movies
+            .mapNotNull { (it["tmdb_url"] as? String)?.takeIf { url -> url.isNotBlank() } }
+            .groupingBy { it }
+            .eachCount()
+            .filterValues { it > 1 }
+        if (dupTmdbGroups.isNotEmpty()) {
+            return CommitAttemptOutcome.DuplicateTmdbUrls(dupTmdbGroups.keys.toList())
         }
 
         val canonical = canonicalizeAll(repository.movies)

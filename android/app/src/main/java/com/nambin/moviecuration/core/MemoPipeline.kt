@@ -218,13 +218,10 @@ suspend fun processMemoLine(
     }
     val enriched = enrichCandidatesForMatch(rawCandidates, tmdbApiKey, client)
 
-    // Restricted to imdb_id-confirmed candidates only, before Call B ever
-    // sees the list — an unconfirmed candidate can never become a saved
-    // entry (buildMovieEntryFromTmdb requires one), so there's no point
-    // offering it to the matcher or the candidate picker. Fed to both Call B
-    // (below) and Ok's `.candidates` — one list, one guarantee, nothing
-    // downstream ever sees an unconfirmed candidate.
-    val pickerCandidates = enriched.filter { it.details != null && !it.details.imdb_id.isNullOrEmpty() }
+    // All candidates with successfully fetched details are matchable
+    // (buildMovieEntryFromTmdb supports entries with or without an imdb_id;
+    // Call B receives has_imdb as an informative signal).
+    val pickerCandidates = enriched.filter { it.details != null }
     if (pickerCandidates.isEmpty()) {
         return MemoPipelineResult.NoMatch(rawLine, parseMemoLineResponse)
     }

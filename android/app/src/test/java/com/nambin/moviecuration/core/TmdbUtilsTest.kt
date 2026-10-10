@@ -177,8 +177,8 @@ class TmdbUtilsTest {
         )
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun `missing imdb_id throws`() {
+    @Test
+    fun `missing imdb_id produces null imdb_id and null imdb_url`() {
         val fake = TmdbMovieDetails(
             id = 999999,
             title = "X",
@@ -189,7 +189,10 @@ class TmdbUtilsTest {
             imdb_id = "",
             credits = TmdbCredits(emptyList()),
         )
-        buildMovieEntryFromTmdb(fake)
+        val entry = buildMovieEntryFromTmdb(fake)
+        assertNull(entry["imdb_id"])
+        assertNull(entry["imdb_url"])
+        assertEquals("https://www.themoviedb.org/movie/999999", entry["tmdb_url"])
     }
 
     @Test

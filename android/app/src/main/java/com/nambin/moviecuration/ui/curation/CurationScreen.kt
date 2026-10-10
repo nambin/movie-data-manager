@@ -253,7 +253,7 @@ private fun CurationHome(
             }
         } else {
             LazyColumn(modifier = Modifier.weight(1f)) {
-                items(state.searchResults, key = { it["imdb_id"] as? String ?: it.hashCode().toString() }) { entry ->
+                items(state.searchResults, key = { (it["imdb_id"] as? String) ?: (it["tmdb_url"] as? String) ?: it.hashCode().toString() }) { entry ->
                     SearchResultRow(entry, onClick = { viewModel.openSearchResult(entry) })
                 }
             }
@@ -423,7 +423,7 @@ private fun RecentMoviesBlock(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(modifier = modifier.fillMaxSize().padding(top = 12.dp)) {
-        items(movies, key = { it["imdb_id"] as? String ?: it.hashCode().toString() }) { entry ->
+        items(movies, key = { (it["imdb_id"] as? String) ?: (it["tmdb_url"] as? String) ?: it.hashCode().toString() }) { entry ->
             SearchResultRow(entry, onClick = { onMovieClick(entry) })
         }
     }

@@ -12,19 +12,21 @@ import com.nambin.moviecuration.core.MovieEntry
  * accepted as a fine v1 trade-off rather than adding an on-disk cache.
  */
 class CurationSession {
-    private val _newImdbIds: MutableSet<String> = linkedSetOf()
-    private val _updatedImdbIds: MutableSet<String> = linkedSetOf()
-    val newImdbIds: Set<String> get() = _newImdbIds
-    val updatedImdbIds: Set<String> get() = _updatedImdbIds
-    private val preEditSnapshotsByImdbId: MutableMap<String, MovieEntry> = mutableMapOf()
+    private val _newIds: MutableSet<String> = linkedSetOf()
+    private val _updatedIds: MutableSet<String> = linkedSetOf()
+    val newIds: Set<String> get() = _newIds
+    val updatedIds: Set<String> get() = _updatedIds
+    val newImdbIds: Set<String> get() = _newIds
+    val updatedImdbIds: Set<String> get() = _updatedIds
+    private val preEditSnapshotsById: MutableMap<String, MovieEntry> = mutableMapOf()
 
-    fun markNew(imdbId: String) {
-        _newImdbIds.add(imdbId)
+    fun markNew(id: String) {
+        _newIds.add(id)
     }
 
     /** Retires an entry that was previously [markNew]'d without it ever being committed (e.g. a candidate swap). */
-    fun unmarkNew(imdbId: String) {
-        _newImdbIds.remove(imdbId)
+    fun unmarkNew(id: String) {
+        _newIds.remove(id)
     }
 
     /**
@@ -34,40 +36,40 @@ class CurationSession {
      * screen always shows the full cumulative diff since the last commit,
      * not just the latest edit.
      */
-    fun ensureSnapshot(imdbId: String, currentEntry: MovieEntry) {
-        if (imdbId in _newImdbIds) return // new entries have no "before" state to diff against
-        preEditSnapshotsByImdbId.putIfAbsent(imdbId, MovieEntry(currentEntry))
+    fun ensureSnapshot(id: String, currentEntry: MovieEntry) {
+        if (id in _newIds) return // new entries have no "before" state to diff against
+        preEditSnapshotsById.putIfAbsent(id, MovieEntry(currentEntry))
     }
 
     /**
      * Recompute whether an existing entry currently differs from its
-     * pre-edit snapshot, and add/remove it from [updatedImdbIds] to match.
+     * pre-edit snapshot, and add/remove it from [updatedIds] to match.
      * Unlike a one-way "mark and never unmark," this means reverting a field
      * back to its original value within the same session correctly drops
      * the entry back out of the "N update" count instead of leaving a
      * phantom update behind (the entry was never actually changed, from the
      * next commit's point of view). No-op for entries already tracked as new.
      */
-    fun refreshUpdatedStatus(imdbId: String, currentEntry: MovieEntry) {
-        if (imdbId in _newImdbIds) return
-        val snapshot = preEditSnapshotsByImdbId[imdbId] ?: return
+    fun refreshUpdatedStatus(id: String, currentEntry: MovieEntry) {
+        if (id in _newIds) return
+        val snapshot = preEditSnapshotsById[id] ?: return
         if (diffEntry(snapshot, currentEntry).isEmpty()) {
-            _updatedImdbIds.remove(imdbId)
+            _updatedIds.remove(id)
         } else {
-            _updatedImdbIds.add(imdbId)
+            _updatedIds.add(id)
         }
     }
 
-    fun snapshotFor(imdbId: String): MovieEntry? = preEditSnapshotsByImdbId[imdbId]
+    fun snapshotFor(id: String): MovieEntry? = preEditSnapshotsById[id]
 
-    val newCount: Int get() = _newImdbIds.size
-    val updateCount: Int get() = _updatedImdbIds.size
-    val hasPendingChanges: Boolean get() = _newImdbIds.isNotEmpty() || _updatedImdbIds.isNotEmpty()
+    val newCount: Int get() = _newIds.size
+    val updateCount: Int get() = _updatedIds.size
+    val hasPendingChanges: Boolean get() = _newIds.isNotEmpty() || _updatedIds.isNotEmpty()
 
     fun clearAfterCommit() {
-        _newImdbIds.clear()
-        _updatedImdbIds.clear()
-        preEditSnapshotsByImdbId.clear()
+        _newIds.clear()
+        _updatedIds.clear()
+        preEditSnapshotsById.clear()
     }
 }
 
