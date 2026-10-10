@@ -223,7 +223,7 @@ test("Infernal Affairs (id=10775) — Cantonese original, two directors", () => 
   });
 });
 
-test("missing imdb_id throws", () => {
+test("missing imdb_id produces null imdb_id and null imdb_url", () => {
   // Construct a minimal fake response with imdb_id missing.
   const fake = {
     id: 999999,
@@ -233,9 +233,12 @@ test("missing imdb_id throws", () => {
     release_date: "2020-01-01",
     poster_path: null,
     credits: { crew: [] },
-    imdb_id: "", // empty string is treated as missing — buildMovieEntryFromTmdb throws
+    imdb_id: "", // empty string is treated as null
   };
-  assert.throws(() => buildMovieEntryFromTmdb(fake), /no imdb_id/);
+  const entry = buildMovieEntryFromTmdb(fake);
+  assert.equal(entry.imdb_id, null);
+  assert.equal(entry.imdb_url, null);
+  assert.equal(entry.tmdb_url, "https://www.themoviedb.org/movie/999999");
 });
 
 test("missing release_date → year is null (caller must require user entry)", () => {

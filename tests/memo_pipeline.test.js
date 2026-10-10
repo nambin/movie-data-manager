@@ -555,14 +555,12 @@ test("processMemoLine: TMDB zero results across year ± 1 → status=no_match, C
 });
 
 // ---------------------------------------------------------------------------
-// Scenario 5 — A TMDB candidate whose details carry no imdb_id is dropped
-// before Call B. A candidate without an imdb_id can never become an entry
-// (buildMovieEntryFromTmdb requires one), so processMemoLine filters out the
-// enriched candidates with empty imdb_id — Call B only ever sees the saveable
-// one. This is the fix anticipated by the Scenario 2b comment.
+// Scenario 5 — Candidates without an imdb_id are kept in candidates list and
+// offered to Call B. When Call B matches a candidate with an imdb_id, it is
+// built normally; candidates without imdb_id can also be built into entries.
 // ---------------------------------------------------------------------------
 
-test("processMemoLine: drops enriched candidates without an imdb_id before Call B", async () => {
+test("processMemoLine: keeps candidates even if they lack imdb_id, Call B matches", async () => {
   const calls = installPipelineMocks({
     geminiParseResult: {
       is_movie: true,
@@ -574,14 +572,14 @@ test("processMemoLine: drops enriched candidates without an imdb_id before Call 
     geminiMatchResult: {
       matched_tmdb_id: 222,
       confidence: "high",
-      reasoning: "the saveable candidate with an imdb_id",
+      reasoning: "the candidate with an imdb_id",
     },
     tmdbSearchFixtures: {
       // No year → a single search; results are [id 111 (no imdb), id 222 (ok)].
       "Real Film|": "memo/search-imdb-filter",
     },
     tmdbDetailsFixtures: {
-      111: "memo/details-no-imdb-111", // imdb_id: null → must be dropped
+      111: "memo/details-no-imdb-111", // imdb_id: null → retained
       222: "memo/details-with-imdb-222", // imdb_id present → kept
     },
   });
@@ -595,17 +593,17 @@ test("processMemoLine: drops enriched candidates without an imdb_id before Call 
 
   assert.equal(result.status, "ok");
 
-  // Both candidates were enriched (details fetched), but the imdb_id-less one
-  // (111) is filtered out — result.candidates holds only 222.
+  // Both candidates are retained in result.candidates.
   const searchResults = loadFixture("memo/search-imdb-filter").results;
+  const details111 = loadFixture("memo/details-no-imdb-111");
   const details222 = loadFixture("memo/details-with-imdb-222");
   assert.deepStrictEqual(result.candidates, [
+    { ...searchResults[0], directors: [], _details: details111 },
     { ...searchResults[1], directors: ["Jane Doe"], _details: details222 },
   ]);
 
-  // The dropped candidate (id 111) must never have been offered to Call B.
   const candidateIds = result.candidates.map((c) => c.id);
-  assert.deepStrictEqual(candidateIds, [222]);
+  assert.deepStrictEqual(candidateIds, [111, 222]);
 
   // Entry is built from the surviving candidate.
   assert.deepStrictEqual(result.entry, {

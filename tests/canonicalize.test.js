@@ -168,6 +168,13 @@ test("canonicalize: trims string note", () => {
   assert.equal(out.note, "hello");
 });
 
+test("canonicalize: preserves null imdb_id and null imdb_url in canonical order", () => {
+  const e = legacyEntry({ imdb_id: null, imdb_url: null });
+  const out = canonicalizeEntry(e);
+  assert.equal(out.imdb_id, null);
+  assert.equal(out.imdb_url, null);
+});
+
 test("canonicalize: throws on non-object input", () => {
   assert.throws(() => canonicalizeEntry(null), /must be an object/);
   assert.throws(() => canonicalizeEntry("foo"), /must be an object/);
